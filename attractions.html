@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Attractions & Must-See — Abruzzo Wild & Authentic</title>
+<meta name="description" content="From Roman theatres to glacial lakes and medieval castles — Abruzzo's most unmissable landmarks and natural wonders.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Attractions-specific ── */
+.attr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+.attr-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.attr-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--rose);
+}
+.attr-card.hidden { display: none; }
+.attr-img-wrap { overflow: hidden; position: relative; }
+.attr-img {
+  width: 100%; height: 185px;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  transition: transform .5s;
+}
+.attr-card:hover .attr-img { transform: scale(1.06); }
+.attr-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,18,10,.5), transparent 60%);
+}
+.attr-body { padding: 1.1rem 1.3rem 1.4rem; }
+.attr-body h3 {
+  font-family: var(--serif); font-size: 1.05rem;
+  font-weight: 400; color: var(--ink); margin-bottom: .32rem;
+}
+.attr-body p {
+  font-size: .82rem; color: var(--muted);
+  line-height: 1.6; margin-bottom: .65rem; font-weight: 300;
+}
+.attr-place {
+  font-size: .72rem; color: var(--rose);
+  font-weight: 500; display: flex;
+  align-items: center; gap: .25rem; margin-bottom: .6rem;
+}
+.attr-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: .75rem; border-top: 1px solid var(--parchment);
+  font-size: .75rem; color: var(--rose); font-weight: 500;
+}
+@media(max-width:1000px){ .attr-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:580px)  { .attr-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
+    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
+    <li><a href="attractions.html" class="nav-link active"><i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active">EN</button>
+    <button class="lang-btn">IT</button>
+    <button class="lang-btn">DE</button>
+    <button class="lang-btn">FR</button>
+  </div>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<div class="hero-inner" style="height:46vh">
+  <div class="hero-inner-img"
+       style="background-image:url('https://images.unsplash.com/photo-1499678329028-101435549a4e?w=1600&q=80')">
+  </div>
+  <div class="hero-inner-veil"></div>
+  <div class="hero-inner-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html">Home</a> › Attractions
+    </div>
+    <h1 class="hero-inner-h1">Attractions & <em>Must-See</em></h1>
+    <p class="hero-inner-sub">From Roman theatres to glacial lakes — Abruzzo's landmarks will surprise you at every turn.</p>
+  </div>
+</div>
+
+
+<!-- ════ FILTER BAR ════ -->
+<div class="filter-bar">
+  <span class="filter-label">Type</span>
+  <button class="pill pill-parchment on" onclick="atFilter('all', this)">All</button>
+  <button class="pill pill-parchment" onclick="atFilter('natural', this)">
+    <i class="ti ti-leaf" aria-hidden="true"></i> Natural
+  </button>
+  <button class="pill pill-parchment" onclick="atFilter('castle', this)">
+    <i class="ti ti-building-castle" aria-hidden="true"></i> Castles
+  </button>
+  <button class="pill pill-parchment" onclick="atFilter('museum', this)">
+    <i class="ti ti-building-arch" aria-hidden="true"></i> Museums
+  </button>
+  <button class="pill pill-parchment" onclick="atFilter('religious', this)">
+    <i class="ti ti-church" aria-hidden="true"></i> Religious
+  </button>
+  <button class="pill pill-parchment" onclick="atFilter('archaeological', this)">
+    <i class="ti ti-amphora" aria-hidden="true"></i> Archaeo.
+  </button>
+  <button class="pill pill-parchment" onclick="atFilter('panoramic', this)">
+    <i class="ti ti-photo-scan" aria-hidden="true"></i> Panoramic
+  </button>
+  <span class="filter-count" id="at-count"></span>
+</div>
+
+
+<!-- ════ CONTENT ════ -->
+<div class="wrap">
+  <div class="attr-grid" id="attr-grid"></div>
+</div>
+
+
+<!-- ════ MODAL ════ -->
+<div class="modal-backdrop" id="modal-backdrop"
+     onclick="if(event.target.id==='modal-backdrop')closeModal()">
+  <div class="modal">
+    <div class="modal-hero">
+      <img id="m-img" src="" alt="">
+      <div class="modal-hero-veil"></div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-info">
+        <small id="m-sub"></small>
+        <h2 id="m-title"></h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-badges" id="m-badges"></div>
+      <p id="m-desc"></p>
+      <div class="modal-stats" id="m-stats"></div>
+      <div class="modal-two" id="m-two"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> Abruzzo in your inbox</h4>
+      <p>Events, trails, recipes and hidden gems — once a month, no spam.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address">
+      <button class="nl-btn" onclick="nlSubmit()">Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html"       class="footer-link">Home</a>
+      <a href="quiz.html"        class="footer-link">Quiz</a>
+      <a href="hiking.html"      class="footer-link">Hiking</a>
+      <a href="food.html"        class="footer-link">Food & Wine</a>
+      <a href="villages.html"    class="footer-link">Villages</a>
+      <a href="wellness.html"    class="footer-link">Wellness</a>
+      <a href="attractions.html" class="footer-link">Attractions</a>
+      <a href="events.html"      class="footer-link">Events</a>
+      <a href="transport.html"   class="footer-link">Transport</a>
+      <a href="plan.html"        class="footer-link">Plan Trip</a>
+    </nav>
+  </div>
+  <div class="footer-copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+</footer>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ══ DATA ══ */
+const attractions = [
+  { id:'a1', type:'natural', name:'Lago di Scanno',
+    place:"Scanno (AQ)",
+    img:'https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=700&q=80',
+    desc:"A glacial lake shaped like a heart when seen from above — one of Italy's most photographed natural wonders, surrounded by beech forest.",
+    stats:[{v:'923m',l:'Altitude'},{v:'1.9 km²',l:'Area'},{v:'Year round',l:'Season'},{v:'Free',l:'Entry'}],
+    see:['Heart shape from above (best at viewpoint on SS479)','Scanno medieval village','Otters and waterfowl in the lake','Beech forest circuit walk'],
+    info:['From Sulmona: 45 min by car','Boat rental available in summer','Café and parking at lake shore','Combine with Sagittario gorge walk'] },
+
+  { id:'a2', type:'castle', name:'Rocca Calascio',
+    place:"Castel del Monte (AQ)",
+    img:'https://images.unsplash.com/photo-1499678329028-101435549a4e?w=700&q=80',
+    desc:"The highest castle in the Apennines at 1,512m — visible for 50km in every direction. Filming location for Ladyhawke (1985) and The Name of the Rose.",
+    stats:[{v:'1,512m',l:'Altitude'},{v:'10th c.',l:'Built'},{v:'Free',l:'Entry'},{v:'Year round',l:'Season'}],
+    see:['Castle ruins and four towers','Church of Santa Maria della Pietà','Ghost village of Rocca Calascio','Gran Sasso panoramic views'],
+    info:['Access via dirt road from Castel del Monte','Very windy year-round — bring layers','Best visited at golden hour','No facilities — bring water and snacks'] },
+
+  { id:'a3', type:'natural', name:'Majella UNESCO Geopark',
+    place:"Majella massif (PE/CH/AQ)",
+    img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80',
+    desc:"A UNESCO Global Geopark covering 74,000 hectares of limestone mountains, ancient hermit caves, dramatic gorges and wildflower plateaus.",
+    stats:[{v:'74,000 ha',l:'Area'},{v:'UNESCO',l:'Status'},{v:'2,793m',l:'High point'},{v:'Free',l:'Entry'}],
+    see:["Hermit caves of Sant'Angelo in Ripe",'Blockhaus panoramic plateau at 1,800m','Eremo di San Bartolomeo cliff hermitage','Geological formations and fossils'],
+    info:['Visitor centre: Caramanico Terme','Best months: May–October','Maps at park offices in Caramanico','Combine with Terme di Caramanico spa'] },
+
+  { id:'a4', type:'religious', name:'Basilica di Collemaggio',
+    place:"L'Aquila (AQ)",
+    img:'https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=700&q=80',
+    desc:"A masterpiece of Romanesque-Gothic architecture built in 1288 by Pietro da Morrone — later Pope Celestine V. Contains his silver tomb.",
+    stats:[{v:'1288',l:'Built'},{v:'Free',l:'Entry'},{v:'Year round',l:'Season'},{v:'UNESCO',l:'Candidate'}],
+    see:["Pope Celestine V's silver tomb inside",'Geometric rose marble facade','Celestinian door — opened once a year (Aug 28–29)','Post-2009 earthquake restoration in progress'],
+    info:["Located just outside L'Aquila historic centre",'Celestinian Pardon festival: Aug 28–29','Visiting hours: 9am–6pm daily','No photography during Mass'] },
+
+  { id:'a5', type:'archaeological', name:'Teatro Romano di Chieti',
+    place:"Chieti (CH)",
+    img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80',
+    desc:"One of the best-preserved Roman theatres in central Italy — 1st century AD, seating 4,000. The adjacent museum holds the famous Warrior of Capestrano.",
+    stats:[{v:'1st c. AD',l:'Built'},{v:'4,000',l:'Capacity'},{v:'€3',l:'Entry'},{v:'Chieti',l:'City'}],
+    see:['Roman theatre in situ','Warrior of Capestrano (archaeological museum)','Archaeological Museum of Chieti','Panoramic valley views from Chieti hilltop'],
+    info:['Opening: 9am–7pm daily','Summer concerts July–August','Combined ticket with museum: €6','From Pescara: 20 min by car'] },
+
+  { id:'a6', type:'museum', name:"Museo Nazionale d'Abruzzo",
+    place:"L'Aquila (AQ)",
+    img:'https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=700&q=80',
+    desc:"Abruzzo's most important museum — housed in a 15th-century Spanish Fortress. The prehistoric mammoth skeleton is unmissable.",
+    stats:[{v:'15th c.',l:'Building'},{v:'€5',l:'Entry'},{v:'Tue–Sun',l:'Open'},{v:"L'Aquila",l:'City'}],
+    see:['Mammoth skeleton (Mammuthus meridionalis)','Abruzzese goldsmith collection','Sacred art from the region','Views from the Spanish fortress walls'],
+    info:['Opening: 9am–7:30pm Tue–Sun','Free entry on first Sunday of the month',"Combine with L'Aquila historic centre walk",'Closed Monday'] },
+
+  { id:'a7', type:'panoramic', name:'Campo Imperatore Plateau',
+    place:"Gran Sasso massif (AQ)",
+    img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80',
+    desc:"The 'Little Tibet of Italy' — a vast high plateau at 2,130m stretching 30km beneath Gran Sasso peaks. Chamois herds, observatory and Mussolini's prison hotel.",
+    stats:[{v:'2,130m',l:'Altitude'},{v:'30 km',l:'Length'},{v:'Free',l:'Entry'},{v:'Jun–Oct',l:'Best season'}],
+    see:['Gran Sasso panoramic views','Astronomical Observatory guided tours','Hotel Campo Imperatore (Mussolini prison)','Apennine chamois herds on the plateau'],
+    info:["Cable car from Assergi or road from L'Aquila",'Weather changes rapidly — layers essential','Ski resort in winter','Best visited on weekdays in summer'] },
+
+  { id:'a8', type:'natural', name:'Costa dei Trabocchi',
+    place:"Ortona to Vasto (CH)",
+    img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80',
+    desc:"42km of Adriatic coastline defined by the iconic trabocchi — ancient wooden fishing platforms on stilts over the sea. Many are now superb restaurants.",
+    stats:[{v:'42 km',l:'Length'},{v:'Adriatic',l:'Coast'},{v:'Free',l:'Access'},{v:'Year round',l:'Season'}],
+    see:['Trabocchi fishing platforms on stilts','Cycleway along the coast (flat, scenic)','Trabocco restaurant dining over the sea','Punta Aderci Nature Reserve near Vasto'],
+    info:['Cycleway: Ortona to Vasto — flat and easy','Book trabocco restaurants well in advance','Best sunset: from Fossacesia cliff','Base yourself in Lanciano or Vasto'] },
+
+  { id:'a9', type:'castle', name:'Castello Piccolomini',
+    place:"Celano (AQ)",
+    img:'https://images.unsplash.com/photo-1499678329028-101435549a4e?w=700&q=80',
+    desc:"One of the most impressive 15th-century castles in Abruzzo — four angular towers overlooking the ancient Fucino basin. Houses the Museum of Sacred Art.",
+    stats:[{v:'15th c.',l:'Built'},{v:'€4',l:'Entry'},{v:'Tue–Sun',l:'Open'},{v:'900m',l:'Altitude'}],
+    see:['Museum of Sacred Art inside','Four imposing corner towers','Panoramic views over the Fucino plain','Medieval town of Celano below'],
+    info:['Opening: 9am–6pm Tue–Sun','Closed Monday',"From L'Aquila: 45 min by car",'Combine with Avezzano and Fucino plain'] },
+
+  { id:'a10', type:'museum', name:'Ceramics Museum — Castelli',
+    place:"Castelli (TE)",
+    img:'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=700&q=80',
+    desc:"Dedicated to 600 years of Abruzzo maiolica tradition. The crown jewel is the tiled ceiling of San Donato church, created by students in the 1700s.",
+    stats:[{v:'€4',l:'Entry'},{v:'Tue–Sun',l:'Open'},{v:'1400s',l:'Tradition'},{v:'601m',l:'Altitude'}],
+    see:['Maiolica collection spanning 1400s to today','San Donato church tiled ceiling (1700s)','Active artisan workshops in the village','Gran Sasso views from the village belvedere'],
+    info:['Opening: 10am–6pm (check seasonal hours)','Workshop visits by appointment','From Teramo: 40 min by car','Village itself worth a slow wander'] },
+
+  { id:'a11', type:'religious', name:"Fontana delle 99 Cannelle",
+    place:"L'Aquila (AQ)",
+    img:'https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=700&q=80',
+    desc:"The civic symbol of L'Aquila — a 13th-century fountain with 99 water spouts, each bearing a different carved mask. The number 99 is sacred to the city's founding legend.",
+    stats:[{v:'1272',l:'Built'},{v:'Free',l:'Entry'},{v:'99',l:'Spouts'},{v:"L'Aquila",l:'City'}],
+    see:['99 unique mask faces on the spouts','Medieval frescoes in the adjacent loggia',"L'Aquila historic centre walking tour",'Nearby Basilica di Collemaggio'],
+    info:["Located in L'Aquila historic centre",'Open 24/7 — outdoor monument','Combine with city walking tour','Near the Piazza del Duomo'] },
+
+  { id:'a12', type:'natural', name:'Gole del Sagittario',
+    place:"Anversa degli Abruzzi (AQ)",
+    img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80',
+    desc:"A spectacular gorge carved by the turquoise Sagittario river — walls up to 400m high, peregrine falcons nesting on the cliffs, and a trail accessible to all.",
+    stats:[{v:'4 km',l:'Length'},{v:'400m',l:'Wall height'},{v:'Free',l:'Entry'},{v:'Spring–Autumn',l:'Best season'}],
+    see:['Turquoise Sagittario river','400m limestone canyon walls','Peregrine falcons and eagle owls','Medieval village of Anversa above the gorge'],
+    info:['Start point: Anversa village parking','Path can flood after heavy rain — check conditions','Slippery near water — wear good shoes','From Sulmona: 25 min by car'] }
+];
+
+/* ══ TYPE CONFIG ══ */
+const typeConfig = {
+  natural:        { label:'Natural',        tagClass:'tag-nature',  icon:'ti-leaf' },
+  castle:         { label:'Castle',         tagClass:'tag-castle',  icon:'ti-building-castle' },
+  museum:         { label:'Museum',         tagClass:'tag-museum',  icon:'ti-building-arch' },
+  religious:      { label:'Religious',      tagClass:'tag-religi',  icon:'ti-church' },
+  archaeological: { label:'Archaeological', tagClass:'tag-archeo',  icon:'ti-amphora' },
+  panoramic:      { label:'Panoramic',      tagClass:'tag-panora',  icon:'ti-photo-scan' }
+};
+
+/* ══ FILTER ══ */
+let activeType = 'all';
+
+function atFilter(type, btn) {
+  activeType = type;
+  document.querySelectorAll('[onclick*="atFilter"]').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderAttractions();
+}
+
+/* ══ RENDER ══ */
+function renderAttractions() {
+  const filtered = activeType === 'all'
+    ? attractions
+    : attractions.filter(a => a.type === activeType);
+
+  document.getElementById('at-count').textContent =
+    filtered.length + ' attraction' + (filtered.length !== 1 ? 's' : '');
+
+  document.getElementById('attr-grid').innerHTML = filtered.map(a => {
+    const tc = typeConfig[a.type] || { label: a.type, tagClass:'tag-olive', icon:'ti-map-pin' };
+    return `
+    <div class="attr-card" onclick="openModal('${a.id}')" role="button" tabindex="0">
+      <div class="attr-img-wrap">
+        <div class="attr-img"
+             style="background-image:url('${a.img}');height:185px;background-size:cover;background-position:center">
+        </div>
+        <div class="attr-img-overlay"></div>
+        <span style="position:absolute;top:.7rem;left:.7rem">
+          <span class="tag ${tc.tagClass}">
+            <i class="ti ${tc.icon}" aria-hidden="true"></i> ${tc.label}
+          </span>
+        </span>
+      </div>
+      <div class="attr-body">
+        <div class="attr-place">
+          <i class="ti ti-map-pin" aria-hidden="true"></i>${a.place}
+        </div>
+        <h3>${a.name}</h3>
+        <p>${a.desc.substring(0, 95)}…</p>
+        <div class="attr-footer"><span>View details →</span></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ══ MODAL ══ */
+function openModal(id) {
+  const a = attractions.find(x => x.id === id);
+  const tc = typeConfig[a.type] || { label: a.type, tagClass:'tag-olive', icon:'ti-map-pin' };
+
+  document.getElementById('m-img').src = a.img;
+  document.getElementById('m-img').alt = a.name;
+  document.getElementById('m-sub').textContent   = a.place;
+  document.getElementById('m-title').textContent = a.name;
+
+  document.getElementById('m-badges').innerHTML =
+    `<span class="tag ${tc.tagClass}">
+       <i class="ti ${tc.icon}" aria-hidden="true"></i> ${tc.label}
+     </span>`;
+
+  document.getElementById('m-desc').textContent = a.desc;
+
+  document.getElementById('m-stats').innerHTML = a.stats
+    .map(s => `<div class="modal-stat"><strong>${s.v}</strong><span>${s.l}</span></div>`)
+    .join('');
+
+  document.getElementById('m-two').innerHTML = `
+    <div class="modal-sec">
+      <h4>What to See</h4>
+      <ul>${a.see.map(s => `<li>${s}</li>`).join('')}</ul>
+    </div>
+    <div class="modal-sec">
+      <h4>Practical Info</h4>
+      <ul>${a.info.map(i => `<li>${i}</li>`).join('')}</ul>
+    </div>`;
+
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ══ NEWSLETTER ══ */
+function nlSubmit() {
+  const input = document.getElementById('nlemail');
+  if (input.value && input.value.includes('@')) {
+    input.value = '';
+    alert("Thank you! You'll hear from us once a month 🌿");
+  } else {
+    input.style.outline = '2px solid var(--rose)';
+    setTimeout(() => input.style.outline = 'none', 2000);
+  }
+}
+
+/* ══ FADE-IN ══ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ══ INIT ══ */
+renderAttractions();
+</script>
+
+</body>
+</html>

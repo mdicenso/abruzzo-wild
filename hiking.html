@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hiking & Trekking — Abruzzo Wild & Authentic</title>
+<meta name="description" content="Explore 3,000+ km of trails across 3 national parks. From easy family walks to serious mountain routes — Abruzzo's best hiking guide.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+
+<!-- Map -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+<!-- Design system -->
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Hiking-specific ── */
+.trail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.3rem;
+}
+.sticky-sidebar {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+#trail-map {
+  width: 100%;
+  height: 290px;
+}
+.map-legend {
+  padding: .65rem 1.2rem;
+  display: flex;
+  gap: 1rem;
+}
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .72rem;
+  color: var(--muted);
+  font-family: var(--sans);
+}
+.map-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+/* Season indicators */
+.seasons-row { display: flex; gap: .25rem; margin: .5rem 0; }
+.season-dot {
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 1.5px solid var(--parchment-dk); color: #ccc;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .65rem;
+}
+.season-dot.on {
+  border-color: var(--olive-mid); color: var(--olive-mid);
+  background: var(--olive-pale);
+}
+@media(max-width:1000px){
+  .layout-sidebar { grid-template-columns: 1fr; }
+  .sticky-sidebar { position: static; }
+}
+@media(max-width:600px){
+  .trail-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-link">
+      <i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
+    <li><a href="quiz.html" class="nav-link quiz">
+      <i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
+    <li><a href="hiking.html" class="nav-link active">
+      <i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
+    <li><a href="food.html" class="nav-link">
+      <i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
+    <li><a href="villages.html" class="nav-link">
+      <i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
+    <li><a href="wellness.html" class="nav-link">
+      <i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
+    <li><a href="attractions.html" class="nav-link">
+      <i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
+    <li><a href="events.html" class="nav-link">
+      <i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
+    <li><a href="transport.html" class="nav-link">
+      <i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
+    <li><a href="plan.html" class="nav-link cta">
+      <i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active">EN</button>
+    <button class="lang-btn">IT</button>
+    <button class="lang-btn">DE</button>
+    <button class="lang-btn">FR</button>
+  </div>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<div class="hero-inner" style="height:48vh">
+  <div class="hero-inner-img"
+       style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80');
+              background-position:center 40%"></div>
+  <div class="hero-inner-veil"></div>
+  <div class="hero-inner-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html">Home</a> › Hiking & Trekking
+    </div>
+    <h1 class="hero-inner-h1">Hiking & <em>Trekking</em></h1>
+    <div class="hero-kpis">
+      <div class="hero-kpi"><strong>3,000+</strong><span>km of trails</span></div>
+      <div class="hero-kpi"><strong>3</strong><span>National Parks</span></div>
+      <div class="hero-kpi"><strong>2,912m</strong><span>Highest peak</span></div>
+      <div class="hero-kpi"><strong>10</strong><span>Featured routes</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FILTER BAR ════ -->
+<div class="filter-bar">
+  <span class="filter-label">Difficulty</span>
+  <button class="pill pill-parchment on" onclick="hFilter('diff','all',this)">All</button>
+  <button class="pill pill-parchment" onclick="hFilter('diff','easy',this)">🟢 Easy</button>
+  <button class="pill pill-parchment" onclick="hFilter('diff','moderate',this)">🟡 Moderate</button>
+  <button class="pill pill-parchment" onclick="hFilter('diff','hard',this)">🔴 Hard</button>
+  <div class="filter-divider"></div>
+  <span class="filter-label">Area</span>
+  <button class="pill pill-parchment on" onclick="hFilter('area','all',this)">All</button>
+  <button class="pill pill-parchment" onclick="hFilter('area','gran-sasso',this)">Gran Sasso</button>
+  <button class="pill pill-parchment" onclick="hFilter('area','maiella',this)">Maiella</button>
+  <button class="pill pill-parchment" onclick="hFilter('area','national-park',this)">Nat. Park</button>
+  <button class="pill pill-parchment" onclick="hFilter('area','other',this)">Other</button>
+  <span class="filter-count" id="hcnt"></span>
+</div>
+
+
+<!-- ════ CONTENT ════ -->
+<div class="wrap">
+  <div class="layout-sidebar">
+
+    <!-- Trail cards -->
+    <div class="trail-grid" id="trail-grid"></div>
+
+    <!-- Sidebar -->
+    <div class="sticky-sidebar">
+
+      <!-- Map -->
+      <div class="sbox fade-in">
+        <div class="sbox-title">
+          <i class="ti ti-map" aria-hidden="true"></i>Trail Map
+        </div>
+        <div id="trail-map"></div>
+        <div class="map-legend">
+          <div class="map-legend-item">
+            <div class="map-legend-dot" style="background:#2a9d5c"></div>Easy
+          </div>
+          <div class="map-legend-item">
+            <div class="map-legend-dot" style="background:#e9a820"></div>Moderate
+          </div>
+          <div class="map-legend-item">
+            <div class="map-legend-dot" style="background:#e05050"></div>Hard
+          </div>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="gbox fade-in">
+        <div class="gbox-title">
+          <i class="ti ti-backpack" aria-hidden="true"></i>Essential Tips
+        </div>
+        <div class="tip-row">
+          <div class="tip-icon"><i class="ti ti-shoe" aria-hidden="true"></i></div>
+          <div><strong>Footwear</strong><p>Waterproof hiking boots required for any trail above 1,500m.</p></div>
+        </div>
+        <div class="tip-row">
+          <div class="tip-icon"><i class="ti ti-cloud" aria-hidden="true"></i></div>
+          <div><strong>Weather</strong><p>Start before 8am for long routes. Mountain weather changes fast.</p></div>
+        </div>
+        <div class="tip-row">
+          <div class="tip-icon"><i class="ti ti-droplet" aria-hidden="true"></i></div>
+          <div><strong>Water</strong><p>Carry at least 2L. Springs may be dry in summer.</p></div>
+        </div>
+        <div class="tip-row">
+          <div class="tip-icon"><i class="ti ti-map-2" aria-hidden="true"></i></div>
+          <div><strong>GPS & Maps</strong><p>Download offline maps on Komoot or Wikiloc. Signal patchy above 1,800m.</p></div>
+        </div>
+        <div class="tip-row">
+          <div class="tip-icon"><i class="ti ti-first-aid-kit" aria-hidden="true"></i></div>
+          <div><strong>Emergency</strong><p>Mountain rescue: 112 or Soccorso Alpino 118.</p></div>
+        </div>
+      </div>
+
+      <!-- At a glance -->
+      <div class="pbox fade-in">
+        <div class="pbox-title">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>At a Glance
+        </div>
+        <div class="kv-row"><span>Best season</span><span>May – October</span></div>
+        <div class="kv-row"><span>Maps</span><span>CAI 1:25,000</span></div>
+        <div class="kv-row"><span>Mountain rescue</span><span>112 / 118</span></div>
+        <div class="kv-row"><span>Guides</span><span>L'Aquila, Sulmona</span></div>
+        <div class="kv-row"><span>Nearest airport</span><span>Pescara (PSR)</span></div>
+        <div class="kv-row"><span>Park HQ</span><span>Pescasseroli</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ MODAL ════ -->
+<div class="modal-backdrop" id="modal-backdrop"
+     onclick="if(event.target.id==='modal-backdrop')closeModal()">
+  <div class="modal">
+    <div class="modal-hero">
+      <img id="m-img" src="" alt="">
+      <div class="modal-hero-veil"></div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-info">
+        <small id="m-sub"></small>
+        <h2 id="m-title"></h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-badges" id="m-badges"></div>
+      <p id="m-desc"></p>
+      <div class="modal-stats" id="m-stats"></div>
+      <div class="modal-two" id="m-two"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> Abruzzo in your inbox</h4>
+      <p>Trail updates, events and hidden gems — once a month.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address">
+      <button class="nl-btn" onclick="nlSubmit()">Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html"       class="footer-link">Home</a>
+      <a href="quiz.html"        class="footer-link">Quiz</a>
+      <a href="hiking.html"      class="footer-link">Hiking</a>
+      <a href="food.html"        class="footer-link">Food & Wine</a>
+      <a href="villages.html"    class="footer-link">Villages</a>
+      <a href="wellness.html"    class="footer-link">Wellness</a>
+      <a href="attractions.html" class="footer-link">Attractions</a>
+      <a href="events.html"      class="footer-link">Events</a>
+      <a href="transport.html"   class="footer-link">Transport</a>
+      <a href="plan.html"        class="footer-link">Plan Trip</a>
+    </nav>
+  </div>
+  <div class="footer-copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+</footer>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ══ DATA ══ */
+const trails = [
+  { id:1, name:"Corno Grande Summit", area:"gran-sasso", areaLabel:"Gran Sasso", diff:"hard",
+    img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80",
+    desc:"The ultimate Apennine challenge — highest peak at 2,912m with views stretching from the Adriatic to the Tyrrhenian on clear days.",
+    dist:"12 km", elev:"900 m", dur:"6–8 h", type:"Out & back",
+    seasons:[0,0,1,1,1,0], start:"Campo Imperatore (cable car from Assergi)",
+    highlights:["Highest peak in the Apennines","Views over two seas on clear days","Glacial moraine terrain","Cable car access to base at 2,130m"],
+    warnings:["Crampons & ice axe required in spring","Guided ascent strongly recommended","Afternoon thunderstorms common Jul–Aug","No water sources above 2,200m"],
+    lat:42.46, lng:13.57 },
+  { id:2, name:"Valle Fondillo — Bear Valley", area:"national-park", areaLabel:"National Park", diff:"easy",
+    img:"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=700&q=80",
+    desc:"Italy's most famous wildlife walk — a flat valley trail where Marsican bear sightings are genuinely possible in spring and autumn.",
+    dist:"8 km", elev:"200 m", dur:"2–3 h", type:"Loop",
+    seasons:[1,1,1,1,1,0], start:"Opi village parking (free)",
+    highlights:["Bear sightings possible Apr–Oct","Flat terrain — suitable for families","Beech forest canopy","Wooden bridges over crystal streams"],
+    warnings:["Arrive early — very popular in summer","Stay on marked path at all times","No dogs allowed in the national park","Never feed or approach wildlife"],
+    lat:41.78, lng:13.80 },
+  { id:3, name:"Monte Amaro — Maiella", area:"maiella", areaLabel:"Maiella", diff:"hard",
+    img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=700&q=80",
+    desc:"The highest Maiella peak at 2,793m via the dramatic Blockhaus ridge — one of the finest mountain days in central Italy.",
+    dist:"18 km", elev:"1,400 m", dur:"8–10 h", type:"Out & back",
+    seasons:[0,0,1,1,1,0], start:"Blockhaus plateau (road from Pretoro)",
+    highlights:["Second highest Apennine peak","Ancient hermit caves en route","Wild orchids in June","360° summit panorama"],
+    warnings:["Full day commitment — 6am start essential","Navigation skills required on plateau","No shade — sun protection vital","GPS track strongly recommended"],
+    lat:42.08, lng:14.08 },
+  { id:4, name:"Gole del Sagittario", area:"other", areaLabel:"Sulmona Valley", diff:"easy",
+    img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80",
+    desc:"A spectacular river gorge with walls rising 400m above turquoise water — one of the most dramatic short walks in Abruzzo.",
+    dist:"7 km", elev:"250 m", dur:"2.5–3 h", type:"Loop",
+    seasons:[1,1,1,1,0,0], start:"Anversa degli Abruzzi village",
+    highlights:["Turquoise Sagittario river","Canyon walls up to 400m","Peregrine falcons nesting on cliffs","Café in village at the end"],
+    warnings:["Trail can flood after heavy rainfall","Rocks near water are slippery — good shoes","Some narrow ledge sections","Not suitable for sufferers of vertigo"],
+    lat:41.98, lng:13.82 },
+  { id:5, name:"Campo Imperatore Loop", area:"gran-sasso", areaLabel:"Gran Sasso", diff:"moderate",
+    img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80",
+    desc:"A panoramic loop across the 'Little Tibet of Italy' — the high plateau at 2,130m with dramatic views of Gran Sasso's north face.",
+    dist:"15 km", elev:"450 m", dur:"5–6 h", type:"Loop",
+    seasons:[0,0,1,1,1,0], start:"Campo Imperatore (cable car or road)",
+    highlights:["Lunar landscape at 2,100m","Apennine chamois herds","WWII Mussolini prison hotel visible","Astronomical observatory on plateau"],
+    warnings:["Strong winds possible at any time","No shelter on the open plateau","Cable car may close in bad weather","Check forecast before travelling up"],
+    lat:42.44, lng:13.52 },
+  { id:6, name:"Monte Marsicano", area:"national-park", areaLabel:"National Park", diff:"moderate",
+    img:"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=700&q=80",
+    desc:"The highest point in Abruzzo National Park at 2,245m — a superb ridge walk with Barrea lake views and excellent chamois spotting.",
+    dist:"12 km", elev:"800 m", dur:"5–6 h", type:"Out & back",
+    seasons:[0,0,1,1,1,0], start:"Civitella Alfedena (Wolf Museum car park)",
+    highlights:["Panoramic views over Barrea lake","Apennine chamois on the ridge","Golden eagles frequently overhead","Remote trail — few other hikers"],
+    warnings:["Trail unmarked in sections — map essential","Start before 8am in summer","Weather changes rapidly on the ridge","Trekking poles strongly recommended"],
+    lat:41.76, lng:13.88 },
+  { id:7, name:"Eremo di San Bartolomeo", area:"maiella", areaLabel:"Maiella", diff:"moderate",
+    img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=700&q=80",
+    desc:"An atmospheric trail to a 13th-century hermitage carved into the cliff face — rock-cut staircases, hanging chapels and utter silence.",
+    dist:"6 km", elev:"500 m", dur:"3–4 h", type:"Out & back",
+    seasons:[1,1,1,1,0,0], start:"Roccamorice village (signposted)",
+    highlights:["Medieval hermitage built into the cliff","Rock-cut staircases from the 1200s","Spring wildflowers along the gorge","Spiritual atmosphere — rarely crowded"],
+    warnings:["Some exposed scrambling near the hermitage","Not suitable for young children","No water sources on the route","Hermitage open in summer only"],
+    lat:42.17, lng:14.05 },
+  { id:8, name:"Lago di Scanno Circuit", area:"other", areaLabel:"Sulmona Valley", diff:"easy",
+    img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=700&q=80",
+    desc:"A gentle loop around Italy's most romantic lake — heart-shaped from above — through beech forest and the charming village of Scanno.",
+    dist:"5 km", elev:"80 m", dur:"1.5–2 h", type:"Loop",
+    seasons:[1,1,1,1,0,0], start:"Scanno village (lake shore parking)",
+    highlights:["Heart-shaped lake from above","Scanno village — traditional costumes","Otters and waterfowl in the lake","Easy terrain — suitable for all ages"],
+    warnings:["Very popular on summer weekends — arrive early","Swimming only in designated areas","Café and facilities available at lake","Binoculars recommended for birdwatching"],
+    lat:41.90, lng:13.87 },
+  { id:9, name:"Blockhaus Ridge Walk", area:"maiella", areaLabel:"Maiella", diff:"easy",
+    img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=700&q=80",
+    desc:"A short, accessible ridge walk from the Blockhaus plateau at 1,800m — spectacular 360° views, perfect as a first introduction to the Maiella.",
+    dist:"4 km", elev:"200 m", dur:"1.5 h", type:"Out & back",
+    seasons:[0,1,1,1,1,0], start:"Blockhaus plateau (toll road from Pretoro, €3)",
+    highlights:["Drive to 1,800m — no long approach","360° panoramic views over the Maiella","Ski resort in winter — snow walks too","Wildflowers carpet the plateau in June–July"],
+    warnings:["Toll road to Blockhaus: €3 per vehicle","Very crowded on summer Sundays","Cold and windy in spring — bring layers","Snow possible on plateau until May"],
+    lat:42.10, lng:14.10 },
+  { id:10, name:"Rocca Calascio Trail", area:"gran-sasso", areaLabel:"Gran Sasso", diff:"easy",
+    img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=700&q=80",
+    desc:"Short but unforgettable walk to the highest castle in the Apennines at 1,512m — filming location for Ladyhawke (1985).",
+    dist:"3 km", elev:"300 m", dur:"1.5 h", type:"Out & back",
+    seasons:[1,1,1,1,0,0], start:"Castel del Monte village square",
+    highlights:["Highest castle in the Apennines at 1,512m","Film: Ladyhawke (1985)","Tiny church of Santa Maria della Pietà","Ghost village of Rocca Calascio"],
+    warnings:["Steep cobbled path — slippery when wet","Very windy at summit year-round","No refreshments at the castle — bring water","Last section on loose stone track"],
+    lat:42.30, lng:13.61 }
+];
+
+/* ══ FILTERS ══ */
+const hF = { diff:'all', area:'all' };
+
+function hFilter(type, val, btn) {
+  hF[type] = val;
+  // reset buttons in same group
+  document.querySelectorAll(`[onclick*="hFilter('${type}'"]`)
+    .forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderTrails();
+}
+
+/* ══ RENDER TRAILS ══ */
+const seasonIcons  = ['❄️','🌸','☀️','🌅','🍂','🌨️'];
+const diffTagClass = { easy:'tag-green', moderate:'tag-amber', hard:'tag-red' };
+
+function renderTrails() {
+  const filtered = trails.filter(t =>
+    (hF.diff === 'all' || t.diff === hF.diff) &&
+    (hF.area === 'all' || t.area === hF.area)
+  );
+
+  document.getElementById('hcnt').textContent =
+    filtered.length + ' trail' + (filtered.length !== 1 ? 's' : '');
+
+  document.getElementById('trail-grid').innerHTML = filtered.map(t => `
+    <div class="card" onclick="openModal(${t.id})" role="button" tabindex="0">
+      <div class="card-img-wrap">
+        <div class="card-img"
+             style="background-image:url('${t.img}');height:175px">
+        </div>
+        <div class="card-img-overlay"></div>
+        <span class="card-badge-tl">
+          <span class="tag ${diffTagClass[t.diff]}">${t.diff.charAt(0).toUpperCase()+t.diff.slice(1)}</span>
+        </span>
+        <span class="card-badge-tr card-area-badge">${t.areaLabel}</span>
+      </div>
+      <div class="card-body">
+        <h3>${t.name}</h3>
+        <p>${t.desc.substring(0,100)}…</p>
+        <div class="card-meta">
+          <span class="card-meta-item"><i class="ti ti-ruler" aria-hidden="true"></i> ${t.dist}</span>
+          <span class="card-meta-item"><i class="ti ti-trending-up" aria-hidden="true"></i> ${t.elev}</span>
+          <span class="card-meta-item"><i class="ti ti-clock" aria-hidden="true"></i> ${t.dur}</span>
+        </div>
+        <div class="seasons-row">
+          ${seasonIcons.map((s,i) =>
+            `<div class="season-dot ${t.seasons[i]?'on':''}">${s}</div>`
+          ).join('')}
+        </div>
+        <div class="card-footer"><span>Full details →</span></div>
+      </div>
+    </div>`).join('');
+}
+
+/* ══ MAP ══ */
+let mapInitialised = false;
+function initMap() {
+  if (mapInitialised) return;
+  mapInitialised = true;
+  const colors = { easy:'#2a9d5c', moderate:'#e9a820', hard:'#e05050' };
+  const map = L.map('trail-map', { scrollWheelZoom:false })
+               .setView([42.05, 13.85], 8);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:'© OpenStreetMap', maxZoom:16
+  }).addTo(map);
+  trails.forEach(t => {
+    const mk = L.circleMarker([t.lat, t.lng], {
+      radius:8, fillColor:colors[t.diff],
+      color:'#fff', weight:2, fillOpacity:.9
+    }).addTo(map);
+    mk.bindPopup(`<strong>${t.name}</strong><br>${t.diff} · ${t.dist} · ${t.dur}`);
+    mk.on('click', () => openModal(t.id));
+  });
+}
+
+/* ══ MODAL ══ */
+function openModal(id) {
+  const t = trails.find(x => x.id === id);
+  document.getElementById('m-img').src   = t.img;
+  document.getElementById('m-img').alt   = t.name;
+  document.getElementById('m-sub').textContent   = t.areaLabel + ' · ' + t.diff.toUpperCase();
+  document.getElementById('m-title').textContent = t.name;
+
+  document.getElementById('m-badges').innerHTML =
+    `<span class="tag ${diffTagClass[t.diff]}">${t.diff}</span>
+     <span class="tag" style="background:var(--parchment);color:var(--ink-mid)">${t.type}</span>`;
+
+  document.getElementById('m-desc').textContent = t.desc;
+
+  document.getElementById('m-stats').innerHTML = [
+    { v:t.dist,  l:'Distance' },
+    { v:t.elev,  l:'Elevation' },
+    { v:t.dur,   l:'Duration' },
+    { v:t.start.split('(')[0].trim(), l:'Start point' }
+  ].map(s => `
+    <div class="modal-stat">
+      <strong>${s.v}</strong><span>${s.l}</span>
+    </div>`).join('');
+
+  document.getElementById('m-two').innerHTML = `
+    <div class="modal-sec">
+      <h4>Highlights</h4>
+      <ul>${t.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
+    </div>
+    <div class="modal-sec">
+      <h4>Know Before You Go</h4>
+      <ul>${t.warnings.map(w => `<li>${w}</li>`).join('')}</ul>
+    </div>`;
+
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* close modal with Escape key */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ══ NEWSLETTER ══ */
+function nlSubmit() {
+  const input = document.getElementById('nlemail');
+  if (input.value && input.value.includes('@')) {
+    input.value = '';
+    alert('Thank you! You\'ll hear from us once a month 🌿');
+  } else {
+    input.style.outline = '2px solid var(--rose)';
+    setTimeout(() => input.style.outline = 'none', 2000);
+  }
+}
+
+/* ══ FADE-IN ON SCROLL ══ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ══ INIT ══ */
+renderTrails();
+initMap();
+</script>
+
+</body>
+</html>

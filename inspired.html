@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Get Inspired — Abruzzo Wild & Authentic</title>
+<meta name="description" content="Choose your mood and discover the perfect Abruzzo experience — wild nature, food, history, wellness or family adventure.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Inspired-specific ── */
+
+/* Promo cards at the bottom */
+.promo-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+  margin-top: 2.5rem;
+}
+.promo-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 200px;
+  position: relative;
+  cursor: pointer;
+  transition: transform .3s;
+  display: block;
+  text-decoration: none;
+}
+.promo-card:hover { transform: translateY(-4px); }
+.promo-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: .62; transition: transform .5s;
+}
+.promo-card:hover .promo-bg { transform: scale(1.04); }
+.promo-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.78), transparent 55%);
+}
+.promo-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1.1rem; color: var(--white);
+}
+.promo-info h4 {
+  font-family: var(--serif); font-size: .95rem;
+  font-weight: 300; margin-bottom: .18rem;
+}
+.promo-info p {
+  font-family: var(--sans); font-size: .72rem; opacity: .78;
+}
+
+@media(max-width:900px){
+  .mood-grid    { grid-template-columns: repeat(2,1fr); }
+  .mood-cols    { grid-template-columns: repeat(2,1fr); }
+  .promo-strip  { grid-template-columns: 1fr; }
+}
+@media(max-width:580px){
+  .mood-grid  { grid-template-columns: 1fr; }
+  .mood-cols  { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
+    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
+    <li><a href="inspired.html"    class="nav-link active"><i class="ti ti-heart" aria-hidden="true"></i>Get Inspired</a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active">EN</button>
+    <button class="lang-btn">IT</button>
+    <button class="lang-btn">DE</button>
+    <button class="lang-btn">FR</button>
+  </div>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<div class="hero-inner" style="height:44vh">
+  <div class="hero-inner-img"
+       style="background-image:url('https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1600&q=80')">
+  </div>
+  <div class="hero-inner-veil"></div>
+  <div class="hero-inner-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html">Home</a> › Get Inspired
+    </div>
+    <h1 class="hero-inner-h1">What kind of Abruzzo are <em>you</em> looking for?</h1>
+    <p class="hero-inner-sub">Choose your mood — we'll curate the perfect experience just for you.</p>
+  </div>
+</div>
+
+
+<!-- ════ CONTENT ════ -->
+<div class="wrap">
+
+  <!-- Mood grid -->
+  <div class="section-header center fade-in">
+    <span class="t-eyebrow">Choose your mood</span>
+    <h2 class="t-h2">Find your Abruzzo</h2>
+  </div>
+
+  <div class="mood-grid fade-in" id="mood-grid"></div>
+
+  <!-- Result panel -->
+  <div class="mood-result" id="mood-result"></div>
+
+  <!-- Not to be missed -->
+  <div class="section-header fade-in" style="margin-top:3.5rem">
+    <span class="t-eyebrow">Always Worth It</span>
+    <h2 class="t-h2">Not to Be Missed</h2>
+  </div>
+
+  <div class="promo-strip fade-in">
+    <a href="hiking.html" class="promo-card">
+      <div class="promo-bg" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80')"></div>
+      <div class="promo-veil"></div>
+      <div class="promo-info">
+        <h4>Hiking & Trekking</h4>
+        <p>10 featured trails for every level</p>
+      </div>
+    </a>
+    <a href="food.html" class="promo-card">
+      <div class="promo-bg" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80')"></div>
+      <div class="promo-veil"></div>
+      <div class="promo-info">
+        <h4>Food & Wine</h4>
+        <p>12 products, 3 DOC wines, 8 sagre</p>
+      </div>
+    </a>
+    <a href="events.html" class="promo-card">
+      <div class="promo-bg" style="background-image:url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=700&q=80')"></div>
+      <div class="promo-veil"></div>
+      <div class="promo-info">
+        <h4>Events & Festivals</h4>
+        <p>24 festivals across the year</p>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> Abruzzo in your inbox</h4>
+      <p>Events, trails, recipes and hidden gems — once a month, no spam.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address">
+      <button class="nl-btn" onclick="nlSubmit()">Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html"       class="footer-link">Home</a>
+      <a href="quiz.html"        class="footer-link">Quiz</a>
+      <a href="inspired.html"    class="footer-link">Get Inspired</a>
+      <a href="hiking.html"      class="footer-link">Hiking</a>
+      <a href="food.html"        class="footer-link">Food & Wine</a>
+      <a href="villages.html"    class="footer-link">Villages</a>
+      <a href="wellness.html"    class="footer-link">Wellness</a>
+      <a href="attractions.html" class="footer-link">Attractions</a>
+      <a href="events.html"      class="footer-link">Events</a>
+      <a href="transport.html"   class="footer-link">Transport</a>
+      <a href="plan.html"        class="footer-link">Plan Trip</a>
+    </nav>
+  </div>
+  <div class="footer-copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+</footer>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ══ DATA ══ */
+const moods = [
+  {
+    id:'wild', icon:'ti-mountain', label:'Wild & Free',
+    tagline:'Mountains, wolves and ancient silence',
+    desc:"For those who crave raw nature, altitude and freedom. Peaks, national parks and wildlife that will stay with you forever.",
+    img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
+    trails:[
+      { name:"Corno Grande Summit", detail:"2,912m · Hard · 12 km",    href:"hiking.html", img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200&q=70" },
+      { name:"Monte Amaro",         detail:"2,793m · Hard · 18 km",    href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" },
+      { name:"Campo Imperatore",    detail:"Plateau · Moderate · 15km", href:"hiking.html", img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200&q=70" }
+    ],
+    villages:[
+      { name:"Rocca Calascio",          detail:"1,512m · L'Aquila", href:"villages.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" },
+      { name:"Santo Stefano di Sessanio",detail:"1,251m · L'Aquila", href:"villages.html", img:"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=200&q=70" },
+      { name:"Civitella Alfedena",      detail:"National Park",      href:"villages.html", img:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=200&q=70" }
+    ],
+    foods:[
+      { name:"Arrosticini",          detail:"Meat & Grill",  href:"food.html", img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=70" },
+      { name:"Pecorino di Farindola",detail:"Cheese · Rare", href:"food.html", img:"https://images.unsplash.com/photo-1486297678162-eb2a19b0a832?w=200&q=70" },
+      { name:"Tartufo Nero",         detail:"Truffle · Oct–Jan",href:"food.html",img:"https://images.unsplash.com/photo-1529563021893-cc83c992d75d?w=200&q=70" }
+    ]
+  },
+  {
+    id:'taste', icon:'ti-tools-kitchen-2', label:'Taste Abruzzo',
+    tagline:'Eat like a shepherd, drink like a king',
+    desc:"Food is the soul of Abruzzo. From arrosticini to truffle, saffron to Montepulciano — every meal here is a story.",
+    img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+    trails:[
+      { name:"Gole del Sagittario",  detail:"Easy · 7 km · Loop",    href:"hiking.html", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&q=70" },
+      { name:"Lago di Scanno",       detail:"Easy · 5 km · Loop",    href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" }
+    ],
+    villages:[
+      { name:"Pacentro",  detail:"720m · L'Aquila", href:"villages.html", img:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=200&q=70" },
+      { name:"Sulmona",   detail:"Confetti capital", href:"villages.html", img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=200&q=70" }
+    ],
+    foods:[
+      { name:"Arrosticini",              detail:"Meat & Grill",   href:"food.html", img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=70" },
+      { name:"Pasta alla Chitarra",      detail:"Pasta",          href:"food.html", img:"https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&q=70" },
+      { name:"Zafferano DOP",            detail:"DOP Ingredient", href:"food.html", img:"https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=200&q=70" },
+      { name:"Confetti di Sulmona",      detail:"Sweet",          href:"food.html", img:"https://images.unsplash.com/photo-1582896911227-c966e6a2c1fc?w=200&q=70" }
+    ]
+  },
+  {
+    id:'history', icon:'ti-building-castle', label:'Lost in Time',
+    tagline:'Villages where centuries stand still',
+    desc:"Medieval borghi, hermit caves, ancient castles. Abruzzo's history is written in stone and silence — almost no other tourists.",
+    img:'https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=800&q=80',
+    trails:[
+      { name:"Eremo di San Bartolomeo", detail:"Moderate · 6 km", href:"hiking.html", img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=200&q=70" },
+      { name:"Rocca Calascio Trail",    detail:"Easy · 3 km",     href:"hiking.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" }
+    ],
+    villages:[
+      { name:"Santo Stefano di Sessanio", detail:"1,251m · Borghi Belli", href:"villages.html", img:"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=200&q=70" },
+      { name:"Rocca Calascio",            detail:"1,512m · L'Aquila",      href:"villages.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" },
+      { name:"Pacentro",                  detail:"720m · Borghi Belli",    href:"villages.html", img:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=200&q=70" },
+      { name:"Carunchio",                 detail:"538m · Undiscovered",    href:"villages.html", img:"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=200&q=70" }
+    ],
+    foods:[
+      { name:"Confetti di Sulmona", detail:"Sweet · Since 1265", href:"food.html", img:"https://images.unsplash.com/photo-1582896911227-c966e6a2c1fc?w=200&q=70" },
+      { name:"Parrozzo",            detail:"Sweet · Pescara",    href:"food.html", img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&q=70" },
+      { name:"Pecorino di Farindola",detail:"Cheese · 3000yr",  href:"food.html", img:"https://images.unsplash.com/photo-1486297678162-eb2a19b0a832?w=200&q=70" }
+    ]
+  },
+  {
+    id:'roam', icon:'ti-bike', label:'Roam Freely',
+    tagline:'Two wheels, infinite horizons',
+    desc:"From the flat Adriatic cycleway to epic mountain climbs. Abruzzo is one of Italy's finest cycling and active touring regions.",
+    img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+    trails:[
+      { name:"Campo Imperatore Loop", detail:"Moderate · 15 km",    href:"hiking.html", img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200&q=70" },
+      { name:"Blockhaus Ridge",       detail:"Easy · 4 km",         href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" },
+      { name:"Rocca Calascio Trail",  detail:"Easy · 3 km",         href:"hiking.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" }
+    ],
+    villages:[
+      { name:"Penne",            detail:"438m · Pescara",  href:"villages.html", img:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=200&q=70" },
+      { name:"Pennapiedimonte",  detail:"572m · Chieti",   href:"villages.html", img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=200&q=70" }
+    ],
+    foods:[
+      { name:"Brodetto alla Vastese", detail:"Seafood · Vasto",   href:"food.html", img:"https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=200&q=70" },
+      { name:"Olio Extravergine DOP", detail:"DOP · Nov harvest", href:"food.html", img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=200&q=70" },
+      { name:"Arrosticini",           detail:"Meat & Grill",       href:"food.html", img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=70" }
+    ]
+  },
+  {
+    id:'slow', icon:'ti-leaf', label:'Slow Down',
+    tagline:'Find your rhythm in the mountains',
+    desc:"Thermal baths, agriturismo, starlit nights above 1,000m. Abruzzo is the antidote to everything too fast.",
+    img:'https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=800&q=80',
+    trails:[
+      { name:"Lago di Scanno",      detail:"Easy · 5 km · Loop", href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" },
+      { name:"Blockhaus Ridge",     detail:"Easy · 4 km",        href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" },
+      { name:"Gole del Sagittario", detail:"Easy · 7 km",        href:"hiking.html", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&q=70" }
+    ],
+    villages:[
+      { name:"Pennapiedimonte", detail:"572m · Chieti",   href:"villages.html", img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=200&q=70" },
+      { name:"Carunchio",       detail:"538m · Chieti",   href:"villages.html", img:"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=200&q=70" },
+      { name:"Pacentro",        detail:"720m · L'Aquila", href:"villages.html", img:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=200&q=70" }
+    ],
+    foods:[
+      { name:"Zafferano DOP",        detail:"DOP · L'Aquila",    href:"food.html", img:"https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=200&q=70" },
+      { name:"Pecorino di Farindola",detail:"Cheese · Rare",     href:"food.html", img:"https://images.unsplash.com/photo-1486297678162-eb2a19b0a832?w=200&q=70" },
+      { name:"Agnello Cacio e Ova",  detail:"Meat · Easter",     href:"food.html", img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=70" }
+    ]
+  },
+  {
+    id:'family', icon:'ti-users', label:'Family Abruzzo',
+    tagline:'Memories that last a lifetime',
+    desc:"Easy trails for little legs, wildlife spotting, beach days and medieval legends. Everything for all ages.",
+    img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+    trails:[
+      { name:"Valle Fondillo — Bears", detail:"Easy · 8 km · Loop",  href:"hiking.html", img:"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=200&q=70" },
+      { name:"Gole del Sagittario",    detail:"Easy · 7 km",         href:"hiking.html", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&q=70" },
+      { name:"Lago di Scanno",         detail:"Easy · 5 km",         href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" },
+      { name:"Rocca Calascio Trail",   detail:"Easy · 3 km",         href:"hiking.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" }
+    ],
+    villages:[
+      { name:"Civitella Alfedena", detail:"Wolf Museum",      href:"villages.html", img:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=200&q=70" },
+      { name:"Pacentro",           detail:"Medieval legends", href:"villages.html", img:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=200&q=70" },
+      { name:"Rocca Calascio",     detail:"Castle for kids",  href:"villages.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" }
+    ],
+    foods:[
+      { name:"Arrosticini",       detail:"Meat & Grill",       href:"food.html", img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=70" },
+      { name:"Pasta alla Chitarra",detail:"Pasta",             href:"food.html", img:"https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&q=70" },
+      { name:"Confetti di Sulmona",detail:"Sweet · Kids love", href:"food.html", img:"https://images.unsplash.com/photo-1582896911227-c966e6a2c1fc?w=200&q=70" },
+      { name:"Parrozzo",           detail:"Sweet · Chocolate", href:"food.html", img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&q=70" }
+    ]
+  }
+];
+
+/* ══ RENDER MOOD GRID ══ */
+function renderMoodGrid() {
+  document.getElementById('mood-grid').innerHTML = moods.map(m => `
+    <div class="mood-card" id="mood-${m.id}" onclick="showMood('${m.id}')"
+         role="button" tabindex="0"
+         aria-label="Choose mood: ${m.label}">
+      <div class="mood-img" style="background-image:url('${m.img}')"></div>
+      <div class="mood-overlay"></div>
+      <div class="mood-info">
+        <div class="icon-circle sm on-dark" style="margin-bottom:.5rem">
+          <i class="ti ${m.icon}" aria-hidden="true"></i>
+        </div>
+        <h3>${m.label}</h3>
+        <p>${m.tagline}</p>
+        <span class="mood-pick">Choose this mood →</span>
+      </div>
+    </div>`).join('');
+}
+
+/* ══ SHOW MOOD RESULT ══ */
+function showMood(id) {
+  const m = moods.find(x => x.id === id);
+
+  /* highlight selected card */
+  document.querySelectorAll('.mood-card').forEach(c => c.classList.remove('sel'));
+  document.getElementById('mood-' + id).classList.add('sel');
+
+  /* build result columns */
+  const trailsHTML = m.trails.map(t => `
+    <a href="${t.href}" class="mood-item" style="text-decoration:none">
+      <img class="mood-item-img" src="${t.img}" alt="${t.name}" loading="lazy">
+      <div><h5>${t.name}</h5><p>${t.detail}</p></div>
+    </a>`).join('');
+
+  const villagesHTML = m.villages.map(v => `
+    <a href="${v.href}" class="mood-item" style="text-decoration:none">
+      <img class="mood-item-img" src="${v.img}" alt="${v.name}" loading="lazy">
+      <div><h5>${v.name}</h5><p>${v.detail}</p></div>
+    </a>`).join('');
+
+  const foodsHTML = m.foods.map(f => `
+    <a href="${f.href}" class="mood-item" style="text-decoration:none">
+      <img class="mood-item-img" src="${f.img}" alt="${f.name}" loading="lazy">
+      <div><h5>${f.name}</h5><p>${f.detail}</p></div>
+    </a>`).join('');
+
+  const result = document.getElementById('mood-result');
+  result.innerHTML = `
+    <div class="mood-result-header">
+      <div class="mood-result-icon">
+        <div class="icon-circle md">
+          <i class="ti ${m.icon}" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div>
+        <h2>${m.label}</h2>
+        <p>${m.desc}</p>
+      </div>
+    </div>
+    <div class="mood-cols">
+      <div>
+        <h4><i class="ti ti-mountain" aria-hidden="true" style="vertical-align:-2px;margin-right:.3rem"></i>Trails</h4>
+        ${trailsHTML}
+      </div>
+      <div>
+        <h4><i class="ti ti-building-castle" aria-hidden="true" style="vertical-align:-2px;margin-right:.3rem"></i>Villages</h4>
+        ${villagesHTML}
+      </div>
+      <div>
+        <h4><i class="ti ti-tools-kitchen-2" aria-hidden="true" style="vertical-align:-2px;margin-right:.3rem"></i>Must Try</h4>
+        ${foodsHTML}
+      </div>
+    </div>`;
+
+  result.classList.add('show');
+  setTimeout(() => result.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
+}
+
+/* ══ NEWSLETTER ══ */
+function nlSubmit() {
+  const input = document.getElementById('nlemail');
+  if (input.value && input.value.includes('@')) {
+    input.value = '';
+    alert("Thank you! You'll hear from us once a month 🌿");
+  } else {
+    input.style.outline = '2px solid var(--rose)';
+    setTimeout(() => input.style.outline = 'none', 2000);
+  }
+}
+
+/* ══ FADE-IN ══ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* keyboard support for mood cards */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.classList.contains('mood-card')) {
+    e.target.click();
+  }
+});
+
+/* ══ INIT ══ */
+renderMoodGrid();
+</script>
+
+</body>
+</html>

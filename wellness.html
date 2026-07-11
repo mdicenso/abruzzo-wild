@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Wellness & Thermal Baths — Abruzzo Wild & Authentic</title>
+<meta name="description" content="Regenerate body and mind in Abruzzo — thermal baths, mountain yoga, forest bathing and agriturismo retreats since Roman times.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Wellness-specific ── */
+
+/* Season badge strip */
+.season-strip {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-top: .6rem;
+}
+.season-badge {
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 500;
+  padding: .2rem .65rem;
+  border-radius: 10px;
+  background: var(--parchment);
+  color: var(--ink-mid);
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+}
+.season-badge i { font-size: 11px; }
+
+/* Quote block */
+.quote-block {
+  border-left: 3px solid var(--rose);
+  padding: 1.2rem 1.5rem;
+  background: var(--white);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 2.5rem 0;
+}
+.quote-block blockquote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: .5rem;
+}
+.quote-block cite {
+  font-family: var(--sans);
+  font-size: .75rem;
+  color: var(--muted);
+  font-style: normal;
+}
+
+@media(max-width:1000px){
+  .terme-grid { grid-template-columns: 1fr; }
+  .act-grid   { grid-template-columns: repeat(2,1fr); }
+  .wt-grid    { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:580px){
+  .act-grid { grid-template-columns: 1fr; }
+  .wt-grid  { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
+    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
+    <li><a href="wellness.html"    class="nav-link active"><i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active">EN</button>
+    <button class="lang-btn">IT</button>
+    <button class="lang-btn">DE</button>
+    <button class="lang-btn">FR</button>
+  </div>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<div class="hero-inner" style="height:46vh">
+  <div class="hero-inner-img"
+       style="background-image:url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1600&q=80')">
+  </div>
+  <div class="hero-inner-veil"></div>
+  <div class="hero-inner-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html">Home</a> › Wellness
+    </div>
+    <h1 class="hero-inner-h1">Wellness & <em>Thermal Baths</em></h1>
+    <p class="hero-inner-sub">Regenerate body and mind in the mountains. Abruzzo's thermal waters have healed travellers since Roman times.</p>
+  </div>
+</div>
+
+
+<!-- ════ CONTENT ════ -->
+<div class="wrap">
+
+  <!-- Intro quote -->
+  <div class="quote-block fade-in">
+    <blockquote>"Abruzzo is the antidote to everything too fast — altitude, silence, water and time."</blockquote>
+    <cite>— Slow Travel Italia</cite>
+  </div>
+
+  <!-- Terme section -->
+  <div class="section-header fade-in">
+    <span class="t-eyebrow">Terme & Spa</span>
+    <h2 class="t-h2">The Thermal Destinations</h2>
+    <p class="section-sub">Four exceptional wellness destinations — from sulfurous mountain springs to natural river pools and agriturismo retreats.</p>
+  </div>
+
+  <div class="terme-grid fade-in" id="terme-grid"></div>
+
+  <!-- Mountain wellness experiences -->
+  <div class="gbox fade-in" style="margin-top:3rem">
+    <div class="gbox-title">
+      <i class="ti ti-leaf" aria-hidden="true"></i>Mountain Wellness Experiences
+    </div>
+    <p style="color:rgba(255,255,255,.52);font-size:.84rem;margin-bottom:1.5rem;font-weight:300">
+      Beyond the thermal baths — Abruzzo offers extraordinary wellness in nature and silence.
+    </p>
+    <div class="act-grid" id="act-grid"></div>
+  </div>
+
+  <!-- Practical tips -->
+  <div style="margin-top:3rem">
+    <div class="section-header fade-in">
+      <span class="t-eyebrow">Practical Info</span>
+      <h2 class="t-h2">Plan Your Wellness Stay</h2>
+    </div>
+    <div class="wt-grid fade-in" id="wt-grid"></div>
+  </div>
+
+</div>
+
+
+<!-- ════ MODAL ════ -->
+<div class="modal-backdrop" id="modal-backdrop"
+     onclick="if(event.target.id==='modal-backdrop')closeModal()">
+  <div class="modal">
+    <div class="modal-hero">
+      <img id="m-img" src="" alt="">
+      <div class="modal-hero-veil"></div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-info">
+        <small id="m-sub"></small>
+        <h2 id="m-title"></h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-badges" id="m-badges"></div>
+      <p id="m-desc"></p>
+      <div class="modal-stats" id="m-stats"></div>
+      <div class="modal-two" id="m-two"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> Abruzzo in your inbox</h4>
+      <p>Events, trails, recipes and hidden gems — once a month, no spam.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address">
+      <button class="nl-btn" onclick="nlSubmit()">Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html"       class="footer-link">Home</a>
+      <a href="quiz.html"        class="footer-link">Quiz</a>
+      <a href="hiking.html"      class="footer-link">Hiking</a>
+      <a href="food.html"        class="footer-link">Food & Wine</a>
+      <a href="villages.html"    class="footer-link">Villages</a>
+      <a href="wellness.html"    class="footer-link">Wellness</a>
+      <a href="attractions.html" class="footer-link">Attractions</a>
+      <a href="events.html"      class="footer-link">Events</a>
+      <a href="transport.html"   class="footer-link">Transport</a>
+      <a href="plan.html"        class="footer-link">Plan Trip</a>
+    </nav>
+  </div>
+  <div class="footer-copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+</footer>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ══ DATA ══ */
+const terme = [
+  {
+    id:'caramanico',
+    name:'Terme di Caramanico',
+    place:'Caramanico Terme (PE)',
+    img:'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=700&q=80',
+    tag:'Sulfur Springs',
+    alt:'656m', type:'Sulfur & saline springs', season:'May – October',
+    desc:"The most famous spa in Abruzzo — sulfurous and saline waters among the beech forests of the Majella. Treatments for respiratory, skin and rheumatic conditions in a stunning mountain setting. The thermal establishment dates from the 1930s and retains its elegant period character.",
+    highlights:[
+      'Medical thermal treatments (prescription required for some)',
+      'Inhalation & respiratory therapy',
+      'Outdoor trekking + spa combos available',
+      'Historic 1930s thermal establishment'
+    ],
+    practical:[
+      'Open May to October only',
+      'Hotel stays from €80/night',
+      'Nearest town: Sulmona 40km',
+      'Best combined with Majella hiking'
+    ]
+  },
+  {
+    id:'raiano',
+    name:'Terme di Raiano',
+    place:'Raiano (AQ)',
+    img:'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=700&q=80',
+    tag:'Natural Pools',
+    alt:'350m', type:'Bicarbonate-calcium springs', season:'June – September',
+    desc:"Natural outdoor thermal pools on the banks of the Aterno river — wild, uncrowded and surrounded by limestone cliffs. One of Italy's most authentic and unspoilt thermal experiences, far from the polished spa circuit.",
+    highlights:[
+      'Outdoor natural thermal pools in the river',
+      'Wild and uncrowded atmosphere',
+      'Combine with Sagittario gorge walk (10 min away)',
+      'Free access to some natural areas'
+    ],
+    practical:[
+      'Summer season only (June–September)',
+      'Day use from €10',
+      'Nearest city: Sulmona 20km',
+      'Bring own towels, snacks and water'
+    ]
+  },
+  {
+    id:'popoli',
+    name:'Terme di Popoli',
+    place:'Popoli (PE)',
+    img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80',
+    tag:'Roman Origins',
+    alt:'261m', type:'Sulfurous & bicarbonate', season:'Year round',
+    desc:"Known and used since Roman times — set in a strategic valley where three rivers converge. The site has been inhabited for over 3,000 years, and the therapeutic waters are documented in Latin sources. Year-round opening makes it the most accessible option.",
+    highlights:[
+      'Roman-era thermal tradition documented in Latin texts',
+      'Strategic position where three rivers meet',
+      'Year-round opening — even in winter',
+      'Near Pescara Vecchia archaeological site'
+    ],
+    practical:[
+      'Open year round',
+      'Booking recommended for treatments',
+      'From Pescara airport: 45km',
+      'Accessible by train from Pescara'
+    ]
+  },
+  {
+    id:'retreats',
+    name:'Mountain Wellness Retreats',
+    place:'Various (AQ / PE)',
+    img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80',
+    tag:'Agriturismo · Yoga',
+    alt:'800 – 1,400m', type:'Nature & slow wellness', season:'April – October',
+    desc:"Abruzzo's agriturismo farms, mountain refuges and ancient abbeys offer a different kind of healing — silence, altitude, home cooking and nights without light pollution. The Gran Sasso plateau at 2,100m hosts yoga retreats with views that are genuinely life-changing.",
+    highlights:[
+      'Yoga retreats on Gran Sasso plateau',
+      'Silent walking in ancient beech forests',
+      'Forest bathing (shinrin-yoku) certified guides',
+      'Sound healing sessions in medieval abbeys'
+    ],
+    practical:[
+      'Book agriturismo 3 months ahead in summer',
+      'Cool even in July — always bring layers',
+      'Phone signal patchy above 1,200m',
+      'Best areas: Pescocostanzo & Campo di Giove'
+    ]
+  }
+];
+
+const activities = [
+  { icon:'ti-yoga',        title:'Mountain Yoga',    desc:'Sunrise sessions above 2,000m on the Gran Sasso plateau. Local instructors, small groups, unforgettable backdrop.' },
+  { icon:'ti-trees',       title:'Forest Bathing',   desc:"Certified shinrin-yoku walks in Abruzzo's ancient beech forests. Guided sessions in Majella and National Park." },
+  { icon:'ti-chef-hat',    title:'Farm to Table',    desc:"Agriturismo dinners entirely from the farm's own produce. The original slow food — unchanged for generations." },
+  { icon:'ti-stars',       title:'Stargazing',       desc:'Abruzzo has the darkest skies in central Italy. Guided night sky sessions at Campo Imperatore observatory.' }
+];
+
+const tips = [
+  {
+    icon:'ti-calendar',
+    title:'Best Season',
+    desc:'May–September for outdoor thermal pools. Year-round for established spas in Caramanico and Popoli. Autumn (September–October) is the most peaceful and beautiful time.'
+  },
+  {
+    icon:'ti-car',
+    title:'Getting There',
+    desc:'A car is essential — thermal centres are in mountain valleys. Pescara Airport is the main gateway, 1–1.5 hours from most terme. No public transport reaches Raiano or Caramanico directly.'
+  },
+  {
+    icon:'ti-route',
+    title:'Combine With',
+    desc:'Thermal + Majella hike: 2 nights Caramanico. Thermal + village drive: 1 night Raiano + Sulmona. Yoga retreat + trekking: 4 nights mountain agriturismo on Gran Sasso.'
+  }
+];
+
+/* ══ RENDER TERME ══ */
+function renderTerme() {
+  document.getElementById('terme-grid').innerHTML = terme.map(t => `
+    <div class="terme-card" onclick="openModal('${t.id}')" role="button" tabindex="0">
+      <img class="terme-card > img" src="${t.img}" alt="${t.name}" loading="lazy"
+           style="width:100%;height:210px;object-fit:cover;transition:transform .4s;display:block">
+      <div class="termb">
+        <div class="terme-type">${t.tag}</div>
+        <h3>${t.name}</h3>
+        <p>${t.desc.substring(0, 110)}…</p>
+        <div class="terme-meta">
+          <span class="terme-meta-item">
+            <i class="ti ti-mountain" aria-hidden="true" style="font-size:11px"></i> ${t.alt}
+          </span>
+          <span class="terme-meta-item">
+            <i class="ti ti-droplet" aria-hidden="true" style="font-size:11px"></i> ${t.type}
+          </span>
+          <span class="terme-meta-item">
+            <i class="ti ti-calendar" aria-hidden="true" style="font-size:11px"></i> ${t.season}
+          </span>
+        </div>
+        <span class="terme-cta">Discover more →</span>
+      </div>
+    </div>`).join('');
+}
+
+/* ══ RENDER ACTIVITIES ══ */
+function renderActivities() {
+  document.getElementById('act-grid').innerHTML = activities.map(a => `
+    <div class="act-card">
+      <div class="icon-circle on-dark lg" style="margin:0 auto .75rem">
+        <i class="ti ${a.icon}" aria-hidden="true"></i>
+      </div>
+      <h4>${a.title}</h4>
+      <p>${a.desc}</p>
+    </div>`).join('');
+}
+
+/* ══ RENDER TIPS ══ */
+function renderTips() {
+  document.getElementById('wt-grid').innerHTML = tips.map(t => `
+    <div class="wt-card">
+      <h4 style="display:flex;align-items:center;gap:.4rem">
+        <i class="ti ${t.icon}" style="font-size:16px;color:var(--rose)" aria-hidden="true"></i>
+        ${t.title}
+      </h4>
+      <p>${t.desc}</p>
+    </div>`).join('');
+}
+
+/* ══ MODAL ══ */
+function openModal(id) {
+  const t = terme.find(x => x.id === id);
+
+  document.getElementById('m-img').src = t.img;
+  document.getElementById('m-img').alt = t.name;
+  document.getElementById('m-sub').textContent   = t.place + ' · ' + t.alt;
+  document.getElementById('m-title').textContent = t.name;
+
+  document.getElementById('m-badges').innerHTML =
+    `<span class="tag tag-nature">
+       <i class="ti ti-spa" aria-hidden="true"></i> ${t.tag}
+     </span>`;
+
+  document.getElementById('m-desc').textContent = t.desc;
+
+  document.getElementById('m-stats').innerHTML = [
+    { v: t.type,   l: 'Waters' },
+    { v: t.alt,    l: 'Altitude' },
+    { v: t.season, l: 'Season' },
+    { v: 'Abruzzo', l: 'Region' }
+  ].map(s => `<div class="modal-stat"><strong>${s.v}</strong><span>${s.l}</span></div>`).join('');
+
+  document.getElementById('m-two').innerHTML = `
+    <div class="modal-sec">
+      <h4>Highlights</h4>
+      <ul>${t.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
+    </div>
+    <div class="modal-sec">
+      <h4>Practical Info</h4>
+      <ul>${t.practical.map(p => `<li>${p}</li>`).join('')}</ul>
+    </div>`;
+
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ══ NEWSLETTER ══ */
+function nlSubmit() {
+  const input = document.getElementById('nlemail');
+  if (input.value && input.value.includes('@')) {
+    input.value = '';
+    alert("Thank you! You'll hear from us once a month 🌿");
+  } else {
+    input.style.outline = '2px solid var(--rose)';
+    setTimeout(() => input.style.outline = 'none', 2000);
+  }
+}
+
+/* ══ FADE-IN ══ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ══ INIT ══ */
+renderTerme();
+renderActivities();
+renderTips();
+</script>
+
+</body>
+</html>

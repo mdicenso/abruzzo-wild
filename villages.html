@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Medieval Villages — Abruzzo Wild & Authentic</title>
+<meta name="description" content="Discover Abruzzo's medieval borghi — from Santo Stefano di Sessanio to Rocca Calascio, villages frozen in time.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Villages-specific ── */
+.village-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.3rem;
+}
+.village-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.village-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--rose);
+}
+.village-card.hidden { display: none; }
+.village-img-wrap { overflow: hidden; position: relative; }
+.village-img {
+  width: 100%; height: 195px;
+  background-size: cover; background-position: center;
+  transition: transform .5s;
+}
+.village-card:hover .village-img { transform: scale(1.06); }
+.village-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,18,10,.55), transparent 60%);
+}
+.village-body { padding: 1.1rem 1.3rem 1.4rem; }
+.village-body h3 {
+  font-family: var(--serif); font-size: 1.1rem;
+  font-weight: 400; color: var(--ink); margin-bottom: .35rem;
+}
+.village-body p {
+  font-size: .82rem; color: var(--muted);
+  line-height: 1.6; margin-bottom: .75rem; font-weight: 300;
+}
+.village-meta { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .5rem; }
+.village-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: .8rem; border-top: 1px solid var(--parchment);
+  font-size: .75rem; color: var(--rose); font-weight: 500;
+}
+.sticky-sidebar {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+#village-map { width: 100%; height: 290px; }
+
+@media(max-width:1000px){
+  .layout-sidebar  { grid-template-columns: 1fr; }
+  .sticky-sidebar  { position: static; }
+}
+@media(max-width:600px){
+  .village-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
+    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
+    <li><a href="villages.html"    class="nav-link active"><i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active">EN</button>
+    <button class="lang-btn">IT</button>
+    <button class="lang-btn">DE</button>
+    <button class="lang-btn">FR</button>
+  </div>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<div class="hero-inner" style="height:48vh">
+  <div class="hero-inner-img"
+       style="background-image:url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=1600&q=80')">
+  </div>
+  <div class="hero-inner-veil"></div>
+  <div class="hero-inner-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html">Home</a> › Medieval Villages
+    </div>
+    <h1 class="hero-inner-h1">Medieval <em>Borghi</em></h1>
+    <div class="hero-kpis">
+      <div class="hero-kpi"><strong>300+</strong><span>municipalities</span></div>
+      <div class="hero-kpi"><strong>5</strong><span>Borghi più Belli</span></div>
+      <div class="hero-kpi"><strong>1,512m</strong><span>highest village</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FILTER BAR ════ -->
+<div class="filter-bar">
+  <span class="filter-label">Province</span>
+  <button class="pill pill-parchment on" onclick="vFilter('all', this)">All</button>
+  <button class="pill pill-parchment" onclick="vFilter('aq', this)">
+    <i class="ti ti-map-pin" aria-hidden="true"></i> L'Aquila
+  </button>
+  <button class="pill pill-parchment" onclick="vFilter('te', this)">
+    <i class="ti ti-map-pin" aria-hidden="true"></i> Teramo
+  </button>
+  <button class="pill pill-parchment" onclick="vFilter('pe', this)">
+    <i class="ti ti-map-pin" aria-hidden="true"></i> Pescara
+  </button>
+  <button class="pill pill-parchment" onclick="vFilter('ch', this)">
+    <i class="ti ti-map-pin" aria-hidden="true"></i> Chieti
+  </button>
+  <span class="filter-count" id="v-count"></span>
+</div>
+
+
+<!-- ════ CONTENT ════ -->
+<div class="wrap">
+  <div class="layout-sidebar">
+
+    <!-- Village cards -->
+    <div class="village-grid" id="village-grid"></div>
+
+    <!-- Sidebar -->
+    <div class="sticky-sidebar">
+
+      <!-- Map -->
+      <div class="sbox fade-in">
+        <div class="sbox-title">
+          <i class="ti ti-map" aria-hidden="true"></i>Village Map
+        </div>
+        <div id="village-map"></div>
+        <div class="map-legend">
+          <div class="map-legend-item">
+            <div class="map-legend-dot" style="background:var(--olive-mid)"></div>L'Aquila
+          </div>
+          <div class="map-legend-item">
+            <div class="map-legend-dot" style="background:var(--rose)"></div>Other
+          </div>
+        </div>
+      </div>
+
+      <!-- Slow travel tips -->
+      <div class="pbox fade-in">
+        <div class="pbox-title">
+          <i class="ti ti-clock-hour-3" aria-hidden="true"></i>Slow Travel Tips
+        </div>
+        <div class="kv-row"><span>Best months</span><span>May, Sep, Oct</span></div>
+        <div class="kv-row"><span>Transport</span><span>Car essential</span></div>
+        <div class="kv-row"><span>Stay</span><span>Albergo diffuso</span></div>
+        <div class="kv-row"><span>Shops open</span><span>Morning only</span></div>
+        <div class="kv-row"><span>Riposo hours</span><span>1pm – 4pm</span></div>
+      </div>
+
+      <!-- Etiquette box -->
+      <div class="gbox fade-in">
+        <div class="gbox-title">
+          <i class="ti ti-users" aria-hidden="true"></i>Village Etiquette
+        </div>
+        <div class="tip-row">
+          <div class="tip-icon"><i class="ti ti-volume-2" aria-hidden="true"></i></div>
+          <div><strong>Quiet hours</strong><p>1–4pm in summer — villages close for riposo. Respect the silence.</p></div>
+        </div>
+        <div class="tip-row">
+          <div class="tip-icon"><i class="ti ti-camera" aria-hidden="true"></i></div>
+          <div><strong>Photography</strong><p>Always ask before photographing locals or private interiors.</p></div>
+        </div>
+        <div class="tip-row">
+          <div class="tip-icon"><i class="ti ti-car" aria-hidden="true"></i></div>
+          <div><strong>Parking</strong><p>Leave cars at the village entrance — historic centres are pedestrian-only.</p></div>
+        </div>
+        <div class="tip-row">
+          <div class="tip-icon"><i class="ti ti-shirt" aria-hidden="true"></i></div>
+          <div><strong>Dress code</strong><p>Covered shoulders and knees when entering churches.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ MODAL ════ -->
+<div class="modal-backdrop" id="modal-backdrop"
+     onclick="if(event.target.id==='modal-backdrop')closeModal()">
+  <div class="modal">
+    <div class="modal-hero">
+      <img id="m-img" src="" alt="">
+      <div class="modal-hero-veil"></div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-info">
+        <small id="m-sub"></small>
+        <h2 id="m-title"></h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-badges" id="m-badges"></div>
+      <p id="m-desc"></p>
+      <div class="modal-stats" id="m-stats"></div>
+      <div class="modal-two" id="m-two"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> Abruzzo in your inbox</h4>
+      <p>Events, trails, recipes and hidden gems — once a month, no spam.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address">
+      <button class="nl-btn" onclick="nlSubmit()">Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html"       class="footer-link">Home</a>
+      <a href="quiz.html"        class="footer-link">Quiz</a>
+      <a href="hiking.html"      class="footer-link">Hiking</a>
+      <a href="food.html"        class="footer-link">Food & Wine</a>
+      <a href="villages.html"    class="footer-link">Villages</a>
+      <a href="wellness.html"    class="footer-link">Wellness</a>
+      <a href="attractions.html" class="footer-link">Attractions</a>
+      <a href="events.html"      class="footer-link">Events</a>
+      <a href="transport.html"   class="footer-link">Transport</a>
+      <a href="plan.html"        class="footer-link">Plan Trip</a>
+    </nav>
+  </div>
+  <div class="footer-copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+</footer>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ══ DATA ══ */
+const villages = [
+  { id:'ss', name:"Santo Stefano di Sessanio",
+    prov:"aq", provLabel:"L'Aquila", alt:"1,251m", pop:"~120",
+    img:"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=700&q=80",
+    bbest:true,
+    desc:"One of Italy's most perfectly preserved medieval villages — and birthplace of the albergo diffuso concept. Every stone wall is original.",
+    see:["Medici watchtower (14th century)","Original village walls intact","Sextantio Albergo Diffuso — pioneering hotel","Gran Sasso views at every turn"],
+    info:["Best months: June, September","Distance from L'Aquila: 50km","Altitude: 1,251m","Near Gran Sasso national park"],
+    lat:42.34, lng:13.65 },
+
+  { id:'ca', name:"Civitella Alfedena",
+    prov:"aq", provLabel:"L'Aquila", alt:"1,120m", pop:"~300",
+    img:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=700&q=80",
+    bbest:false,
+    desc:"Perched above Lake Barrea inside the national park — the gateway to wildlife trails and home to the Wolf Museum with a live wolf enclosure.",
+    see:["Wolf Museum & live wolf enclosure","Lake Barrea panoramic viewpoint","Valle Fondillo bear trail access","National park visitor centre"],
+    info:["Best months: May–October","Inside Abruzzo National Park","Free parking at village entrance","Park café and facilities nearby"],
+    lat:41.77, lng:13.95 },
+
+  { id:'pac', name:"Pacentro",
+    prov:"aq", provLabel:"L'Aquila", alt:"720m", pop:"~1,000",
+    img:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=700&q=80",
+    bbest:true,
+    desc:"Beautifully intact medieval village below Majella — ancestral home of Madonna's family. Three Caldora castle towers dominate the skyline.",
+    see:["Caldora castle's three towers","Perfectly preserved medieval centre","Corsa degli Zingari barefoot race (September)","Local trattorias with mountain cuisine"],
+    info:["Festival: Corsa degli Zingari, first Sunday September","Near Sulmona: 15 min by car","Confetti shopping nearby in Sulmona","Majella National Park access"],
+    lat:42.06, lng:13.99 },
+
+  { id:'roc', name:"Rocca Calascio",
+    prov:"aq", provLabel:"L'Aquila", alt:"1,512m", pop:"~80",
+    img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=700&q=80",
+    bbest:false,
+    desc:"The highest castle in the Apennines at 1,512m, visible for 50km. Filming location for Ladyhawke (1985) and The Name of the Rose.",
+    see:["Rocca Calascio castle ruins","Church of Santa Maria della Pietà","Abandoned ghost village below","Gran Sasso 360° panorama"],
+    info:["Film: Ladyhawke (1985)","Access via dirt road from Castel del Monte","Best visited at golden hour","No facilities — bring water and snacks"],
+    lat:42.30, lng:13.61 },
+
+  { id:'penn', name:"Pennapiedimonte",
+    prov:"ch", provLabel:"Chieti", alt:"572m", pop:"~300",
+    img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=700&q=80",
+    bbest:true,
+    desc:"One of Italy's most beautiful villages, clinging dramatically to a rocky spur on the Majella foothills. Total authenticity, almost no tourists.",
+    see:["Village belvedere with Majella views","Majella trail access directly from village","Local agriturismo with home cooking","Ancient stone fountain in the square"],
+    info:["Province: Chieti","Best months: May–October","Road: SP35 from Chieti","Altitude: 572m"],
+    lat:42.14, lng:14.18 },
+
+  { id:'cast', name:"Castelli",
+    prov:"te", provLabel:"Teramo", alt:"601m", pop:"~1,000",
+    img:"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=700&q=80",
+    bbest:false,
+    desc:"The ceramics capital of Abruzzo — every family has made hand-painted maiolica since the 1400s. The tiled ceiling of San Donato is unmissable.",
+    see:["Ceramics Museum (€4)","San Donato church tiled ceiling (1700s)","Active artisan workshops open to visitors","Gran Sasso views from the village belvedere"],
+    info:["Province: Teramo","Famous for: hand-painted maiolica","Workshop visits by appointment","Year round — no peak season"],
+    lat:42.49, lng:13.78 },
+
+  { id:'penne', name:"Penne",
+    prov:"pe", provLabel:"Pescara", alt:"438m", pop:"~12,000",
+    img:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=700&q=80",
+    bbest:false,
+    desc:"The most complete medieval hill town in Pescara province — intact city walls, Roman remains, a stunning cathedral and birdwatching at Lake Penne.",
+    see:["Cathedral and campanile","Intact medieval city walls","Lake Penne (WWF reserve — birdwatching)","Roman ruins in the lower town"],
+    info:["Province: Pescara","From Pescara: 40 min by car","Market day: Wednesday morning","Year round destination"],
+    lat:42.46, lng:13.93 },
+
+  { id:'car', name:"Carunchio",
+    prov:"ch", provLabel:"Chieti", alt:"538m", pop:"~500",
+    img:"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=700&q=80",
+    bbest:true,
+    desc:"A tiny, pristine village on the Sangro valley border — completely undiscovered by tourists. Voted one of Italy's most beautiful villages.",
+    see:["Castle ruins and medieval walls","Panoramic belvedere over the Sangro valley","Village church with original frescoes","Valley walking paths from the village"],
+    info:["Province: Chieti","Population: ~500","Near Castiglione Messer Marino","Mountain roads — take care in winter"],
+    lat:41.83, lng:14.60 }
+];
+
+/* ══ FILTER ══ */
+let activeProv = 'all';
+
+function vFilter(prov, btn) {
+  activeProv = prov;
+  document.querySelectorAll('[onclick*="vFilter"]').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderVillages();
+}
+
+/* ══ RENDER ══ */
+function renderVillages() {
+  const filtered = activeProv === 'all'
+    ? villages
+    : villages.filter(v => v.prov === activeProv);
+
+  document.getElementById('v-count').textContent =
+    filtered.length + ' village' + (filtered.length !== 1 ? 's' : '');
+
+  document.getElementById('village-grid').innerHTML = filtered.map(v => `
+    <div class="village-card" onclick="openModal('${v.id}')" role="button" tabindex="0">
+      <div class="village-img-wrap">
+        <div class="village-img" style="background-image:url('${v.img}')"></div>
+        <div class="village-img-overlay"></div>
+        <span style="position:absolute;bottom:.7rem;left:.7rem">
+          <span class="tag" style="background:rgba(61,74,46,.85);color:#fff">
+            <i class="ti ti-map-pin" aria-hidden="true" style="font-size:10px"></i>
+            ${v.provLabel}
+          </span>
+        </span>
+        <span style="position:absolute;top:.7rem;right:.7rem">
+          <span class="tag" style="background:rgba(0,0,0,.52);color:#fff">
+            <i class="ti ti-mountain" aria-hidden="true" style="font-size:10px"></i>
+            ${v.alt}
+          </span>
+        </span>
+      </div>
+      <div class="village-body">
+        ${v.bbest ? `
+          <div class="borghi-badge">
+            <i class="ti ti-star" aria-hidden="true" style="font-size:11px"></i>
+            Borghi più Belli d'Italia
+          </div>` : ''}
+        <h3>${v.name}</h3>
+        <p>${v.desc.substring(0, 95)}…</p>
+        <div class="village-meta">
+          <span class="card-meta-item">
+            <i class="ti ti-users" aria-hidden="true" style="font-size:11px"></i> ${v.pop}
+          </span>
+          <span class="card-meta-item">
+            <i class="ti ti-mountain" aria-hidden="true" style="font-size:11px"></i> ${v.alt}
+          </span>
+        </div>
+        <div class="village-footer"><span>Discover →</span></div>
+      </div>
+    </div>`).join('');
+}
+
+/* ══ MAP ══ */
+let mapInitialised = false;
+function initMap() {
+  if (mapInitialised) return;
+  mapInitialised = true;
+  const provColors = { aq:'#5a6b3f', te:'#b5705a', pe:'#7a8f58', ch:'#cc8e7a' };
+  const map = L.map('village-map', { scrollWheelZoom:false })
+               .setView([42.0, 13.9], 8);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:'© OpenStreetMap', maxZoom:16
+  }).addTo(map);
+  villages.forEach(v => {
+    const mk = L.circleMarker([v.lat, v.lng], {
+      radius: 8,
+      fillColor: provColors[v.prov] || '#b5705a',
+      color: '#fff', weight: 2, fillOpacity: .9
+    }).addTo(map);
+    mk.bindPopup(`<strong>${v.name}</strong><br>${v.alt} · ${v.provLabel}`);
+    mk.on('click', () => openModal(v.id));
+  });
+}
+
+/* ══ MODAL ══ */
+function openModal(id) {
+  const v = villages.find(x => x.id === id);
+
+  document.getElementById('m-img').src = v.img;
+  document.getElementById('m-img').alt = v.name;
+  document.getElementById('m-sub').textContent   = v.provLabel + ' · ' + v.alt;
+  document.getElementById('m-title').textContent = v.name;
+
+  document.getElementById('m-badges').innerHTML =
+    `<span class="tag" style="background:rgba(61,74,46,.12);color:var(--olive-mid)">
+       <i class="ti ti-map-pin" aria-hidden="true"></i> ${v.provLabel}
+     </span>
+     ${v.bbest ? `<span class="tag tag-amber">
+       <i class="ti ti-star" aria-hidden="true"></i> Borghi più Belli
+     </span>` : ''}`;
+
+  document.getElementById('m-desc').textContent = v.desc;
+
+  document.getElementById('m-stats').innerHTML = [
+    { v: v.alt,    l: 'Altitude' },
+    { v: v.pop,    l: 'Population' },
+    { v: v.bbest ? 'Yes' : '—', l: 'Borghi Belli' },
+    { v: v.provLabel, l: 'Province' }
+  ].map(s => `<div class="modal-stat"><strong>${s.v}</strong><span>${s.l}</span></div>`).join('');
+
+  document.getElementById('m-two').innerHTML = `
+    <div class="modal-sec">
+      <h4>What to See</h4>
+      <ul>${v.see.map(s => `<li>${s}</li>`).join('')}</ul>
+    </div>
+    <div class="modal-sec">
+      <h4>Practical Info</h4>
+      <ul>${v.info.map(i => `<li>${i}</li>`).join('')}</ul>
+    </div>`;
+
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ══ NEWSLETTER ══ */
+function nlSubmit() {
+  const input = document.getElementById('nlemail');
+  if (input.value && input.value.includes('@')) {
+    input.value = '';
+    alert("Thank you! You'll hear from us once a month 🌿");
+  } else {
+    input.style.outline = '2px solid var(--rose)';
+    setTimeout(() => input.style.outline = 'none', 2000);
+  }
+}
+
+/* ══ FADE-IN ══ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ══ INIT ══ */
+renderVillages();
+initMap();
+</script>
+
+</body>
+</html>

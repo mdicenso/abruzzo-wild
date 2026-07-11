@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Events & Festivals — Abruzzo Wild & Authentic</title>
+<meta name="description" content="24+ events and festivals across Abruzzo — from fire festivals and medieval jousting to food sagre and jazz concerts.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Events-specific ── */
+.events-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  align-items: start;
+}
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.ev-card.hidden { display: none; }
+
+/* Practical info box */
+.info-strip {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--parchment);
+}
+.info-strip-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  border-top: 2.5px solid var(--rose);
+}
+.info-strip-card h4 {
+  font-family: var(--sans);
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: .35rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.info-strip-card h4 i { font-size: 16px; color: var(--rose); }
+.info-strip-card p {
+  font-size: .8rem;
+  color: var(--muted);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+@media(max-width:1000px){
+  .events-layout { grid-template-columns: 1fr; }
+  .ev-featured { position: static; }
+  .info-strip { grid-template-columns: 1fr; }
+}
+@media(max-width:600px){
+  .events-grid { grid-template-columns: 1fr; }
+  .info-strip { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
+    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
+    <li><a href="events.html"      class="nav-link active"><i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active">EN</button>
+    <button class="lang-btn">IT</button>
+    <button class="lang-btn">DE</button>
+    <button class="lang-btn">FR</button>
+  </div>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<div class="hero-inner" style="height:44vh">
+  <div class="hero-inner-img"
+       style="background-image:url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=1600&q=80')">
+  </div>
+  <div class="hero-inner-veil"></div>
+  <div class="hero-inner-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html">Home</a> › Events & Festivals
+    </div>
+    <h1 class="hero-inner-h1">Events & <em>Festivals</em></h1>
+    <div class="hero-kpis">
+      <div class="hero-kpi"><strong>24+</strong><span>events / year</span></div>
+      <div class="hero-kpi"><strong>12</strong><span>months</span></div>
+      <div class="hero-kpi"><strong>6</strong><span>categories</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ MONTH STRIP ════ -->
+<div class="month-strip" id="month-strip"></div>
+
+
+<!-- ════ FILTER BAR ════ -->
+<div class="filter-bar">
+  <span class="filter-label">Category</span>
+  <button class="pill pill-parchment on" onclick="catFilter('all', this)">All</button>
+  <button class="pill pill-parchment" onclick="catFilter('tradition', this)">
+    <i class="ti ti-flame" aria-hidden="true"></i> Tradition
+  </button>
+  <button class="pill pill-parchment" onclick="catFilter('food', this)">
+    <i class="ti ti-tools-kitchen-2" aria-hidden="true"></i> Food
+  </button>
+  <button class="pill pill-parchment" onclick="catFilter('music', this)">
+    <i class="ti ti-music" aria-hidden="true"></i> Music
+  </button>
+  <button class="pill pill-parchment" onclick="catFilter('sport', this)">
+    <i class="ti ti-run" aria-hidden="true"></i> Sport
+  </button>
+  <button class="pill pill-parchment" onclick="catFilter('nature', this)">
+    <i class="ti ti-leaf" aria-hidden="true"></i> Nature
+  </button>
+  <button class="pill pill-parchment" onclick="catFilter('market', this)">
+    <i class="ti ti-building-store" aria-hidden="true"></i> Market
+  </button>
+  <span class="filter-count" id="ev-count"></span>
+</div>
+
+
+<!-- ════ CONTENT ════ -->
+<div class="wrap">
+  <div class="events-layout">
+
+    <!-- Event cards -->
+    <div class="events-grid" id="events-grid"></div>
+
+    <!-- Sidebar -->
+    <div style="position:sticky;top:130px;display:flex;flex-direction:column;gap:1.1rem">
+
+      <!-- Featured events -->
+      <div class="ev-featured fade-in" id="ev-featured">
+        <div class="ev-featured-title">
+          <i class="ti ti-star" aria-hidden="true"></i>Not to be missed
+        </div>
+      </div>
+
+      <!-- Practical info -->
+      <div class="pbox fade-in">
+        <div class="pbox-title">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>Practical Info
+        </div>
+        <div class="kv-row"><span>Most events</span><span>Aug – Oct</span></div>
+        <div class="kv-row"><span>Free entry</span><span>Most sagre</span></div>
+        <div class="kv-row"><span>Booking needed</span><span>Sport events only</span></div>
+        <div class="kv-row"><span>Language</span><span>Italian (mostly)</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom info strip -->
+  <div class="info-strip fade-in">
+    <div class="info-strip-card">
+      <h4><i class="ti ti-sun" aria-hidden="true"></i>Best season</h4>
+      <p>Summer (June–September) is peak festival time. Winter has quieter but atmospheric events like the Farchie fire festival in January.</p>
+    </div>
+    <div class="info-strip-card">
+      <h4><i class="ti ti-coin-euro" aria-hidden="true"></i>Entry & costs</h4>
+      <p>Most sagre and traditional events are free. Music festivals and sport events may require advance booking. Budget €5–15 for food at sagre.</p>
+    </div>
+    <div class="info-strip-card">
+      <h4><i class="ti ti-car" aria-hidden="true"></i>Getting there</h4>
+      <p>A car is essential for village events. Many festivals are in small borghi with limited parking — arrive early or use shuttle buses where available.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> Abruzzo in your inbox</h4>
+      <p>Events, trails, recipes and hidden gems — once a month, no spam.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address">
+      <button class="nl-btn" onclick="nlSubmit()">Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html"       class="footer-link">Home</a>
+      <a href="quiz.html"        class="footer-link">Quiz</a>
+      <a href="hiking.html"      class="footer-link">Hiking</a>
+      <a href="food.html"        class="footer-link">Food & Wine</a>
+      <a href="villages.html"    class="footer-link">Villages</a>
+      <a href="wellness.html"    class="footer-link">Wellness</a>
+      <a href="attractions.html" class="footer-link">Attractions</a>
+      <a href="events.html"      class="footer-link">Events</a>
+      <a href="transport.html"   class="footer-link">Transport</a>
+      <a href="plan.html"        class="footer-link">Plan Trip</a>
+    </nav>
+  </div>
+  <div class="footer-copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+</footer>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ══ DATA ══ */
+const events = [
+  { id:1,  name:"Farchie di Fara Filiorum Petri", month:1,  date:"16 Jan",       cat:"tradition", place:"Fara Filiorum Petri (CH)", desc:"Enormous burning torches paraded through the village in honour of Sant'Antonio Abate. One of Italy's most spectacular fire festivals.", featured:true },
+  { id:2,  name:"Sagra della Ventricina",          month:1,  date:"Late Jan",      cat:"food",      place:"Guilmi (CH)",              desc:"Winter festival celebrating Abruzzo's iconic spiced pork salume — producers, tastings and warm hospitality." },
+  { id:3,  name:"Carnevale di Lanciano",           month:2,  date:"Feb (variable)",cat:"tradition", place:"Lanciano (CH)",            desc:"One of Abruzzo's most colourful carnivals — street floats, costumes and traditional music in the historic centre." },
+  { id:4,  name:"Festival del Tartufo Invernale",  month:2,  date:"Mid Feb",       cat:"food",      place:"Rivisondoli (AQ)",         desc:"Winter truffle market in a beautiful mountain village — the rarest and most prized black truffle of the season." },
+  { id:5,  name:"Sagra di San Giuseppe",           month:3,  date:"19 Mar",        cat:"tradition", place:"Introdacqua (AQ)",         desc:"Fava beans, zeppole and local wines celebrating the feast of Saint Joseph — a village tradition since the 1600s." },
+  { id:6,  name:"Opening of Trekking Trails",      month:3,  date:"Late Mar",      cat:"nature",    place:"Gran Sasso & Maiella",     desc:"Marked trails officially reopen after winter closures — first guided hikes and CAI-organised routes of the season." },
+  { id:7,  name:"Sagra dell'Agnello",              month:4,  date:"Easter period", cat:"food",      place:"Castel del Monte (AQ)",    desc:"The year's biggest food festival celebrating Easter lamb in all its forms — roasted, baked, stewed and grilled.", featured:true },
+  { id:8,  name:"Pasqua in Abruzzo",               month:4,  date:"Easter Sunday", cat:"tradition", place:"Various villages",         desc:"Extraordinary Easter processions in mountain villages — most atmospheric in L'Aquila, Sulmona and Lanciano." },
+  { id:9,  name:"Transumanza Festival",            month:5,  date:"Early May",     cat:"tradition", place:"Pescasseroli–Candela",     desc:"Recreation of the ancient shepherd migration — thousands of sheep walk the old tratturi through mountain villages.", featured:true },
+  { id:10, name:"Sagra degli Arrosticini",         month:5,  date:"Mid May",       cat:"food",      place:"Pescara",                  desc:"The national arrosticini festival — hundreds of grills, live music and Montepulciano wine on the Adriatic coast." },
+  { id:11, name:"Giostra Cavalleresca di Sulmona", month:6,  date:"Last Sun Jun",  cat:"tradition", place:"Sulmona (AQ)",             desc:"Medieval jousting tournament in Sulmona's historic piazza — four neighbourhoods compete in full period costume.", featured:true },
+  { id:12, name:"L'Aquila Classica",               month:6,  date:"Throughout Jun",cat:"music",     place:"L'Aquila (AQ)",            desc:"International classical music festival in the historic churches and palaces of L'Aquila — free and ticketed concerts." },
+  { id:13, name:"Abruzzo Jazz Festival",           month:7,  date:"Throughout Jul",cat:"music",     place:"Pescara",                  desc:"Italy's longest-running jazz festival — outdoor concerts along the Adriatic coast with international headliners.", featured:true },
+  { id:14, name:"Sagra della Trota",               month:7,  date:"Late Jul",      cat:"food",      place:"Pescasseroli (AQ)",        desc:"Freshwater trout festival in the national park — fish caught from local rivers, grilled with mountain herbs." },
+  { id:15, name:"Corsa degli Zingari",             month:8,  date:"First Sun Sep", cat:"tradition", place:"Pacentro (AQ)",            desc:"A barefoot race by village men in medieval costume — a tradition since the 16th-century vow to Sant'Antonio.", featured:true },
+  { id:16, name:"Festival delle Sagre",            month:8,  date:"Mid Aug",       cat:"food",      place:"Various villages",         desc:"Ferragosto brings the peak of village food festivals — almost every borgo celebrates its local product in August." },
+  { id:17, name:"Ultra Trail Gran Sasso",          month:9,  date:"Mid Sep",       cat:"sport",     place:"L'Aquila – Gran Sasso",    desc:"Italy's most challenging mountain trail running event — 100km across Gran Sasso with 6,000m+ elevation gain." },
+  { id:18, name:"Sagra del Vino di Lanciano",      month:9,  date:"Late Sep",      cat:"food",      place:"Lanciano (CH)",            desc:"Harvest festival celebrating Montepulciano d'Abruzzo — winery visits, tastings, food and traditional music." },
+  { id:19, name:"Sagra dello Zafferano",           month:10, date:"Late Oct",      cat:"food",      place:"Navelli (AQ)",             desc:"Saffron harvest festival in the DOP production zone — demonstrations, tastings and local products.", featured:true },
+  { id:20, name:"Gran Sasso Trail",                month:10, date:"Early Oct",     cat:"sport",     place:"Gran Sasso massif",        desc:"Premier mountain trail running race — distances from 15km to 55km across the Apennine plateau." },
+  { id:21, name:"Festival del Tartufo Nero",       month:10, date:"Mid Oct",       cat:"food",      place:"Rivisondoli (AQ)",         desc:"Autumn truffle market — guided hunts with Lagotto dogs, tastings and truffle-based tasting menus." },
+  { id:22, name:"Frantoi Aperti",                  month:11, date:"Throughout Nov",cat:"nature",    place:"Pescara & Chieti hills",   desc:"Olive oil mills open to visitors during the harvest — taste fresh-pressed DOP oil directly from the stone.", featured:true },
+  { id:23, name:"Mercatino di San Martino",        month:11, date:"11 Nov",        cat:"market",    place:"Various towns",            desc:"Traditional November market — wine, oil, chestnuts and handmade local crafts in village squares." },
+  { id:24, name:"Presepe Vivente",                 month:12, date:"24–26 Dec",     cat:"tradition", place:"Pescosansonesco (PE)",     desc:"One of Italy's most atmospheric living nativity scenes — the entire medieval village transforms into Bethlehem.", featured:true }
+];
+
+const months = ['All','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+const catConfig = {
+  tradition: { label:'Tradition', tagClass:'tag-castle',  icon:'ti-flame' },
+  food:      { label:'Food',      tagClass:'tag-green',   icon:'ti-tools-kitchen-2' },
+  music:     { label:'Music',     tagClass:'tag-museum',  icon:'ti-music' },
+  sport:     { label:'Sport',     tagClass:'tag-archeo',  icon:'ti-run' },
+  nature:    { label:'Nature',    tagClass:'tag-nature',  icon:'ti-leaf' },
+  market:    { label:'Market',    tagClass:'tag-rose',    icon:'ti-building-store' }
+};
+
+/* ══ STATE ══ */
+let activeMonth = 0;
+let activeCat   = 'all';
+
+/* ══ MONTH STRIP ══ */
+function buildMonthStrip() {
+  const strip = document.getElementById('month-strip');
+  months.forEach((m, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'month-btn' + (i === 0 ? ' on' : '');
+    btn.textContent = m;
+    btn.onclick = () => {
+      activeMonth = i;
+      document.querySelectorAll('.month-btn').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      renderEvents();
+    };
+    strip.appendChild(btn);
+  });
+}
+
+/* ══ CATEGORY FILTER ══ */
+function catFilter(cat, btn) {
+  activeCat = cat;
+  document.querySelectorAll('[onclick*="catFilter"]').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderEvents();
+}
+
+/* ══ RENDER EVENTS ══ */
+function renderEvents() {
+  const filtered = events.filter(e =>
+    (activeMonth === 0 || e.month === activeMonth) &&
+    (activeCat === 'all' || e.cat === activeCat)
+  );
+
+  document.getElementById('ev-count').textContent =
+    filtered.length + ' event' + (filtered.length !== 1 ? 's' : '');
+
+  if (filtered.length === 0) {
+    document.getElementById('events-grid').innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--muted)">
+        <i class="ti ti-calendar-off" style="font-size:2.5rem;display:block;margin-bottom:.75rem;opacity:.4" aria-hidden="true"></i>
+        No events found for this selection. Try a different month or category.
+      </div>`;
+    return;
+  }
+
+  document.getElementById('events-grid').innerHTML = filtered.map(e => {
+    const tc = catConfig[e.cat] || { label: e.cat, tagClass:'tag-olive', icon:'ti-calendar-event' };
+    return `
+    <div class="ev-card${e.featured ? ' fade-in' : ''}">
+      <div class="ev-month">${months[e.month]}</div>
+      <div class="ev-date">
+        <i class="ti ti-calendar" aria-hidden="true" style="font-size:12px;vertical-align:-1px"></i>
+        ${e.date}
+      </div>
+      <h3>${e.name}</h3>
+      <div class="ev-place">
+        <i class="ti ti-map-pin" aria-hidden="true" style="font-size:13px"></i>${e.place}
+      </div>
+      <p>${e.desc}</p>
+      <span class="tag ${tc.tagClass}" style="margin-top:.5rem;display:inline-flex;align-items:center;gap:.25rem">
+        <i class="ti ${tc.icon}" aria-hidden="true"></i> ${tc.label}
+      </span>
+      ${e.featured ? '<span class="tag tag-amber" style="margin-top:.5rem;margin-left:.3rem">⭐ Featured</span>' : ''}
+    </div>`;
+  }).join('');
+
+  // Featured sidebar
+  const featured = events.filter(e =>
+    e.featured && (activeMonth === 0 || e.month === activeMonth)
+  );
+  const featBox = document.getElementById('ev-featured');
+  featBox.innerHTML = `
+    <div class="ev-featured-title">
+      <i class="ti ti-star" aria-hidden="true"></i>Not to be missed
+    </div>
+    ${featured.length
+      ? featured.slice(0, 5).map(e => `
+        <div class="ef-item">
+          <h5>${e.name}</h5>
+          <p>${months[e.month]} · ${e.place}</p>
+        </div>`).join('')
+      : '<p style="color:rgba(255,255,255,.45);font-size:.8rem;font-weight:300">Select a month to see featured events.</p>'
+    }`;
+}
+
+/* ══ NEWSLETTER ══ */
+function nlSubmit() {
+  const input = document.getElementById('nlemail');
+  if (input.value && input.value.includes('@')) {
+    input.value = '';
+    alert("Thank you! You'll hear from us once a month 🌿");
+  } else {
+    input.style.outline = '2px solid var(--rose)';
+    setTimeout(() => input.style.outline = 'none', 2000);
+  }
+}
+
+/* ══ FADE-IN ══ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ══ INIT ══ */
+buildMonthStrip();
+renderEvents();
+</script>
+
+</body>
+</html>

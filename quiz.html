@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Find Your Abruzzo — Quiz</title>
+<meta name="description" content="5 questions, two images each. Discover your perfect Abruzzo experience in under 2 minutes.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Quiz page fills the viewport ── */
+html, body { height: 100%; overflow-x: hidden; }
+body { background: var(--ink); }
+
+/* Hide nav on quiz screens for full immersion */
+.nav { position: fixed; }
+
+/* ── Screens ── */
+.screen { display: none; }
+.screen.active { display: flex; flex-direction: column; }
+
+/* ════ INTRO SCREEN ════ */
+#screen-intro {
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.intro-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80')
+              center / cover;
+  opacity: .2;
+}
+.intro-content {
+  position: relative;
+  max-width: 640px;
+  animation: riseUp .8s ease both;
+}
+@keyframes riseUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.intro-badge {
+  display: inline-block;
+  background: var(--rose);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .32rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+}
+.intro-h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.intro-h1 em { font-style: italic; color: #b8d4a0; }
+.intro-p {
+  font-family: var(--sans);
+  font-size: .95rem;
+  color: rgba(255,255,255,.65);
+  line-height: 1.75;
+  max-width: 460px;
+  margin: 0 auto 2rem;
+  font-weight: 300;
+}
+.intro-dots {
+  display: flex;
+  gap: .45rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+.intro-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  transition: background .3s;
+}
+.intro-dot.active { background: var(--rose); }
+
+/* ════ QUESTION SCREEN ════ */
+#screen-question {
+  height: 100vh;
+  flex-direction: column;
+  position: relative;
+}
+/* Progress bar */
+.progress-wrap {
+  position: fixed;
+  top: 64px; left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,.1);
+  z-index: 500;
+}
+.progress-bar {
+  height: 100%;
+  background: var(--rose);
+  transition: width .5s ease;
+}
+/* Question header */
+.q-header {
+  position: absolute;
+  top: 64px; left: 0; right: 0;
+  z-index: 10;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(0,0,0,.55), transparent);
+}
+.q-counter {
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.6);
+}
+.q-text {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--white);
+  text-align: center;
+}
+/* Split panels */
+.q-split {
+  display: flex;
+  flex: 1;
+  padding-top: 64px;
+  height: 100vh;
+}
+.q-side {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: flex .45s cubic-bezier(.4,0,.2,1);
+}
+.q-side:hover { flex: 1.35; }
+.q-side.picked { flex: 1.5; }
+.q-side.rejected { flex: .65; }
+
+.q-side-img {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform .5s;
+}
+.q-side:hover .q-side-img { transform: scale(1.04); }
+
+.q-side-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.15));
+  transition: background .35s;
+}
+.q-side:hover .q-side-overlay,
+.q-side.picked .q-side-overlay {
+  background: linear-gradient(to top, rgba(61,74,46,.88), rgba(61,74,46,.35));
+}
+
+.q-side-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 2rem 1.5rem;
+  color: var(--white);
+  text-align: center;
+}
+.q-side-icon {
+  display: block;
+  font-size: 2.2rem;
+  margin-bottom: .5rem;
+}
+.q-side-content h3 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 300;
+  margin-bottom: .35rem;
+}
+.q-side-content p {
+  font-family: var(--sans);
+  font-size: .82rem;
+  opacity: .75;
+  line-height: 1.4;
+}
+.q-choose-label {
+  display: inline-block;
+  margin-top: .65rem;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  font-family: var(--sans);
+  font-size: .7rem;
+  padding: .22rem .75rem;
+  border-radius: 12px;
+  transition: background .2s;
+}
+.q-side:hover .q-choose-label,
+.q-side.picked .q-choose-label {
+  background: rgba(181,112,90,.75);
+  border-color: var(--rose);
+}
+/* Check mark on picked side */
+.q-check {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%) scale(0);
+  width: 56px; height: 56px;
+  background: var(--rose);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--white);
+  z-index: 10;
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+  pointer-events: none;
+}
+.q-side.picked .q-check {
+  transform: translate(-50%,-50%) scale(1);
+}
+/* OR divider */
+.q-or {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  width: 42px; height: 42px;
+  background: rgba(255,255,255,.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .75rem;
+  color: var(--ink);
+  z-index: 20;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+}
+
+/* ════ RESULT SCREEN ════ */
+#screen-result {
+  min-height: 100vh;
+  flex-direction: column;
+}
+.result-hero {
+  background: var(--ink);
+  padding: 5rem 2rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.result-hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: .18;
+}
+.result-hero-content {
+  position: relative;
+  max-width: 580px;
+  margin: 0 auto;
+  animation: riseUp .6s ease both;
+}
+.result-emoji {
+  font-size: 3.8rem;
+  display: block;
+  margin-bottom: .8rem;
+  animation: pop .5s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes pop { from{transform:scale(0)} to{transform:scale(1)} }
+.result-tag {
+  display: inline-block;
+  background: var(--rose);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .3rem 1rem;
+  border-radius: 20px;
+}
+.result-hero h2 {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--white);
+  margin: .7rem 0 .8rem;
+}
+.result-hero p {
+  font-family: var(--sans);
+  font-size: .95rem;
+  color: rgba(255,255,255,.62);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+.result-recs {
+  background: var(--cream);
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+.result-recs h3 {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.result-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.result-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  text-align: center;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all .25s;
+  text-decoration: none;
+  display: block;
+}
+.result-card:hover {
+  border-color: var(--rose);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+.result-card-icon {
+  margin-bottom: .6rem;
+}
+.result-card h4 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: .3rem;
+}
+.result-card p {
+  font-family: var(--sans);
+  font-size: .78rem;
+  color: var(--muted);
+  line-height: 1.5;
+  font-weight: 300;
+}
+.result-actions {
+  display: flex;
+  gap: .85rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+}
+.btn-replay {
+  background: none;
+  border: 1.5px solid var(--rose);
+  color: var(--rose);
+  padding: .7rem 1.6rem;
+  border-radius: 22px;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: .85rem;
+  font-weight: 500;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.btn-replay:hover { background: var(--rose); color: var(--white); }
+
+@media(max-width:700px){
+  .q-side-content h3 { font-size: 1.1rem; }
+  .result-cards { grid-template-columns: 1fr; }
+  .q-header { padding: .75rem 1rem; }
+  .q-text { font-size: .85rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
+    <li><a href="quiz.html"        class="nav-link quiz active"><i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active">EN</button>
+    <button class="lang-btn">IT</button>
+    <button class="lang-btn">DE</button>
+    <button class="lang-btn">FR</button>
+  </div>
+</nav>
+
+
+<!-- ════ SCREEN: INTRO ════ -->
+<div class="screen active" id="screen-intro">
+  <div class="intro-bg"></div>
+  <div class="intro-content">
+    <div class="intro-badge">5 questions · discover your Abruzzo</div>
+    <h1 class="intro-h1">What kind of Abruzzo are <em>you</em> looking for?</h1>
+    <p class="intro-p">Two images, one choice. In 5 rounds we'll find your perfect Abruzzo experience — wild peaks, ancient villages, great food or total silence.</p>
+    <button class="btn-primary" onclick="startQuiz()" style="margin:0 auto">
+      <i class="ti ti-sparkles" aria-hidden="true"></i>
+      Start the Journey
+    </button>
+    <div class="intro-dots" id="intro-dots"></div>
+  </div>
+</div>
+
+
+<!-- ════ SCREEN: QUESTION ════ -->
+<div class="screen" id="screen-question">
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+  </div>
+
+  <div class="q-header">
+    <span class="q-counter" id="q-counter">1 / 5</span>
+    <span class="q-text"    id="q-text"></span>
+    <span style="width:50px"></span>
+  </div>
+
+  <div class="q-split">
+    <!-- Side A -->
+    <div class="q-side" id="side-a" onclick="pickSide('a')">
+      <div class="q-side-img" id="img-a"></div>
+      <div class="q-side-overlay"></div>
+      <div class="q-check">✓</div>
+      <div class="q-side-content">
+        <span class="q-side-icon" id="icon-a"></span>
+        <h3 id="label-a"></h3>
+        <p  id="desc-a"></p>
+        <span class="q-choose-label">Choose this →</span>
+      </div>
+    </div>
+
+    <!-- OR divider -->
+    <div class="q-or">OR</div>
+
+    <!-- Side B -->
+    <div class="q-side" id="side-b" onclick="pickSide('b')">
+      <div class="q-side-img" id="img-b"></div>
+      <div class="q-side-overlay"></div>
+      <div class="q-check">✓</div>
+      <div class="q-side-content">
+        <span class="q-side-icon" id="icon-b"></span>
+        <h3 id="label-b"></h3>
+        <p  id="desc-b"></p>
+        <span class="q-choose-label">Choose this →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ SCREEN: RESULT ════ -->
+<div class="screen" id="screen-result">
+  <div class="result-hero">
+    <div class="result-hero-bg" id="result-bg"></div>
+    <div class="result-hero-content">
+      <span class="result-emoji" id="result-emoji"></span>
+      <div class="result-tag">Your Abruzzo Profile</div>
+      <h2 id="result-title"></h2>
+      <p  id="result-desc"></p>
+    </div>
+  </div>
+  <div class="result-recs">
+    <h3>We recommend for you</h3>
+    <div class="result-cards" id="result-cards"></div>
+    <div class="result-actions">
+      <button class="btn-replay" onclick="resetQuiz()">
+        <i class="ti ti-refresh" aria-hidden="true"></i>Try again
+      </button>
+      <a href="plan.html" class="btn-primary" style="text-decoration:none">
+        <i class="ti ti-route" aria-hidden="true"></i>Plan My Trip
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ══ QUESTIONS ══ */
+const questions = [
+  {
+    text: "Mountains or sea?",
+    a: { icon:"🏔️", label:"Gran Sasso Peaks",   desc:"Wild summits above 2,900m",           img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=80", scores:{adventure:2,nature:1} },
+    b: { icon:"🌊", label:"Adriatic Coast",       desc:"Golden beaches & trabocchi",          img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80", scores:{family:2,food:1} }
+  },
+  {
+    text: "Wild adventure or slow escape?",
+    a: { icon:"🐺", label:"National Park Trails", desc:"Bears, wolves & ancient beech forests", img:"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1400&q=80", scores:{adventure:2,nature:1} },
+    b: { icon:"🌿", label:"Agriturismo Retreat",  desc:"Farm stays, silence, home cooking",   img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1400&q=80", scores:{wellness:2,food:1} }
+  },
+  {
+    text: "Ancient history or living nature?",
+    a: { icon:"🏰", label:"Medieval Castles",     desc:"Rocca Calascio, Santo Stefano",       img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=1400&q=80", scores:{culture:2,adventure:1} },
+    b: { icon:"🌲", label:"Wild Forests & Peaks", desc:"Beech forests, gorges, glacial lakes", img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=1400&q=80", scores:{nature:2,adventure:1} }
+  },
+  {
+    text: "Local cuisine or outdoor sport?",
+    a: { icon:"🍢", label:"Arrosticini & Wine",   desc:"Eat with shepherds, drink Montepulciano", img:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80", scores:{food:2,culture:1} },
+    b: { icon:"🥾", label:"Hike to the Summit",   desc:"Corno Grande, 2,912m",                img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=80", scores:{adventure:2,nature:1} }
+  },
+  {
+    text: "Discover alone or with family?",
+    a: { icon:"🎒", label:"Solo Explorer",         desc:"My own pace, my own path",            img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1400&q=80", scores:{adventure:2,culture:1} },
+    b: { icon:"👨‍👩‍👧", label:"Family Adventure",     desc:"Shared memories that last forever",  img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80", scores:{family:2,wellness:1} }
+  }
+];
+
+/* ══ PROFILES ══ */
+const profiles = {
+  adventure: {
+    emoji:"🏔️",
+    title:"The Wild Explorer",
+    desc:"You thrive on challenge and raw nature. Summit hikes, national park trails and camping under mountain stars — Abruzzo will be your playground.",
+    img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=80",
+    recs:[
+      { icon:"ti-mountain",        title:"Hiking",        desc:"10 trails for every level — from easy to serious summit days", href:"hiking.html" },
+      { icon:"ti-building-castle", title:"Gran Sasso",    desc:"The ultimate Apennine challenge at 2,912m",                   href:"hiking.html" },
+      { icon:"ti-paw",             title:"National Park", desc:"Bears, wolves and ancient forests — Valle Fondillo trail",    href:"hiking.html" }
+    ]
+  },
+  food: {
+    emoji:"🍝",
+    title:"The Gourmet Traveller",
+    desc:"You travel through your taste buds. Arrosticini, saffron, truffle, Montepulciano — every meal in Abruzzo tells a centuries-old story.",
+    img:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80",
+    recs:[
+      { icon:"ti-tools-kitchen-2", title:"Food & Wine",   desc:"12 authentic products, 3 DOC wines, 8 food festivals",        href:"food.html" },
+      { icon:"ti-calendar-event",  title:"Sagre",         desc:"24 food festivals year-round — free entry, generous portions", href:"events.html" },
+      { icon:"ti-spa",             title:"Agriturismo",   desc:"Farm-to-table dinners at mountain agriturismo",               href:"wellness.html" }
+    ]
+  },
+  culture: {
+    emoji:"🏰",
+    title:"The Culture Seeker",
+    desc:"History whispers to you from every stone. Medieval borghi, ancient castles and ruins — Abruzzo is a history book written into the landscape.",
+    img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=1400&q=80",
+    recs:[
+      { icon:"ti-building-castle", title:"Medieval Villages", desc:"8 borghi from L'Aquila to Chieti — completely authentic",  href:"villages.html" },
+      { icon:"ti-map-pin",         title:"Attractions",       desc:"Roman theatres, castles, museums and glacial lakes",        href:"attractions.html" },
+      { icon:"ti-tools-kitchen-2", title:"Food & History",    desc:"Ancient recipes unchanged since Roman times",              href:"food.html" }
+    ]
+  },
+  wellness: {
+    emoji:"🌿",
+    title:"The Wellness Seeker",
+    desc:"You come to Abruzzo to slow down, breathe and restore. Thermal waters, mountain silence, agriturismo dinners by the fire.",
+    img:"https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1400&q=80",
+    recs:[
+      { icon:"ti-spa",             title:"Wellness & Terme",  desc:"Thermal baths in the mountains since Roman times",         href:"wellness.html" },
+      { icon:"ti-building-castle", title:"Slow Villages",     desc:"Medieval borghi with no tourists — total silence",         href:"villages.html" },
+      { icon:"ti-mountain",        title:"Easy Trails",       desc:"Wildflowers, beech forests and mountain silence",          href:"hiking.html" }
+    ]
+  },
+  family: {
+    emoji:"👨‍👩‍👧",
+    title:"The Family Explorer",
+    desc:"The best memories are made together. Easy trails for little legs, wildlife spotting, beach days and medieval legends for all ages.",
+    img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80",
+    recs:[
+      { icon:"ti-paw",             title:"National Park",     desc:"Bear and wolf sightings on the flat Valle Fondillo walk",  href:"hiking.html" },
+      { icon:"ti-building-castle", title:"Villages & Legends",desc:"Medieval castles and stories for every generation",        href:"villages.html" },
+      { icon:"ti-map-pin",         title:"Attractions",       desc:"Heart-shaped lake, highest castle, trabocchi coast",       href:"attractions.html" }
+    ]
+  },
+  nature: {
+    emoji:"🌲",
+    title:"The Nature Lover",
+    desc:"Wild forests, glacial lakes, ancient beech trees and starlit skies. Abruzzo has the darkest, wildest nature left in central Italy.",
+    img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=1400&q=80",
+    recs:[
+      { icon:"ti-mountain",        title:"Hiking",            desc:"3,000+ km of trails across 3 national parks",             href:"hiking.html" },
+      { icon:"ti-map-pin",         title:"Majella Geopark",   desc:"UNESCO Geopark — 74,000 hectares of limestone wilderness", href:"attractions.html" },
+      { icon:"ti-spa",             title:"Forest Bathing",    desc:"Certified shinrin-yoku in ancient beech forests",          href:"wellness.html" }
+    ]
+  }
+};
+
+/* ══ STATE ══ */
+let currentQ  = 0;
+let scores    = { adventure:0, food:0, culture:0, wellness:0, family:0, nature:0 };
+let picking   = false;
+
+/* ══ INIT DOTS ══ */
+function buildDots() {
+  document.getElementById('intro-dots').innerHTML =
+    questions.map((_, i) =>
+      `<div class="intro-dot${i === 0 ? ' active' : ''}" id="dot-${i}"></div>`
+    ).join('');
+}
+
+/* ══ SHOW SCREEN ══ */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+/* ══ START ══ */
+function startQuiz() {
+  currentQ = 0;
+  scores   = { adventure:0, food:0, culture:0, wellness:0, family:0, nature:0 };
+  showScreen('question');
+  loadQuestion();
+}
+
+/* ══ LOAD QUESTION ══ */
+function loadQuestion() {
+  const q   = questions[currentQ];
+  const pct = (currentQ / questions.length) * 100;
+
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('q-counter').textContent    = (currentQ + 1) + ' / ' + questions.length;
+  document.getElementById('q-text').textContent       = q.text;
+
+  // Side A
+  document.getElementById('img-a').style.backgroundImage   = `url('${q.a.img}')`;
+  document.getElementById('icon-a').textContent            = q.a.icon;
+  document.getElementById('label-a').textContent           = q.a.label;
+  document.getElementById('desc-a').textContent            = q.a.desc;
+
+  // Side B
+  document.getElementById('img-b').style.backgroundImage   = `url('${q.b.img}')`;
+  document.getElementById('icon-b').textContent            = q.b.icon;
+  document.getElementById('label-b').textContent           = q.b.label;
+  document.getElementById('desc-b').textContent            = q.b.desc;
+
+  // Reset sides
+  ['side-a','side-b'].forEach(id => {
+    document.getElementById(id).classList.remove('picked','rejected');
+  });
+
+  // Update dots
+  document.querySelectorAll('.intro-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === currentQ);
+  });
+
+  picking = false;
+}
+
+/* ══ PICK SIDE ══ */
+function pickSide(side) {
+  if (picking) return;
+  picking = true;
+
+  const q       = questions[currentQ];
+  const chosen  = side === 'a' ? q.a : q.b;
+  const other   = side === 'a' ? 'b' : 'a';
+
+  document.getElementById('side-' + side).classList.add('picked');
+  document.getElementById('side-' + other).classList.add('rejected');
+
+  // Add scores
+  Object.entries(chosen.scores).forEach(([k, v]) => { scores[k] += v; });
+
+  setTimeout(() => {
+    currentQ++;
+    if (currentQ >= questions.length) {
+      showResult();
+    } else {
+      loadQuestion();
+    }
+  }, 680);
+}
+
+/* ══ SHOW RESULT ══ */
+function showResult() {
+  document.getElementById('progress-bar').style.width = '100%';
+
+  // Find winning profile
+  const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+  const p = profiles[winner] || profiles.adventure;
+
+  document.getElementById('result-bg').style.backgroundImage    = `url('${p.img}')`;
+  document.getElementById('result-emoji').textContent           = p.emoji;
+  document.getElementById('result-title').textContent           = p.title;
+  document.getElementById('result-desc').textContent            = p.desc;
+
+  document.getElementById('result-cards').innerHTML = p.recs.map(r => `
+    <a href="${r.href}" class="result-card">
+      <div class="result-card-icon">
+        <div class="icon-circle lg" style="margin:0 auto">
+          <i class="ti ${r.icon}" aria-hidden="true"></i>
+        </div>
+      </div>
+      <h4>${r.title}</h4>
+      <p>${r.desc}</p>
+    </a>`).join('');
+
+  setTimeout(() => showScreen('result'), 300);
+}
+
+/* ══ RESET ══ */
+function resetQuiz() {
+  showScreen('intro');
+  buildDots();
+}
+
+/* ══ KEYBOARD ══ */
+document.addEventListener('keydown', e => {
+  if (document.getElementById('screen-question').classList.contains('active')) {
+    if (e.key === 'ArrowLeft')  pickSide('a');
+    if (e.key === 'ArrowRight') pickSide('b');
+  }
+});
+
+/* ══ INIT ══ */
+buildDots();
+</script>
+
+</body>
+</html>

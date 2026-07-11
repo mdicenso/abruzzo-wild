@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Getting to Abruzzo — Abruzzo Wild & Authentic</title>
+<meta name="description" content="How to get to Abruzzo — by air, train or car. Airports, routes, getting around and essential apps for your trip.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Transport-specific ── */
+.emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .8rem;
+}
+.emergency-card {
+  background: rgba(255,255,255,.07);
+  border-radius: var(--radius-sm);
+  padding: .9rem;
+  text-align: center;
+}
+.emergency-num {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--rose-light);
+  margin-bottom: .2rem;
+}
+.emergency-desc {
+  font-family: var(--sans);
+  font-size: .72rem;
+  color: rgba(255,255,255,.5);
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+@media(max-width:900px){
+  .airport-grid  { grid-template-columns: 1fr; }
+  .around-grid   { grid-template-columns: repeat(2,1fr); }
+  .apps-grid     { grid-template-columns: repeat(2,1fr); }
+  .emergency-grid{ grid-template-columns: repeat(2,1fr); }
+}
+@media(max-width:580px){
+  .around-grid    { grid-template-columns: 1fr; }
+  .apps-grid      { grid-template-columns: 1fr; }
+  .emergency-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
+    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
+    <li><a href="transport.html"   class="nav-link active"><i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active">EN</button>
+    <button class="lang-btn">IT</button>
+    <button class="lang-btn">DE</button>
+    <button class="lang-btn">FR</button>
+  </div>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<div class="hero-inner" style="height:42vh">
+  <div class="hero-inner-img"
+       style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&q=80')">
+  </div>
+  <div class="hero-inner-veil"></div>
+  <div class="hero-inner-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html">Home</a> › Getting to Abruzzo
+    </div>
+    <h1 class="hero-inner-h1">Getting to <em>Abruzzo</em></h1>
+    <div class="hero-kpis">
+      <div class="hero-kpi"><strong>90 min</strong><span>Rome to L'Aquila by car</span></div>
+      <div class="hero-kpi"><strong>3h</strong><span>Rome–Pescara by train</span></div>
+      <div class="hero-kpi"><strong>3</strong><span>airports nearby</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ CONTENT ════ -->
+<div class="wrap">
+
+  <!-- Arriving -->
+  <div class="section-header fade-in">
+    <span class="t-eyebrow">Getting There</span>
+    <h2 class="t-h2">Arriving in Abruzzo</h2>
+  </div>
+
+  <!-- Tab bar -->
+  <div class="tab-bar">
+    <button class="tab-btn on" onclick="showTab('air', this)">
+      <i class="ti ti-plane" aria-hidden="true"></i>By Air
+    </button>
+    <button class="tab-btn" onclick="showTab('train', this)">
+      <i class="ti ti-train" aria-hidden="true"></i>By Train
+    </button>
+    <button class="tab-btn" onclick="showTab('car', this)">
+      <i class="ti ti-car" aria-hidden="true"></i>By Car
+    </button>
+  </div>
+
+  <!-- By Air -->
+  <div class="tab-panel on" id="tab-air">
+    <p class="t-body" style="margin-bottom:1.4rem;max-width:600px">
+      Pescara is the most convenient airport for Abruzzo. Rome's airports offer more international connections — a hire car from Rome reaches most of Abruzzo in under 2 hours.
+    </p>
+    <div class="airport-grid" id="airport-grid"></div>
+  </div>
+
+  <!-- By Train -->
+  <div class="tab-panel" id="tab-train">
+    <p class="t-body" style="margin-bottom:1.4rem;max-width:600px">
+      Trenitalia connects Rome Tiburtina to Pescara Centrale in about 3 hours. Regional trains reach Sulmona, Lanciano and Vasto. Buy tickets on the Trenitalia app and always validate before boarding.
+    </p>
+    <div id="train-routes"></div>
+    <div class="gbox fade-in" style="margin-top:1.5rem">
+      <div class="gbox-title">
+        <i class="ti ti-info-circle" aria-hidden="true"></i>Train Tips
+      </div>
+      <div class="tip-row">
+        <div class="tip-icon"><i class="ti ti-ticket" aria-hidden="true"></i></div>
+        <div><strong>Buy in advance</strong><p>Intercity and Frecciabianca tickets are cheaper booked 3–7 days ahead. Regional trains have no advance discount.</p></div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-icon"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
+        <div><strong>Validate your ticket</strong><p>Regional train tickets must be stamped at the yellow machines on the platform before boarding — fines are issued.</p></div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-icon"><i class="ti ti-bicycle" aria-hidden="true"></i></div>
+        <div><strong>Bikes on trains</strong><p>Bikes are allowed on most regional trains (€3.50 supplement). Fold-up bikes travel free. Check trenitalia.com for specific services.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- By Car -->
+  <div class="tab-panel" id="tab-car">
+    <p class="t-body" style="margin-bottom:1.4rem;max-width:600px">
+      Driving is the best way to explore Abruzzo. The A24 motorway goes from Rome to L'Aquila; the A25 continues to Pescara. Mountain roads are well maintained but require care in winter.
+    </p>
+    <div id="car-routes"></div>
+    <div class="pbox fade-in" style="margin-top:1.5rem">
+      <div class="pbox-title">
+        <i class="ti ti-road" aria-hidden="true"></i>Road Tips
+      </div>
+      <div class="kv-row"><span>A24/A25 toll (Rome–Pescara)</span><span>approx. €12</span></div>
+      <div class="kv-row"><span>Speed limit motorway</span><span>130 km/h</span></div>
+      <div class="kv-row"><span>Mountain roads</span><span>40–70 km/h</span></div>
+      <div class="kv-row"><span>Winter tyres required</span><span>Nov 15 – Apr 15</span></div>
+      <div class="kv-row"><span>Fuel</span><span>Self-service cheaper</span></div>
+      <div class="kv-row"><span>Parking in villages</span><span>Always outside the centro</span></div>
+    </div>
+  </div>
+
+
+  <!-- Getting Around -->
+  <div style="margin-top:3.5rem">
+    <div class="section-header fade-in">
+      <span class="t-eyebrow">Getting Around</span>
+      <h2 class="t-h2">Moving Within Abruzzo</h2>
+      <p class="section-sub">A car is strongly recommended. Public transport connects the main cities but misses most villages, trails and thermal baths.</p>
+    </div>
+    <div class="around-grid fade-in" id="around-grid"></div>
+  </div>
+
+
+  <!-- Useful Apps -->
+  <div style="margin-top:3rem">
+    <div class="section-header fade-in">
+      <span class="t-eyebrow">Useful Apps</span>
+      <h2 class="t-h2">Plan & Navigate</h2>
+    </div>
+    <div class="apps-grid fade-in" id="apps-grid"></div>
+  </div>
+
+
+  <!-- Emergency numbers -->
+  <div class="gbox fade-in" style="margin-top:3rem">
+    <div class="gbox-title">
+      <i class="ti ti-first-aid-kit" aria-hidden="true"></i>Emergency Numbers
+    </div>
+    <div class="emergency-grid" id="emergency-grid"></div>
+  </div>
+
+</div>
+
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> Abruzzo in your inbox</h4>
+      <p>Events, trails, recipes and hidden gems — once a month, no spam.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address">
+      <button class="nl-btn" onclick="nlSubmit()">Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html"       class="footer-link">Home</a>
+      <a href="quiz.html"        class="footer-link">Quiz</a>
+      <a href="hiking.html"      class="footer-link">Hiking</a>
+      <a href="food.html"        class="footer-link">Food & Wine</a>
+      <a href="villages.html"    class="footer-link">Villages</a>
+      <a href="wellness.html"    class="footer-link">Wellness</a>
+      <a href="attractions.html" class="footer-link">Attractions</a>
+      <a href="events.html"      class="footer-link">Events</a>
+      <a href="transport.html"   class="footer-link">Transport</a>
+      <a href="plan.html"        class="footer-link">Plan Trip</a>
+    </nav>
+  </div>
+  <div class="footer-copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+</footer>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ══ DATA ══ */
+const airports = [
+  {
+    name:"Pescara Airport", iata:"PSR", dist:"City centre: 3 km",
+    desc:"Most convenient for Abruzzo. Direct flights from London Stansted, Brussels, Frankfurt, Barcelona, Düsseldorf. Car hire on site.",
+    tags:["Car hire: all major brands","Bus to centre: 30 min","Taxi to centre: €10–12","Terminal: compact and easy"]
+  },
+  {
+    name:"Rome Fiumicino", iata:"FCO", dist:"L'Aquila: 1h 30 · Pescara: 2h 30",
+    desc:"Best for international connections. All major airlines. Drive direct on A24/A25 motorway. Car hire strongly recommended over public transport.",
+    tags:["Major international hub","All major car hire brands","Drive to L'Aquila: 1h 30","Drive to Pescara: 2h 30"]
+  },
+  {
+    name:"Rome Ciampino", iata:"CIA", dist:"Abruzzo: 1h 45 – 2h",
+    desc:"Low-cost hub — Ryanair and Wizz Air. Cheaper fares but factor in ring-road traffic. Car hire on site. Avoid Monday and Friday peak hours.",
+    tags:["Low-cost terminal","Car hire: available","Drive to Abruzzo: ~2h","Avoid Mon/Fri 7–9am, 5–7pm"]
+  },
+  {
+    name:"Naples & Bari", iata:"NAP / BRI", dist:"Southern Abruzzo: 2–3h",
+    desc:"Good options for southern Abruzzo (Vasto, Lanciano). Naples is 2h from Vasto on the A14. Bari is better for the southern Adriatic coast.",
+    tags:["For southern Abruzzo only","Bari: better for Adriatic coast","Naples: A1 then A14","Check SS16 Adriatica as alternative"]
+  }
+];
+
+const trainRoutes = [
+  { from:"Roma Tiburtina",  to:"Pescara Centrale",  time:"3h 00 min", type:"Intercity" },
+  { from:"Pescara",         to:"Sulmona",            time:"1h 20 min", type:"Regionale" },
+  { from:"Pescara",         to:"Lanciano / Vasto",   time:"45–55 min", type:"Regionale" },
+  { from:"Milano Centrale", to:"Pescara",            time:"5h 30 min", type:"Frecciabianca" },
+  { from:"Pescara",         to:"Chieti",             time:"25 min",    type:"Regionale" },
+  { from:"Roma Tiburtina",  to:"L'Aquila",           time:"1h 40 min", type:"Bus (A24 motorway)" }
+];
+
+const carRoutes = [
+  { from:"Roma (GRA)",  to:"L'Aquila",  time:"1h 20 min", type:"A24 Motorway" },
+  { from:"Roma (GRA)",  to:"Pescara",   time:"2h 30 min", type:"A25 Motorway" },
+  { from:"Roma",        to:"Teramo",    time:"1h 50 min", type:"A24 + A24dir" },
+  { from:"Milano",      to:"Pescara",   time:"5h 00 min", type:"A1 + A25" },
+  { from:"Napoli",      to:"Vasto",     time:"2h 30 min", type:"A1 + A14" },
+  { from:"Pescara",     to:"L'Aquila",  time:"1h 15 min", type:"A25 motorway" }
+];
+
+const aroundData = [
+  {
+    icon:"ti-car",
+    name:"Car Hire",
+    desc:"Essential for exploring trails, villages and thermal baths. Available at Pescara Airport and city. Book well in advance in July–August.",
+    tip:"Best value: book online before arrival. Check terms for mountain unpaved roads."
+  },
+  {
+    icon:"ti-bus",
+    name:"ARPA Buses",
+    desc:"Regional buses connect all main towns. Useful for the L'Aquila–Sulmona corridor and coastal cities. Not useful for villages or trails.",
+    tip:"Download ARPA timetables at arpaonline.it — app not available in English."
+  },
+  {
+    icon:"ti-train",
+    name:"Regional Trains",
+    desc:"Trenitalia connects Pescara, Sulmona, Lanciano, Vasto and Chieti. Useful as a base-to-base link between cities.",
+    tip:"Buy on Trenitalia app. Always validate the ticket at yellow machines before boarding."
+  },
+  {
+    icon:"ti-taxi",
+    name:"Taxi & Transfers",
+    desc:"Available in all cities. For trailhead transfers book local operators in L'Aquila or Sulmona. Groups: shared airport transfers are cost-effective.",
+    tip:"Pre-book airport taxis — metered taxis are not always available at Pescara."
+  }
+];
+
+const appsData = [
+  {
+    icon:"ti-map-2",
+    name:"Komoot",
+    desc:"Best offline trail maps for Abruzzo. Download the regional pack before visiting — essential above 1,200m where signal drops."
+  },
+  {
+    icon:"ti-route",
+    name:"Wikiloc",
+    desc:"Community trail maps with GPX tracks. Excellent Abruzzo coverage with user reviews and conditions reports."
+  },
+  {
+    icon:"ti-train",
+    name:"Trenitalia",
+    desc:"Official train app for schedules, tickets and real-time updates. Buy and store tickets here — no need to print."
+  },
+  {
+    icon:"ti-cloud-rain",
+    name:"ARPA Meteo",
+    desc:"Abruzzo's official weather service — the most accurate mountain forecasts. Essential for any hiking day above 1,500m."
+  }
+];
+
+const emergencies = [
+  { num:"112",             desc:"General emergency (police, fire, ambulance)" },
+  { num:"118",             desc:"Medical emergency / ambulance" },
+  { num:"1515",            desc:"Forest fire — Corpo Forestale" },
+  { num:"Soccorso Alpino", desc:"Mountain rescue: call 118, select mountain rescue option" }
+];
+
+/* ══ RENDER ══ */
+function renderAirports() {
+  document.getElementById('airport-grid').innerHTML = airports.map(a => `
+    <div class="airport-card">
+      <div style="display:flex;align-items:baseline;gap:.4rem;margin-bottom:.3rem">
+        <span class="iata-badge">${a.iata}</span>
+        <h4>${a.name}</h4>
+      </div>
+      <div class="airport-dist">
+        <i class="ti ti-map-pin" aria-hidden="true" style="font-size:11px;vertical-align:-1px"></i>
+        ${a.dist}
+      </div>
+      <p>${a.desc}</p>
+      <div class="airport-tags">
+        ${a.tags.map(t => `<span class="airport-tag">${t}</span>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function renderTrainRoutes() {
+  document.getElementById('train-routes').innerHTML = trainRoutes.map(r => `
+    <div class="route-row">
+      <span class="route-from">${r.from} → ${r.to}</span>
+      <span class="route-type">${r.type}</span>
+      <span class="route-time">
+        <i class="ti ti-clock" aria-hidden="true" style="font-size:12px;vertical-align:-1px"></i>
+        ${r.time}
+      </span>
+    </div>`).join('');
+}
+
+function renderCarRoutes() {
+  document.getElementById('car-routes').innerHTML = carRoutes.map(r => `
+    <div class="route-row">
+      <span class="route-from">${r.from} → ${r.to}</span>
+      <span class="route-type">${r.type}</span>
+      <span class="route-time">
+        <i class="ti ti-car" aria-hidden="true" style="font-size:12px;vertical-align:-1px"></i>
+        ${r.time}
+      </span>
+    </div>`).join('');
+}
+
+function renderAround() {
+  document.getElementById('around-grid').innerHTML = aroundData.map(a => `
+    <div class="around-card">
+      <div class="icon-circle lg" style="margin:0 auto .7rem">
+        <i class="ti ${a.icon}" aria-hidden="true"></i>
+      </div>
+      <h4>${a.name}</h4>
+      <p>${a.desc}</p>
+      <div class="around-tip">
+        <i class="ti ti-bulb" aria-hidden="true" style="font-size:12px;vertical-align:-1px"></i>
+        ${a.tip}
+      </div>
+    </div>`).join('');
+}
+
+function renderApps() {
+  document.getElementById('apps-grid').innerHTML = appsData.map(a => `
+    <div class="app-card">
+      <div class="icon-circle sm" style="flex-shrink:0">
+        <i class="ti ${a.icon}" aria-hidden="true"></i>
+      </div>
+      <div>
+        <h5>${a.name}</h5>
+        <p>${a.desc}</p>
+      </div>
+    </div>`).join('');
+}
+
+function renderEmergencies() {
+  document.getElementById('emergency-grid').innerHTML = emergencies.map(e => `
+    <div class="emergency-card">
+      <div class="emergency-num">${e.num}</div>
+      <div class="emergency-desc">${e.desc}</div>
+    </div>`).join('');
+}
+
+/* ══ TABS ══ */
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+  document.getElementById('tab-' + id).classList.add('on');
+  btn.classList.add('on');
+}
+
+/* ══ NEWSLETTER ══ */
+function nlSubmit() {
+  const input = document.getElementById('nlemail');
+  if (input.value && input.value.includes('@')) {
+    input.value = '';
+    alert("Thank you! You'll hear from us once a month 🌿");
+  } else {
+    input.style.outline = '2px solid var(--rose)';
+    setTimeout(() => input.style.outline = 'none', 2000);
+  }
+}
+
+/* ══ FADE-IN ══ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ══ INIT ══ */
+renderAirports();
+renderTrainRoutes();
+renderCarRoutes();
+renderAround();
+renderApps();
+renderEmergencies();
+</script>
+
+</body>
+</html>

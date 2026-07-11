@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Food & Wine — Abruzzo Wild & Authentic</title>
+<meta name="description" content="Arrosticini, pasta alla chitarra, saffron DOP, Montepulciano d'Abruzzo — discover the authentic flavours of Abruzzo.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Food-specific ── */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+.food-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.food-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--rose);
+}
+.food-card.hidden { display: none; }
+.food-img-wrap { overflow: hidden; position: relative; }
+.food-img {
+  width: 100%; height: 185px;
+  background-size: cover; background-position: center;
+  transition: transform .5s;
+}
+.food-card:hover .food-img { transform: scale(1.06); }
+.food-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,18,10,.5), transparent 60%);
+}
+.food-body { padding: 1.1rem 1.3rem 1.4rem; }
+.food-body h3 {
+  font-family: var(--serif); font-size: 1.05rem;
+  font-weight: 400; color: var(--ink); margin-bottom: .32rem;
+}
+.food-body p {
+  font-size: .82rem; color: var(--muted);
+  line-height: 1.6; margin-bottom: .65rem; font-weight: 300;
+}
+.food-origin {
+  font-size: .72rem; color: var(--rose);
+  font-weight: 500; display: flex;
+  align-items: center; gap: .25rem; margin-bottom: .5rem;
+}
+.food-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: .75rem; border-top: 1px solid var(--parchment);
+  font-size: .75rem; color: var(--rose); font-weight: 500;
+}
+
+@media(max-width:1000px){ .food-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:580px)  { .food-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
+    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
+    <li><a href="food.html"        class="nav-link active"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active">EN</button>
+    <button class="lang-btn">IT</button>
+    <button class="lang-btn">DE</button>
+    <button class="lang-btn">FR</button>
+  </div>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<div class="hero-inner" style="height:46vh">
+  <div class="hero-inner-img"
+       style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80')">
+  </div>
+  <div class="hero-inner-veil"></div>
+  <div class="hero-inner-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html">Home</a> › Food & Wine
+    </div>
+    <h1 class="hero-inner-h1">Food & <em>Wine</em></h1>
+    <div class="hero-kpis">
+      <div class="hero-kpi"><strong>3</strong><span>DOC wines</span></div>
+      <div class="hero-kpi"><strong>2</strong><span>DOP products</span></div>
+      <div class="hero-kpi"><strong>12+</strong><span>festivals / year</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FILTER BAR ════ -->
+<div class="filter-bar">
+  <span class="filter-label">Category</span>
+  <button class="pill pill-parchment on" onclick="fFilter('all', this)">All</button>
+  <button class="pill pill-parchment" onclick="fFilter('pasta', this)">
+    <i class="ti ti-ripple" aria-hidden="true"></i> Pasta
+  </button>
+  <button class="pill pill-parchment" onclick="fFilter('meat', this)">
+    <i class="ti ti-meat" aria-hidden="true"></i> Meat
+  </button>
+  <button class="pill pill-parchment" onclick="fFilter('cheese', this)">
+    <i class="ti ti-cheese" aria-hidden="true"></i> Cheese & DOP
+  </button>
+  <button class="pill pill-parchment" onclick="fFilter('seafood', this)">
+    <i class="ti ti-fish" aria-hidden="true"></i> Seafood
+  </button>
+  <button class="pill pill-parchment" onclick="fFilter('sweet', this)">
+    <i class="ti ti-candy" aria-hidden="true"></i> Sweets
+  </button>
+  <span class="filter-count" id="f-count"></span>
+</div>
+
+
+<!-- ════ FOOD GRID ════ -->
+<div class="wrap">
+  <div class="food-grid" id="food-grid"></div>
+
+
+  <!-- ════ WINES SECTION ════ -->
+  <div class="wine-section fade-in" style="margin-top:3rem">
+    <span class="t-eyebrow" style="color:#a8d5b5">The Wines</span>
+    <h2 class="t-h2" style="color:var(--white);margin:.4rem 0">Montepulciano, Trebbiano & Cerasuolo</h2>
+    <p style="color:rgba(255,255,255,.52);font-size:.87rem;margin-bottom:1.8rem;font-weight:300">
+      Three DOC wines that define Abruzzo's table.
+    </p>
+    <div class="wine-grid">
+      <div class="wine-card">
+        <div style="font-size:1.5rem;margin-bottom:.6rem">🍷</div>
+        <h4>Montepulciano d'Abruzzo DOC</h4>
+        <p>Full-bodied with dark cherry, leather and tobacco. Aged versions develop extraordinary complexity.</p>
+        <div class="wine-color-badge">Deep ruby red</div>
+        <div class="wine-pair">🍽️ Arrosticini, lamb, aged pecorino</div>
+      </div>
+      <div class="wine-card">
+        <div style="font-size:1.5rem;margin-bottom:.6rem">🥂</div>
+        <h4>Trebbiano d'Abruzzo DOC</h4>
+        <p>In the right hands this becomes one of Italy's most profound white wines — mineral and age-worthy.</p>
+        <div class="wine-color-badge">Straw yellow</div>
+        <div class="wine-pair">🍽️ Brodetto, grilled fish, fresh pecorino</div>
+      </div>
+      <div class="wine-card">
+        <div style="font-size:1.5rem;margin-bottom:.6rem">🌹</div>
+        <h4>Cerasuolo d'Abruzzo DOC</h4>
+        <p>Montepulciano made as a rosé — but with depth and structure most rosés don't approach.</p>
+        <div class="wine-color-badge">Vivid cherry rosé</div>
+        <div class="wine-pair">🍽️ Pasta chitarra, soft cheeses, antipasto</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════ SAGRE SECTION ════ -->
+  <div class="fade-in" style="margin-top:3rem">
+    <span class="t-eyebrow">Food Festivals</span>
+    <h2 class="t-h2" style="margin:.4rem 0 .6rem">Sagre & Food Events</h2>
+    <p class="t-body" style="margin-bottom:1.8rem;max-width:560px">
+      Every month a village celebrates its local product with a sagra — free entry, generous portions, local wine.
+    </p>
+    <div class="sagre-grid" id="sagre-grid"></div>
+  </div>
+</div>
+
+
+<!-- ════ MODAL ════ -->
+<div class="modal-backdrop" id="modal-backdrop"
+     onclick="if(event.target.id==='modal-backdrop')closeModal()">
+  <div class="modal">
+    <div class="modal-hero">
+      <img id="m-img" src="" alt="">
+      <div class="modal-hero-veil"></div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-info">
+        <small id="m-sub"></small>
+        <h2 id="m-title"></h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-badges" id="m-badges"></div>
+      <p id="m-desc"></p>
+      <div class="modal-stats" id="m-stats"></div>
+      <div class="modal-two" id="m-two"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> Abruzzo in your inbox</h4>
+      <p>Events, trails, recipes and hidden gems — once a month, no spam.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address">
+      <button class="nl-btn" onclick="nlSubmit()">Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html"       class="footer-link">Home</a>
+      <a href="quiz.html"        class="footer-link">Quiz</a>
+      <a href="hiking.html"      class="footer-link">Hiking</a>
+      <a href="food.html"        class="footer-link">Food & Wine</a>
+      <a href="villages.html"    class="footer-link">Villages</a>
+      <a href="wellness.html"    class="footer-link">Wellness</a>
+      <a href="attractions.html" class="footer-link">Attractions</a>
+      <a href="events.html"      class="footer-link">Events</a>
+      <a href="transport.html"   class="footer-link">Transport</a>
+      <a href="plan.html"        class="footer-link">Plan Trip</a>
+    </nav>
+  </div>
+  <div class="footer-copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+</footer>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ══ DATA ══ */
+const foods = [
+  { id:'arr', name:"Arrosticini", cat:"meat",
+    img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80",
+    catLabel:"Meat & Grill", dop:false,
+    desc:"Tiny sheep skewers grilled on the furnacella. Abruzzo's most iconic dish — eat with bread and Montepulciano.",
+    origin:"Pescara & Teramo", season:"Year round", pair:"Montepulciano d'Abruzzo",
+    detail:"Made with castrated sheep, cut into tiny cubes and hand-threaded onto narrow skewers. Never use sauce. The furnacella — a long charcoal grill — is the only correct tool. A true Abruzzese eats them standing up, in runs of 20 or more.",
+    where:["Local grillerie (arrosticinerie) roadside","Any sagra or summer festival","Buy raw from macellerie in Pescara and Teramo province","Never at tourist restaurants — ask locals"],
+    tips:["Always order at least 20 — they go fast","Eat immediately off the grill","Serve with crusty bread and Montepulciano","The thicker the skewer, the less authentic"] },
+
+  { id:'chit', name:"Pasta alla Chitarra", cat:"pasta",
+    img:"https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80",
+    catLabel:"Pasta", dop:false,
+    desc:"Square-cut egg pasta pressed on a wooden 'guitar' frame — the shape that defines Abruzzese cuisine.",
+    origin:"L'Aquila & Chieti", season:"Year round", pair:"Montepulciano or Trebbiano",
+    detail:"Fresh pasta sheets are pressed through a wooden frame strung with steel wires like a guitar — giving the pasta its unique square cross-section. Classic sauces: lamb ragù, pallottine (tiny meatballs), or saffron butter. A Sunday family ritual unchanged for generations.",
+    where:["Traditional trattorias throughout Abruzzo","Agriturismo farms","Local alimentari sell dried versions","Buy a chitarra at craft shops in L'Aquila"],
+    tips:["Fresh chitarra is far superior to dried","Sauce: lamb ragù or pallottine (tiny meatballs)","Ask for it 'con sugo di agnello' in mountain towns","Never with seafood — inland tradition only"] },
+
+  { id:'zaff', name:"Zafferano dell'Aquila DOP", cat:"cheese",
+    img:"https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=600&q=80",
+    catLabel:"DOP Ingredient", dop:true,
+    desc:"The world's finest saffron — grown near L'Aquila at 700m+ since the 14th century. DOP protected.",
+    origin:"Navelli plateau, L'Aquila", season:"Oct–Nov harvest", pair:"Pasta, risotto, lamb",
+    detail:"Crocus sativus has been grown in the Navelli area since at least 1300. Each flower gives just 3 stigmas, picked by hand at dawn in October. L'Aquila saffron commands the highest price in Italy — 3–4x the price of Spanish saffron. Buy only certified DOP from Navelli producers.",
+    where:["Navelli village market (October–November)","Certified producers in the Navelli plateau","Alimentari and delis in L'Aquila","Online from Consorzio Zafferano Aquilano"],
+    tips:["Dissolve in warm (not hot) water before using","A few threads is enough — use sparingly","DOP certification on the label is essential","Visit Navelli in October for the harvest festival"] },
+
+  { id:'tart', name:"Tartufo Nero di Majella", cat:"cheese",
+    img:"https://images.unsplash.com/photo-1529563021893-cc83c992d75d?w=600&q=80",
+    catLabel:"Truffle", dop:false,
+    desc:"Black truffle from the Majella forests — harvested October to January with Lagotto dogs.",
+    origin:"Majella National Park", season:"Oct–Jan", pair:"Pasta, eggs, cured meats",
+    detail:"The Majella's limestone soils produce exceptional black truffle (Tuber melanosporum). Markets in Rivisondoli and Campo di Giove are key trading points. Guided truffle hunts with Lagotto Romagnolo dogs are available in October and November — a genuinely memorable experience.",
+    where:["Rivisondoli market (Oct–Jan)","Campo di Giove village","Truffle hunt operators in Sulmona area","Specialty food shops in Pescara"],
+    tips:["Book a guided hunt in October for the full experience","Store in a sealed jar with rice or eggs","Shave directly onto hot pasta or scrambled eggs","Abruzzo truffle is underrated — better value than Umbria"] },
+
+  { id:'pec', name:"Pecorino di Farindola", cat:"cheese",
+    img:"https://images.unsplash.com/photo-1486297678162-eb2a19b0a832?w=600&q=80",
+    catLabel:"Cheese", dop:false,
+    desc:"Italy's rarest cheese — made exclusively by women using pig rennet, a 3,000-year-old technique unique in the world.",
+    origin:"Farindola, Gran Sasso foothills", season:"Spring–Summer peak", pair:"Honey, cured meats, Montepulciano",
+    detail:"Made only in the village of Farindola on the Gran Sasso eastern slopes, this pecorino is cured with pork rennet — the only cheese in Italy to use it — and aged up to 5 years. Only a handful of families still produce it. Buy directly from producers; it rarely appears in shops.",
+    where:["Farindola village — buy directly from producers","L'Aquila specialty food shops","Some agriturismo in the Gran Sasso area","Pescara covered market"],
+    tips:["Young versions (3–6 months) pair with honey","Aged versions (2–5 years) are intensely flavoured","Visit Farindola in summer to meet producers","Extremely rare outside Abruzzo — buy to take home"] },
+
+  { id:'agnello', name:"Agnello Cacio e Ova", cat:"meat",
+    img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80",
+    catLabel:"Meat", dop:false,
+    desc:"Abruzzo's Easter dish — young lamb cooked with eggs, Pecorino and lemon. Ancient, simple and profoundly good.",
+    origin:"All provinces", season:"Spring (Easter)", pair:"Cerasuolo d'Abruzzo",
+    detail:"This ancient preparation uses young spring lamb simmered in broth, then finished with beaten eggs, Pecorino and lemon juice — a technique unchanged since Roman times. Found on every Abruzzese table at Easter. Ask a local if you can join their family celebration.",
+    where:["Traditional trattorias in April","Agriturismo during Easter week","Home cooking — ask your host","Some restaurants keep it year-round by request"],
+    tips:["Strictly seasonal — Easter to early May","The egg and cheese sauce must not scramble — low heat","Pairs with Cerasuolo rosé or young Montepulciano","Simple side: bitter greens sautéed with garlic"] },
+
+  { id:'brod', name:"Brodetto alla Vastese", cat:"seafood",
+    img:"https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=600&q=80",
+    catLabel:"Seafood", dop:false,
+    desc:"Vasto's legendary fish stew — at least 13 types of Adriatic fish with tomato and saffron. A trabocco tradition.",
+    origin:"Vasto, southern Adriatic coast", season:"Year round", pair:"Trebbiano d'Abruzzo",
+    detail:"Each coastal town in Abruzzo has its brodetto, but Vasto's is the most famous — using only fish from the local trabocchi fishing platforms. A minimum of 13 fish species is the rule. No mixing of fish stock from other regions. Eat at a trabocco restaurant suspended over the sea.",
+    where:["Trabocco restaurants on the Costa dei Trabocchi","Ristorante Cappa in Vasto","Trabocco Pesce Palombo (book ahead)","Trabocco Il Pirata near Ortona"],
+    tips:["Book trabocco restaurants at least 2 weeks ahead in summer","Fish varies daily — trust the chef's selection","Eat at lunch — trabocchi close in the evening","Pair only with Trebbiano or Cerasuolo — never red wine"] },
+
+  { id:'parro', name:"Parrozzo", cat:"sweet",
+    img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    catLabel:"Sweet", dop:false,
+    desc:"A chocolate-glazed almond cake invented in Pescara in 1920. D'Annunzio called it 'the triumph of Abruzzo's soul'.",
+    origin:"Pescara", season:"Year round", pair:"Cerasuolo d'Abruzzo or espresso",
+    detail:"Created in 1920 by Pescara confectioner Luigi D'Amico, inspired by the rough corn bread (pane rozzo) of the local peasants. Made with almonds, semolina and eggs, then glazed with dark chocolate. The poet Gabriele D'Annunzio wrote a poem about it — still printed on the packaging today.",
+    where:["Pasticceria D'Amico, Pescara (the original)","Any pasticceria in Pescara province","Airport and train station shops","Online direct from D'Amico"],
+    tips:["The original from D'Amico bakery in Pescara is the best","Keeps for 2 weeks — good to bring home","Pairs perfectly with after-dinner espresso","Also available in mini portions for gifts"] },
+
+  { id:'conf', name:"Confetti di Sulmona", cat:"sweet",
+    img:"https://images.unsplash.com/photo-1582896911227-c966e6a2c1fc?w=600&q=80",
+    catLabel:"Sweet", dop:false,
+    desc:"Sulmona's world-famous sugared almonds — crafted since 1265 and exported to 50 countries. A wedding tradition.",
+    origin:"Sulmona", season:"Year round", pair:"Dessert wine or espresso",
+    detail:"The confetti industry in Sulmona has been documented since 1265. Today dozens of artisan factories produce them shaped into flowers, fruits and intricate sculptures using sugar wire — a craft art form. The sugar coating is always white; colours are artificial flowers wired around them.",
+    where:["Via dell'Aquila, Sulmona — entire street of confetti shops","Pelino confetti factory (oldest, since 1783)","Stacchio and Di Carlo — excellent alternatives","They ship worldwide from their websites"],
+    tips:["Visit Sulmona on a weekday — factories give tours","The almond must be whole and the coating smooth","Traditional colours: red (graduation), white (wedding), green (engagement)","Buy in bulk — they make perfect gifts"] },
+
+  { id:'oli', name:"Olio Extravergine DOP", cat:"cheese",
+    img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&q=80",
+    catLabel:"DOP Product", dop:true,
+    desc:"The Dritta olive variety gives Abruzzo a grassy, peppery DOP extra-virgin oil — one of Italy's finest.",
+    origin:"Pescara & Chieti hills", season:"Oct–Nov harvest", pair:"Bread, vegetables, fish",
+    detail:"The Dritta cultivar — native to the Pescara hills — gives the oil its characteristic green-gold colour and peppery finish. DOP Aprutino Pescarese is one of the most awarded Italian olive oils. Visit a frantoio (oil mill) in October or November during the harvest and taste directly from the press.",
+    where:["Frantoio Orsogna, Chieti province","Cooperativa Agricola di Pianella","Local frantoi open for harvest visits in November","Pescara and Chieti farmers markets"],
+    tips:["Visit during Frantoi Aperti (November) for free tastings","Look for DOP Aprutino Pescarese on the label","Strong peppery finish is a quality sign — not a defect","Store in a dark cool place — use within 18 months"] },
+
+  { id:'ferr', name:"Ferrazzuoli con le Fave", cat:"pasta",
+    img:"https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80",
+    catLabel:"Pasta", dop:false,
+    desc:"Ancient pasta tubes with dried fava beans — an unchanged Lent dish from the Chieti mountains.",
+    origin:"Chieti province inland", season:"Winter–Spring", pair:"Trebbiano d'Abruzzo",
+    detail:"One of the oldest Abruzzese pasta traditions — thick, rough tubes without egg, dressed only with dried fava beans, garlic, rosemary and DOP olive oil. Made for the feast of San Giuseppe in March and throughout Lent. Almost impossible to find outside the Chieti inland villages.",
+    where:["Traditional trattorias in Chieti province inland","Agriturismo in the Majella foothills","Sagra di San Giuseppe, Introdacqua (March 19)","Ask specifically — it's not always on the menu"],
+    tips:["Ask for it 'con le fave secche' — dried fava is essential","The pasta should be thick and rough — not smooth","Best eaten in February–March during Lent","Generously doused with DOP olive oil at the table"] },
+
+  { id:'macc', name:"Maccheroni alla Molinara", cat:"pasta",
+    img:"https://images.unsplash.com/photo-1551183053-bf91798d047e?w=600&q=80",
+    catLabel:"Pasta", dop:false,
+    desc:"Hand-rolled pasta tubes with slow-cooked pork ragù and local diavoletti peppers — mountain comfort food.",
+    origin:"Sulmona, Peligna valley", season:"Autumn–Winter", pair:"Montepulciano d'Abruzzo",
+    detail:"A hearty pasta from the Peligna valley interior — thick, chewy tubes rolled by hand without a machine, served with slow-cooked pork ragù enriched with diavoletti (small hot dried peppers native to Abruzzo). The pasta takes hours to make; it's a Sunday family dish.",
+    where:["Traditional trattorias around Sulmona","Agriturismo in the Peligna valley","Some restaurants in Pacentro","Only in autumn and winter — seasonal"],
+    tips:["The ragù should cook for at least 3 hours","Diavoletti peppers are the defining element — ask for them whole on the side","Best in November–February in a fireplace trattoria","Paired with a robust Montepulciano"] }
+];
+
+const sagre = [
+  { month:"January",  name:"Farchie di Fara Filiorum Petri", place:"Fara Filiorum Petri (CH)", desc:"Fire festival honouring Sant'Antonio — the most spectacular winter event in Abruzzo." },
+  { month:"March",    name:"Sagra di San Giuseppe",           place:"Introdacqua (AQ)",          desc:"Fava beans, zeppole and spring vegetables for the feast of Saint Joseph." },
+  { month:"April",    name:"Sagra dell'Agnello",              place:"Castel del Monte (AQ)",     desc:"Easter lamb in every form — the year's biggest food festival." },
+  { month:"May",      name:"Sagra degli Arrosticini",         place:"Pescara",                   desc:"The national arrosticini festival on the Adriatic coast." },
+  { month:"October",  name:"Sagra dello Zafferano",           place:"Navelli (AQ)",              desc:"Saffron harvest festival in the DOP production zone — tastings and demos." },
+  { month:"October",  name:"Festival del Tartufo Nero",       place:"Rivisondoli (AQ)",          desc:"Autumn truffle market with guided hunts and truffle menus." },
+  { month:"November", name:"Frantoi Aperti",                  place:"Pescara & Chieti hills",    desc:"Olive oil mills open during harvest — taste DOP oil from the press." },
+  { month:"November", name:"Sagra del Vino",                  place:"Lanciano (CH)",             desc:"Wine harvest festival celebrating Montepulciano d'Abruzzo DOC." }
+];
+
+/* ══ CAT CONFIG ══ */
+const catConfig = {
+  pasta:   { label:'Pasta',      tagClass:'tag-archeo', icon:'ti-ripple' },
+  meat:    { label:'Meat',       tagClass:'tag-red',    icon:'ti-meat' },
+  cheese:  { label:'Cheese·DOP', tagClass:'tag-amber',  icon:'ti-cheese' },
+  seafood: { label:'Seafood',    tagClass:'tag-nature', icon:'ti-fish' },
+  sweet:   { label:'Sweet',      tagClass:'tag-rose',   icon:'ti-candy' }
+};
+
+/* ══ FILTER ══ */
+let activeCat = 'all';
+
+function fFilter(cat, btn) {
+  activeCat = cat;
+  document.querySelectorAll('[onclick*="fFilter"]').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderFoods();
+}
+
+/* ══ RENDER FOODS ══ */
+function renderFoods() {
+  const filtered = activeCat === 'all'
+    ? foods
+    : foods.filter(f => f.cat === activeCat);
+
+  document.getElementById('f-count').textContent =
+    filtered.length + ' product' + (filtered.length !== 1 ? 's' : '');
+
+  document.getElementById('food-grid').innerHTML = filtered.map(f => {
+    const tc = catConfig[f.cat] || { label: f.cat, tagClass:'tag-olive', icon:'ti-tools-kitchen-2' };
+    return `
+    <div class="food-card" onclick="openModal('${f.id}')" role="button" tabindex="0">
+      <div class="food-img-wrap">
+        <div class="food-img" style="background-image:url('${f.img}')"></div>
+        <div class="food-img-overlay"></div>
+        <span style="position:absolute;bottom:.7rem;left:.7rem">
+          <span class="tag ${tc.tagClass}">
+            <i class="ti ${tc.icon}" aria-hidden="true"></i> ${tc.label}
+          </span>
+        </span>
+        ${f.dop ? '<span style="position:absolute;top:.7rem;right:.7rem"><span class="tag tag-dop">DOP</span></span>' : ''}
+      </div>
+      <div class="food-body">
+        <div class="food-origin">
+          <i class="ti ti-map-pin" aria-hidden="true"></i>${f.origin}
+        </div>
+        <h3>${f.name}</h3>
+        <p>${f.desc}</p>
+        <div class="food-footer"><span>Full story →</span></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ══ RENDER SAGRE ══ */
+function renderSagre() {
+  document.getElementById('sagre-grid').innerHTML = sagre.map(s => `
+    <div class="sagra-card">
+      <div class="sagra-month">${s.month}</div>
+      <h4>${s.name}</h4>
+      <div class="sagra-place">
+        <i class="ti ti-map-pin" style="font-size:11px;vertical-align:-1px" aria-hidden="true"></i>
+        ${s.place}
+      </div>
+      <p>${s.desc}</p>
+    </div>`).join('');
+}
+
+/* ══ MODAL ══ */
+function openModal(id) {
+  const f = foods.find(x => x.id === id);
+  const tc = catConfig[f.cat] || { label: f.cat, tagClass:'tag-olive', icon:'ti-tools-kitchen-2' };
+
+  document.getElementById('m-img').src = f.img;
+  document.getElementById('m-img').alt = f.name;
+  document.getElementById('m-sub').textContent   = f.catLabel + ' · ' + f.origin;
+  document.getElementById('m-title').textContent = f.name;
+
+  document.getElementById('m-badges').innerHTML =
+    `<span class="tag ${tc.tagClass}"><i class="ti ${tc.icon}" aria-hidden="true"></i> ${tc.label}</span>
+     ${f.dop ? '<span class="tag tag-dop">DOP Protected</span>' : ''}`;
+
+  document.getElementById('m-desc').textContent = f.detail;
+
+  document.getElementById('m-stats').innerHTML = [
+    { v: f.origin,  l:'Origin' },
+    { v: f.season,  l:'Season' },
+    { v: f.dop ? 'DOP' : 'Traditional', l:'Status' },
+    { v: f.pair.split(',')[0], l:'Pairs with' }
+  ].map(s => `<div class="modal-stat"><strong>${s.v}</strong><span>${s.l}</span></div>`).join('');
+
+  document.getElementById('m-two').innerHTML = `
+    <div class="modal-sec">
+      <h4>Where to find it</h4>
+      <ul>${f.where.map(w => `<li>${w}</li>`).join('')}</ul>
+    </div>
+    <div class="modal-sec">
+      <h4>Tips & pairings</h4>
+      <ul>${f.tips.map(t => `<li>${t}</li>`).join('')}</ul>
+    </div>`;
+
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ══ NEWSLETTER ══ */
+function nlSubmit() {
+  const input = document.getElementById('nlemail');
+  if (input.value && input.value.includes('@')) {
+    input.value = '';
+    alert("Thank you! You'll hear from us once a month 🌿");
+  } else {
+    input.style.outline = '2px solid var(--rose)';
+    setTimeout(() => input.style.outline = 'none', 2000);
+  }
+}
+
+/* ══ FADE-IN ══ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ══ INIT ══ */
+renderFoods();
+renderSagre();
+</script>
+
+</body>
+</html>

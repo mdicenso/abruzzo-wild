@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Plan Your Trip — Abruzzo Wild & Authentic</title>
+<meta name="description" content="Plan your perfect Abruzzo trip — choose your travel style and duration, get a personalised itinerary and find the best places to stay.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Plan-specific ── */
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1rem;
+}
+.step-header h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+/* Tips sidebar strip */
+.tips-strip {
+  background: var(--olive);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.tips-strip-item h4 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 300;
+  color: #b8d4a0;
+  margin-bottom: .4rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.tips-strip-item h4 i { font-size: 16px; }
+.tips-strip-item p {
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: rgba(255,255,255,.52);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+@media(max-width:900px){
+  .type-grid  { grid-template-columns: repeat(3,1fr); }
+  .tips-strip { grid-template-columns: repeat(2,1fr); }
+  .accom-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media(max-width:580px){
+  .type-grid  { grid-template-columns: repeat(2,1fr); }
+  .dur-grid   { grid-template-columns: 1fr; }
+  .tips-strip { grid-template-columns: 1fr; }
+  .accom-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
+    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
+    <li><a href="plan.html"        class="nav-link active cta"><i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active">EN</button>
+    <button class="lang-btn">IT</button>
+    <button class="lang-btn">DE</button>
+    <button class="lang-btn">FR</button>
+  </div>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<div class="hero-inner" style="height:40vh">
+  <div class="hero-inner-img"
+       style="background-image:url('https://images.unsplash.com/photo-1499678329028-101435549a4e?w=1600&q=80')">
+  </div>
+  <div class="hero-inner-veil"></div>
+  <div class="hero-inner-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html">Home</a> › Plan Your Trip
+    </div>
+    <h1 class="hero-inner-h1">Plan Your <em>Journey</em></h1>
+    <p class="hero-inner-sub">Choose your travel style and duration — get a personalised day-by-day itinerary.</p>
+  </div>
+</div>
+
+
+<!-- ════ PLANNER ════ -->
+<div class="wrap">
+  <div class="wrap-sm" style="padding:0">
+
+    <!-- Step 1 — Who are you? -->
+    <div style="margin-bottom:2.2rem">
+      <div class="step-header">
+        <div class="day-num">1</div>
+        <h3>Who are you?</h3>
+      </div>
+      <div class="type-grid" id="type-grid"></div>
+    </div>
+
+    <!-- Step 2 — How long? -->
+    <div style="margin-bottom:2rem">
+      <div class="step-header">
+        <div class="day-num">2</div>
+        <h3>How long is your trip?</h3>
+      </div>
+      <div class="dur-grid" id="dur-grid"></div>
+    </div>
+
+    <!-- Itinerary result -->
+    <div class="itin-box" id="itin-box"></div>
+
+  </div>
+
+  <!-- Planning tips strip -->
+  <div class="tips-strip fade-in">
+    <div class="tips-strip-item">
+      <h4><i class="ti ti-calendar" aria-hidden="true"></i>Best time to visit</h4>
+      <p>May–June for wildflowers and mild temperatures. September–October for fewer crowds and harvest festivals. Avoid August peak season in coastal areas.</p>
+    </div>
+    <div class="tips-strip-item">
+      <h4><i class="ti ti-car" aria-hidden="true"></i>Getting around</h4>
+      <p>A hire car is essential. Most villages and trails are not reachable by public transport. Book at Pescara Airport on arrival — roads are good but mountain roads require care.</p>
+    </div>
+    <div class="tips-strip-item">
+      <h4><i class="ti ti-coin-euro" aria-hidden="true"></i>Budget guide</h4>
+      <p>Agriturismo: €50–80/night with dinner. Restaurants: €15–25/person. Trails: mostly free. Budget €80–120/day per person including accommodation and food.</p>
+    </div>
+    <div class="tips-strip-item">
+      <h4><i class="ti ti-language" aria-hidden="true"></i>Language</h4>
+      <p>English is limited outside Pescara and L'Aquila. Learning 10 Italian food words will transform your experience. Locals are warm and patient with visitors who try.</p>
+    </div>
+  </div>
+
+  <!-- Accommodation -->
+  <div style="margin-top:3.5rem">
+    <div class="section-header fade-in">
+      <span class="t-eyebrow">Where to Stay</span>
+      <h2 class="t-h2">Accommodation in Abruzzo</h2>
+      <p class="section-sub">From mountain rifugi to medieval alberghi diffusi — Abruzzo offers accommodation that is part of the experience.</p>
+    </div>
+    <div class="accom-grid fade-in" id="accom-grid"></div>
+  </div>
+
+</div>
+
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> Abruzzo in your inbox</h4>
+      <p>Events, trails, recipes and hidden gems — once a month, no spam.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address">
+      <button class="nl-btn" onclick="nlSubmit()">Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html"       class="footer-link">Home</a>
+      <a href="quiz.html"        class="footer-link">Quiz</a>
+      <a href="hiking.html"      class="footer-link">Hiking</a>
+      <a href="food.html"        class="footer-link">Food & Wine</a>
+      <a href="villages.html"    class="footer-link">Villages</a>
+      <a href="wellness.html"    class="footer-link">Wellness</a>
+      <a href="attractions.html" class="footer-link">Attractions</a>
+      <a href="events.html"      class="footer-link">Events</a>
+      <a href="transport.html"   class="footer-link">Transport</a>
+      <a href="plan.html"        class="footer-link">Plan Trip</a>
+    </nav>
+  </div>
+  <div class="footer-copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+</footer>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ══ DATA ══ */
+const travelerTypes = [
+  { id:'family',    icon:'ti-users',          label:'Family',     sub:'Kids & all ages' },
+  { id:'adventure', icon:'ti-mountain',       label:'Adventure',  sub:'Hiking & outdoors' },
+  { id:'food',      icon:'ti-tools-kitchen-2',label:'Food Lover', sub:'Gastronomy first' },
+  { id:'culture',   icon:'ti-building-castle',label:'Culture',    sub:'History & villages' },
+  { id:'cyclist',   icon:'ti-bike',           label:'Cyclist',    sub:'Two wheels' }
+];
+
+const durations = [
+  { id:'weekend', label:'Weekend',   sub:'2–3 days' },
+  { id:'short',   label:'4–5 Days', sub:'Perfect intro' },
+  { id:'week',    label:'Full Week', sub:'Deep exploration' }
+];
+
+const itins = {
+  family: {
+    weekend: {
+      title:"Family Weekend", icon:"ti-users",
+      desc:"Coast + National Park — perfect introduction for all ages",
+      days:[
+        { d:1, title:"Pescara & Adriatic Coast", txt:"Morning on the Adriatic beach. Brodetto di pesce lunch at a trabocco. Evening stroll in Lanciano old town." },
+        { d:2, title:"Abruzzo National Park",    txt:"Valle Fondillo flat walk — Marsican bear sightings possible. Wolf Museum in Civitella Alfedena. Lake Barrea sunset." }
+      ]
+    },
+    short: {
+      title:"Family 4 Days", icon:"ti-users",
+      desc:"Coast, park and a mountain village — the full family experience",
+      days:[
+        { d:1, title:"Arrive Pescara · Beach",   txt:"Settle in. Afternoon on the Adriatic. Dinner: first arrosticini experience." },
+        { d:2, title:"Costa dei Trabocchi",       txt:"Drive or cycle the 42km coastal route. Trabocco lunch over the sea. Vasto old town." },
+        { d:3, title:"Abruzzo National Park",     txt:"Valle Fondillo walk (bear spotting!). Wolf Museum. Lake Barrea." },
+        { d:4, title:"Scanno & head home",        txt:"Heart-shaped lake walk. Scanno medieval village. Confetti shopping in Sulmona." }
+      ]
+    },
+    week: {
+      title:"Family Week", icon:"ti-users",
+      desc:"Complete Abruzzo — coast, mountains, parks and villages",
+      days:[
+        { d:1, title:"Arrive Pescara",        txt:"Beach afternoon. Seafood dinner on the coast." },
+        { d:2, title:"Trabocchi coast",        txt:"Cycling the coastal route. Trabocco lunch." },
+        { d:3, title:"L'Aquila city",          txt:"99 Cannelle fountain. Saffron lunch. Fortress museum." },
+        { d:4, title:"Gran Sasso plateau",     txt:"Campo Imperatore drive. Chamois spotting. Rifugio lunch." },
+        { d:5, title:"National Park",          txt:"Valle Fondillo bear walk. Wolf Museum. Barrea lake." },
+        { d:6, title:"Scanno & Sulmona",       txt:"Heart lake. Confetti factories. Medieval centre." },
+        { d:7, title:"Medieval villages",      txt:"Rocca Calascio castle. Santo Stefano. Depart." }
+      ]
+    }
+  },
+  adventure: {
+    weekend: {
+      title:"Adventure Weekend", icon:"ti-mountain",
+      desc:"Gran Sasso summit — the definitive Apennine challenge",
+      days:[
+        { d:1, title:"Arrive · Acclimatise",    txt:"Drive to Campo Imperatore (2,130m). Plateau walk. Overnight at Rifugio Duca degli Abruzzi." },
+        { d:2, title:"Corno Grande Summit",     txt:"4am alarm. Summit by 9am (2,912m). 6–8h return. Celebrate with arrosticini in L'Aquila." }
+      ]
+    },
+    short: {
+      title:"Adventure 4 Days", icon:"ti-mountain",
+      desc:"Gran Sasso + Maiella — two massifs, two summit days",
+      days:[
+        { d:1, title:"Arrive · Campo Imperatore", txt:"Acclimatise on the plateau. Easy evening walk." },
+        { d:2, title:"Corno Grande Summit",        txt:"Full summit day. 2,912m. 6–8 hours." },
+        { d:3, title:"Maiella — Eremo trail",      txt:"Eremo di San Bartolomeo hermitage trail. Moderate." },
+        { d:4, title:"Blockhaus + home",           txt:"Easy ridge walk from Blockhaus plateau. Panoramic drive home." }
+      ]
+    },
+    week: {
+      title:"Adventure Week", icon:"ti-mountain",
+      desc:"The complete Apennine challenge — Gran Sasso, Maiella, National Park",
+      days:[
+        { d:1, title:"Arrive L'Aquila",           txt:"City evening. Rest." },
+        { d:2, title:"Corno Grande",              txt:"Gran Sasso summit day. 2,912m." },
+        { d:3, title:"Rest · Sagittario gorge",   txt:"Easy afternoon walk in the canyon." },
+        { d:4, title:"Monte Marsicano",           txt:"National Park ridge. 2,245m. Chamois and eagles." },
+        { d:5, title:"Maiella: Monte Amaro",      txt:"The big Maiella summit. 2,793m. 8–10 hours." },
+        { d:6, title:"Eremo di San Bartolomeo",   txt:"Hermitage canyon trail. Medieval atmosphere." },
+        { d:7, title:"Last walk + depart",        txt:"Blockhaus easy ridge walk. Scenic drive. Depart." }
+      ]
+    }
+  },
+  food: {
+    weekend: {
+      title:"Food Weekend", icon:"ti-tools-kitchen-2",
+      desc:"The best of Abruzzese cuisine in 2 days",
+      days:[
+        { d:1, title:"Pescara · Coast",   txt:"Brodetto di pesce at a trabocco. Fresh fish market visit. Arrosticini evening by the grill." },
+        { d:2, title:"L'Aquila · Saffron",txt:"Navelli saffron farm visit. Pasta alla chitarra lunch. Confetti shopping in Sulmona." }
+      ]
+    },
+    short: {
+      title:"Food 4 Days", icon:"ti-tools-kitchen-2",
+      desc:"Markets, producers, sagre and great restaurants",
+      days:[
+        { d:1, title:"Pescara seafood",    txt:"Trabocco lunch. Adriatic fish market. Brodetto dinner." },
+        { d:2, title:"L'Aquila saffron",   txt:"Navelli farm. Chitarra pasta lunch. Fontana 99 Cannelle." },
+        { d:3, title:"Sulmona sweets",     txt:"Confetti factories. Agnello cacio e ova at a trattoria." },
+        { d:4, title:"Vasto wine + coast", txt:"Winery visit. Trabocco lunch. Fresh fish dinner." }
+      ]
+    },
+    week: {
+      title:"Food Week", icon:"ti-tools-kitchen-2",
+      desc:"Complete Abruzzo gastronomy tour — producers, markets, sagre",
+      days:[
+        { d:1, title:"Arrive Pescara",       txt:"First arrosticini experience. Welcome dinner." },
+        { d:2, title:"Trabocchi coast",      txt:"Trabocco lunch. Fish market. Brodetto." },
+        { d:3, title:"Vasto wine country",   txt:"Winery visits. Olive mill tour." },
+        { d:4, title:"Sulmona",              txt:"Confetti tours. Roman history. Mountain trattoria." },
+        { d:5, title:"L'Aquila & saffron",   txt:"Navelli farm. Gourmet saffron dinner." },
+        { d:6, title:"Truffle hunting",      txt:"Guided hunt with Lagotto dogs in the Majella." },
+        { d:7, title:"Cheese + depart",      txt:"Farindola pecorino producer visit. Depart." }
+      ]
+    }
+  },
+  culture: {
+    weekend: {
+      title:"Culture Weekend", icon:"ti-building-castle",
+      desc:"Medieval villages and castles in 2 unforgettable days",
+      days:[
+        { d:1, title:"Santo Stefano + Rocca Calascio", txt:"Medieval lanes of Santo Stefano. Castle sunset photography. Albergo diffuso dinner." },
+        { d:2, title:"Pacentro + Sulmona",             txt:"Madonna's ancestral village. Roman Sulmona. Confetti shopping." }
+      ]
+    },
+    short: {
+      title:"Culture 4 Days", icon:"ti-building-castle",
+      desc:"Villages, castles, history and authentic traditions",
+      days:[
+        { d:1, title:"L'Aquila city",            txt:"Basilica di Collemaggio. 99 Cannelle. National Museum mammoth." },
+        { d:2, title:"Santo Stefano + Calascio", txt:"Medieval village immersion. Highest Apennine castle." },
+        { d:3, title:"Sulmona + Pacentro",       txt:"Roman city. Madonna's village. Confetti factories." },
+        { d:4, title:"Castelli ceramics",        txt:"Maiolica museum. Artisan workshops. Gran Sasso views." }
+      ]
+    },
+    week: {
+      title:"Culture Week", icon:"ti-building-castle",
+      desc:"Complete historical Abruzzo — villages, castles, archaeology",
+      days:[
+        { d:1, title:"L'Aquila",           txt:"City exploration. Basilica. Museum. Dinner." },
+        { d:2, title:"Santo Stefano",      txt:"Medieval immersion. Albergo diffuso." },
+        { d:3, title:"Rocca Calascio",     txt:"Castle at golden hour. Gran Sasso panorama." },
+        { d:4, title:"Sulmona",            txt:"Roman ruins. Ovid's birthplace. Confetti." },
+        { d:5, title:"Chieti",             txt:"Roman theatre. Warrior of Capestrano museum." },
+        { d:6, title:"Vasto",              txt:"Roman city. Medieval centre. Adriatic." },
+        { d:7, title:"Castelli + depart",  txt:"Ceramics village. Maiolica workshop. Depart." }
+      ]
+    }
+  },
+  cyclist: {
+    weekend: {
+      title:"Cyclist Weekend", icon:"ti-bike",
+      desc:"Costa dei Trabocchi cycleway — Italy's most scenic coastal ride",
+      days:[
+        { d:1, title:"Ortona → Vasto (42 km)",  txt:"Full coastal cycleway — flat, spectacular. Trabocco lunch over the sea. Vasto old town overnight." },
+        { d:2, title:"Vasto + return",           txt:"Clifftop old town. Punta Aderci nature reserve. Train back to Ortona with bike." }
+      ]
+    },
+    short: {
+      title:"Cyclist 4 Days", icon:"ti-bike",
+      desc:"Coast + mountains — the full Abruzzo cycling experience",
+      days:[
+        { d:1, title:"Costa dei Trabocchi",  txt:"Full 42km coastal cycleway. Trabocco lunch." },
+        { d:2, title:"Pescara river trail",  txt:"Easy 25km urban route along the river." },
+        { d:3, title:"Borgo-to-Borgo",       txt:"30km loop through Peligna valley villages." },
+        { d:4, title:"Campo Imperatore",     txt:"28km epic climb to 2,130m. The ultimate Abruzzo ride." }
+      ]
+    },
+    week: {
+      title:"Cyclist Week", icon:"ti-bike",
+      desc:"Ultimate Abruzzo cycling tour — coast to summit",
+      days:[
+        { d:1, title:"Arrive Pescara",        txt:"Bike assembly. City ride. Rest." },
+        { d:2, title:"Trabocchi coast",       txt:"Full 42km coastal cycleway." },
+        { d:3, title:"Rest day",              txt:"Beach. Recovery. Seafood lunch." },
+        { d:4, title:"River trail",           txt:"Pescara flat route. 25km." },
+        { d:5, title:"Borgo-to-Borgo",        txt:"Village loop. 30km. Lunch at a trattoria." },
+        { d:6, title:"Campo Imperatore",      txt:"The big climb. 28km to 2,130m." },
+        { d:7, title:"Majella road",          txt:"65km panoramic mountain loop. Depart." }
+      ]
+    }
+  }
+};
+
+const accommodation = [
+  { icon:'ti-tractor',  name:"Agriturismo",     desc:"Farm stays with home-cooked dinner. The most authentic experience in Abruzzo — wake up to mountains, eat from the farm's own land.",          price:"€50–80 / night incl. dinner" },
+  { icon:'ti-home',     name:"Albergo Diffuso",  desc:"Rooms spread through a medieval village. Pioneered in Abruzzo at Santo Stefano di Sessanio — the most unique way to sleep in a borgh.",     price:"€80–150 / night" },
+  { icon:'ti-mountain', name:"Rifugio",           desc:"Mountain huts for hikers — dinner, bed and breakfast included. The essential Abruzzo experience for anyone doing serious summit routes.",   price:"€35–55 / night incl. breakfast" },
+  { icon:'ti-building', name:"B&B / Hotel",       desc:"Modern comfort in Pescara, L'Aquila or Sulmona. Good base for day trips and the easiest option if you are travelling with a car.",        price:"€60–120 / night" }
+];
+
+/* ══ STATE ══ */
+let selType = '';
+let selDur  = '';
+
+/* ══ RENDER TYPE GRID ══ */
+function renderTypeGrid() {
+  document.getElementById('type-grid').innerHTML = travelerTypes.map(t => `
+    <div class="type-card" id="type-${t.id}"
+         onclick="selectType('${t.id}')"
+         role="button" tabindex="0">
+      <div class="type-icon">
+        <div class="icon-circle md" style="margin:0 auto">
+          <i class="ti ${t.icon}" aria-hidden="true"></i>
+        </div>
+      </div>
+      <h4>${t.label}</h4>
+      <p>${t.sub}</p>
+    </div>`).join('');
+}
+
+/* ══ RENDER DURATION GRID ══ */
+function renderDurGrid() {
+  document.getElementById('dur-grid').innerHTML = durations.map(d => `
+    <div class="dur-card" id="dur-${d.id}"
+         onclick="selectDur('${d.id}')"
+         role="button" tabindex="0">
+      <h4>${d.label}</h4>
+      <p>${d.sub}</p>
+    </div>`).join('');
+}
+
+/* ══ RENDER ACCOMMODATION ══ */
+function renderAccom() {
+  document.getElementById('accom-grid').innerHTML = accommodation.map(a => `
+    <div class="accom-card">
+      <div class="icon-circle sm" style="margin-bottom:.7rem">
+        <i class="ti ${a.icon}" aria-hidden="true"></i>
+      </div>
+      <h4>${a.name}</h4>
+      <p>${a.desc}</p>
+      <div class="accom-price">${a.price}</div>
+    </div>`).join('');
+}
+
+/* ══ SELECT TYPE ══ */
+function selectType(id) {
+  selType = id;
+  document.querySelectorAll('.type-card').forEach(c => c.classList.remove('sel'));
+  document.getElementById('type-' + id).classList.add('sel');
+  showItinerary();
+}
+
+/* ══ SELECT DURATION ══ */
+function selectDur(id) {
+  selDur = id;
+  document.querySelectorAll('.dur-card').forEach(c => c.classList.remove('sel'));
+  document.getElementById('dur-' + id).classList.add('sel');
+  showItinerary();
+}
+
+/* ══ SHOW ITINERARY ══ */
+function showItinerary() {
+  if (!selType || !selDur) return;
+
+  const it = itins[selType][selDur];
+  const tt = travelerTypes.find(t => t.id === selType);
+  const box = document.getElementById('itin-box');
+
+  box.innerHTML = `
+    <div class="itin-header">
+      <div class="icon-circle lg">
+        <i class="ti ${tt.icon}" aria-hidden="true"></i>
+      </div>
+      <div>
+        <h2>${it.title}</h2>
+        <p>${it.desc}</p>
+      </div>
+    </div>
+    <div class="day-list">
+      ${it.days.map(d => `
+        <div class="day-item">
+          <div class="day-num">${d.d}</div>
+          <div class="day-content">
+            <h4>Day ${d.d} — ${d.title}</h4>
+            <p>${d.txt}</p>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--parchment);
+                display:flex;gap:.75rem;flex-wrap:wrap">
+      <a href="transport.html" class="btn-ghost-dark">
+        <i class="ti ti-bus" aria-hidden="true"></i>Getting there
+      </a>
+      <a href="hiking.html" class="btn-ghost-dark">
+        <i class="ti ti-mountain" aria-hidden="true"></i>Trails
+      </a>
+      <a href="food.html" class="btn-ghost-dark">
+        <i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine
+      </a>
+    </div>`;
+
+  box.classList.add('show');
+  setTimeout(() => box.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
+}
+
+/* ══ NEWSLETTER ══ */
+function nlSubmit() {
+  const input = document.getElementById('nlemail');
+  if (input.value && input.value.includes('@')) {
+    input.value = '';
+    alert("Thank you! You'll hear from us once a month 🌿");
+  } else {
+    input.style.outline = '2px solid var(--rose)';
+    setTimeout(() => input.style.outline = 'none', 2000);
+  }
+}
+
+/* ══ KEYBOARD ══ */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    if (e.target.classList.contains('type-card')) selectType(e.target.id.replace('type-',''));
+    if (e.target.classList.contains('dur-card'))  selectDur(e.target.id.replace('dur-',''));
+  }
+});
+
+/* ══ FADE-IN ══ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ══ INIT ══ */
+renderTypeGrid();
+renderDurGrid();
+renderAccom();
+</script>
+
+</body>
+</html>
