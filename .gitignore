@@ -5,3 +5,5 @@ desktop.ini
 Thumbs.db
 # nota locale con dati del bando (importo/date): NON pubblicare
 Apri per vedere il sito.txt
+# scorciatoie/lanciatori locali (es. avvio Claude Code): NON pubblicare
+@_scorciatoie/
