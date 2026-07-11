@@ -403,22 +403,22 @@ body { background: var(--ink); }
 <nav class="nav" id="main-nav">
   <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
   <ul class="nav-links">
-    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
-    <li><a href="quiz.html"        class="nav-link quiz active"><i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
-    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
-    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
-    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
-    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
-    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
-    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
-    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
-    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i><span data-i18n="n_home">Home</span></a></li>
+    <li><a href="quiz.html"        class="nav-link quiz active"><i class="ti ti-sparkles" aria-hidden="true"></i><span data-i18n="n_quiz">Quiz</span></a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i><span data-i18n="n_hiking">Hiking</span></a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i><span data-i18n="n_food">Food & Wine</span></a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i><span data-i18n="n_villages">Villages</span></a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i><span data-i18n="n_wellness">Wellness</span></a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i><span data-i18n="n_attractions">Attractions</span></a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i><span data-i18n="n_events">Events</span></a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i><span data-i18n="n_transport">Transport</span></a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i><span data-i18n="n_plan">Plan Trip</span></a></li>
   </ul>
   <div class="nav-lang">
-    <button class="lang-btn active">EN</button>
-    <button class="lang-btn">IT</button>
-    <button class="lang-btn">DE</button>
-    <button class="lang-btn">FR</button>
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('it')">IT</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
   </div>
 </nav>
 
@@ -508,6 +508,9 @@ body { background: var(--ink); }
     </div>
   </div>
 </div>
+
+
+<script src="i18n.js"></script>
 
 
 <!-- ════ JAVASCRIPT ════ -->
