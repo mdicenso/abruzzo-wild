@@ -42,7 +42,18 @@ const T18 = {
     why3:"The A24 connects Rome to L'Aquila in under 90 minutes. Yet it feels worlds away.",
     why4:"Half the price of Tuscany. Agriturismo from €50/night with home-cooked dinner.",
     stat_trails:'km of trails', stat_parks:'National Parks', stat_rome:'from Rome',
-    scroll:'Scroll'
+    scroll:'Scroll',
+    /* quiz (fase A2) */
+    qz_badge:'5 questions · discover your Abruzzo',
+    qz_h1:'What kind of Abruzzo are <em>you</em> looking for?',
+    qz_intro:"Two images, one choice. In 5 rounds we'll find your perfect Abruzzo experience — wild peaks, ancient villages, great food or total silence.",
+    qz_start:'Start the Journey',
+    qz_choose:'Choose this →',
+    qz_or:'OR',
+    qz_profile_tag:'Your Abruzzo Profile',
+    qz_recommend:'We recommend for you',
+    qz_retry:'Try again',
+    qz_plan:'Plan My Trip'
   },
   it: {
     n_home:'Home', n_quiz:'Quiz', n_hiking:'Trekking', n_food:'Cibo & Vino',
@@ -72,7 +83,18 @@ const T18 = {
     why3:"L'A24 collega Roma all'Aquila in meno di 90 minuti. Eppure sembra un altro mondo.",
     why4:"La metà dei prezzi della Toscana. Agriturismo da €50/notte con cena casalinga.",
     stat_trails:'km di sentieri', stat_parks:'Parchi Nazionali', stat_rome:'da Roma',
-    scroll:'Scorri'
+    scroll:'Scorri',
+    /* quiz (fase A2) */
+    qz_badge:'5 domande · scopri il tuo Abruzzo',
+    qz_h1:'Che Abruzzo stai <em>cercando</em>?',
+    qz_intro:"Due immagini, una scelta. In 5 turni troviamo la tua esperienza perfetta in Abruzzo — vette selvagge, borghi antichi, buon cibo o silenzio totale.",
+    qz_start:'Inizia il Viaggio',
+    qz_choose:'Scegli questo →',
+    qz_or:'O',
+    qz_profile_tag:'Il tuo profilo Abruzzo',
+    qz_recommend:'Ti consigliamo',
+    qz_retry:'Riprova',
+    qz_plan:'Pianifica il Viaggio'
   },
   de: {
     n_home:'Startseite', n_quiz:'Quiz', n_hiking:'Wandern', n_food:'Essen & Wein',
@@ -102,7 +124,18 @@ const T18 = {
     why3:"Die A24 verbindet Rom in unter 90 Minuten mit L'Aquila. Und fühlt sich wie eine andere Welt an.",
     why4:'Halb so teuer wie die Toskana. Agriturismo ab €50/Nacht mit Hausmannskost.',
     stat_trails:'km Wanderwege', stat_parks:'Nationalparks', stat_rome:'von Rom',
-    scroll:'Scrollen'
+    scroll:'Scrollen',
+    /* quiz (fase A2) */
+    qz_badge:'5 Fragen · entdecke deine Abruzzen',
+    qz_h1:'Welche Abruzzen <em>suchst</em> du?',
+    qz_intro:'Zwei Bilder, eine Wahl. In 5 Runden finden wir dein perfektes Abruzzen-Erlebnis — wilde Gipfel, alte Dörfer, gutes Essen oder totale Stille.',
+    qz_start:'Die Reise beginnen',
+    qz_choose:'Das wählen →',
+    qz_or:'ODER',
+    qz_profile_tag:'Dein Abruzzen-Profil',
+    qz_recommend:'Wir empfehlen dir',
+    qz_retry:'Nochmal',
+    qz_plan:'Reise planen'
   },
   fr: {
     n_home:'Accueil', n_quiz:'Quiz', n_hiking:'Randonnée', n_food:'Gastronomie',
@@ -132,7 +165,18 @@ const T18 = {
     why3:"L'A24 relie Rome à L'Aquila en moins de 90 minutes. Et pourtant, c'est un autre monde.",
     why4:"Moitié moins cher que la Toscane. Agriturismo à partir de €50/nuit avec dîner maison.",
     stat_trails:'km de sentiers', stat_parks:'Parcs Nationaux', stat_rome:'de Rome',
-    scroll:'Défiler'
+    scroll:'Défiler',
+    /* quiz (fase A2) */
+    qz_badge:'5 questions · découvrez vos Abruzzes',
+    qz_h1:'Quelles Abruzzes <em>recherchez</em>-vous ?',
+    qz_intro:"Deux images, un choix. En 5 tours, nous trouvons votre expérience idéale dans les Abruzzes — sommets sauvages, villages anciens, bonne cuisine ou silence total.",
+    qz_start:'Commencer le Voyage',
+    qz_choose:'Choisir ceci →',
+    qz_or:'OU',
+    qz_profile_tag:'Votre profil Abruzzes',
+    qz_recommend:'Nous vous recommandons',
+    qz_retry:'Réessayer',
+    qz_plan:'Planifier le Voyage'
   }
 };
 
@@ -140,6 +184,14 @@ let lang = (typeof localStorage !== 'undefined' && localStorage.getItem('aw_lang
 
 function T(k) {
   return (T18[lang] && T18[lang][k]) || T18.en[k] || k;
+}
+
+/* L(): sceglie la lingua da un valore multilingua {en,it,de,fr}.
+   Se riceve una stringa semplice la restituisce così com'è (contenuti non ancora tradotti).
+   Uso nei render dei contenuti (fase A2): L(item.desc) */
+function L(v) {
+  if (v && typeof v === 'object' && !Array.isArray(v)) return v[lang] ?? v.en ?? '';
+  return v;
 }
 
 function setLang(l) {
@@ -158,6 +210,9 @@ function setLang(l) {
     if (v) el.placeholder = v;
   });
   document.documentElement.lang = l;
+
+  /* avvisa le pagine con contenuti dinamici (schede) di ri-renderizzare nella nuova lingua */
+  document.dispatchEvent(new CustomEvent('aw:langchange', { detail: l }));
 }
 
 /* applica la lingua salvata appena il DOM è pronto (robusto anche se lo script è in fondo) */

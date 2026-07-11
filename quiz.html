@@ -427,12 +427,12 @@ body { background: var(--ink); }
 <div class="screen active" id="screen-intro">
   <div class="intro-bg"></div>
   <div class="intro-content">
-    <div class="intro-badge">5 questions · discover your Abruzzo</div>
-    <h1 class="intro-h1">What kind of Abruzzo are <em>you</em> looking for?</h1>
-    <p class="intro-p">Two images, one choice. In 5 rounds we'll find your perfect Abruzzo experience — wild peaks, ancient villages, great food or total silence.</p>
+    <div class="intro-badge" data-i18n="qz_badge">5 questions · discover your Abruzzo</div>
+    <h1 class="intro-h1" data-i18n="qz_h1">What kind of Abruzzo are <em>you</em> looking for?</h1>
+    <p class="intro-p" data-i18n="qz_intro">Two images, one choice. In 5 rounds we'll find your perfect Abruzzo experience — wild peaks, ancient villages, great food or total silence.</p>
     <button class="btn-primary" onclick="startQuiz()" style="margin:0 auto">
       <i class="ti ti-sparkles" aria-hidden="true"></i>
-      Start the Journey
+      <span data-i18n="qz_start">Start the Journey</span>
     </button>
     <div class="intro-dots" id="intro-dots"></div>
   </div>
@@ -461,12 +461,12 @@ body { background: var(--ink); }
         <span class="q-side-icon" id="icon-a"></span>
         <h3 id="label-a"></h3>
         <p  id="desc-a"></p>
-        <span class="q-choose-label">Choose this →</span>
+        <span class="q-choose-label" data-i18n="qz_choose">Choose this →</span>
       </div>
     </div>
 
     <!-- OR divider -->
-    <div class="q-or">OR</div>
+    <div class="q-or" data-i18n="qz_or">OR</div>
 
     <!-- Side B -->
     <div class="q-side" id="side-b" onclick="pickSide('b')">
@@ -477,7 +477,7 @@ body { background: var(--ink); }
         <span class="q-side-icon" id="icon-b"></span>
         <h3 id="label-b"></h3>
         <p  id="desc-b"></p>
-        <span class="q-choose-label">Choose this →</span>
+        <span class="q-choose-label" data-i18n="qz_choose">Choose this →</span>
       </div>
     </div>
   </div>
@@ -490,20 +490,20 @@ body { background: var(--ink); }
     <div class="result-hero-bg" id="result-bg"></div>
     <div class="result-hero-content">
       <span class="result-emoji" id="result-emoji"></span>
-      <div class="result-tag">Your Abruzzo Profile</div>
+      <div class="result-tag" data-i18n="qz_profile_tag">Your Abruzzo Profile</div>
       <h2 id="result-title"></h2>
       <p  id="result-desc"></p>
     </div>
   </div>
   <div class="result-recs">
-    <h3>We recommend for you</h3>
+    <h3 data-i18n="qz_recommend">We recommend for you</h3>
     <div class="result-cards" id="result-cards"></div>
     <div class="result-actions">
       <button class="btn-replay" onclick="resetQuiz()">
-        <i class="ti ti-refresh" aria-hidden="true"></i>Try again
+        <i class="ti ti-refresh" aria-hidden="true"></i><span data-i18n="qz_retry">Try again</span>
       </button>
       <a href="plan.html" class="btn-primary" style="text-decoration:none">
-        <i class="ti ti-route" aria-hidden="true"></i>Plan My Trip
+        <i class="ti ti-route" aria-hidden="true"></i><span data-i18n="qz_plan">Plan My Trip</span>
       </a>
     </div>
   </div>
@@ -518,29 +518,29 @@ body { background: var(--ink); }
 /* ══ QUESTIONS ══ */
 const questions = [
   {
-    text: "Mountains or sea?",
-    a: { icon:"🏔️", label:"Gran Sasso Peaks",   desc:"Wild summits above 2,900m",           img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=80", scores:{adventure:2,nature:1} },
-    b: { icon:"🌊", label:"Adriatic Coast",       desc:"Golden beaches & trabocchi",          img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80", scores:{family:2,food:1} }
+    text: {en:"Mountains or sea?", it:"Montagna o mare?", de:"Berge oder Meer?", fr:"Montagne ou mer ?"},
+    a: { icon:"🏔️", label:{en:"Gran Sasso Peaks", it:"Vette del Gran Sasso", de:"Gran-Sasso-Gipfel", fr:"Sommets du Gran Sasso"},   desc:{en:"Wild summits above 2,900m", it:"Vette selvagge oltre i 2.900 m", de:"Wilde Gipfel über 2.900 m", fr:"Sommets sauvages au-delà de 2 900 m"},           img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=80", scores:{adventure:2,nature:1} },
+    b: { icon:"🌊", label:{en:"Adriatic Coast", it:"Costa Adriatica", de:"Adriaküste", fr:"Côte Adriatique"},       desc:{en:"Golden beaches & trabocchi", it:"Spiagge dorate e trabocchi", de:"Goldene Strände & Trabocchi", fr:"Plages dorées & trabocchi"},          img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80", scores:{family:2,food:1} }
   },
   {
-    text: "Wild adventure or slow escape?",
-    a: { icon:"🐺", label:"National Park Trails", desc:"Bears, wolves & ancient beech forests", img:"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1400&q=80", scores:{adventure:2,nature:1} },
-    b: { icon:"🌿", label:"Agriturismo Retreat",  desc:"Farm stays, silence, home cooking",   img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1400&q=80", scores:{wellness:2,food:1} }
+    text: {en:"Wild adventure or slow escape?", it:"Avventura selvaggia o fuga lenta?", de:"Wildes Abenteuer oder entspannte Auszeit?", fr:"Aventure sauvage ou évasion tranquille ?"},
+    a: { icon:"🐺", label:{en:"National Park Trails", it:"Sentieri del Parco Nazionale", de:"Nationalpark-Wege", fr:"Sentiers du Parc National"}, desc:{en:"Bears, wolves & ancient beech forests", it:"Orsi, lupi e antiche faggete", de:"Bären, Wölfe & uralte Buchenwälder", fr:"Ours, loups & antiques hêtraies"}, img:"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1400&q=80", scores:{adventure:2,nature:1} },
+    b: { icon:"🌿", label:{en:"Agriturismo Retreat", it:"Rifugio in agriturismo", de:"Agriturismo-Rückzug", fr:"Retraite en agritourisme"},  desc:{en:"Farm stays, silence, home cooking", it:"Soggiorni in fattoria, silenzio, cucina casalinga", de:"Bauernhof, Stille, Hausmannskost", fr:"Séjours à la ferme, silence, cuisine maison"},   img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1400&q=80", scores:{wellness:2,food:1} }
   },
   {
-    text: "Ancient history or living nature?",
-    a: { icon:"🏰", label:"Medieval Castles",     desc:"Rocca Calascio, Santo Stefano",       img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=1400&q=80", scores:{culture:2,adventure:1} },
-    b: { icon:"🌲", label:"Wild Forests & Peaks", desc:"Beech forests, gorges, glacial lakes", img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=1400&q=80", scores:{nature:2,adventure:1} }
+    text: {en:"Ancient history or living nature?", it:"Storia antica o natura viva?", de:"Alte Geschichte oder lebendige Natur?", fr:"Histoire ancienne ou nature vivante ?"},
+    a: { icon:"🏰", label:{en:"Medieval Castles", it:"Castelli medievali", de:"Mittelalterliche Burgen", fr:"Châteaux médiévaux"},     desc:{en:"Rocca Calascio, Santo Stefano", it:"Rocca Calascio, Santo Stefano", de:"Rocca Calascio, Santo Stefano", fr:"Rocca Calascio, Santo Stefano"},       img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=1400&q=80", scores:{culture:2,adventure:1} },
+    b: { icon:"🌲", label:{en:"Wild Forests & Peaks", it:"Foreste e vette selvagge", de:"Wilde Wälder & Gipfel", fr:"Forêts et sommets sauvages"}, desc:{en:"Beech forests, gorges, glacial lakes", it:"Faggete, gole, laghi glaciali", de:"Buchenwälder, Schluchten, Gletscherseen", fr:"Hêtraies, gorges, lacs glaciaires"}, img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=1400&q=80", scores:{nature:2,adventure:1} }
   },
   {
-    text: "Local cuisine or outdoor sport?",
-    a: { icon:"🍢", label:"Arrosticini & Wine",   desc:"Eat with shepherds, drink Montepulciano", img:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80", scores:{food:2,culture:1} },
-    b: { icon:"🥾", label:"Hike to the Summit",   desc:"Corno Grande, 2,912m",                img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=80", scores:{adventure:2,nature:1} }
+    text: {en:"Local cuisine or outdoor sport?", it:"Cucina locale o sport all'aria aperta?", de:"Lokale Küche oder Outdoor-Sport?", fr:"Cuisine locale ou sport en plein air ?"},
+    a: { icon:"🍢", label:{en:"Arrosticini & Wine", it:"Arrosticini e vino", de:"Arrosticini & Wein", fr:"Arrosticini & vin"},   desc:{en:"Eat with shepherds, drink Montepulciano", it:"Mangia con i pastori, bevi Montepulciano", de:"Iss mit den Hirten, trink Montepulciano", fr:"Mangez avec les bergers, buvez du Montepulciano"}, img:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80", scores:{food:2,culture:1} },
+    b: { icon:"🥾", label:{en:"Hike to the Summit", it:"Sali in vetta", de:"Aufstieg zum Gipfel", fr:"Randonnée jusqu'au sommet"},   desc:{en:"Corno Grande, 2,912m", it:"Corno Grande, 2.912 m", de:"Corno Grande, 2.912 m", fr:"Corno Grande, 2 912 m"},                img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=80", scores:{adventure:2,nature:1} }
   },
   {
-    text: "Discover alone or with family?",
-    a: { icon:"🎒", label:"Solo Explorer",         desc:"My own pace, my own path",            img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1400&q=80", scores:{adventure:2,culture:1} },
-    b: { icon:"👨‍👩‍👧", label:"Family Adventure",     desc:"Shared memories that last forever",  img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80", scores:{family:2,wellness:1} }
+    text: {en:"Discover alone or with family?", it:"Scopri da solo o in famiglia?", de:"Allein oder mit der Familie entdecken?", fr:"Découvrir seul ou en famille ?"},
+    a: { icon:"🎒", label:{en:"Solo Explorer", it:"Esploratore solitario", de:"Solo-Entdecker", fr:"Explorateur solo"},         desc:{en:"My own pace, my own path", it:"Il mio ritmo, la mia strada", de:"Mein Tempo, mein Weg", fr:"Mon rythme, mon chemin"},            img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1400&q=80", scores:{adventure:2,culture:1} },
+    b: { icon:"👨‍👩‍👧", label:{en:"Family Adventure", it:"Avventura in famiglia", de:"Familienabenteuer", fr:"Aventure en famille"},     desc:{en:"Shared memories that last forever", it:"Ricordi condivisi che durano per sempre", de:"Gemeinsame Erinnerungen für immer", fr:"Des souvenirs partagés pour toujours"},  img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80", scores:{family:2,wellness:1} }
   }
 ];
 
@@ -548,68 +548,68 @@ const questions = [
 const profiles = {
   adventure: {
     emoji:"🏔️",
-    title:"The Wild Explorer",
-    desc:"You thrive on challenge and raw nature. Summit hikes, national park trails and camping under mountain stars — Abruzzo will be your playground.",
+    title:{en:"The Wild Explorer", it:"L'Esploratore Selvaggio", de:"Der Wilde Entdecker", fr:"L'Explorateur Sauvage"},
+    desc:{en:"You thrive on challenge and raw nature. Summit hikes, national park trails and camping under mountain stars — Abruzzo will be your playground.", it:"Vivi di sfide e natura pura. Escursioni in vetta, sentieri nei parchi nazionali e notti sotto le stelle di montagna — l'Abruzzo sarà il tuo terreno di gioco.", de:"Du lebst für Herausforderung und ursprüngliche Natur. Gipfeltouren, Nationalpark-Wege und Nächte unter dem Bergsternenhimmel — die Abruzzen werden dein Spielplatz.", fr:"Vous vivez pour le défi et la nature brute. Ascensions, sentiers des parcs nationaux et nuits à la belle étoile — les Abruzzes seront votre terrain de jeu."},
     img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=80",
     recs:[
-      { icon:"ti-mountain",        title:"Hiking",        desc:"10 trails for every level — from easy to serious summit days", href:"hiking.html" },
-      { icon:"ti-building-castle", title:"Gran Sasso",    desc:"The ultimate Apennine challenge at 2,912m",                   href:"hiking.html" },
-      { icon:"ti-paw",             title:"National Park", desc:"Bears, wolves and ancient forests — Valle Fondillo trail",    href:"hiking.html" }
+      { icon:"ti-mountain",        title:{en:"Hiking", it:"Trekking", de:"Wandern", fr:"Randonnée"},        desc:{en:"10 trails for every level — from easy to serious summit days", it:"10 sentieri per ogni livello — dai più facili alle vere salite in vetta", de:"10 Wege für jedes Niveau — von leicht bis zur echten Gipfeltour", fr:"10 sentiers pour tous les niveaux — du plus facile aux vraies ascensions"}, href:"hiking.html" },
+      { icon:"ti-building-castle", title:{en:"Gran Sasso", it:"Gran Sasso", de:"Gran Sasso", fr:"Gran Sasso"},    desc:{en:"The ultimate Apennine challenge at 2,912m", it:"La sfida più alta dell'Appennino, a 2.912 m", de:"Die ultimative Apennin-Herausforderung auf 2.912 m", fr:"Le défi ultime des Apennins, à 2 912 m"},                   href:"hiking.html" },
+      { icon:"ti-paw",             title:{en:"National Park", it:"Parco Nazionale", de:"Nationalpark", fr:"Parc National"}, desc:{en:"Bears, wolves and ancient forests — Valle Fondillo trail", it:"Orsi, lupi e foreste antiche — sentiero della Valle Fondillo", de:"Bären, Wölfe und uralte Wälder — Valle-Fondillo-Weg", fr:"Ours, loups et forêts antiques — sentier de la Valle Fondillo"},    href:"hiking.html" }
     ]
   },
   food: {
     emoji:"🍝",
-    title:"The Gourmet Traveller",
-    desc:"You travel through your taste buds. Arrosticini, saffron, truffle, Montepulciano — every meal in Abruzzo tells a centuries-old story.",
+    title:{en:"The Gourmet Traveller", it:"Il Viaggiatore Gourmet", de:"Der Gourmet-Reisende", fr:"Le Voyageur Gourmet"},
+    desc:{en:"You travel through your taste buds. Arrosticini, saffron, truffle, Montepulciano — every meal in Abruzzo tells a centuries-old story.", it:"Viaggi con il palato. Arrosticini, zafferano, tartufo, Montepulciano — ogni piatto in Abruzzo racconta una storia secolare.", de:"Du reist mit dem Gaumen. Arrosticini, Safran, Trüffel, Montepulciano — jedes Gericht in den Abruzzen erzählt eine jahrhundertealte Geschichte.", fr:"Vous voyagez par le palais. Arrosticini, safran, truffe, Montepulciano — chaque plat des Abruzzes raconte une histoire séculaire."},
     img:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80",
     recs:[
-      { icon:"ti-tools-kitchen-2", title:"Food & Wine",   desc:"12 authentic products, 3 DOC wines, 8 food festivals",        href:"food.html" },
-      { icon:"ti-calendar-event",  title:"Sagre",         desc:"24 food festivals year-round — free entry, generous portions", href:"events.html" },
-      { icon:"ti-spa",             title:"Agriturismo",   desc:"Farm-to-table dinners at mountain agriturismo",               href:"wellness.html" }
+      { icon:"ti-tools-kitchen-2", title:{en:"Food & Wine", it:"Cibo & Vino", de:"Essen & Wein", fr:"Gastronomie"},   desc:{en:"12 authentic products, 3 DOC wines, 8 food festivals", it:"12 prodotti autentici, 3 vini DOC, 8 sagre", de:"12 authentische Produkte, 3 DOC-Weine, 8 Feste", fr:"12 produits authentiques, 3 vins DOC, 8 fêtes gastronomiques"},        href:"food.html" },
+      { icon:"ti-calendar-event",  title:{en:"Sagre", it:"Sagre", de:"Sagre", fr:"Sagre"},         desc:{en:"24 food festivals year-round — free entry, generous portions", it:"24 sagre tutto l'anno — ingresso libero, porzioni generose", de:"24 Feste das ganze Jahr — freier Eintritt, großzügige Portionen", fr:"24 fêtes toute l'année — entrée libre, portions généreuses"}, href:"events.html" },
+      { icon:"ti-spa",             title:{en:"Agriturismo", it:"Agriturismo", de:"Agriturismo", fr:"Agriturismo"},   desc:{en:"Farm-to-table dinners at mountain agriturismo", it:"Cene a km zero negli agriturismi di montagna", de:"Farm-to-Table-Abendessen im Bergagriturismo", fr:"Dîners de la ferme à la table dans les agritourismes de montagne"},               href:"wellness.html" }
     ]
   },
   culture: {
     emoji:"🏰",
-    title:"The Culture Seeker",
-    desc:"History whispers to you from every stone. Medieval borghi, ancient castles and ruins — Abruzzo is a history book written into the landscape.",
+    title:{en:"The Culture Seeker", it:"Il Cercatore di Cultura", de:"Der Kulturliebhaber", fr:"L'Amateur de Culture"},
+    desc:{en:"History whispers to you from every stone. Medieval borghi, ancient castles and ruins — Abruzzo is a history book written into the landscape.", it:"La storia ti sussurra da ogni pietra. Borghi medievali, castelli antichi e rovine — l'Abruzzo è un libro di storia scritto nel paesaggio.", de:"Die Geschichte flüstert dir aus jedem Stein zu. Mittelalterliche Dörfer, alte Burgen und Ruinen — die Abruzzen sind ein in die Landschaft geschriebenes Geschichtsbuch.", fr:"L'histoire vous murmure depuis chaque pierre. Bourgs médiévaux, châteaux anciens et ruines — les Abruzzes sont un livre d'histoire inscrit dans le paysage."},
     img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=1400&q=80",
     recs:[
-      { icon:"ti-building-castle", title:"Medieval Villages", desc:"8 borghi from L'Aquila to Chieti — completely authentic",  href:"villages.html" },
-      { icon:"ti-map-pin",         title:"Attractions",       desc:"Roman theatres, castles, museums and glacial lakes",        href:"attractions.html" },
-      { icon:"ti-tools-kitchen-2", title:"Food & History",    desc:"Ancient recipes unchanged since Roman times",              href:"food.html" }
+      { icon:"ti-building-castle", title:{en:"Medieval Villages", it:"Borghi Medievali", de:"Mittelalterliche Dörfer", fr:"Villages Médiévaux"}, desc:{en:"8 borghi from L'Aquila to Chieti — completely authentic", it:"8 borghi da L'Aquila a Chieti — assolutamente autentici", de:"8 Dörfer von L'Aquila bis Chieti — vollkommen authentisch", fr:"8 bourgs de L'Aquila à Chieti — totalement authentiques"},  href:"villages.html" },
+      { icon:"ti-map-pin",         title:{en:"Attractions", it:"Attrazioni", de:"Sehenswürdigkeiten", fr:"Attractions"},       desc:{en:"Roman theatres, castles, museums and glacial lakes", it:"Teatri romani, castelli, musei e laghi glaciali", de:"Römische Theater, Burgen, Museen und Gletscherseen", fr:"Théâtres romains, châteaux, musées et lacs glaciaires"},        href:"attractions.html" },
+      { icon:"ti-tools-kitchen-2", title:{en:"Food & History", it:"Cibo & Storia", de:"Essen & Geschichte", fr:"Gastronomie & Histoire"},    desc:{en:"Ancient recipes unchanged since Roman times", it:"Ricette antiche immutate dai tempi dei Romani", de:"Alte Rezepte, unverändert seit der Römerzeit", fr:"Recettes anciennes inchangées depuis l'époque romaine"},              href:"food.html" }
     ]
   },
   wellness: {
     emoji:"🌿",
-    title:"The Wellness Seeker",
-    desc:"You come to Abruzzo to slow down, breathe and restore. Thermal waters, mountain silence, agriturismo dinners by the fire.",
+    title:{en:"The Wellness Seeker", it:"Il Cercatore di Benessere", de:"Der Wellness-Suchende", fr:"L'Amateur de Bien-être"},
+    desc:{en:"You come to Abruzzo to slow down, breathe and restore. Thermal waters, mountain silence, agriturismo dinners by the fire.", it:"Vieni in Abruzzo per rallentare, respirare e rigenerarti. Acque termali, silenzio di montagna, cene in agriturismo accanto al fuoco.", de:"Du kommst in die Abruzzen, um zu entschleunigen, durchzuatmen und aufzutanken. Thermalquellen, Bergstille, Agriturismo-Abende am Kaminfeuer.", fr:"Vous venez dans les Abruzzes pour ralentir, respirer et vous ressourcer. Eaux thermales, silence de la montagne, dîners en agritourisme au coin du feu."},
     img:"https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1400&q=80",
     recs:[
-      { icon:"ti-spa",             title:"Wellness & Terme",  desc:"Thermal baths in the mountains since Roman times",         href:"wellness.html" },
-      { icon:"ti-building-castle", title:"Slow Villages",     desc:"Medieval borghi with no tourists — total silence",         href:"villages.html" },
-      { icon:"ti-mountain",        title:"Easy Trails",       desc:"Wildflowers, beech forests and mountain silence",          href:"hiking.html" }
+      { icon:"ti-spa",             title:{en:"Wellness & Terme", it:"Benessere & Terme", de:"Wellness & Thermen", fr:"Bien-être & Thermes"},  desc:{en:"Thermal baths in the mountains since Roman times", it:"Terme di montagna dai tempi dei Romani", de:"Thermalbäder in den Bergen seit der Römerzeit", fr:"Thermes en montagne depuis l'époque romaine"},         href:"wellness.html" },
+      { icon:"ti-building-castle", title:{en:"Slow Villages", it:"Borghi Slow", de:"Ruhige Dörfer", fr:"Villages Paisibles"},     desc:{en:"Medieval borghi with no tourists — total silence", it:"Borghi medievali senza turisti — silenzio totale", de:"Mittelalterliche Dörfer ohne Touristen — totale Stille", fr:"Bourgs médiévaux sans touristes — silence total"},         href:"villages.html" },
+      { icon:"ti-mountain",        title:{en:"Easy Trails", it:"Sentieri Facili", de:"Leichte Wege", fr:"Sentiers Faciles"},       desc:{en:"Wildflowers, beech forests and mountain silence", it:"Fiori selvatici, faggete e silenzio di montagna", de:"Wildblumen, Buchenwälder und Bergstille", fr:"Fleurs sauvages, hêtraies et silence de la montagne"},          href:"hiking.html" }
     ]
   },
   family: {
     emoji:"👨‍👩‍👧",
-    title:"The Family Explorer",
-    desc:"The best memories are made together. Easy trails for little legs, wildlife spotting, beach days and medieval legends for all ages.",
+    title:{en:"The Family Explorer", it:"L'Esploratore in Famiglia", de:"Der Familien-Entdecker", fr:"L'Explorateur en Famille"},
+    desc:{en:"The best memories are made together. Easy trails for little legs, wildlife spotting, beach days and medieval legends for all ages.", it:"I ricordi più belli si costruiscono insieme. Sentieri facili per gambe piccole, avvistamenti di animali, giornate al mare e leggende medievali per tutte le età.", de:"Die schönsten Erinnerungen entstehen gemeinsam. Leichte Wege für kleine Beine, Tierbeobachtung, Strandtage und mittelalterliche Legenden für jedes Alter.", fr:"Les plus beaux souvenirs se créent ensemble. Sentiers faciles pour petites jambes, observation de la faune, journées à la plage et légendes médiévales pour tous les âges."},
     img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80",
     recs:[
-      { icon:"ti-paw",             title:"National Park",     desc:"Bear and wolf sightings on the flat Valle Fondillo walk",  href:"hiking.html" },
-      { icon:"ti-building-castle", title:"Villages & Legends",desc:"Medieval castles and stories for every generation",        href:"villages.html" },
-      { icon:"ti-map-pin",         title:"Attractions",       desc:"Heart-shaped lake, highest castle, trabocchi coast",       href:"attractions.html" }
+      { icon:"ti-paw",             title:{en:"National Park", it:"Parco Nazionale", de:"Nationalpark", fr:"Parc National"},     desc:{en:"Bear and wolf sightings on the flat Valle Fondillo walk", it:"Avvistamenti di orsi e lupi sulla facile passeggiata della Valle Fondillo", de:"Bären- und Wolfssichtungen auf dem ebenen Valle-Fondillo-Weg", fr:"Observation d'ours et de loups sur la balade plate de la Valle Fondillo"},  href:"hiking.html" },
+      { icon:"ti-building-castle", title:{en:"Villages & Legends", it:"Borghi & Leggende", de:"Dörfer & Legenden", fr:"Villages & Légendes"},desc:{en:"Medieval castles and stories for every generation", it:"Castelli medievali e storie per ogni generazione", de:"Mittelalterliche Burgen und Geschichten für jede Generation", fr:"Châteaux médiévaux et histoires pour toutes les générations"},        href:"villages.html" },
+      { icon:"ti-map-pin",         title:{en:"Attractions", it:"Attrazioni", de:"Sehenswürdigkeiten", fr:"Attractions"},       desc:{en:"Heart-shaped lake, highest castle, trabocchi coast", it:"Lago a forma di cuore, il castello più alto, costa dei trabocchi", de:"Herzförmiger See, höchste Burg, Trabocchi-Küste", fr:"Lac en forme de cœur, château le plus haut, côte des trabocchi"},       href:"attractions.html" }
     ]
   },
   nature: {
     emoji:"🌲",
-    title:"The Nature Lover",
-    desc:"Wild forests, glacial lakes, ancient beech trees and starlit skies. Abruzzo has the darkest, wildest nature left in central Italy.",
+    title:{en:"The Nature Lover", it:"L'Amante della Natura", de:"Der Naturliebhaber", fr:"L'Amoureux de la Nature"},
+    desc:{en:"Wild forests, glacial lakes, ancient beech trees and starlit skies. Abruzzo has the darkest, wildest nature left in central Italy.", it:"Foreste selvagge, laghi glaciali, faggi secolari e cieli stellati. L'Abruzzo custodisce la natura più buia e selvaggia dell'Italia centrale.", de:"Wilde Wälder, Gletscherseen, uralte Buchen und Sternenhimmel. Die Abruzzen bewahren die dunkelste, wildeste Natur Mittelitaliens.", fr:"Forêts sauvages, lacs glaciaires, hêtres séculaires et ciels étoilés. Les Abruzzes abritent la nature la plus sombre et sauvage du centre de l'Italie."},
     img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=1400&q=80",
     recs:[
-      { icon:"ti-mountain",        title:"Hiking",            desc:"3,000+ km of trails across 3 national parks",             href:"hiking.html" },
-      { icon:"ti-map-pin",         title:"Majella Geopark",   desc:"UNESCO Geopark — 74,000 hectares of limestone wilderness", href:"attractions.html" },
-      { icon:"ti-spa",             title:"Forest Bathing",    desc:"Certified shinrin-yoku in ancient beech forests",          href:"wellness.html" }
+      { icon:"ti-mountain",        title:{en:"Hiking", it:"Trekking", de:"Wandern", fr:"Randonnée"},            desc:{en:"3,000+ km of trails across 3 national parks", it:"3.000+ km di sentieri in 3 parchi nazionali", de:"3.000+ km Wege in 3 Nationalparks", fr:"3 000+ km de sentiers dans 3 parcs nationaux"},             href:"hiking.html" },
+      { icon:"ti-map-pin",         title:{en:"Majella Geopark", it:"Majella Geopark", de:"Majella Geopark", fr:"Majella Geopark"},   desc:{en:"UNESCO Geopark — 74,000 hectares of limestone wilderness", it:"Geoparco UNESCO — 74.000 ettari di natura calcarea", de:"UNESCO-Geopark — 74.000 Hektar Kalksteinwildnis", fr:"Géoparc UNESCO — 74 000 hectares de nature calcaire"}, href:"attractions.html" },
+      { icon:"ti-spa",             title:{en:"Forest Bathing", it:"Bagno nella Foresta", de:"Waldbaden", fr:"Bain de Forêt"},    desc:{en:"Certified shinrin-yoku in ancient beech forests", it:"Shinrin-yoku certificato nelle antiche faggete", de:"Zertifiziertes Shinrin-yoku in uralten Buchenwäldern", fr:"Shinrin-yoku certifié dans les antiques hêtraies"},          href:"wellness.html" }
     ]
   }
 };
@@ -649,19 +649,19 @@ function loadQuestion() {
 
   document.getElementById('progress-bar').style.width = pct + '%';
   document.getElementById('q-counter').textContent    = (currentQ + 1) + ' / ' + questions.length;
-  document.getElementById('q-text').textContent       = q.text;
+  document.getElementById('q-text').textContent       = L(q.text);
 
   // Side A
   document.getElementById('img-a').style.backgroundImage   = `url('${q.a.img}')`;
   document.getElementById('icon-a').textContent            = q.a.icon;
-  document.getElementById('label-a').textContent           = q.a.label;
-  document.getElementById('desc-a').textContent            = q.a.desc;
+  document.getElementById('label-a').textContent           = L(q.a.label);
+  document.getElementById('desc-a').textContent            = L(q.a.desc);
 
   // Side B
   document.getElementById('img-b').style.backgroundImage   = `url('${q.b.img}')`;
   document.getElementById('icon-b').textContent            = q.b.icon;
-  document.getElementById('label-b').textContent           = q.b.label;
-  document.getElementById('desc-b').textContent            = q.b.desc;
+  document.getElementById('label-b').textContent           = L(q.b.label);
+  document.getElementById('desc-b').textContent            = L(q.b.desc);
 
   // Reset sides
   ['side-a','side-b'].forEach(id => {
@@ -711,8 +711,8 @@ function showResult() {
 
   document.getElementById('result-bg').style.backgroundImage    = `url('${p.img}')`;
   document.getElementById('result-emoji').textContent           = p.emoji;
-  document.getElementById('result-title').textContent           = p.title;
-  document.getElementById('result-desc').textContent            = p.desc;
+  document.getElementById('result-title').textContent           = L(p.title);
+  document.getElementById('result-desc').textContent            = L(p.desc);
 
   document.getElementById('result-cards').innerHTML = p.recs.map(r => `
     <a href="${r.href}" class="result-card">
@@ -721,8 +721,8 @@ function showResult() {
           <i class="ti ${r.icon}" aria-hidden="true"></i>
         </div>
       </div>
-      <h4>${r.title}</h4>
-      <p>${r.desc}</p>
+      <h4>${L(r.title)}</h4>
+      <p>${L(r.desc)}</p>
     </a>`).join('');
 
   setTimeout(() => showScreen('result'), 300);
@@ -744,6 +744,12 @@ document.addEventListener('keydown', e => {
 
 /* ══ INIT ══ */
 buildDots();
+
+/* ══ RE-RENDER AL CAMBIO LINGUA ══ */
+document.addEventListener('aw:langchange', () => {
+  if (document.getElementById('screen-question').classList.contains('active')) loadQuestion();
+  else if (document.getElementById('screen-result').classList.contains('active')) showResult();
+});
 </script>
 
 </body>
