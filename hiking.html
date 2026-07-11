@@ -17,6 +17,8 @@
 <!-- Map -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<!-- Alias Leaflet: i18n.js defines a global function L() that otherwise shadows Leaflet's global L -->
+<script>window.LEAFLET = window.L;</script>
 
 <!-- Design system -->
 <link rel="stylesheet" href="shared.css">
@@ -122,14 +124,14 @@
   <div class="hero-inner-veil"></div>
   <div class="hero-inner-content">
     <div class="hero-breadcrumb">
-      <a href="index.html">Home</a> › Hiking & Trekking
+      <a href="index.html" data-i18n="n_home">Home</a> › <span data-i18n="hk_breadcrumb">Hiking &amp; Trekking</span>
     </div>
-    <h1 class="hero-inner-h1">Hiking & <em>Trekking</em></h1>
+    <h1 class="hero-inner-h1" data-i18n="hk_hero_h1">Hiking & <em>Trekking</em></h1>
     <div class="hero-kpis">
-      <div class="hero-kpi"><strong>3,000+</strong><span>km of trails</span></div>
-      <div class="hero-kpi"><strong>3</strong><span>National Parks</span></div>
-      <div class="hero-kpi"><strong>2,912m</strong><span>Highest peak</span></div>
-      <div class="hero-kpi"><strong>10</strong><span>Featured routes</span></div>
+      <div class="hero-kpi"><strong>3,000+</strong><span data-i18n="hk_kpi_km">km of trails</span></div>
+      <div class="hero-kpi"><strong>3</strong><span data-i18n="hk_kpi_parks">National Parks</span></div>
+      <div class="hero-kpi"><strong>2,912m</strong><span data-i18n="hk_kpi_peak">Highest peak</span></div>
+      <div class="hero-kpi"><strong>10</strong><span data-i18n="hk_kpi_routes">Featured routes</span></div>
     </div>
   </div>
 </div>
@@ -137,18 +139,18 @@
 
 <!-- ════ FILTER BAR ════ -->
 <div class="filter-bar">
-  <span class="filter-label">Difficulty</span>
-  <button class="pill pill-parchment on" onclick="hFilter('diff','all',this)">All</button>
-  <button class="pill pill-parchment" onclick="hFilter('diff','easy',this)">🟢 Easy</button>
-  <button class="pill pill-parchment" onclick="hFilter('diff','moderate',this)">🟡 Moderate</button>
-  <button class="pill pill-parchment" onclick="hFilter('diff','hard',this)">🔴 Hard</button>
+  <span class="filter-label" data-i18n="hk_f_diff">Difficulty</span>
+  <button class="pill pill-parchment on" onclick="hFilter('diff','all',this)"><span data-i18n="hk_f_all">All</span></button>
+  <button class="pill pill-parchment" onclick="hFilter('diff','easy',this)">🟢 <span data-i18n="hk_f_easy">Easy</span></button>
+  <button class="pill pill-parchment" onclick="hFilter('diff','moderate',this)">🟡 <span data-i18n="hk_f_moderate">Moderate</span></button>
+  <button class="pill pill-parchment" onclick="hFilter('diff','hard',this)">🔴 <span data-i18n="hk_f_hard">Hard</span></button>
   <div class="filter-divider"></div>
-  <span class="filter-label">Area</span>
-  <button class="pill pill-parchment on" onclick="hFilter('area','all',this)">All</button>
+  <span class="filter-label" data-i18n="hk_f_area">Area</span>
+  <button class="pill pill-parchment on" onclick="hFilter('area','all',this)"><span data-i18n="hk_f_all">All</span></button>
   <button class="pill pill-parchment" onclick="hFilter('area','gran-sasso',this)">Gran Sasso</button>
   <button class="pill pill-parchment" onclick="hFilter('area','maiella',this)">Maiella</button>
-  <button class="pill pill-parchment" onclick="hFilter('area','national-park',this)">Nat. Park</button>
-  <button class="pill pill-parchment" onclick="hFilter('area','other',this)">Other</button>
+  <button class="pill pill-parchment" onclick="hFilter('area','national-park',this)"><span data-i18n="hk_a_natpark">Nat. Park</span></button>
+  <button class="pill pill-parchment" onclick="hFilter('area','other',this)"><span data-i18n="hk_a_other">Other</span></button>
   <span class="filter-count" id="hcnt"></span>
 </div>
 
@@ -166,18 +168,18 @@
       <!-- Map -->
       <div class="sbox fade-in">
         <div class="sbox-title">
-          <i class="ti ti-map" aria-hidden="true"></i>Trail Map
+          <i class="ti ti-map" aria-hidden="true"></i><span data-i18n="hk_map_title">Trail Map</span>
         </div>
         <div id="trail-map"></div>
         <div class="map-legend">
           <div class="map-legend-item">
-            <div class="map-legend-dot" style="background:#2a9d5c"></div>Easy
+            <div class="map-legend-dot" style="background:#2a9d5c"></div><span data-i18n="hk_f_easy">Easy</span>
           </div>
           <div class="map-legend-item">
-            <div class="map-legend-dot" style="background:#e9a820"></div>Moderate
+            <div class="map-legend-dot" style="background:#e9a820"></div><span data-i18n="hk_f_moderate">Moderate</span>
           </div>
           <div class="map-legend-item">
-            <div class="map-legend-dot" style="background:#e05050"></div>Hard
+            <div class="map-legend-dot" style="background:#e05050"></div><span data-i18n="hk_f_hard">Hard</span>
           </div>
         </div>
       </div>
@@ -185,41 +187,41 @@
       <!-- Tips -->
       <div class="gbox fade-in">
         <div class="gbox-title">
-          <i class="ti ti-backpack" aria-hidden="true"></i>Essential Tips
+          <i class="ti ti-backpack" aria-hidden="true"></i><span data-i18n="hk_tips_title">Essential Tips</span>
         </div>
         <div class="tip-row">
           <div class="tip-icon"><i class="ti ti-shoe" aria-hidden="true"></i></div>
-          <div><strong>Footwear</strong><p>Waterproof hiking boots required for any trail above 1,500m.</p></div>
+          <div><strong data-i18n="hk_tip_foot">Footwear</strong><p data-i18n="hk_tip_foot_d">Waterproof hiking boots required for any trail above 1,500m.</p></div>
         </div>
         <div class="tip-row">
           <div class="tip-icon"><i class="ti ti-cloud" aria-hidden="true"></i></div>
-          <div><strong>Weather</strong><p>Start before 8am for long routes. Mountain weather changes fast.</p></div>
+          <div><strong data-i18n="hk_tip_weather">Weather</strong><p data-i18n="hk_tip_weather_d">Start before 8am for long routes. Mountain weather changes fast.</p></div>
         </div>
         <div class="tip-row">
           <div class="tip-icon"><i class="ti ti-droplet" aria-hidden="true"></i></div>
-          <div><strong>Water</strong><p>Carry at least 2L. Springs may be dry in summer.</p></div>
+          <div><strong data-i18n="hk_tip_water">Water</strong><p data-i18n="hk_tip_water_d">Carry at least 2L. Springs may be dry in summer.</p></div>
         </div>
         <div class="tip-row">
           <div class="tip-icon"><i class="ti ti-map-2" aria-hidden="true"></i></div>
-          <div><strong>GPS & Maps</strong><p>Download offline maps on Komoot or Wikiloc. Signal patchy above 1,800m.</p></div>
+          <div><strong data-i18n="hk_tip_gps">GPS & Maps</strong><p data-i18n="hk_tip_gps_d">Download offline maps on Komoot or Wikiloc. Signal patchy above 1,800m.</p></div>
         </div>
         <div class="tip-row">
           <div class="tip-icon"><i class="ti ti-first-aid-kit" aria-hidden="true"></i></div>
-          <div><strong>Emergency</strong><p>Mountain rescue: call 112 and ask for Soccorso Alpino (CNSAS).</p></div>
+          <div><strong data-i18n="hk_tip_emerg">Emergency</strong><p data-i18n="hk_tip_emerg_d">Mountain rescue: call 112 and ask for Soccorso Alpino (CNSAS).</p></div>
         </div>
       </div>
 
       <!-- At a glance -->
       <div class="pbox fade-in">
         <div class="pbox-title">
-          <i class="ti ti-info-circle" aria-hidden="true"></i>At a Glance
+          <i class="ti ti-info-circle" aria-hidden="true"></i><span data-i18n="hk_glance_title">At a Glance</span>
         </div>
-        <div class="kv-row"><span>Best season</span><span>May – October</span></div>
-        <div class="kv-row"><span>Maps</span><span>CAI 1:25,000</span></div>
-        <div class="kv-row"><span>Mountain rescue</span><span>112 (CNSAS)</span></div>
-        <div class="kv-row"><span>Guides</span><span>L'Aquila, Sulmona</span></div>
-        <div class="kv-row"><span>Nearest airport</span><span>Pescara (PSR)</span></div>
-        <div class="kv-row"><span>Park HQ</span><span>Pescasseroli</span></div>
+        <div class="kv-row"><span data-i18n="hk_g_season">Best season</span><span data-i18n="hk_g_season_v">May – October</span></div>
+        <div class="kv-row"><span data-i18n="hk_g_maps">Maps</span><span>CAI 1:25,000</span></div>
+        <div class="kv-row"><span data-i18n="hk_g_rescue">Mountain rescue</span><span>112 (CNSAS)</span></div>
+        <div class="kv-row"><span data-i18n="hk_g_guides">Guides</span><span>L'Aquila, Sulmona</span></div>
+        <div class="kv-row"><span data-i18n="hk_g_airport">Nearest airport</span><span>Pescara (PSR)</span></div>
+        <div class="kv-row"><span data-i18n="hk_g_hq">Park HQ</span><span>Pescasseroli</span></div>
       </div>
 
     </div>
@@ -290,87 +292,169 @@
 
 <!-- ════ JAVASCRIPT ════ -->
 <script>
+/* ══ I18N — chiavi statiche di pagina (prefisso hk_) ══ */
+Object.assign(T18.en, {
+  hk_breadcrumb:'Hiking & Trekking',
+  hk_hero_h1:'Hiking & <em>Trekking</em>',
+  hk_kpi_km:'km of trails', hk_kpi_parks:'National Parks', hk_kpi_peak:'Highest peak', hk_kpi_routes:'Featured routes',
+  hk_f_diff:'Difficulty', hk_f_area:'Area', hk_f_all:'All',
+  hk_f_easy:'Easy', hk_f_moderate:'Moderate', hk_f_hard:'Hard',
+  hk_a_natpark:'Nat. Park', hk_a_other:'Other',
+  hk_map_title:'Trail Map', hk_tips_title:'Essential Tips',
+  hk_tip_foot:'Footwear', hk_tip_foot_d:'Waterproof hiking boots required for any trail above 1,500m.',
+  hk_tip_weather:'Weather', hk_tip_weather_d:'Start before 8am for long routes. Mountain weather changes fast.',
+  hk_tip_water:'Water', hk_tip_water_d:'Carry at least 2L. Springs may be dry in summer.',
+  hk_tip_gps:'GPS & Maps', hk_tip_gps_d:'Download offline maps on Komoot or Wikiloc. Signal patchy above 1,800m.',
+  hk_tip_emerg:'Emergency', hk_tip_emerg_d:'Mountain rescue: call 112 and ask for Soccorso Alpino (CNSAS).',
+  hk_glance_title:'At a Glance',
+  hk_g_season:'Best season', hk_g_season_v:'May – October', hk_g_maps:'Maps',
+  hk_g_rescue:'Mountain rescue', hk_g_guides:'Guides', hk_g_airport:'Nearest airport', hk_g_hq:'Park HQ',
+  hk_trail:'trail', hk_trails:'trails', hk_full:'Full details →',
+  hk_m_distance:'Distance', hk_m_elevation:'Elevation', hk_m_duration:'Duration', hk_m_start:'Start point',
+  hk_m_highlights:'Highlights', hk_m_warnings:'Know Before You Go'
+});
+Object.assign(T18.it, {
+  hk_breadcrumb:'Trekking & Escursionismo',
+  hk_hero_h1:'Trekking & <em>Escursioni</em>',
+  hk_kpi_km:'km di sentieri', hk_kpi_parks:'Parchi Nazionali', hk_kpi_peak:'Vetta più alta', hk_kpi_routes:'Itinerari selezionati',
+  hk_f_diff:'Difficoltà', hk_f_area:'Zona', hk_f_all:'Tutti',
+  hk_f_easy:'Facile', hk_f_moderate:'Media', hk_f_hard:'Difficile',
+  hk_a_natpark:'Parco Naz.', hk_a_other:'Altro',
+  hk_map_title:'Mappa dei sentieri', hk_tips_title:'Consigli essenziali',
+  hk_tip_foot:'Calzature', hk_tip_foot_d:'Scarponi impermeabili obbligatori su ogni sentiero sopra i 1.500 m.',
+  hk_tip_weather:'Meteo', hk_tip_weather_d:'Parti prima delle 8 sui percorsi lunghi. Il meteo di montagna cambia in fretta.',
+  hk_tip_water:'Acqua', hk_tip_water_d:'Porta almeno 2 litri. In estate le sorgenti possono essere asciutte.',
+  hk_tip_gps:'GPS & Mappe', hk_tip_gps_d:'Scarica le mappe offline su Komoot o Wikiloc. Segnale scarso sopra i 1.800 m.',
+  hk_tip_emerg:'Emergenze', hk_tip_emerg_d:'Soccorso in montagna: chiama il 112 e chiedi del Soccorso Alpino (CNSAS).',
+  hk_glance_title:'In breve',
+  hk_g_season:'Stagione migliore', hk_g_season_v:'Maggio – Ottobre', hk_g_maps:'Mappe',
+  hk_g_rescue:'Soccorso alpino', hk_g_guides:'Guide', hk_g_airport:'Aeroporto più vicino', hk_g_hq:'Sede del parco',
+  hk_trail:'sentiero', hk_trails:'sentieri', hk_full:'Tutti i dettagli →',
+  hk_m_distance:'Distanza', hk_m_elevation:'Dislivello', hk_m_duration:'Durata', hk_m_start:'Punto di partenza',
+  hk_m_highlights:'Punti forti', hk_m_warnings:'Da sapere prima di partire'
+});
+Object.assign(T18.de, {
+  hk_breadcrumb:'Wandern & Trekking',
+  hk_hero_h1:'Wandern & <em>Trekking</em>',
+  hk_kpi_km:'km Wanderwege', hk_kpi_parks:'Nationalparks', hk_kpi_peak:'Höchster Gipfel', hk_kpi_routes:'Ausgewählte Routen',
+  hk_f_diff:'Schwierigkeit', hk_f_area:'Gebiet', hk_f_all:'Alle',
+  hk_f_easy:'Leicht', hk_f_moderate:'Mittel', hk_f_hard:'Schwer',
+  hk_a_natpark:'Nat.park', hk_a_other:'Andere',
+  hk_map_title:'Wanderkarte', hk_tips_title:'Wichtige Tipps',
+  hk_tip_foot:'Schuhwerk', hk_tip_foot_d:'Wasserdichte Wanderstiefel auf jedem Weg über 1.500 m erforderlich.',
+  hk_tip_weather:'Wetter', hk_tip_weather_d:'Bei langen Routen vor 8 Uhr starten. Das Bergwetter schlägt schnell um.',
+  hk_tip_water:'Wasser', hk_tip_water_d:'Mindestens 2 l mitnehmen. Quellen können im Sommer trocken sein.',
+  hk_tip_gps:'GPS & Karten', hk_tip_gps_d:'Offline-Karten auf Komoot oder Wikiloc laden. Empfang über 1.800 m lückenhaft.',
+  hk_tip_emerg:'Notfall', hk_tip_emerg_d:'Bergrettung: 112 wählen und nach dem Soccorso Alpino (CNSAS) fragen.',
+  hk_glance_title:'Auf einen Blick',
+  hk_g_season:'Beste Jahreszeit', hk_g_season_v:'Mai – Oktober', hk_g_maps:'Karten',
+  hk_g_rescue:'Bergrettung', hk_g_guides:'Bergführer', hk_g_airport:'Nächster Flughafen', hk_g_hq:'Parkverwaltung',
+  hk_trail:'Weg', hk_trails:'Wege', hk_full:'Alle Details →',
+  hk_m_distance:'Distanz', hk_m_elevation:'Höhenmeter', hk_m_duration:'Dauer', hk_m_start:'Startpunkt',
+  hk_m_highlights:'Highlights', hk_m_warnings:'Vor dem Start beachten'
+});
+Object.assign(T18.fr, {
+  hk_breadcrumb:'Randonnée & Trekking',
+  hk_hero_h1:'Randonnée & <em>Trekking</em>',
+  hk_kpi_km:'km de sentiers', hk_kpi_parks:'Parcs Nationaux', hk_kpi_peak:'Plus haut sommet', hk_kpi_routes:'Itinéraires sélectionnés',
+  hk_f_diff:'Difficulté', hk_f_area:'Zone', hk_f_all:'Tous',
+  hk_f_easy:'Facile', hk_f_moderate:'Modérée', hk_f_hard:'Difficile',
+  hk_a_natpark:'Parc nat.', hk_a_other:'Autre',
+  hk_map_title:'Carte des sentiers', hk_tips_title:'Conseils essentiels',
+  hk_tip_foot:'Chaussures', hk_tip_foot_d:'Chaussures de randonnée imperméables obligatoires sur tout sentier au-dessus de 1 500 m.',
+  hk_tip_weather:'Météo', hk_tip_weather_d:'Partez avant 8h sur les longs itinéraires. La météo de montagne change vite.',
+  hk_tip_water:'Eau', hk_tip_water_d:'Emportez au moins 2 L. Les sources peuvent être à sec en été.',
+  hk_tip_gps:'GPS & Cartes', hk_tip_gps_d:'Téléchargez les cartes hors ligne sur Komoot ou Wikiloc. Signal faible au-dessus de 1 800 m.',
+  hk_tip_emerg:'Urgence', hk_tip_emerg_d:'Secours en montagne : appelez le 112 et demandez le Soccorso Alpino (CNSAS).',
+  hk_glance_title:'En bref',
+  hk_g_season:'Meilleure saison', hk_g_season_v:'Mai – Octobre', hk_g_maps:'Cartes',
+  hk_g_rescue:'Secours en montagne', hk_g_guides:'Guides', hk_g_airport:'Aéroport le plus proche', hk_g_hq:'Siège du parc',
+  hk_trail:'sentier', hk_trails:'sentiers', hk_full:'Tous les détails →',
+  hk_m_distance:'Distance', hk_m_elevation:'Dénivelé', hk_m_duration:'Durée', hk_m_start:'Point de départ',
+  hk_m_highlights:'Points forts', hk_m_warnings:'À savoir avant de partir'
+});
+
 /* ══ DATA ══ */
 const trails = [
-  { id:1, name:"Corno Grande Summit", area:"gran-sasso", areaLabel:"Gran Sasso", diff:"hard",
+  { id:1, name:{en:"Corno Grande Summit",it:"Vetta del Corno Grande",de:"Gipfel des Corno Grande",fr:"Sommet du Corno Grande"}, area:"gran-sasso", areaLabel:"Gran Sasso", diff:"hard",
     img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80",
-    desc:"The ultimate Apennine challenge — highest peak at 2,912m with views stretching from the Adriatic to the Tyrrhenian on clear days.",
-    dist:"12 km", elev:"900 m", dur:"6–8 h", type:"Out & back",
+    desc:{en:"The ultimate Apennine challenge — highest peak at 2,912m with views stretching from the Adriatic to the Tyrrhenian on clear days.",it:"La sfida più alta dell'Appennino — la vetta massima a 2.912 m, con panorami che nei giorni limpidi spaziano dall'Adriatico al Tirreno.",de:"Die ultimative Apennin-Herausforderung — mit 2.912 m der höchste Gipfel, mit Blick vom Adriatischen bis zum Tyrrhenischen Meer an klaren Tagen.",fr:"Le défi ultime des Apennins — le plus haut sommet à 2 912 m, avec des vues qui s'étendent de l'Adriatique à la Tyrrhénienne par temps clair."},
+    dist:"12 km", elev:"900 m", dur:"6–8 h", type:{en:"Out & back",it:"Andata e ritorno",de:"Hin und zurück",fr:"Aller-retour"},
     seasons:[0,0,1,1,1,0], start:"Campo Imperatore (cable car from Assergi)",
-    highlights:["Highest peak in the Apennines","Views over two seas on clear days","Glacial moraine terrain","Cable car access to base at 2,130m"],
-    warnings:["Crampons & ice axe required in spring","Guided ascent strongly recommended","Afternoon thunderstorms common Jul–Aug","No water sources above 2,200m"],
+    highlights:[{en:"Highest peak in the Apennines",it:"La vetta più alta dell'Appennino",de:"Höchster Gipfel des Apennins",fr:"Le plus haut sommet des Apennins"},{en:"Views over two seas on clear days",it:"Vista su due mari nei giorni limpidi",de:"Blick auf zwei Meere an klaren Tagen",fr:"Vue sur deux mers par temps clair"},{en:"Glacial moraine terrain",it:"Terreno di morena glaciale",de:"Gletschermoränen-Gelände",fr:"Terrain de moraine glaciaire"},{en:"Cable car access to base at 2,130m",it:"Funivia fino alla base a 2.130 m",de:"Seilbahn zur Basis auf 2.130 m",fr:"Téléphérique jusqu'à la base à 2 130 m"}],
+    warnings:[{en:"Crampons & ice axe required in spring",it:"Ramponi e piccozza necessari in primavera",de:"Steigeisen & Eispickel im Frühjahr erforderlich",fr:"Crampons et piolet requis au printemps"},{en:"Guided ascent strongly recommended",it:"Salita con guida fortemente consigliata",de:"Geführter Aufstieg dringend empfohlen",fr:"Ascension guidée fortement recommandée"},{en:"Afternoon thunderstorms common Jul–Aug",it:"Temporali pomeridiani frequenti a lug–ago",de:"Nachmittagsgewitter häufig Jul–Aug",fr:"Orages l'après-midi fréquents en juil–août"},{en:"No water sources above 2,200m",it:"Nessuna sorgente d'acqua sopra i 2.200 m",de:"Keine Wasserquellen über 2.200 m",fr:"Aucune source d'eau au-dessus de 2 200 m"}],
     lat:42.46, lng:13.57 },
-  { id:2, name:"Valle Fondillo — Bear Valley", area:"national-park", areaLabel:"National Park", diff:"easy",
+  { id:2, name:{en:"Valle Fondillo — Bear Valley",it:"Valle Fondillo — la Valle degli Orsi",de:"Valle Fondillo — das Bärental",fr:"Valle Fondillo — la Vallée des Ours"}, area:"national-park", areaLabel:{en:"National Park",it:"Parco Nazionale",de:"Nationalpark",fr:"Parc National"}, diff:"easy",
     img:"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=700&q=80",
-    desc:"Italy's most famous wildlife walk — a flat valley trail where Marsican bear sightings are genuinely possible in spring and autumn.",
-    dist:"8 km", elev:"200 m", dur:"2–3 h", type:"Loop",
+    desc:{en:"Italy's most famous wildlife walk — a flat valley trail where Marsican bear sightings are genuinely possible in spring and autumn.",it:"La passeggiata naturalistica più famosa d'Italia — un sentiero di fondovalle pianeggiante dove in primavera e autunno l'avvistamento dell'orso marsicano è davvero possibile.",de:"Italiens berühmtester Wildtier-Spaziergang — ein flacher Talweg, auf dem Sichtungen des Marsikanischen Braunbären im Frühjahr und Herbst wirklich möglich sind.",fr:"La promenade animalière la plus célèbre d'Italie — un sentier de fond de vallée plat où l'observation de l'ours marsican est réellement possible au printemps et en automne."},
+    dist:"8 km", elev:"200 m", dur:"2–3 h", type:{en:"Loop",it:"Anello",de:"Rundweg",fr:"Boucle"},
     seasons:[1,1,1,1,1,0], start:"Opi village parking (free)",
-    highlights:["Bear sightings possible Apr–Oct","Flat terrain — suitable for families","Beech forest canopy","Wooden bridges over crystal streams"],
-    warnings:["Arrive early — very popular in summer","Stay on marked path at all times","No dogs allowed in the national park","Never feed or approach wildlife"],
+    highlights:[{en:"Bear sightings possible Apr–Oct",it:"Avvistamento orsi possibile apr–ott",de:"Bärensichtungen möglich Apr–Okt",fr:"Observation d'ours possible avr–oct"},{en:"Flat terrain — suitable for families",it:"Terreno pianeggiante — adatto alle famiglie",de:"Flaches Gelände — familientauglich",fr:"Terrain plat — adapté aux familles"},{en:"Beech forest canopy",it:"Volta di faggeta",de:"Buchenwald-Blätterdach",fr:"Voûte de hêtraie"},{en:"Wooden bridges over crystal streams",it:"Ponti di legno su ruscelli cristallini",de:"Holzbrücken über kristallklare Bäche",fr:"Ponts de bois sur des ruisseaux cristallins"}],
+    warnings:[{en:"Arrive early — very popular in summer",it:"Arriva presto — molto frequentato in estate",de:"Früh kommen — im Sommer sehr beliebt",fr:"Arrivez tôt — très fréquenté en été"},{en:"Stay on marked path at all times",it:"Resta sempre sul sentiero segnato",de:"Immer auf dem markierten Weg bleiben",fr:"Restez toujours sur le sentier balisé"},{en:"No dogs allowed in the national park",it:"Cani non ammessi nel parco nazionale",de:"Hunde im Nationalpark nicht erlaubt",fr:"Chiens interdits dans le parc national"},{en:"Never feed or approach wildlife",it:"Non nutrire né avvicinare gli animali",de:"Wildtiere nie füttern oder sich ihnen nähern",fr:"Ne jamais nourrir ni approcher la faune"}],
     lat:41.78, lng:13.80 },
   { id:3, name:"Monte Amaro — Maiella", area:"maiella", areaLabel:"Maiella", diff:"hard",
     img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=700&q=80",
-    desc:"The highest Maiella peak at 2,793m via the dramatic Blockhaus ridge — one of the finest mountain days in central Italy.",
-    dist:"18 km", elev:"1,400 m", dur:"8–10 h", type:"Out & back",
+    desc:{en:"The highest Maiella peak at 2,793m via the dramatic Blockhaus ridge — one of the finest mountain days in central Italy.",it:"La vetta più alta della Maiella, 2.793 m, lungo la spettacolare cresta del Blockhaus — una delle più belle giornate di montagna dell'Italia centrale.",de:"Der höchste Gipfel der Maiella auf 2.793 m über den spektakulären Blockhaus-Grat — einer der schönsten Bergtage Mittelitaliens.",fr:"Le plus haut sommet de la Maiella à 2 793 m par la spectaculaire crête du Blockhaus — l'une des plus belles journées de montagne d'Italie centrale."},
+    dist:"18 km", elev:"1,400 m", dur:"8–10 h", type:{en:"Out & back",it:"Andata e ritorno",de:"Hin und zurück",fr:"Aller-retour"},
     seasons:[0,0,1,1,1,0], start:"Blockhaus plateau (road from Pretoro)",
-    highlights:["Second highest Apennine peak","Ancient hermit caves en route","Wild orchids in June","360° summit panorama"],
-    warnings:["Full day commitment — 6am start essential","Navigation skills required on plateau","No shade — sun protection vital","GPS track strongly recommended"],
+    highlights:[{en:"Second highest Apennine peak",it:"Seconda vetta più alta dell'Appennino",de:"Zweithöchster Apennin-Gipfel",fr:"Deuxième plus haut sommet des Apennins"},{en:"Ancient hermit caves en route",it:"Antiche grotte eremitiche lungo il percorso",de:"Alte Einsiedlerhöhlen am Weg",fr:"Anciennes grottes d'ermites en chemin"},{en:"Wild orchids in June",it:"Orchidee selvatiche a giugno",de:"Wilde Orchideen im Juni",fr:"Orchidées sauvages en juin"},{en:"360° summit panorama",it:"Panorama a 360° dalla vetta",de:"360°-Gipfelpanorama",fr:"Panorama à 360° au sommet"}],
+    warnings:[{en:"Full day commitment — 6am start essential",it:"Impegno di un'intera giornata — partenza alle 6 essenziale",de:"Ganztägig — Start um 6 Uhr unerlässlich",fr:"Journée entière — départ à 6h indispensable"},{en:"Navigation skills required on plateau",it:"Capacità di orientamento richieste sull'altopiano",de:"Navigationskenntnisse auf dem Plateau erforderlich",fr:"Sens de l'orientation requis sur le plateau"},{en:"No shade — sun protection vital",it:"Nessuna ombra — protezione solare indispensabile",de:"Kein Schatten — Sonnenschutz unerlässlich",fr:"Aucune ombre — protection solaire vitale"},{en:"GPS track strongly recommended",it:"Traccia GPS fortemente consigliata",de:"GPS-Track dringend empfohlen",fr:"Trace GPS fortement recommandée"}],
     lat:42.08, lng:14.08 },
-  { id:4, name:"Gole del Sagittario", area:"other", areaLabel:"Sulmona Valley", diff:"easy",
+  { id:4, name:"Gole del Sagittario", area:"other", areaLabel:{en:"Sulmona Valley",it:"Valle di Sulmona",de:"Sulmona-Tal",fr:"Vallée de Sulmona"}, diff:"easy",
     img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80",
-    desc:"A spectacular river gorge with walls rising 400m above turquoise water — one of the most dramatic short walks in Abruzzo.",
-    dist:"7 km", elev:"250 m", dur:"2.5–3 h", type:"Loop",
+    desc:{en:"A spectacular river gorge with walls rising 400m above turquoise water — one of the most dramatic short walks in Abruzzo.",it:"Una spettacolare gola fluviale con pareti che si innalzano per 400 m sopra acque turchesi — una delle passeggiate brevi più suggestive d'Abruzzo.",de:"Eine spektakuläre Flussschlucht mit 400 m hohen Wänden über türkisfarbenem Wasser — einer der eindrucksvollsten kurzen Spaziergänge der Abruzzen.",fr:"Une spectaculaire gorge fluviale aux parois s'élevant à 400 m au-dessus d'une eau turquoise — l'une des plus saisissantes courtes randonnées des Abruzzes."},
+    dist:"7 km", elev:"250 m", dur:"2.5–3 h", type:{en:"Loop",it:"Anello",de:"Rundweg",fr:"Boucle"},
     seasons:[1,1,1,1,0,0], start:"Anversa degli Abruzzi village",
-    highlights:["Turquoise Sagittario river","Canyon walls up to 400m","Peregrine falcons nesting on cliffs","Café in village at the end"],
-    warnings:["Trail can flood after heavy rainfall","Rocks near water are slippery — good shoes","Some narrow ledge sections","Not suitable for sufferers of vertigo"],
+    highlights:[{en:"Turquoise Sagittario river",it:"Il fiume Sagittario turchese",de:"Türkisfarbener Fluss Sagittario",fr:"La rivière Sagittario turquoise"},{en:"Canyon walls up to 400m",it:"Pareti del canyon fino a 400 m",de:"Canyonwände bis zu 400 m",fr:"Parois du canyon jusqu'à 400 m"},{en:"Peregrine falcons nesting on cliffs",it:"Falchi pellegrini che nidificano sulle pareti",de:"Wanderfalken, die an den Felsen nisten",fr:"Faucons pèlerins nichant sur les falaises"},{en:"Café in village at the end",it:"Caffè nel borgo all'arrivo",de:"Café im Dorf am Ende",fr:"Café au village à l'arrivée"}],
+    warnings:[{en:"Trail can flood after heavy rainfall",it:"Il sentiero può allagarsi dopo forti piogge",de:"Weg kann nach starkem Regen überflutet sein",fr:"Le sentier peut être inondé après de fortes pluies"},{en:"Rocks near water are slippery — good shoes",it:"Le rocce vicino all'acqua sono scivolose — buone scarpe",de:"Felsen am Wasser sind rutschig — gutes Schuhwerk",fr:"Roches glissantes près de l'eau — bonnes chaussures"},{en:"Some narrow ledge sections",it:"Alcuni tratti stretti a strapiombo",de:"Einige schmale Felsband-Passagen",fr:"Quelques passages étroits en corniche"},{en:"Not suitable for sufferers of vertigo",it:"Non adatto a chi soffre di vertigini",de:"Nicht geeignet bei Höhenangst",fr:"Déconseillé aux personnes sujettes au vertige"}],
     lat:41.98, lng:13.82 },
-  { id:5, name:"Campo Imperatore Loop", area:"gran-sasso", areaLabel:"Gran Sasso", diff:"moderate",
+  { id:5, name:{en:"Campo Imperatore Loop",it:"Anello di Campo Imperatore",de:"Campo-Imperatore-Rundweg",fr:"Boucle de Campo Imperatore"}, area:"gran-sasso", areaLabel:"Gran Sasso", diff:"moderate",
     img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80",
-    desc:"A panoramic loop across the 'Little Tibet of Italy' — the high plateau at 2,130m with dramatic views of Gran Sasso's north face.",
-    dist:"15 km", elev:"450 m", dur:"5–6 h", type:"Loop",
+    desc:{en:"A panoramic loop across the 'Little Tibet of Italy' — the high plateau at 2,130m with dramatic views of Gran Sasso's north face.",it:"Un anello panoramico attraverso il 'Piccolo Tibet d'Italia' — l'altopiano a 2.130 m con viste spettacolari sulla parete nord del Gran Sasso.",de:"Ein Panorama-Rundweg über das 'kleine Tibet Italiens' — das Hochplateau auf 2.130 m mit spektakulärem Blick auf die Nordwand des Gran Sasso.",fr:"Une boucle panoramique à travers le 'petit Tibet d'Italie' — le haut plateau à 2 130 m avec des vues saisissantes sur la face nord du Gran Sasso."},
+    dist:"15 km", elev:"450 m", dur:"5–6 h", type:{en:"Loop",it:"Anello",de:"Rundweg",fr:"Boucle"},
     seasons:[0,0,1,1,1,0], start:"Campo Imperatore (cable car or road)",
-    highlights:["Lunar landscape at 2,100m","Apennine chamois herds","WWII Mussolini prison hotel visible","Astronomical observatory on plateau"],
-    warnings:["Strong winds possible at any time","No shelter on the open plateau","Cable car may close in bad weather","Check forecast before travelling up"],
+    highlights:[{en:"Lunar landscape at 2,100m",it:"Paesaggio lunare a 2.100 m",de:"Mondlandschaft auf 2.100 m",fr:"Paysage lunaire à 2 100 m"},{en:"Apennine chamois herds",it:"Branchi di camoscio appenninico",de:"Herden der Apennin-Gämse",fr:"Hardes de chamois des Apennins"},{en:"WWII Mussolini prison hotel visible",it:"Visibile l'albergo-prigione di Mussolini della Seconda Guerra Mondiale",de:"Mussolinis Gefängnishotel aus dem 2. Weltkrieg sichtbar",fr:"Hôtel-prison de Mussolini (WWII) visible"},{en:"Astronomical observatory on plateau",it:"Osservatorio astronomico sull'altopiano",de:"Astronomisches Observatorium auf dem Plateau",fr:"Observatoire astronomique sur le plateau"}],
+    warnings:[{en:"Strong winds possible at any time",it:"Venti forti possibili in qualsiasi momento",de:"Starke Winde jederzeit möglich",fr:"Vents forts possibles à tout moment"},{en:"No shelter on the open plateau",it:"Nessun riparo sull'altopiano aperto",de:"Kein Schutz auf dem offenen Plateau",fr:"Aucun abri sur le plateau ouvert"},{en:"Cable car may close in bad weather",it:"La funivia può chiudere con maltempo",de:"Seilbahn kann bei schlechtem Wetter schließen",fr:"Le téléphérique peut fermer par mauvais temps"},{en:"Check forecast before travelling up",it:"Controlla le previsioni prima di salire",de:"Vor dem Aufstieg Wetterbericht prüfen",fr:"Vérifiez la météo avant de monter"}],
     lat:42.44, lng:13.52 },
-  { id:6, name:"Monte Marsicano", area:"national-park", areaLabel:"National Park", diff:"moderate",
+  { id:6, name:"Monte Marsicano", area:"national-park", areaLabel:{en:"National Park",it:"Parco Nazionale",de:"Nationalpark",fr:"Parc National"}, diff:"moderate",
     img:"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=700&q=80",
-    desc:"The highest point in Abruzzo National Park at 2,245m — a superb ridge walk with Barrea lake views and excellent chamois spotting.",
-    dist:"12 km", elev:"800 m", dur:"5–6 h", type:"Out & back",
+    desc:{en:"The highest point in Abruzzo National Park at 2,245m — a superb ridge walk with Barrea lake views and excellent chamois spotting.",it:"Il punto più alto del Parco Nazionale d'Abruzzo, 2.245 m — una splendida cresta panoramica con vista sul lago di Barrea e ottimi avvistamenti di camosci.",de:"Der höchste Punkt des Abruzzen-Nationalparks auf 2.245 m — eine großartige Gratwanderung mit Blick auf den Barrea-See und ausgezeichneter Gämsenbeobachtung.",fr:"Le point culminant du Parc National des Abruzzes à 2 245 m — une superbe randonnée de crête avec vue sur le lac de Barrea et d'excellentes observations de chamois."},
+    dist:"12 km", elev:"800 m", dur:"5–6 h", type:{en:"Out & back",it:"Andata e ritorno",de:"Hin und zurück",fr:"Aller-retour"},
     seasons:[0,0,1,1,1,0], start:"Civitella Alfedena (Wolf Museum car park)",
-    highlights:["Panoramic views over Barrea lake","Apennine chamois on the ridge","Golden eagles frequently overhead","Remote trail — few other hikers"],
-    warnings:["Trail unmarked in sections — map essential","Start before 8am in summer","Weather changes rapidly on the ridge","Trekking poles strongly recommended"],
+    highlights:[{en:"Panoramic views over Barrea lake",it:"Vista panoramica sul lago di Barrea",de:"Panoramablick über den Barrea-See",fr:"Vues panoramiques sur le lac de Barrea"},{en:"Apennine chamois on the ridge",it:"Camosci appenninici sulla cresta",de:"Apennin-Gämsen auf dem Grat",fr:"Chamois des Apennins sur la crête"},{en:"Golden eagles frequently overhead",it:"Aquile reali spesso in volo sopra di te",de:"Häufig Steinadler über dem Kopf",fr:"Aigles royaux fréquemment au-dessus"},{en:"Remote trail — few other hikers",it:"Sentiero remoto — pochi altri escursionisti",de:"Abgelegener Weg — wenige andere Wanderer",fr:"Sentier isolé — peu d'autres randonneurs"}],
+    warnings:[{en:"Trail unmarked in sections — map essential",it:"Sentiero non segnato in alcuni tratti — mappa indispensabile",de:"Weg stellenweise unmarkiert — Karte unerlässlich",fr:"Sentier non balisé par endroits — carte indispensable"},{en:"Start before 8am in summer",it:"Parti prima delle 8 in estate",de:"Im Sommer vor 8 Uhr starten",fr:"Partez avant 8h en été"},{en:"Weather changes rapidly on the ridge",it:"Il tempo cambia rapidamente in cresta",de:"Wetter wechselt am Grat rasch",fr:"Le temps change vite sur la crête"},{en:"Trekking poles strongly recommended",it:"Bastoncini da trekking fortemente consigliati",de:"Trekkingstöcke dringend empfohlen",fr:"Bâtons de randonnée fortement recommandés"}],
     lat:41.76, lng:13.88 },
   { id:7, name:"Eremo di San Bartolomeo", area:"maiella", areaLabel:"Maiella", diff:"moderate",
     img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=700&q=80",
-    desc:"An atmospheric trail to a 13th-century hermitage carved into the cliff face — rock-cut staircases, hanging chapels and utter silence.",
-    dist:"6 km", elev:"500 m", dur:"3–4 h", type:"Out & back",
+    desc:{en:"An atmospheric trail to a 13th-century hermitage carved into the cliff face — rock-cut staircases, hanging chapels and utter silence.",it:"Un sentiero suggestivo verso un eremo del XIII secolo scavato nella parete rocciosa — scalinate nella roccia, cappelle sospese e silenzio assoluto.",de:"Ein stimmungsvoller Weg zu einer in den Fels gehauenen Einsiedelei aus dem 13. Jahrhundert — Felstreppen, hängende Kapellen und völlige Stille.",fr:"Un sentier envoûtant vers un ermitage du XIIIe siècle taillé dans la falaise — escaliers creusés dans la roche, chapelles suspendues et silence absolu."},
+    dist:"6 km", elev:"500 m", dur:"3–4 h", type:{en:"Out & back",it:"Andata e ritorno",de:"Hin und zurück",fr:"Aller-retour"},
     seasons:[1,1,1,1,0,0], start:"Roccamorice village (signposted)",
-    highlights:["Medieval hermitage built into the cliff","Rock-cut staircases from the 1200s","Spring wildflowers along the gorge","Spiritual atmosphere — rarely crowded"],
-    warnings:["Some exposed scrambling near the hermitage","Not suitable for young children","No water sources on the route","Hermitage open in summer only"],
+    highlights:[{en:"Medieval hermitage built into the cliff",it:"Eremo medievale incastonato nella roccia",de:"Mittelalterliche Einsiedelei im Fels",fr:"Ermitage médiéval encastré dans la falaise"},{en:"Rock-cut staircases from the 1200s",it:"Scalinate scavate nella roccia del Duecento",de:"In den Fels gehauene Treppen aus dem 13. Jh.",fr:"Escaliers taillés dans la roche du XIIIe siècle"},{en:"Spring wildflowers along the gorge",it:"Fiori selvatici primaverili lungo la gola",de:"Frühlingswildblumen entlang der Schlucht",fr:"Fleurs sauvages printanières le long de la gorge"},{en:"Spiritual atmosphere — rarely crowded",it:"Atmosfera spirituale — raramente affollato",de:"Spirituelle Atmosphäre — selten überlaufen",fr:"Atmosphère spirituelle — rarement fréquenté"}],
+    warnings:[{en:"Some exposed scrambling near the hermitage",it:"Alcuni passaggi esposti vicino all'eremo",de:"Einige ausgesetzte Kraxelstellen nahe der Einsiedelei",fr:"Quelques passages exposés près de l'ermitage"},{en:"Not suitable for young children",it:"Non adatto ai bambini piccoli",de:"Nicht für kleine Kinder geeignet",fr:"Déconseillé aux jeunes enfants"},{en:"No water sources on the route",it:"Nessuna sorgente lungo il percorso",de:"Keine Wasserquellen auf der Strecke",fr:"Aucune source d'eau sur le parcours"},{en:"Hermitage open in summer only",it:"Eremo aperto solo in estate",de:"Einsiedelei nur im Sommer geöffnet",fr:"Ermitage ouvert en été seulement"}],
     lat:42.17, lng:14.05 },
-  { id:8, name:"Lago di Scanno Circuit", area:"other", areaLabel:"Sulmona Valley", diff:"easy",
+  { id:8, name:{en:"Lago di Scanno Circuit",it:"Anello del Lago di Scanno",de:"Rundweg um den Lago di Scanno",fr:"Circuit du Lac de Scanno"}, area:"other", areaLabel:{en:"Sulmona Valley",it:"Valle di Sulmona",de:"Sulmona-Tal",fr:"Vallée de Sulmona"}, diff:"easy",
     img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=700&q=80",
-    desc:"A gentle loop around Italy's most romantic lake — heart-shaped from above — through beech forest and the charming village of Scanno.",
-    dist:"5 km", elev:"80 m", dur:"1.5–2 h", type:"Loop",
+    desc:{en:"A gentle loop around Italy's most romantic lake — heart-shaped from above — through beech forest and the charming village of Scanno.",it:"Un anello dolce attorno al lago più romantico d'Italia — a forma di cuore visto dall'alto — tra faggete e l'incantevole borgo di Scanno.",de:"Ein sanfter Rundweg um Italiens romantischsten See — von oben herzförmig — durch Buchenwald und das reizende Dorf Scanno.",fr:"Une boucle tranquille autour du lac le plus romantique d'Italie — en forme de cœur vu d'en haut — à travers la hêtraie et le charmant village de Scanno."},
+    dist:"5 km", elev:"80 m", dur:"1.5–2 h", type:{en:"Loop",it:"Anello",de:"Rundweg",fr:"Boucle"},
     seasons:[1,1,1,1,0,0], start:"Scanno village (lake shore parking)",
-    highlights:["Heart-shaped lake from above","Scanno village — traditional costumes","Otters and waterfowl in the lake","Easy terrain — suitable for all ages"],
-    warnings:["Very popular on summer weekends — arrive early","Swimming only in designated areas","Café and facilities available at lake","Binoculars recommended for birdwatching"],
+    highlights:[{en:"Heart-shaped lake from above",it:"Lago a forma di cuore visto dall'alto",de:"Herzförmiger See von oben",fr:"Lac en forme de cœur vu d'en haut"},{en:"Scanno village — traditional costumes",it:"Borgo di Scanno — costumi tradizionali",de:"Dorf Scanno — traditionelle Trachten",fr:"Village de Scanno — costumes traditionnels"},{en:"Otters and waterfowl in the lake",it:"Lontre e uccelli acquatici nel lago",de:"Otter und Wasservögel im See",fr:"Loutres et oiseaux d'eau dans le lac"},{en:"Easy terrain — suitable for all ages",it:"Terreno facile — adatto a tutte le età",de:"Leichtes Gelände — für jedes Alter",fr:"Terrain facile — pour tous les âges"}],
+    warnings:[{en:"Very popular on summer weekends — arrive early",it:"Molto affollato nei weekend estivi — arriva presto",de:"An Sommerwochenenden sehr beliebt — früh kommen",fr:"Très fréquenté les week-ends d'été — arrivez tôt"},{en:"Swimming only in designated areas",it:"Balneazione solo nelle aree consentite",de:"Baden nur in ausgewiesenen Bereichen",fr:"Baignade uniquement dans les zones autorisées"},{en:"Café and facilities available at lake",it:"Bar e servizi disponibili al lago",de:"Café und Einrichtungen am See vorhanden",fr:"Café et commodités disponibles au lac"},{en:"Binoculars recommended for birdwatching",it:"Binocolo consigliato per il birdwatching",de:"Fernglas fürs Vogelbeobachten empfohlen",fr:"Jumelles recommandées pour l'observation des oiseaux"}],
     lat:41.90, lng:13.87 },
-  { id:9, name:"Blockhaus Ridge Walk", area:"maiella", areaLabel:"Maiella", diff:"easy",
+  { id:9, name:{en:"Blockhaus Ridge Walk",it:"Camminata sulla cresta del Blockhaus",de:"Blockhaus-Gratwanderung",fr:"Randonnée de crête du Blockhaus"}, area:"maiella", areaLabel:"Maiella", diff:"easy",
     img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=700&q=80",
-    desc:"A short, accessible ridge walk from the Blockhaus plateau at 1,800m — spectacular 360° views, perfect as a first introduction to the Maiella.",
-    dist:"4 km", elev:"200 m", dur:"1.5 h", type:"Out & back",
+    desc:{en:"A short, accessible ridge walk from the Blockhaus plateau at 1,800m — spectacular 360° views, perfect as a first introduction to the Maiella.",it:"Una breve e accessibile camminata di cresta dall'altopiano del Blockhaus a 1.800 m — spettacolari viste a 360°, perfetta come primo assaggio della Maiella.",de:"Eine kurze, leichte Gratwanderung vom Blockhaus-Plateau auf 1.800 m — spektakuläre 360°-Ausblicke, ideal als erster Einstieg in die Maiella.",fr:"Une courte randonnée de crête accessible depuis le plateau du Blockhaus à 1 800 m — vues spectaculaires à 360°, parfaite comme première approche de la Maiella."},
+    dist:"4 km", elev:"200 m", dur:"1.5 h", type:{en:"Out & back",it:"Andata e ritorno",de:"Hin und zurück",fr:"Aller-retour"},
     seasons:[0,1,1,1,1,0], start:"Blockhaus plateau (toll road from Pretoro, €3)",
-    highlights:["Drive to 1,800m — no long approach","360° panoramic views over the Maiella","Ski resort in winter — snow walks too","Wildflowers carpet the plateau in June–July"],
-    warnings:["Toll road to Blockhaus: €3 per vehicle","Very crowded on summer Sundays","Cold and windy in spring — bring layers","Snow possible on plateau until May"],
+    highlights:[{en:"Drive to 1,800m — no long approach",it:"Si arriva in auto a 1.800 m — nessun lungo avvicinamento",de:"Auffahrt bis 1.800 m — kein langer Zustieg",fr:"Accès en voiture à 1 800 m — pas de longue approche"},{en:"360° panoramic views over the Maiella",it:"Vista panoramica a 360° sulla Maiella",de:"360°-Panoramablick über die Maiella",fr:"Vue panoramique à 360° sur la Maiella"},{en:"Ski resort in winter — snow walks too",it:"Stazione sciistica in inverno — anche ciaspolate",de:"Skigebiet im Winter — auch Schneewanderungen",fr:"Station de ski en hiver — balades en raquettes"},{en:"Wildflowers carpet the plateau in June–July",it:"Fiori selvatici a tappeto sull'altopiano a giugno–luglio",de:"Wildblumenteppich auf dem Plateau im Juni–Juli",fr:"Tapis de fleurs sauvages sur le plateau en juin–juillet"}],
+    warnings:[{en:"Toll road to Blockhaus: €3 per vehicle",it:"Strada a pedaggio per il Blockhaus: €3 a veicolo",de:"Mautstraße zum Blockhaus: €3 pro Fahrzeug",fr:"Route à péage vers le Blockhaus : 3 € par véhicule"},{en:"Very crowded on summer Sundays",it:"Molto affollato le domeniche estive",de:"An Sommer-Sonntagen sehr voll",fr:"Très fréquenté le dimanche en été"},{en:"Cold and windy in spring — bring layers",it:"Freddo e ventoso in primavera — vestiti a strati",de:"Kalt und windig im Frühjahr — Zwiebellook",fr:"Froid et venteux au printemps — habillez-vous en couches"},{en:"Snow possible on plateau until May",it:"Neve possibile sull'altopiano fino a maggio",de:"Schnee auf dem Plateau bis Mai möglich",fr:"Neige possible sur le plateau jusqu'en mai"}],
     lat:42.10, lng:14.10 },
-  { id:10, name:"Rocca Calascio Trail", area:"gran-sasso", areaLabel:"Gran Sasso", diff:"easy",
+  { id:10, name:{en:"Rocca Calascio Trail",it:"Sentiero di Rocca Calascio",de:"Weg zur Rocca Calascio",fr:"Sentier de Rocca Calascio"}, area:"gran-sasso", areaLabel:"Gran Sasso", diff:"easy",
     img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=700&q=80",
-    desc:"Short but unforgettable walk to the highest castle in the Apennines at 1,512m — filming location for Ladyhawke (1985).",
-    dist:"3 km", elev:"300 m", dur:"1.5 h", type:"Out & back",
+    desc:{en:"Short but unforgettable walk to the highest castle in the Apennines at 1,512m — filming location for Ladyhawke (1985).",it:"Passeggiata breve ma indimenticabile fino al castello più alto dell'Appennino, 1.512 m — set del film Ladyhawke (1985).",de:"Kurzer, aber unvergesslicher Weg zur höchsten Burg des Apennins auf 1.512 m — Drehort von Ladyhawke (1985).",fr:"Balade courte mais inoubliable jusqu'au château le plus haut des Apennins à 1 512 m — lieu de tournage de Ladyhawke (1985)."},
+    dist:"3 km", elev:"300 m", dur:"1.5 h", type:{en:"Out & back",it:"Andata e ritorno",de:"Hin und zurück",fr:"Aller-retour"},
     seasons:[1,1,1,1,0,0], start:"Castel del Monte village square",
-    highlights:["Highest castle in the Apennines at 1,512m","Film: Ladyhawke (1985)","Tiny church of Santa Maria della Pietà","Ghost village of Rocca Calascio"],
-    warnings:["Steep cobbled path — slippery when wet","Very windy at summit year-round","No refreshments at the castle — bring water","Last section on loose stone track"],
+    highlights:[{en:"Highest castle in the Apennines at 1,512m",it:"Il castello più alto dell'Appennino a 1.512 m",de:"Höchste Burg des Apennins auf 1.512 m",fr:"Le château le plus haut des Apennins à 1 512 m"},{en:"Film: Ladyhawke (1985)",it:"Set del film Ladyhawke (1985)",de:"Drehort: Ladyhawke (1985)",fr:"Film : Ladyhawke (1985)"},{en:"Tiny church of Santa Maria della Pietà",it:"La chiesetta di Santa Maria della Pietà",de:"Kirchlein Santa Maria della Pietà",fr:"Petite église Santa Maria della Pietà"},{en:"Ghost village of Rocca Calascio",it:"Il borgo fantasma di Rocca Calascio",de:"Geisterdorf Rocca Calascio",fr:"Village fantôme de Rocca Calascio"}],
+    warnings:[{en:"Steep cobbled path — slippery when wet",it:"Sentiero acciottolato ripido — scivoloso se bagnato",de:"Steiler Kopfsteinpflasterweg — bei Nässe rutschig",fr:"Sentier pavé raide — glissant par temps humide"},{en:"Very windy at summit year-round",it:"Molto ventoso in cima tutto l'anno",de:"Am Gipfel ganzjährig sehr windig",fr:"Très venteux au sommet toute l'année"},{en:"No refreshments at the castle — bring water",it:"Nessun punto ristoro al castello — porta acqua",de:"Keine Verpflegung an der Burg — Wasser mitnehmen",fr:"Aucun ravitaillement au château — apportez de l'eau"},{en:"Last section on loose stone track",it:"Ultimo tratto su pietraia instabile",de:"Letztes Stück auf losem Geröllweg",fr:"Dernier tronçon sur piste de pierres instables"}],
     lat:42.30, lng:13.61 }
 ];
 
@@ -389,6 +473,11 @@ function hFilter(type, val, btn) {
 /* ══ RENDER TRAILS ══ */
 const seasonIcons  = ['❄️','🌸','☀️','🌅','🍂','🌨️'];
 const diffTagClass = { easy:'tag-green', moderate:'tag-amber', hard:'tag-red' };
+const diffLabel    = {
+  easy:    {en:'Easy',     it:'Facile',   de:'Leicht', fr:'Facile'},
+  moderate:{en:'Moderate', it:'Media',    de:'Mittel', fr:'Modérée'},
+  hard:    {en:'Hard',     it:'Difficile',de:'Schwer', fr:'Difficile'}
+};
 
 function renderTrails() {
   const filtered = trails.filter(t =>
@@ -397,7 +486,7 @@ function renderTrails() {
   );
 
   document.getElementById('hcnt').textContent =
-    filtered.length + ' trail' + (filtered.length !== 1 ? 's' : '');
+    filtered.length + ' ' + T(filtered.length !== 1 ? 'hk_trails' : 'hk_trail');
 
   document.getElementById('trail-grid').innerHTML = filtered.map(t => `
     <div class="card" onclick="openModal(${t.id})" role="button" tabindex="0">
@@ -407,13 +496,13 @@ function renderTrails() {
         </div>
         <div class="card-img-overlay"></div>
         <span class="card-badge-tl">
-          <span class="tag ${diffTagClass[t.diff]}">${t.diff.charAt(0).toUpperCase()+t.diff.slice(1)}</span>
+          <span class="tag ${diffTagClass[t.diff]}">${L(diffLabel[t.diff])}</span>
         </span>
-        <span class="card-badge-tr card-area-badge">${t.areaLabel}</span>
+        <span class="card-badge-tr card-area-badge">${L(t.areaLabel)}</span>
       </div>
       <div class="card-body">
-        <h3>${t.name}</h3>
-        <p>${t.desc.substring(0,100)}…</p>
+        <h3>${L(t.name)}</h3>
+        <p>${L(t.desc).substring(0,100)}…</p>
         <div class="card-meta">
           <span class="card-meta-item"><i class="ti ti-ruler" aria-hidden="true"></i> ${t.dist}</span>
           <span class="card-meta-item"><i class="ti ti-trending-up" aria-hidden="true"></i> ${t.elev}</span>
@@ -424,7 +513,7 @@ function renderTrails() {
             `<div class="season-dot ${t.seasons[i]?'on':''}">${s}</div>`
           ).join('')}
         </div>
-        <div class="card-footer"><span>Full details →</span></div>
+        <div class="card-footer"><span>${T('hk_full')}</span></div>
       </div>
     </div>`).join('');
 }
@@ -435,17 +524,17 @@ function initMap() {
   if (mapInitialised) return;
   mapInitialised = true;
   const colors = { easy:'#2a9d5c', moderate:'#e9a820', hard:'#e05050' };
-  const map = L.map('trail-map', { scrollWheelZoom:false })
+  const map = LEAFLET.map('trail-map', { scrollWheelZoom:false })
                .setView([42.05, 13.85], 8);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  LEAFLET.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:'© OpenStreetMap', maxZoom:16
   }).addTo(map);
   trails.forEach(t => {
-    const mk = L.circleMarker([t.lat, t.lng], {
+    const mk = LEAFLET.circleMarker([t.lat, t.lng], {
       radius:8, fillColor:colors[t.diff],
       color:'#fff', weight:2, fillOpacity:.9
     }).addTo(map);
-    mk.bindPopup(`<strong>${t.name}</strong><br>${t.diff} · ${t.dist} · ${t.dur}`);
+    mk.bindPopup(`<strong>${L(t.name)}</strong><br>${L(diffLabel[t.diff])} · ${t.dist} · ${t.dur}`);
     mk.on('click', () => openModal(t.id));
   });
 }
@@ -454,21 +543,21 @@ function initMap() {
 function openModal(id) {
   const t = trails.find(x => x.id === id);
   document.getElementById('m-img').src   = t.img;
-  document.getElementById('m-img').alt   = t.name;
-  document.getElementById('m-sub').textContent   = t.areaLabel + ' · ' + t.diff.toUpperCase();
-  document.getElementById('m-title').textContent = t.name;
+  document.getElementById('m-img').alt   = L(t.name);
+  document.getElementById('m-sub').textContent   = L(t.areaLabel) + ' · ' + L(diffLabel[t.diff]).toUpperCase();
+  document.getElementById('m-title').textContent = L(t.name);
 
   document.getElementById('m-badges').innerHTML =
-    `<span class="tag ${diffTagClass[t.diff]}">${t.diff}</span>
-     <span class="tag" style="background:var(--parchment);color:var(--ink-mid)">${t.type}</span>`;
+    `<span class="tag ${diffTagClass[t.diff]}">${L(diffLabel[t.diff])}</span>
+     <span class="tag" style="background:var(--parchment);color:var(--ink-mid)">${L(t.type)}</span>`;
 
-  document.getElementById('m-desc').textContent = t.desc;
+  document.getElementById('m-desc').textContent = L(t.desc);
 
   document.getElementById('m-stats').innerHTML = [
-    { v:t.dist,  l:'Distance' },
-    { v:t.elev,  l:'Elevation' },
-    { v:t.dur,   l:'Duration' },
-    { v:t.start.split('(')[0].trim(), l:'Start point' }
+    { v:t.dist,  l:T('hk_m_distance') },
+    { v:t.elev,  l:T('hk_m_elevation') },
+    { v:t.dur,   l:T('hk_m_duration') },
+    { v:t.start.split('(')[0].trim(), l:T('hk_m_start') }
   ].map(s => `
     <div class="modal-stat">
       <strong>${s.v}</strong><span>${s.l}</span>
@@ -476,12 +565,12 @@ function openModal(id) {
 
   document.getElementById('m-two').innerHTML = `
     <div class="modal-sec">
-      <h4>Highlights</h4>
-      <ul>${t.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
+      <h4>${T('hk_m_highlights')}</h4>
+      <ul>${t.highlights.map(h => `<li>${L(h)}</li>`).join('')}</ul>
     </div>
     <div class="modal-sec">
-      <h4>Know Before You Go</h4>
-      <ul>${t.warnings.map(w => `<li>${w}</li>`).join('')}</ul>
+      <h4>${T('hk_m_warnings')}</h4>
+      <ul>${t.warnings.map(w => `<li>${L(w)}</li>`).join('')}</ul>
     </div>`;
 
   document.getElementById('modal-backdrop').classList.add('open');
@@ -519,6 +608,9 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 /* ══ INIT ══ */
 renderTrails();
 initMap();
+
+/* ══ RE-RENDER AL CAMBIO LINGUA ══ */
+document.addEventListener('aw:langchange', () => { renderTrails(); });
 </script>
 
 </body>

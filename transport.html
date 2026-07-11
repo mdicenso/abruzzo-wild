@@ -87,13 +87,13 @@
   <div class="hero-inner-veil"></div>
   <div class="hero-inner-content">
     <div class="hero-breadcrumb">
-      <a href="index.html">Home</a> › Getting to Abruzzo
+      <a href="index.html" data-i18n="n_home">Home</a> › <span data-i18n="tr_bc">Getting to Abruzzo</span>
     </div>
-    <h1 class="hero-inner-h1">Getting to <em>Abruzzo</em></h1>
+    <h1 class="hero-inner-h1" data-i18n="tr_h1">Getting to <em>Abruzzo</em></h1>
     <div class="hero-kpis">
-      <div class="hero-kpi"><strong>90 min</strong><span>Rome to L'Aquila by car</span></div>
-      <div class="hero-kpi"><strong>3h</strong><span>Rome–Pescara by train</span></div>
-      <div class="hero-kpi"><strong>3</strong><span>airports nearby</span></div>
+      <div class="hero-kpi"><strong>90 min</strong><span data-i18n="tr_kpi1">Rome to L'Aquila by car</span></div>
+      <div class="hero-kpi"><strong>3h</strong><span data-i18n="tr_kpi2">Rome–Pescara by train</span></div>
+      <div class="hero-kpi"><strong>3</strong><span data-i18n="tr_kpi3">airports nearby</span></div>
     </div>
   </div>
 </div>
@@ -104,26 +104,26 @@
 
   <!-- Arriving -->
   <div class="section-header fade-in">
-    <span class="t-eyebrow">Getting There</span>
-    <h2 class="t-h2">Arriving in Abruzzo</h2>
+    <span class="t-eyebrow" data-i18n="tr_eyebrow1">Getting There</span>
+    <h2 class="t-h2" data-i18n="tr_h2_1">Arriving in Abruzzo</h2>
   </div>
 
   <!-- Tab bar -->
   <div class="tab-bar">
     <button class="tab-btn on" onclick="showTab('air', this)">
-      <i class="ti ti-plane" aria-hidden="true"></i>By Air
+      <i class="ti ti-plane" aria-hidden="true"></i><span data-i18n="tr_tab_air">By Air</span>
     </button>
     <button class="tab-btn" onclick="showTab('train', this)">
-      <i class="ti ti-train" aria-hidden="true"></i>By Train
+      <i class="ti ti-train" aria-hidden="true"></i><span data-i18n="tr_tab_train">By Train</span>
     </button>
     <button class="tab-btn" onclick="showTab('car', this)">
-      <i class="ti ti-car" aria-hidden="true"></i>By Car
+      <i class="ti ti-car" aria-hidden="true"></i><span data-i18n="tr_tab_car">By Car</span>
     </button>
   </div>
 
   <!-- By Air -->
   <div class="tab-panel on" id="tab-air">
-    <p class="t-body" style="margin-bottom:1.4rem;max-width:600px">
+    <p class="t-body" style="margin-bottom:1.4rem;max-width:600px" data-i18n="tr_air_intro">
       Pescara is the most convenient airport for Abruzzo. Rome's airports offer more international connections — a hire car from Rome reaches most of Abruzzo in under 2 hours.
     </p>
     <div class="airport-grid" id="airport-grid"></div>
@@ -131,45 +131,45 @@
 
   <!-- By Train -->
   <div class="tab-panel" id="tab-train">
-    <p class="t-body" style="margin-bottom:1.4rem;max-width:600px">
+    <p class="t-body" style="margin-bottom:1.4rem;max-width:600px" data-i18n="tr_train_intro">
       Trenitalia connects Rome Tiburtina to Pescara Centrale in about 3 hours. Regional trains reach Sulmona, Lanciano and Vasto. Buy tickets on the Trenitalia app and always validate before boarding.
     </p>
     <div id="train-routes"></div>
     <div class="gbox fade-in" style="margin-top:1.5rem">
       <div class="gbox-title">
-        <i class="ti ti-info-circle" aria-hidden="true"></i>Train Tips
+        <i class="ti ti-info-circle" aria-hidden="true"></i><span data-i18n="tr_train_tips">Train Tips</span>
       </div>
       <div class="tip-row">
         <div class="tip-icon"><i class="ti ti-ticket" aria-hidden="true"></i></div>
-        <div><strong>Buy in advance</strong><p>Intercity and Frecciabianca tickets are cheaper booked 3–7 days ahead. Regional trains have no advance discount.</p></div>
+        <div><strong data-i18n="tr_tt1_h">Buy in advance</strong><p data-i18n="tr_tt1_p">Intercity and Frecciabianca tickets are cheaper booked 3–7 days ahead. Regional trains have no advance discount.</p></div>
       </div>
       <div class="tip-row">
         <div class="tip-icon"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
-        <div><strong>Validate your ticket</strong><p>Regional train tickets must be stamped at the yellow machines on the platform before boarding — fines are issued.</p></div>
+        <div><strong data-i18n="tr_tt2_h">Validate your ticket</strong><p data-i18n="tr_tt2_p">Regional train tickets must be stamped at the yellow machines on the platform before boarding — fines are issued.</p></div>
       </div>
       <div class="tip-row">
         <div class="tip-icon"><i class="ti ti-bicycle" aria-hidden="true"></i></div>
-        <div><strong>Bikes on trains</strong><p>Bikes are allowed on most regional trains (€3.50 supplement). Fold-up bikes travel free. Check trenitalia.com for specific services.</p></div>
+        <div><strong data-i18n="tr_tt3_h">Bikes on trains</strong><p data-i18n="tr_tt3_p">Bikes are allowed on most regional trains (€3.50 supplement). Fold-up bikes travel free. Check trenitalia.com for specific services.</p></div>
       </div>
     </div>
   </div>
 
   <!-- By Car -->
   <div class="tab-panel" id="tab-car">
-    <p class="t-body" style="margin-bottom:1.4rem;max-width:600px">
+    <p class="t-body" style="margin-bottom:1.4rem;max-width:600px" data-i18n="tr_car_intro">
       Driving is the best way to explore Abruzzo. The A24 motorway goes from Rome to L'Aquila; the A25 continues to Pescara. Mountain roads are well maintained but require care in winter.
     </p>
     <div id="car-routes"></div>
     <div class="pbox fade-in" style="margin-top:1.5rem">
       <div class="pbox-title">
-        <i class="ti ti-road" aria-hidden="true"></i>Road Tips
+        <i class="ti ti-road" aria-hidden="true"></i><span data-i18n="tr_road_tips">Road Tips</span>
       </div>
-      <div class="kv-row"><span>A24/A25 toll (Rome–Pescara)</span><span>approx. €12</span></div>
-      <div class="kv-row"><span>Speed limit motorway</span><span>130 km/h</span></div>
-      <div class="kv-row"><span>Mountain roads</span><span>40–70 km/h</span></div>
-      <div class="kv-row"><span>Winter tyres or chains</span><span>Nov 15 – Apr 15, where signposted</span></div>
-      <div class="kv-row"><span>Fuel</span><span>Self-service cheaper</span></div>
-      <div class="kv-row"><span>Parking in villages</span><span>Always outside the centro</span></div>
+      <div class="kv-row"><span data-i18n="tr_kv1_k">A24/A25 toll (Rome–Pescara)</span><span data-i18n="tr_kv1_v">approx. €12</span></div>
+      <div class="kv-row"><span data-i18n="tr_kv2_k">Speed limit motorway</span><span>130 km/h</span></div>
+      <div class="kv-row"><span data-i18n="tr_kv3_k">Mountain roads</span><span>40–70 km/h</span></div>
+      <div class="kv-row"><span data-i18n="tr_kv4_k">Winter tyres or chains</span><span data-i18n="tr_kv4_v">Nov 15 – Apr 15, where signposted</span></div>
+      <div class="kv-row"><span data-i18n="tr_kv5_k">Fuel</span><span data-i18n="tr_kv5_v">Self-service cheaper</span></div>
+      <div class="kv-row"><span data-i18n="tr_kv6_k">Parking in villages</span><span data-i18n="tr_kv6_v">Always outside the centro</span></div>
     </div>
   </div>
 
@@ -177,9 +177,9 @@
   <!-- Getting Around -->
   <div style="margin-top:3.5rem">
     <div class="section-header fade-in">
-      <span class="t-eyebrow">Getting Around</span>
-      <h2 class="t-h2">Moving Within Abruzzo</h2>
-      <p class="section-sub">A car is strongly recommended. Public transport connects the main cities but misses most villages, trails and thermal baths.</p>
+      <span class="t-eyebrow" data-i18n="tr_eyebrow2">Getting Around</span>
+      <h2 class="t-h2" data-i18n="tr_h2_2">Moving Within Abruzzo</h2>
+      <p class="section-sub" data-i18n="tr_sub2">A car is strongly recommended. Public transport connects the main cities but misses most villages, trails and thermal baths.</p>
     </div>
     <div class="around-grid fade-in" id="around-grid"></div>
   </div>
@@ -188,8 +188,8 @@
   <!-- Useful Apps -->
   <div style="margin-top:3rem">
     <div class="section-header fade-in">
-      <span class="t-eyebrow">Useful Apps</span>
-      <h2 class="t-h2">Plan & Navigate</h2>
+      <span class="t-eyebrow" data-i18n="tr_eyebrow3">Useful Apps</span>
+      <h2 class="t-h2" data-i18n="tr_h2_3">Plan &amp; Navigate</h2>
     </div>
     <div class="apps-grid fade-in" id="apps-grid"></div>
   </div>
@@ -198,7 +198,7 @@
   <!-- Emergency numbers -->
   <div class="gbox fade-in" style="margin-top:3rem">
     <div class="gbox-title">
-      <i class="ti ti-first-aid-kit" aria-hidden="true"></i>Emergency Numbers
+      <i class="ti ti-first-aid-kit" aria-hidden="true"></i><span data-i18n="tr_emerg_title">Emergency Numbers</span>
     </div>
     <div class="emergency-grid" id="emergency-grid"></div>
   </div>
@@ -246,27 +246,177 @@
 
 <!-- ════ JAVASCRIPT ════ -->
 <script>
+/* ══ UI STATICA (fase A2) — chiavi tr_ via Object.assign, senza toccare i18n.js ══ */
+Object.assign(T18.en, {
+  tr_bc:'Getting to Abruzzo',
+  tr_h1:'Getting to <em>Abruzzo</em>',
+  tr_kpi1:"Rome to L'Aquila by car",
+  tr_kpi2:'Rome–Pescara by train',
+  tr_kpi3:'airports nearby',
+  tr_eyebrow1:'Getting There',
+  tr_h2_1:'Arriving in Abruzzo',
+  tr_tab_air:'By Air', tr_tab_train:'By Train', tr_tab_car:'By Car',
+  tr_air_intro:"Pescara is the most convenient airport for Abruzzo. Rome's airports offer more international connections — a hire car from Rome reaches most of Abruzzo in under 2 hours.",
+  tr_train_intro:'Trenitalia connects Rome Tiburtina to Pescara Centrale in about 3 hours. Regional trains reach Sulmona, Lanciano and Vasto. Buy tickets on the Trenitalia app and always validate before boarding.',
+  tr_train_tips:'Train Tips',
+  tr_tt1_h:'Buy in advance',
+  tr_tt1_p:'Intercity and Frecciabianca tickets are cheaper booked 3–7 days ahead. Regional trains have no advance discount.',
+  tr_tt2_h:'Validate your ticket',
+  tr_tt2_p:'Regional train tickets must be stamped at the yellow machines on the platform before boarding — fines are issued.',
+  tr_tt3_h:'Bikes on trains',
+  tr_tt3_p:'Bikes are allowed on most regional trains (€3.50 supplement). Fold-up bikes travel free. Check trenitalia.com for specific services.',
+  tr_car_intro:"Driving is the best way to explore Abruzzo. The A24 motorway goes from Rome to L'Aquila; the A25 continues to Pescara. Mountain roads are well maintained but require care in winter.",
+  tr_road_tips:'Road Tips',
+  tr_kv1_k:'A24/A25 toll (Rome–Pescara)', tr_kv1_v:'approx. €12',
+  tr_kv2_k:'Speed limit motorway',
+  tr_kv3_k:'Mountain roads',
+  tr_kv4_k:'Winter tyres or chains', tr_kv4_v:'Nov 15 – Apr 15, where signposted',
+  tr_kv5_k:'Fuel', tr_kv5_v:'Self-service cheaper',
+  tr_kv6_k:'Parking in villages', tr_kv6_v:'Always outside the centro',
+  tr_eyebrow2:'Getting Around', tr_h2_2:'Moving Within Abruzzo',
+  tr_sub2:'A car is strongly recommended. Public transport connects the main cities but misses most villages, trails and thermal baths.',
+  tr_eyebrow3:'Useful Apps', tr_h2_3:'Plan & Navigate',
+  tr_emerg_title:'Emergency Numbers'
+});
+Object.assign(T18.it, {
+  tr_bc:'Come arrivare in Abruzzo',
+  tr_h1:'Come arrivare in <em>Abruzzo</em>',
+  tr_kpi1:"Da Roma a L'Aquila in auto",
+  tr_kpi2:'Roma–Pescara in treno',
+  tr_kpi3:'aeroporti nelle vicinanze',
+  tr_eyebrow1:'Come Arrivare',
+  tr_h2_1:'Arrivare in Abruzzo',
+  tr_tab_air:'In Aereo', tr_tab_train:'In Treno', tr_tab_car:'In Auto',
+  tr_air_intro:"Pescara è l'aeroporto più comodo per l'Abruzzo. Gli aeroporti di Roma offrono più collegamenti internazionali — con un'auto a noleggio da Roma si raggiunge gran parte dell'Abruzzo in meno di 2 ore.",
+  tr_train_intro:"Trenitalia collega Roma Tiburtina a Pescara Centrale in circa 3 ore. I treni regionali raggiungono Sulmona, Lanciano e Vasto. Acquista i biglietti sull'app Trenitalia e convalida sempre prima di salire.",
+  tr_train_tips:'Consigli sul treno',
+  tr_tt1_h:'Acquista in anticipo',
+  tr_tt1_p:'I biglietti Intercity e Frecciabianca costano meno se prenotati 3–7 giorni prima. I treni regionali non hanno sconti sull\'anticipo.',
+  tr_tt2_h:'Convalida il biglietto',
+  tr_tt2_p:'I biglietti dei treni regionali vanno timbrati alle macchinette gialle sul binario prima di salire — vengono comminate multe.',
+  tr_tt3_h:'Bici sui treni',
+  tr_tt3_p:'Le bici sono ammesse sulla maggior parte dei treni regionali (supplemento €3,50). Le bici pieghevoli viaggiano gratis. Controlla trenitalia.com per i servizi specifici.',
+  tr_car_intro:"Guidare è il modo migliore per esplorare l'Abruzzo. L'autostrada A24 va da Roma a L'Aquila; la A25 prosegue verso Pescara. Le strade di montagna sono ben tenute ma richiedono attenzione in inverno.",
+  tr_road_tips:'Consigli su strada',
+  tr_kv1_k:'Pedaggio A24/A25 (Roma–Pescara)', tr_kv1_v:'circa €12',
+  tr_kv2_k:'Limite di velocità autostrada',
+  tr_kv3_k:'Strade di montagna',
+  tr_kv4_k:'Gomme invernali o catene', tr_kv4_v:'15 nov – 15 apr, dove segnalato',
+  tr_kv5_k:'Carburante', tr_kv5_v:'Il self-service costa meno',
+  tr_kv6_k:'Parcheggio nei borghi', tr_kv6_v:'Sempre fuori dal centro',
+  tr_eyebrow2:'Spostarsi', tr_h2_2:"Muoversi in Abruzzo",
+  tr_sub2:"L'auto è fortemente consigliata. I mezzi pubblici collegano le città principali ma non raggiungono la maggior parte di borghi, sentieri e terme.",
+  tr_eyebrow3:'App Utili', tr_h2_3:'Pianifica e naviga',
+  tr_emerg_title:'Numeri di emergenza'
+});
+Object.assign(T18.de, {
+  tr_bc:'Anreise in die Abruzzen',
+  tr_h1:'Anreise in die <em>Abruzzen</em>',
+  tr_kpi1:"Von Rom nach L'Aquila mit dem Auto",
+  tr_kpi2:'Rom–Pescara mit dem Zug',
+  tr_kpi3:'Flughäfen in der Nähe',
+  tr_eyebrow1:'Anreise',
+  tr_h2_1:'Ankunft in den Abruzzen',
+  tr_tab_air:'Mit dem Flugzeug', tr_tab_train:'Mit dem Zug', tr_tab_car:'Mit dem Auto',
+  tr_air_intro:'Pescara ist der bequemste Flughafen für die Abruzzen. Die Flughäfen von Rom bieten mehr internationale Verbindungen — mit einem Mietwagen von Rom erreicht man die meisten Orte der Abruzzen in unter 2 Stunden.',
+  tr_train_intro:'Trenitalia verbindet Rom Tiburtina in etwa 3 Stunden mit Pescara Centrale. Regionalzüge erreichen Sulmona, Lanciano und Vasto. Kaufen Sie Tickets in der Trenitalia-App und entwerten Sie sie stets vor dem Einsteigen.',
+  tr_train_tips:'Zug-Tipps',
+  tr_tt1_h:'Frühzeitig buchen',
+  tr_tt1_p:'Intercity- und Frecciabianca-Tickets sind günstiger, wenn sie 3–7 Tage im Voraus gebucht werden. Regionalzüge bieten keinen Vorausrabatt.',
+  tr_tt2_h:'Ticket entwerten',
+  tr_tt2_p:'Regionalzug-Tickets müssen vor dem Einsteigen an den gelben Automaten am Bahnsteig entwertet werden — sonst drohen Bußgelder.',
+  tr_tt3_h:'Fahrräder im Zug',
+  tr_tt3_p:'Fahrräder sind in den meisten Regionalzügen erlaubt (Zuschlag €3,50). Klappräder fahren kostenlos. Prüfen Sie trenitalia.com für bestimmte Verbindungen.',
+  tr_car_intro:"Mit dem Auto lassen sich die Abruzzen am besten erkunden. Die Autobahn A24 führt von Rom nach L'Aquila; die A25 weiter nach Pescara. Bergstraßen sind gut instand gehalten, erfordern im Winter aber Vorsicht.",
+  tr_road_tips:'Straßen-Tipps',
+  tr_kv1_k:'A24/A25-Maut (Rom–Pescara)', tr_kv1_v:'ca. €12',
+  tr_kv2_k:'Tempolimit Autobahn',
+  tr_kv3_k:'Bergstraßen',
+  tr_kv4_k:'Winterreifen oder Ketten', tr_kv4_v:'15. Nov – 15. Apr, wo ausgeschildert',
+  tr_kv5_k:'Kraftstoff', tr_kv5_v:'Self-Service günstiger',
+  tr_kv6_k:'Parken in Dörfern', tr_kv6_v:'Immer außerhalb des Zentrums',
+  tr_eyebrow2:'Fortbewegung', tr_h2_2:'Unterwegs in den Abruzzen',
+  tr_sub2:'Ein Auto wird dringend empfohlen. Öffentliche Verkehrsmittel verbinden die Hauptstädte, erreichen aber die meisten Dörfer, Wanderwege und Thermen nicht.',
+  tr_eyebrow3:'Nützliche Apps', tr_h2_3:'Planen & Navigieren',
+  tr_emerg_title:'Notrufnummern'
+});
+Object.assign(T18.fr, {
+  tr_bc:'Se rendre dans les Abruzzes',
+  tr_h1:'Se rendre dans les <em>Abruzzes</em>',
+  tr_kpi1:"De Rome à L'Aquila en voiture",
+  tr_kpi2:'Rome–Pescara en train',
+  tr_kpi3:'aéroports à proximité',
+  tr_eyebrow1:'Comment venir',
+  tr_h2_1:'Arriver dans les Abruzzes',
+  tr_tab_air:'En Avion', tr_tab_train:'En Train', tr_tab_car:'En Voiture',
+  tr_air_intro:"Pescara est l'aéroport le plus pratique pour les Abruzzes. Les aéroports de Rome offrent davantage de liaisons internationales — une voiture de location depuis Rome permet d'atteindre la majeure partie des Abruzzes en moins de 2 heures.",
+  tr_train_intro:"Trenitalia relie Rome Tiburtina à Pescara Centrale en environ 3 heures. Les trains régionaux desservent Sulmona, Lanciano et Vasto. Achetez vos billets sur l'appli Trenitalia et validez toujours avant de monter.",
+  tr_train_tips:'Conseils train',
+  tr_tt1_h:"Réservez à l'avance",
+  tr_tt1_p:'Les billets Intercity et Frecciabianca sont moins chers réservés 3 à 7 jours à l\'avance. Les trains régionaux n\'offrent aucune réduction anticipée.',
+  tr_tt2_h:'Validez votre billet',
+  tr_tt2_p:'Les billets des trains régionaux doivent être compostés aux bornes jaunes sur le quai avant de monter — des amendes sont infligées.',
+  tr_tt3_h:'Vélos dans les trains',
+  tr_tt3_p:'Les vélos sont admis dans la plupart des trains régionaux (supplément €3,50). Les vélos pliants voyagent gratuitement. Consultez trenitalia.com pour les services précis.',
+  tr_car_intro:"La voiture est le meilleur moyen d'explorer les Abruzzes. L'autoroute A24 va de Rome à L'Aquila ; l'A25 continue vers Pescara. Les routes de montagne sont bien entretenues mais exigent de la prudence en hiver.",
+  tr_road_tips:'Conseils route',
+  tr_kv1_k:'Péage A24/A25 (Rome–Pescara)', tr_kv1_v:'env. €12',
+  tr_kv2_k:'Vitesse max autoroute',
+  tr_kv3_k:'Routes de montagne',
+  tr_kv4_k:'Pneus hiver ou chaînes', tr_kv4_v:'15 nov – 15 avr, où signalé',
+  tr_kv5_k:'Carburant', tr_kv5_v:'Le libre-service est moins cher',
+  tr_kv6_k:'Stationnement dans les villages', tr_kv6_v:'Toujours hors du centre',
+  tr_eyebrow2:'Se déplacer', tr_h2_2:'Se déplacer dans les Abruzzes',
+  tr_sub2:"La voiture est fortement recommandée. Les transports publics relient les grandes villes mais desservent peu de villages, sentiers et thermes.",
+  tr_eyebrow3:'Applis utiles', tr_h2_3:'Planifier et naviguer',
+  tr_emerg_title:"Numéros d'urgence"
+});
+
 /* ══ DATA ══ */
 const airports = [
   {
-    name:"Pescara Airport", iata:"PSR", dist:"City centre: 3 km",
-    desc:"Most convenient for Abruzzo. Direct flights (Ryanair) from London Stansted, Brussels Charleroi, Frankfurt Hahn, Barcelona Girona (seasonal), Düsseldorf Weeze. Car hire on site.",
-    tags:["Car hire: all major brands","Bus to centre: 30 min","Taxi to centre: €10–12","Terminal: compact and easy"]
+    name:"Pescara Airport", iata:"PSR",
+    dist:{en:"City centre: 3 km", it:"Centro città: 3 km", de:"Stadtzentrum: 3 km", fr:"Centre-ville : 3 km"},
+    desc:{en:"Most convenient for Abruzzo. Direct flights (Ryanair) from London Stansted, Brussels Charleroi, Frankfurt Hahn, Barcelona Girona (seasonal), Düsseldorf Weeze. Car hire on site.", it:"Il più comodo per l'Abruzzo. Voli diretti (Ryanair) da London Stansted, Brussels Charleroi, Frankfurt Hahn, Barcelona Girona (stagionale), Düsseldorf Weeze. Autonoleggio in loco.", de:"Am bequemsten für die Abruzzen. Direktflüge (Ryanair) von London Stansted, Brussels Charleroi, Frankfurt Hahn, Barcelona Girona (saisonal), Düsseldorf Weeze. Autovermietung vor Ort.", fr:"Le plus pratique pour les Abruzzes. Vols directs (Ryanair) depuis London Stansted, Brussels Charleroi, Frankfurt Hahn, Barcelona Girona (saisonnier), Düsseldorf Weeze. Location de voitures sur place."},
+    tags:[
+      {en:"Car hire: all major brands", it:"Autonoleggio: tutte le grandi marche", de:"Autovermietung: alle großen Marken", fr:"Location : toutes les grandes marques"},
+      {en:"Bus to centre: 30 min", it:"Bus per il centro: 30 min", de:"Bus ins Zentrum: 30 Min.", fr:"Bus vers le centre : 30 min"},
+      {en:"Taxi to centre: €10–12", it:"Taxi per il centro: €10–12", de:"Taxi ins Zentrum: €10–12", fr:"Taxi vers le centre : €10–12"},
+      {en:"Terminal: compact and easy", it:"Terminal: compatto e comodo", de:"Terminal: kompakt und einfach", fr:"Terminal : compact et pratique"}
+    ]
   },
   {
-    name:"Rome Fiumicino", iata:"FCO", dist:"L'Aquila: 1h 30 · Pescara: 2h 30",
-    desc:"Best for international connections. All major airlines. Drive direct on A24/A25 motorway. Car hire strongly recommended over public transport.",
-    tags:["Major international hub","All major car hire brands","Drive to L'Aquila: 1h 30","Drive to Pescara: 2h 30"]
+    name:"Rome Fiumicino", iata:"FCO",
+    dist:{en:"L'Aquila: 1h 30 · Pescara: 2h 30", it:"L'Aquila: 1h 30 · Pescara: 2h 30", de:"L'Aquila: 1 Std. 30 · Pescara: 2 Std. 30", fr:"L'Aquila : 1h 30 · Pescara : 2h 30"},
+    desc:{en:"Best for international connections. All major airlines. Drive direct on A24/A25 motorway. Car hire strongly recommended over public transport.", it:"Il migliore per i collegamenti internazionali. Tutte le principali compagnie. Si arriva diretti in autostrada A24/A25. Autonoleggio caldamente consigliato rispetto ai mezzi pubblici.", de:"Am besten für internationale Verbindungen. Alle großen Fluggesellschaften. Direkte Anfahrt über die Autobahn A24/A25. Mietwagen wird gegenüber öffentlichen Verkehrsmitteln dringend empfohlen.", fr:"Idéal pour les liaisons internationales. Toutes les grandes compagnies. Accès direct par l'autoroute A24/A25. Location de voiture fortement conseillée plutôt que les transports publics."},
+    tags:[
+      {en:"Major international hub", it:"Grande hub internazionale", de:"Großes internationales Drehkreuz", fr:"Grand hub international"},
+      {en:"All major car hire brands", it:"Tutte le grandi marche di autonoleggio", de:"Alle großen Autovermietungsmarken", fr:"Toutes les grandes marques de location"},
+      {en:"Drive to L'Aquila: 1h 30", it:"In auto verso L'Aquila: 1h 30", de:"Mit dem Auto nach L'Aquila: 1 Std. 30", fr:"En voiture vers L'Aquila : 1h 30"},
+      {en:"Drive to Pescara: 2h 30", it:"In auto verso Pescara: 2h 30", de:"Mit dem Auto nach Pescara: 2 Std. 30", fr:"En voiture vers Pescara : 2h 30"}
+    ]
   },
   {
-    name:"Rome Ciampino", iata:"CIA", dist:"Abruzzo: 1h 45 – 2h",
-    desc:"Low-cost hub — Ryanair and Wizz Air. Cheaper fares but factor in ring-road traffic. Car hire on site. Avoid Monday and Friday peak hours.",
-    tags:["Low-cost terminal","Car hire: available","Drive to Abruzzo: ~2h","Avoid Mon/Fri 7–9am, 5–7pm"]
+    name:"Rome Ciampino", iata:"CIA",
+    dist:{en:"Abruzzo: 1h 45 – 2h", it:"Abruzzo: 1h 45 – 2h", de:"Abruzzen: 1 Std. 45 – 2 Std.", fr:"Abruzzes : 1h 45 – 2h"},
+    desc:{en:"Low-cost hub — Ryanair and Wizz Air. Cheaper fares but factor in ring-road traffic. Car hire on site. Avoid Monday and Friday peak hours.", it:"Hub low-cost — Ryanair e Wizz Air. Tariffe più economiche ma considera il traffico sul raccordo. Autonoleggio in loco. Evita le ore di punta di lunedì e venerdì.", de:"Low-Cost-Drehkreuz — Ryanair und Wizz Air. Günstigere Tarife, aber Ringstraßenverkehr einkalkulieren. Autovermietung vor Ort. Stoßzeiten am Montag und Freitag meiden.", fr:"Hub low-cost — Ryanair et Wizz Air. Tarifs moins chers mais tenez compte du trafic sur le périphérique. Location sur place. Évitez les heures de pointe du lundi et du vendredi."},
+    tags:[
+      {en:"Low-cost terminal", it:"Terminal low-cost", de:"Low-Cost-Terminal", fr:"Terminal low-cost"},
+      {en:"Car hire: available", it:"Autonoleggio: disponibile", de:"Autovermietung: verfügbar", fr:"Location : disponible"},
+      {en:"Drive to Abruzzo: ~2h", it:"In auto verso l'Abruzzo: ~2h", de:"Mit dem Auto in die Abruzzen: ~2 Std.", fr:"En voiture vers les Abruzzes : ~2h"},
+      {en:"Avoid Mon/Fri 7–9am, 5–7pm", it:"Evita lun/ven 7–9 e 17–19", de:"Mo/Fr 7–9 und 17–19 Uhr meiden", fr:"Évitez lun/ven 7h–9h, 17h–19h"}
+    ]
   },
   {
-    name:"Naples & Bari", iata:"NAP / BRI", dist:"Southern Abruzzo: 2–3h",
-    desc:"Good options for southern Abruzzo (Vasto, Lanciano). Naples is 2h from Vasto on the A14. Bari is better for the southern Adriatic coast.",
-    tags:["For southern Abruzzo only","Bari: better for Adriatic coast","Naples: A1 then A14","Check SS16 Adriatica as alternative"]
+    name:"Naples & Bari", iata:"NAP / BRI",
+    dist:{en:"Southern Abruzzo: 2–3h", it:"Abruzzo meridionale: 2–3h", de:"Südliche Abruzzen: 2–3 Std.", fr:"Abruzzes du sud : 2–3h"},
+    desc:{en:"Good options for southern Abruzzo (Vasto, Lanciano). Naples is 2h from Vasto on the A14. Bari is better for the southern Adriatic coast.", it:"Buone opzioni per l'Abruzzo meridionale (Vasto, Lanciano). Napoli dista 2h da Vasto sull'A14. Bari è migliore per la costa adriatica meridionale.", de:"Gute Optionen für die südlichen Abruzzen (Vasto, Lanciano). Neapel ist 2 Std. von Vasto über die A14 entfernt. Bari eignet sich besser für die südliche Adriaküste.", fr:"Bonnes options pour le sud des Abruzzes (Vasto, Lanciano). Naples est à 2h de Vasto par l'A14. Bari convient mieux pour la côte adriatique méridionale."},
+    tags:[
+      {en:"For southern Abruzzo only", it:"Solo per l'Abruzzo meridionale", de:"Nur für die südlichen Abruzzen", fr:"Pour le sud des Abruzzes uniquement"},
+      {en:"Bari: better for Adriatic coast", it:"Bari: migliore per la costa adriatica", de:"Bari: besser für die Adriaküste", fr:"Bari : mieux pour la côte adriatique"},
+      {en:"Naples: A1 then A14", it:"Napoli: A1 poi A14", de:"Neapel: A1, dann A14", fr:"Naples : A1 puis A14"},
+      {en:"Check SS16 Adriatica as alternative", it:"Valuta la SS16 Adriatica come alternativa", de:"SS16 Adriatica als Alternative prüfen", fr:"Envisagez la SS16 Adriatica en alternative"}
+    ]
   }
 ];
 
@@ -276,42 +426,42 @@ const trainRoutes = [
   { from:"Pescara",         to:"Lanciano / Vasto",   time:"45–55 min", type:"Regionale" },
   { from:"Milano Centrale", to:"Pescara",            time:"5h 30 min", type:"Frecciabianca" },
   { from:"Pescara",         to:"Chieti",             time:"25 min",    type:"Regionale" },
-  { from:"Roma Tiburtina",  to:"L'Aquila",           time:"1h 40 min", type:"Bus (A24 motorway)" }
+  { from:"Roma Tiburtina",  to:"L'Aquila",           time:"1h 40 min", type:{en:"Bus (A24 motorway)", it:"Bus (autostrada A24)", de:"Bus (Autobahn A24)", fr:"Bus (autoroute A24)"} }
 ];
 
 const carRoutes = [
-  { from:"Roma (GRA)",  to:"L'Aquila",  time:"1h 20 min", type:"A24 Motorway" },
-  { from:"Roma (GRA)",  to:"Pescara",   time:"2h 30 min", type:"A25 Motorway" },
+  { from:"Roma (GRA)",  to:"L'Aquila",  time:"1h 20 min", type:{en:"A24 Motorway", it:"Autostrada A24", de:"Autobahn A24", fr:"Autoroute A24"} },
+  { from:"Roma (GRA)",  to:"Pescara",   time:"2h 30 min", type:{en:"A25 Motorway", it:"Autostrada A25", de:"Autobahn A25", fr:"Autoroute A25"} },
   { from:"Roma",        to:"Teramo",    time:"1h 50 min", type:"A24 + A24dir" },
   { from:"Milano",      to:"Pescara",   time:"5h 00 min", type:"A1 + A25" },
   { from:"Napoli",      to:"Vasto",     time:"2h 30 min", type:"A1 + A14" },
-  { from:"Pescara",     to:"L'Aquila",  time:"1h 15 min", type:"A25 motorway" }
+  { from:"Pescara",     to:"L'Aquila",  time:"1h 15 min", type:{en:"A25 motorway", it:"Autostrada A25", de:"Autobahn A25", fr:"Autoroute A25"} }
 ];
 
 const aroundData = [
   {
     icon:"ti-car",
-    name:"Car Hire",
-    desc:"Essential for exploring trails, villages and thermal baths. Available at Pescara Airport and city. Book well in advance in July–August.",
-    tip:"Best value: book online before arrival. Check terms for mountain unpaved roads."
+    name:{en:"Car Hire", it:"Autonoleggio", de:"Autovermietung", fr:"Location de voiture"},
+    desc:{en:"Essential for exploring trails, villages and thermal baths. Available at Pescara Airport and city. Book well in advance in July–August.", it:"Indispensabile per esplorare sentieri, borghi e terme. Disponibile all'aeroporto di Pescara e in città. Prenota con largo anticipo a luglio–agosto.", de:"Unverzichtbar, um Wanderwege, Dörfer und Thermen zu erkunden. Verfügbar am Flughafen Pescara und in der Stadt. Im Juli–August rechtzeitig buchen.", fr:"Indispensable pour explorer sentiers, villages et thermes. Disponible à l'aéroport de Pescara et en ville. Réservez bien à l'avance en juillet–août."},
+    tip:{en:"Best value: book online before arrival. Check terms for mountain unpaved roads.", it:"Conviene: prenota online prima dell'arrivo. Verifica le condizioni per le strade sterrate di montagna.", de:"Am günstigsten: online vor der Ankunft buchen. Bedingungen für unbefestigte Bergstraßen prüfen.", fr:"Le meilleur prix : réservez en ligne avant l'arrivée. Vérifiez les conditions pour les routes de montagne non goudronnées."}
   },
   {
     icon:"ti-bus",
-    name:"ARPA Buses",
-    desc:"Regional buses connect all main towns. Useful for the L'Aquila–Sulmona corridor and coastal cities. Not useful for villages or trails.",
-    tip:"Download ARPA timetables at arpaonline.it — app not available in English."
+    name:{en:"ARPA Buses", it:"Autobus ARPA", de:"ARPA-Busse", fr:"Bus ARPA"},
+    desc:{en:"Regional buses connect all main towns. Useful for the L'Aquila–Sulmona corridor and coastal cities. Not useful for villages or trails.", it:"Gli autobus regionali collegano tutte le città principali. Utili per la tratta L'Aquila–Sulmona e le città costiere. Non utili per borghi o sentieri.", de:"Regionalbusse verbinden alle wichtigen Städte. Nützlich für die Strecke L'Aquila–Sulmona und die Küstenstädte. Für Dörfer oder Wanderwege ungeeignet.", fr:"Les bus régionaux relient toutes les grandes villes. Utiles pour l'axe L'Aquila–Sulmona et les villes côtières. Inutiles pour les villages ou les sentiers."},
+    tip:{en:"Download ARPA timetables at arpaonline.it — app not available in English.", it:"Scarica gli orari ARPA su arpaonline.it — app non disponibile in inglese.", de:"ARPA-Fahrpläne auf arpaonline.it herunterladen — App nicht auf Englisch verfügbar.", fr:"Téléchargez les horaires ARPA sur arpaonline.it — appli non disponible en anglais."}
   },
   {
     icon:"ti-train",
-    name:"Regional Trains",
-    desc:"Trenitalia connects Pescara, Sulmona, Lanciano, Vasto and Chieti. Useful as a base-to-base link between cities.",
-    tip:"Buy on Trenitalia app. Always validate the ticket at yellow machines before boarding."
+    name:{en:"Regional Trains", it:"Treni regionali", de:"Regionalzüge", fr:"Trains régionaux"},
+    desc:{en:"Trenitalia connects Pescara, Sulmona, Lanciano, Vasto and Chieti. Useful as a base-to-base link between cities.", it:"Trenitalia collega Pescara, Sulmona, Lanciano, Vasto e Chieti. Utili come collegamento tra le città.", de:"Trenitalia verbindet Pescara, Sulmona, Lanciano, Vasto und Chieti. Nützlich als Verbindung zwischen den Städten.", fr:"Trenitalia relie Pescara, Sulmona, Lanciano, Vasto et Chieti. Utiles comme liaison entre les villes."},
+    tip:{en:"Buy on Trenitalia app. Always validate the ticket at yellow machines before boarding.", it:"Acquista sull'app Trenitalia. Convalida sempre il biglietto alle macchinette gialle prima di salire.", de:"In der Trenitalia-App kaufen. Ticket immer an den gelben Automaten vor dem Einsteigen entwerten.", fr:"Achetez sur l'appli Trenitalia. Validez toujours le billet aux bornes jaunes avant de monter."}
   },
   {
     icon:"ti-taxi",
-    name:"Taxi & Transfers",
-    desc:"Available in all cities. For trailhead transfers book local operators in L'Aquila or Sulmona. Groups: shared airport transfers are cost-effective.",
-    tip:"Pre-book airport taxis — metered taxis are not always available at Pescara."
+    name:{en:"Taxi & Transfers", it:"Taxi e transfer", de:"Taxi & Transfers", fr:"Taxis et transferts"},
+    desc:{en:"Available in all cities. For trailhead transfers book local operators in L'Aquila or Sulmona. Groups: shared airport transfers are cost-effective.", it:"Disponibili in tutte le città. Per i transfer verso i punti di partenza dei sentieri prenota operatori locali a L'Aquila o Sulmona. Gruppi: i transfer condivisi dall'aeroporto sono convenienti.", de:"In allen Städten verfügbar. Für Transfers zu Wanderausgangspunkten lokale Anbieter in L'Aquila oder Sulmona buchen. Gruppen: gemeinsame Flughafentransfers sind kostengünstig.", fr:"Disponibles dans toutes les villes. Pour les transferts vers les départs de sentiers, réservez des opérateurs locaux à L'Aquila ou Sulmona. Groupes : les transferts partagés depuis l'aéroport sont économiques."},
+    tip:{en:"Pre-book airport taxis — metered taxis are not always available at Pescara.", it:"Prenota in anticipo i taxi dall'aeroporto — a Pescara i taxi con tassametro non sono sempre disponibili.", de:"Flughafentaxis vorab buchen — in Pescara sind Taxis mit Taxameter nicht immer verfügbar.", fr:"Réservez les taxis d'aéroport à l'avance — à Pescara, les taxis au compteur ne sont pas toujours disponibles."}
   }
 ];
 
@@ -319,30 +469,30 @@ const appsData = [
   {
     icon:"ti-map-2",
     name:"Komoot",
-    desc:"Best offline trail maps for Abruzzo. Download the regional pack before visiting — essential above 1,200m where signal drops."
+    desc:{en:"Best offline trail maps for Abruzzo. Download the regional pack before visiting — essential above 1,200m where signal drops.", it:"Le migliori mappe offline dei sentieri dell'Abruzzo. Scarica il pacchetto regionale prima di partire — indispensabile oltre i 1.200 m dove manca il segnale.", de:"Die besten Offline-Wanderkarten für die Abruzzen. Laden Sie das Regionalpaket vor der Reise herunter — unverzichtbar über 1.200 m, wo das Signal abbricht.", fr:"Les meilleures cartes de sentiers hors ligne pour les Abruzzes. Téléchargez le pack régional avant de partir — indispensable au-dessus de 1 200 m où le signal disparaît."}
   },
   {
     icon:"ti-route",
     name:"Wikiloc",
-    desc:"Community trail maps with GPX tracks. Excellent Abruzzo coverage with user reviews and conditions reports."
+    desc:{en:"Community trail maps with GPX tracks. Excellent Abruzzo coverage with user reviews and conditions reports.", it:"Mappe dei sentieri della community con tracce GPX. Ottima copertura dell'Abruzzo con recensioni degli utenti e report sulle condizioni.", de:"Community-Wanderkarten mit GPX-Tracks. Hervorragende Abdeckung der Abruzzen mit Nutzerbewertungen und Zustandsberichten.", fr:"Cartes de sentiers communautaires avec traces GPX. Excellente couverture des Abruzzes avec avis d'utilisateurs et rapports d'état."}
   },
   {
     icon:"ti-train",
     name:"Trenitalia",
-    desc:"Official train app for schedules, tickets and real-time updates. Buy and store tickets here — no need to print."
+    desc:{en:"Official train app for schedules, tickets and real-time updates. Buy and store tickets here — no need to print.", it:"App ufficiale dei treni per orari, biglietti e aggiornamenti in tempo reale. Compra e conserva i biglietti qui — non serve stamparli.", de:"Offizielle Zug-App für Fahrpläne, Tickets und Echtzeit-Updates. Tickets hier kaufen und speichern — kein Ausdruck nötig.", fr:"Appli ferroviaire officielle pour horaires, billets et mises à jour en temps réel. Achetez et conservez vos billets ici — pas besoin d'imprimer."}
   },
   {
     icon:"ti-cloud-rain",
     name:"ARPA Meteo",
-    desc:"Abruzzo's official weather service — the most accurate mountain forecasts. Essential for any hiking day above 1,500m."
+    desc:{en:"Abruzzo's official weather service — the most accurate mountain forecasts. Essential for any hiking day above 1,500m.", it:"Il servizio meteo ufficiale dell'Abruzzo — le previsioni di montagna più accurate. Indispensabile per ogni giornata di trekking sopra i 1.500 m.", de:"Der offizielle Wetterdienst der Abruzzen — die genauesten Bergprognosen. Unverzichtbar für jeden Wandertag über 1.500 m.", fr:"Le service météo officiel des Abruzzes — les prévisions de montagne les plus précises. Indispensable pour toute journée de randonnée au-dessus de 1 500 m."}
   }
 ];
 
 const emergencies = [
-  { num:"112",             desc:"General emergency (police, fire, ambulance)" },
-  { num:"118",             desc:"Medical emergency (calls now routed via 112)" },
-  { num:"1515",            desc:"Forest fire — Carabinieri Forestali" },
-  { num:"Soccorso Alpino", desc:"Mountain rescue: call 112 and ask for Soccorso Alpino (CNSAS)" }
+  { num:"112",             desc:{en:"General emergency (police, fire, ambulance)", it:"Emergenza generale (polizia, vigili del fuoco, ambulanza)", de:"Allgemeiner Notruf (Polizei, Feuerwehr, Rettungsdienst)", fr:"Urgence générale (police, pompiers, ambulance)"} },
+  { num:"118",             desc:{en:"Medical emergency (calls now routed via 112)", it:"Emergenza sanitaria (le chiamate ora passano dal 112)", de:"Medizinischer Notfall (Anrufe laufen jetzt über 112)", fr:"Urgence médicale (les appels passent désormais par le 112)"} },
+  { num:"1515",            desc:{en:"Forest fire — Carabinieri Forestali", it:"Incendi boschivi — Carabinieri Forestali", de:"Waldbrand — Carabinieri Forestali", fr:"Incendie de forêt — Carabinieri Forestali"} },
+  { num:"Soccorso Alpino", desc:{en:"Mountain rescue: call 112 and ask for Soccorso Alpino (CNSAS)", it:"Soccorso in montagna: chiama il 112 e chiedi del Soccorso Alpino (CNSAS)", de:"Bergrettung: 112 anrufen und nach dem Soccorso Alpino (CNSAS) fragen", fr:"Secours en montagne : appelez le 112 et demandez le Soccorso Alpino (CNSAS)"} }
 ];
 
 /* ══ RENDER ══ */
@@ -355,11 +505,11 @@ function renderAirports() {
       </div>
       <div class="airport-dist">
         <i class="ti ti-map-pin" aria-hidden="true" style="font-size:11px;vertical-align:-1px"></i>
-        ${a.dist}
+        ${L(a.dist)}
       </div>
-      <p>${a.desc}</p>
+      <p>${L(a.desc)}</p>
       <div class="airport-tags">
-        ${a.tags.map(t => `<span class="airport-tag">${t}</span>`).join('')}
+        ${a.tags.map(t => `<span class="airport-tag">${L(t)}</span>`).join('')}
       </div>
     </div>`).join('');
 }
@@ -368,7 +518,7 @@ function renderTrainRoutes() {
   document.getElementById('train-routes').innerHTML = trainRoutes.map(r => `
     <div class="route-row">
       <span class="route-from">${r.from} → ${r.to}</span>
-      <span class="route-type">${r.type}</span>
+      <span class="route-type">${L(r.type)}</span>
       <span class="route-time">
         <i class="ti ti-clock" aria-hidden="true" style="font-size:12px;vertical-align:-1px"></i>
         ${r.time}
@@ -380,7 +530,7 @@ function renderCarRoutes() {
   document.getElementById('car-routes').innerHTML = carRoutes.map(r => `
     <div class="route-row">
       <span class="route-from">${r.from} → ${r.to}</span>
-      <span class="route-type">${r.type}</span>
+      <span class="route-type">${L(r.type)}</span>
       <span class="route-time">
         <i class="ti ti-car" aria-hidden="true" style="font-size:12px;vertical-align:-1px"></i>
         ${r.time}
@@ -394,11 +544,11 @@ function renderAround() {
       <div class="icon-circle lg" style="margin:0 auto .7rem">
         <i class="ti ${a.icon}" aria-hidden="true"></i>
       </div>
-      <h4>${a.name}</h4>
-      <p>${a.desc}</p>
+      <h4>${L(a.name)}</h4>
+      <p>${L(a.desc)}</p>
       <div class="around-tip">
         <i class="ti ti-bulb" aria-hidden="true" style="font-size:12px;vertical-align:-1px"></i>
-        ${a.tip}
+        ${L(a.tip)}
       </div>
     </div>`).join('');
 }
@@ -411,7 +561,7 @@ function renderApps() {
       </div>
       <div>
         <h5>${a.name}</h5>
-        <p>${a.desc}</p>
+        <p>${L(a.desc)}</p>
       </div>
     </div>`).join('');
 }
@@ -420,7 +570,7 @@ function renderEmergencies() {
   document.getElementById('emergency-grid').innerHTML = emergencies.map(e => `
     <div class="emergency-card">
       <div class="emergency-num">${e.num}</div>
-      <div class="emergency-desc">${e.desc}</div>
+      <div class="emergency-desc">${L(e.desc)}</div>
     </div>`).join('');
 }
 
@@ -457,6 +607,16 @@ renderCarRoutes();
 renderAround();
 renderApps();
 renderEmergencies();
+
+/* ══ RE-RENDER AL CAMBIO LINGUA ══ */
+document.addEventListener('aw:langchange', () => {
+  renderAirports();
+  renderTrainRoutes();
+  renderCarRoutes();
+  renderAround();
+  renderApps();
+  renderEmergencies();
+});
 </script>
 
 </body>

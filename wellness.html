@@ -105,10 +105,10 @@
   <div class="hero-inner-veil"></div>
   <div class="hero-inner-content">
     <div class="hero-breadcrumb">
-      <a href="index.html">Home</a> › Wellness
+      <a href="index.html" data-i18n="n_home">Home</a> › <span data-i18n="n_wellness">Wellness</span>
     </div>
-    <h1 class="hero-inner-h1">Wellness & <em>Thermal Baths</em></h1>
-    <p class="hero-inner-sub">Regenerate body and mind in the mountains. Abruzzo's thermal waters have healed travellers since Roman times.</p>
+    <h1 class="hero-inner-h1" data-i18n="wl_h1">Wellness & <em>Thermal Baths</em></h1>
+    <p class="hero-inner-sub" data-i18n="wl_sub">Regenerate body and mind in the mountains. Abruzzo's thermal waters have healed travellers since Roman times.</p>
   </div>
 </div>
 
@@ -118,15 +118,15 @@
 
   <!-- Intro quote -->
   <div class="quote-block fade-in">
-    <blockquote>"Abruzzo is the antidote to everything too fast — altitude, silence, water and time."</blockquote>
+    <blockquote data-i18n="wl_quote">"Abruzzo is the antidote to everything too fast — altitude, silence, water and time."</blockquote>
     <cite>— Slow Travel Italia</cite>
   </div>
 
   <!-- Terme section -->
   <div class="section-header fade-in">
-    <span class="t-eyebrow">Terme & Spa</span>
-    <h2 class="t-h2">The Thermal Destinations</h2>
-    <p class="section-sub">Four exceptional wellness destinations — from sulfurous mountain springs to natural river pools and agriturismo retreats.</p>
+    <span class="t-eyebrow" data-i18n="wl_terme_eyebrow">Terme & Spa</span>
+    <h2 class="t-h2" data-i18n="wl_terme_h2">The Thermal Destinations</h2>
+    <p class="section-sub" data-i18n="wl_terme_sub">Four exceptional wellness destinations — from sulfurous mountain springs to natural river pools and agriturismo retreats.</p>
   </div>
 
   <div class="terme-grid fade-in" id="terme-grid"></div>
@@ -134,9 +134,9 @@
   <!-- Mountain wellness experiences -->
   <div class="gbox fade-in" style="margin-top:3rem">
     <div class="gbox-title">
-      <i class="ti ti-leaf" aria-hidden="true"></i>Mountain Wellness Experiences
+      <i class="ti ti-leaf" aria-hidden="true"></i><span data-i18n="wl_mwe_title">Mountain Wellness Experiences</span>
     </div>
-    <p style="color:rgba(255,255,255,.52);font-size:.84rem;margin-bottom:1.5rem;font-weight:300">
+    <p style="color:rgba(255,255,255,.52);font-size:.84rem;margin-bottom:1.5rem;font-weight:300" data-i18n="wl_mwe_sub">
       Beyond the thermal baths — Abruzzo offers extraordinary wellness in nature and silence.
     </p>
     <div class="act-grid" id="act-grid"></div>
@@ -145,8 +145,8 @@
   <!-- Practical tips -->
   <div style="margin-top:3rem">
     <div class="section-header fade-in">
-      <span class="t-eyebrow">Practical Info</span>
-      <h2 class="t-h2">Plan Your Wellness Stay</h2>
+      <span class="t-eyebrow" data-i18n="wl_pi_eyebrow">Practical Info</span>
+      <h2 class="t-h2" data-i18n="wl_pi_h2">Plan Your Wellness Stay</h2>
     </div>
     <div class="wt-grid fade-in" id="wt-grid"></div>
   </div>
@@ -217,6 +217,60 @@
 
 <!-- ════ JAVASCRIPT ════ -->
 <script>
+/* ══ UI STATICA (chiavi di pagina) ══ */
+Object.assign(T18.en,{
+  wl_h1:'Wellness & <em>Thermal Baths</em>',
+  wl_sub:"Regenerate body and mind in the mountains. Abruzzo's thermal waters have healed travellers since Roman times.",
+  wl_quote:'"Abruzzo is the antidote to everything too fast — altitude, silence, water and time."',
+  wl_terme_eyebrow:'Terme & Spa', wl_terme_h2:'The Thermal Destinations',
+  wl_terme_sub:'Four exceptional wellness destinations — from sulfurous mountain springs to natural river pools and agriturismo retreats.',
+  wl_mwe_title:'Mountain Wellness Experiences',
+  wl_mwe_sub:'Beyond the thermal baths — Abruzzo offers extraordinary wellness in nature and silence.',
+  wl_pi_eyebrow:'Practical Info', wl_pi_h2:'Plan Your Wellness Stay',
+  wl_discover:'Discover more →',
+  wl_hl_title:'Highlights', wl_pr_title:'Practical Info',
+  wl_st_waters:'Waters', wl_st_alt:'Altitude', wl_st_season:'Season', wl_st_region:'Region'
+});
+Object.assign(T18.it,{
+  wl_h1:'Benessere & <em>Terme</em>',
+  wl_sub:"Rigenera corpo e mente in montagna. Le acque termali d'Abruzzo curano i viaggiatori fin dai tempi dei Romani.",
+  wl_quote:'"L\'Abruzzo è l\'antidoto a tutto ciò che è troppo veloce — altitudine, silenzio, acqua e tempo."',
+  wl_terme_eyebrow:'Terme & Spa', wl_terme_h2:'Le Destinazioni Termali',
+  wl_terme_sub:'Quattro destinazioni di benessere eccezionali — dalle sorgenti sulfuree di montagna alle piscine naturali sul fiume, fino ai ritiri in agriturismo.',
+  wl_mwe_title:'Esperienze di Benessere in Montagna',
+  wl_mwe_sub:"Oltre le terme — l'Abruzzo offre un benessere straordinario nella natura e nel silenzio.",
+  wl_pi_eyebrow:'Info Pratiche', wl_pi_h2:'Organizza il Tuo Soggiorno Benessere',
+  wl_discover:'Scopri di più →',
+  wl_hl_title:'In Evidenza', wl_pr_title:'Info Pratiche',
+  wl_st_waters:'Acque', wl_st_alt:'Altitudine', wl_st_season:'Stagione', wl_st_region:'Regione'
+});
+Object.assign(T18.de,{
+  wl_h1:'Wellness & <em>Thermalbäder</em>',
+  wl_sub:'Regenerieren Sie Körper und Geist in den Bergen. Die Thermalwässer der Abruzzen heilen Reisende seit der Römerzeit.',
+  wl_quote:'"Die Abruzzen sind das Gegenmittel zu allem Zu-Schnellen — Höhe, Stille, Wasser und Zeit."',
+  wl_terme_eyebrow:'Terme & Spa', wl_terme_h2:'Die Thermalziele',
+  wl_terme_sub:'Vier außergewöhnliche Wellness-Ziele — von schwefelhaltigen Bergquellen über natürliche Flussbecken bis zu Agriturismo-Retreats.',
+  wl_mwe_title:'Wellness-Erlebnisse in den Bergen',
+  wl_mwe_sub:'Jenseits der Thermalbäder — die Abruzzen bieten außergewöhnliches Wohlbefinden in Natur und Stille.',
+  wl_pi_eyebrow:'Praktische Infos', wl_pi_h2:'Planen Sie Ihren Wellness-Aufenthalt',
+  wl_discover:'Mehr entdecken →',
+  wl_hl_title:'Highlights', wl_pr_title:'Praktische Infos',
+  wl_st_waters:'Wässer', wl_st_alt:'Höhe', wl_st_season:'Saison', wl_st_region:'Region'
+});
+Object.assign(T18.fr,{
+  wl_h1:'Bien-être & <em>Thermes</em>',
+  wl_sub:"Régénérez corps et esprit à la montagne. Les eaux thermales des Abruzzes soignent les voyageurs depuis l'époque romaine.",
+  wl_quote:'"Les Abruzzes sont l\'antidote à tout ce qui va trop vite — altitude, silence, eau et temps."',
+  wl_terme_eyebrow:'Terme & Spa', wl_terme_h2:'Les Destinations Thermales',
+  wl_terme_sub:'Quatre destinations bien-être exceptionnelles — des sources sulfureuses de montagne aux bassins naturels en rivière, jusqu\'aux retraites en agriturismo.',
+  wl_mwe_title:'Expériences Bien-être en Montagne',
+  wl_mwe_sub:'Au-delà des thermes — les Abruzzes offrent un bien-être extraordinaire dans la nature et le silence.',
+  wl_pi_eyebrow:'Infos Pratiques', wl_pi_h2:'Organisez Votre Séjour Bien-être',
+  wl_discover:'En savoir plus →',
+  wl_hl_title:'Points Forts', wl_pr_title:'Infos Pratiques',
+  wl_st_waters:'Eaux', wl_st_alt:'Altitude', wl_st_season:'Saison', wl_st_region:'Région'
+});
+
 /* ══ DATA ══ */
 const terme = [
   {
@@ -224,109 +278,302 @@ const terme = [
     name:'Terme di Caramanico',
     place:'Caramanico Terme (PE)',
     img:'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=700&q=80',
-    tag:'Sulfur Springs',
-    alt:'656m', type:'Sulfur & saline springs', season:'May – October',
-    desc:"The most famous spa in Abruzzo — sulfurous and saline waters among the beech forests of the Majella. Treatments for respiratory, skin and rheumatic conditions in a stunning mountain setting. The thermal establishment dates from the 1930s and retains its elegant period character.",
-    highlights:[
+    tag:{en:'Sulfur Springs', it:'Sorgenti sulfuree', de:'Schwefelquellen', fr:'Sources sulfureuses'},
+    alt:'656m',
+    type:{en:'Sulfur & saline springs', it:'Acque sulfuree e saline', de:'Schwefel- & Solequellen', fr:'Sources sulfureuses et salines'},
+    season:{en:'May – October', it:'Maggio – ottobre', de:'Mai – Oktober', fr:'Mai – octobre'},
+    desc:{en:"The most famous spa in Abruzzo — sulfurous and saline waters among the beech forests of the Majella. Treatments for respiratory, skin and rheumatic conditions in a stunning mountain setting. The thermal establishment dates from the 1930s and retains its elegant period character.",
+      it:"Le terme più celebri d'Abruzzo — acque sulfuree e saline tra le faggete della Majella. Trattamenti per le vie respiratorie, la pelle e i reumatismi in una splendida cornice di montagna. Lo stabilimento termale risale agli anni '30 e conserva il suo elegante carattere d'epoca.",
+      de:"Das berühmteste Thermalbad der Abruzzen — schwefel- und salzhaltige Wässer inmitten der Buchenwälder der Majella. Behandlungen für Atemwege, Haut und Rheuma in traumhafter Bergkulisse. Das Thermalgebäude stammt aus den 1930er Jahren und bewahrt seinen eleganten historischen Charakter.",
+      fr:"Les thermes les plus célèbres des Abruzzes — eaux sulfureuses et salines au cœur des hêtraies de la Majella. Soins pour les voies respiratoires, la peau et les rhumatismes dans un cadre montagnard splendide. L'établissement thermal date des années 1930 et conserve son élégant caractère d'époque."},
+    highlights:{en:[
       'Medical thermal treatments (prescription required for some)',
       'Inhalation & respiratory therapy',
       'Outdoor trekking + spa combos available',
       'Historic 1930s thermal establishment'
     ],
-    practical:[
+    it:[
+      'Cure termali mediche (per alcune serve la prescrizione)',
+      'Inalazioni e terapia respiratoria',
+      'Pacchetti trekking + spa disponibili',
+      "Storico stabilimento termale anni '30"
+    ],
+    de:[
+      'Medizinische Thermalbehandlungen (teils Rezept erforderlich)',
+      'Inhalationen & Atemwegstherapie',
+      'Kombi-Angebote Trekking + Spa verfügbar',
+      'Historisches Thermalgebäude aus den 1930ern'
+    ],
+    fr:[
+      'Cures thermales médicales (ordonnance requise pour certaines)',
+      'Inhalations & thérapie respiratoire',
+      'Forfaits trekking + spa disponibles',
+      'Établissement thermal historique des années 1930'
+    ]},
+    practical:{en:[
       'Open May to October only',
       'Hotel stays from €80/night',
       'Nearest town: Sulmona 40km',
       'Best combined with Majella hiking'
-    ]
+    ],
+    it:[
+      'Aperto solo da maggio a ottobre',
+      'Hotel da €80/notte',
+      'Città più vicina: Sulmona 40 km',
+      'Ideale abbinato al trekking sulla Majella'
+    ],
+    de:[
+      'Nur von Mai bis Oktober geöffnet',
+      'Hotelübernachtung ab €80/Nacht',
+      'Nächste Stadt: Sulmona 40 km',
+      'Ideal kombiniert mit Majella-Wanderungen'
+    ],
+    fr:[
+      'Ouvert de mai à octobre uniquement',
+      'Hôtel à partir de €80/nuit',
+      'Ville la plus proche : Sulmona 40 km',
+      'Idéal combiné à la randonnée dans la Majella'
+    ]}
   },
   {
     id:'raiano',
     name:'Terme di Raiano',
     place:'Raiano (AQ)',
     img:'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=700&q=80',
-    tag:'Natural Pools',
-    alt:'350m', type:'Bicarbonate-calcium springs', season:'June – September',
-    desc:"Natural outdoor thermal pools on the banks of the Aterno river — wild, uncrowded and surrounded by limestone cliffs. One of Italy's most authentic and unspoilt thermal experiences, far from the polished spa circuit.",
-    highlights:[
+    tag:{en:'Natural Pools', it:'Piscine naturali', de:'Naturbecken', fr:'Bassins naturels'},
+    alt:'350m',
+    type:{en:'Bicarbonate-calcium springs', it:'Acque bicarbonato-calciche', de:'Bikarbonat-Kalzium-Quellen', fr:'Sources bicarbonatées calciques'},
+    season:{en:'June – September', it:'Giugno – settembre', de:'Juni – September', fr:'Juin – septembre'},
+    desc:{en:"Natural outdoor thermal pools on the banks of the Aterno river — wild, uncrowded and surrounded by limestone cliffs. One of Italy's most authentic and unspoilt thermal experiences, far from the polished spa circuit.",
+      it:"Piscine termali naturali all'aperto sulle rive del fiume Aterno — selvagge, tranquille e circondate da pareti calcaree. Una delle esperienze termali più autentiche e incontaminate d'Italia, lontano dal circuito delle spa patinate.",
+      de:"Natürliche Thermalbecken im Freien am Ufer des Flusses Aterno — wild, ruhig und von Kalksteinfelsen umgeben. Eines der authentischsten und unberührtesten Thermalerlebnisse Italiens, fernab des glatten Spa-Zirkus.",
+      fr:"Bassins thermaux naturels en plein air sur les rives de la rivière Aterno — sauvages, tranquilles et entourés de falaises calcaires. L'une des expériences thermales les plus authentiques et préservées d'Italie, loin du circuit des spas léchés."},
+    highlights:{en:[
       'Outdoor natural thermal pools in the river',
       'Wild and uncrowded atmosphere',
       'Combine with Sagittario gorge walk (10 min away)',
       'Free access to some natural areas'
     ],
-    practical:[
+    it:[
+      "Piscine termali naturali all'aperto nel fiume",
+      'Atmosfera selvaggia e tranquilla',
+      'Abbinabile alla passeggiata nelle Gole del Sagittario (a 10 min)',
+      'Accesso gratuito ad alcune aree naturali'
+    ],
+    de:[
+      'Natürliche Thermalbecken im Freien im Fluss',
+      'Wilde und ruhige Atmosphäre',
+      'Kombinierbar mit der Wanderung durch die Sagittario-Schlucht (10 Min)',
+      'Freier Zugang zu einigen Naturbereichen'
+    ],
+    fr:[
+      'Bassins thermaux naturels en plein air dans la rivière',
+      'Ambiance sauvage et tranquille',
+      'À combiner avec la balade des gorges du Sagittario (à 10 min)',
+      'Accès gratuit à certaines zones naturelles'
+    ]},
+    practical:{en:[
       'Summer season only (June–September)',
       'Day use from €10',
       'Nearest city: Sulmona 20km',
       'Bring own towels, snacks and water'
-    ]
+    ],
+    it:[
+      'Solo stagione estiva (giugno–settembre)',
+      'Ingresso giornaliero da €10',
+      'Città più vicina: Sulmona 20 km',
+      'Porta asciugamani, snack e acqua'
+    ],
+    de:[
+      'Nur Sommersaison (Juni–September)',
+      'Tageseintritt ab €10',
+      'Nächste Stadt: Sulmona 20 km',
+      'Handtücher, Snacks und Wasser mitbringen'
+    ],
+    fr:[
+      'Saison estivale uniquement (juin–septembre)',
+      'Entrée journée à partir de €10',
+      'Ville la plus proche : Sulmona 20 km',
+      'Apportez serviettes, en-cas et eau'
+    ]}
   },
   {
     id:'popoli',
     name:'Terme di Popoli',
     place:'Popoli (PE)',
     img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80',
-    tag:'Roman Origins',
-    alt:'261m', type:'Sulfurous & bicarbonate', season:'Year round',
-    desc:"Known and used since Roman times — set in a strategic valley where three rivers converge. The site has been inhabited for over 3,000 years, and the therapeutic waters are documented in Latin sources. Year-round opening makes it the most accessible option.",
-    highlights:[
+    tag:{en:'Roman Origins', it:'Origini romane', de:'Römische Ursprünge', fr:'Origines romaines'},
+    alt:'261m',
+    type:{en:'Sulfurous & bicarbonate', it:'Sulfuree e bicarbonate', de:'Schwefel- & Bikarbonatquellen', fr:'Sulfureuses et bicarbonatées'},
+    season:{en:'Year round', it:"Tutto l'anno", de:'Ganzjährig', fr:"Toute l'année"},
+    desc:{en:"Known and used since Roman times — set in a strategic valley where three rivers converge. The site has been inhabited for over 3,000 years, and the therapeutic waters are documented in Latin sources. Year-round opening makes it the most accessible option.",
+      it:"Conosciute e utilizzate fin dall'epoca romana — in una valle strategica dove confluiscono tre fiumi. Il sito è abitato da oltre 3.000 anni e le acque terapeutiche sono documentate in fonti latine. L'apertura tutto l'anno lo rende l'opzione più accessibile.",
+      de:"Seit der Römerzeit bekannt und genutzt — in einem strategischen Tal, wo drei Flüsse zusammentreffen. Der Ort ist seit über 3.000 Jahren bewohnt, und die heilenden Wässer sind in lateinischen Quellen belegt. Die ganzjährige Öffnung macht es zur zugänglichsten Option.",
+      fr:"Connues et utilisées depuis l'époque romaine — dans une vallée stratégique où confluent trois rivières. Le site est habité depuis plus de 3 000 ans et les eaux thérapeutiques sont documentées dans des sources latines. Son ouverture toute l'année en fait l'option la plus accessible."},
+    highlights:{en:[
       'Roman-era thermal tradition documented in Latin texts',
       'Strategic position where three rivers meet',
       'Year-round opening — even in winter',
       'Near Pescara Vecchia archaeological site'
     ],
-    practical:[
+    it:[
+      'Tradizione termale romana documentata in testi latini',
+      'Posizione strategica dove si incontrano tre fiumi',
+      "Aperto tutto l'anno — anche in inverno",
+      'Vicino al sito archeologico di Pescara Vecchia'
+    ],
+    de:[
+      'Römische Thermaltradition in lateinischen Texten belegt',
+      'Strategische Lage, wo drei Flüsse zusammentreffen',
+      'Ganzjährig geöffnet — auch im Winter',
+      'Nahe der archäologischen Stätte Pescara Vecchia'
+    ],
+    fr:[
+      'Tradition thermale romaine documentée dans des textes latins',
+      'Position stratégique où se rejoignent trois rivières',
+      "Ouvert toute l'année — même en hiver",
+      'Près du site archéologique de Pescara Vecchia'
+    ]},
+    practical:{en:[
       'Open year round',
       'Booking recommended for treatments',
       'From Pescara airport: 45km',
       'Accessible by train from Pescara'
-    ]
+    ],
+    it:[
+      "Aperto tutto l'anno",
+      'Prenotazione consigliata per i trattamenti',
+      "Dall'aeroporto di Pescara: 45 km",
+      'Raggiungibile in treno da Pescara'
+    ],
+    de:[
+      'Ganzjährig geöffnet',
+      'Buchung für Behandlungen empfohlen',
+      'Vom Flughafen Pescara: 45 km',
+      'Mit dem Zug von Pescara erreichbar'
+    ],
+    fr:[
+      "Ouvert toute l'année",
+      'Réservation conseillée pour les soins',
+      "Depuis l'aéroport de Pescara : 45 km",
+      'Accessible en train depuis Pescara'
+    ]}
   },
   {
     id:'retreats',
-    name:'Mountain Wellness Retreats',
-    place:'Various (AQ / PE)',
+    name:{en:'Mountain Wellness Retreats', it:'Ritiri di Benessere in Montagna', de:'Wellness-Retreats in den Bergen', fr:'Retraites Bien-être en Montagne'},
+    place:{en:'Various (AQ / PE)', it:'Varie (AQ / PE)', de:'Verschiedene (AQ / PE)', fr:'Divers (AQ / PE)'},
     img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80',
     tag:'Agriturismo · Yoga',
-    alt:'800 – 1,400m', type:'Nature & slow wellness', season:'April – October',
-    desc:"Abruzzo's agriturismo farms, mountain refuges and ancient abbeys offer a different kind of healing — silence, altitude, home cooking and nights without light pollution. The Gran Sasso plateau at 2,100m hosts yoga retreats with views that are genuinely life-changing.",
-    highlights:[
+    alt:'800 – 1,400m',
+    type:{en:'Nature & slow wellness', it:'Natura e benessere slow', de:'Natur & Slow-Wellness', fr:'Nature & bien-être slow'},
+    season:{en:'April – October', it:'Aprile – ottobre', de:'April – Oktober', fr:'Avril – octobre'},
+    desc:{en:"Abruzzo's agriturismo farms, mountain refuges and ancient abbeys offer a different kind of healing — silence, altitude, home cooking and nights without light pollution. The Gran Sasso plateau at 2,100m hosts yoga retreats with views that are genuinely life-changing.",
+      it:"Gli agriturismi, i rifugi di montagna e le antiche abbazie d'Abruzzo offrono una cura diversa — silenzio, altitudine, cucina casalinga e notti senza inquinamento luminoso. L'altopiano del Gran Sasso a 2.100 m ospita ritiri di yoga con panorami che cambiano davvero la vita.",
+      de:"Die Agriturismi, Berghütten und alten Abteien der Abruzzen bieten eine andere Art der Heilung — Stille, Höhe, Hausmannskost und Nächte ohne Lichtverschmutzung. Die Gran-Sasso-Hochebene auf 2.100 m beherbergt Yoga-Retreats mit wahrhaft lebensverändernden Ausblicken.",
+      fr:"Les agriturismi, refuges de montagne et anciennes abbayes des Abruzzes offrent une autre forme de soin — silence, altitude, cuisine maison et nuits sans pollution lumineuse. Le plateau du Gran Sasso à 2 100 m accueille des retraites de yoga aux panoramas véritablement transformateurs."},
+    highlights:{en:[
       'Yoga retreats on Gran Sasso plateau',
       'Silent walking in ancient beech forests',
       'Forest bathing (shinrin-yoku) certified guides',
       'Sound healing sessions in medieval abbeys'
     ],
-    practical:[
+    it:[
+      "Ritiri di yoga sull'altopiano del Gran Sasso",
+      'Camminate in silenzio nelle antiche faggete',
+      'Forest bathing (shinrin-yoku) con guide certificate',
+      'Sessioni di sound healing in abbazie medievali'
+    ],
+    de:[
+      'Yoga-Retreats auf der Gran-Sasso-Hochebene',
+      'Stilles Gehen in uralten Buchenwäldern',
+      'Waldbaden (Shinrin-yoku) mit zertifizierten Guides',
+      'Klangheilungs-Sitzungen in mittelalterlichen Abteien'
+    ],
+    fr:[
+      'Retraites de yoga sur le plateau du Gran Sasso',
+      'Marche silencieuse dans les antiques hêtraies',
+      'Bain de forêt (shinrin-yoku) avec guides certifiés',
+      'Séances de sound healing dans des abbayes médiévales'
+    ]},
+    practical:{en:[
       'Book agriturismo 3 months ahead in summer',
       'Cool even in July — always bring layers',
       'Phone signal patchy above 1,200m',
       'Best areas: Pescocostanzo & Campo di Giove'
-    ]
+    ],
+    it:[
+      "In estate prenota l'agriturismo con 3 mesi d'anticipo",
+      'Fresco anche a luglio — porta sempre abbigliamento a strati',
+      'Segnale telefonico incerto oltre i 1.200 m',
+      'Zone migliori: Pescocostanzo e Campo di Giove'
+    ],
+    de:[
+      'Im Sommer den Agriturismo 3 Monate im Voraus buchen',
+      'Auch im Juli kühl — immer Kleidung zum Zwiebellook mitnehmen',
+      'Handyempfang lückenhaft über 1.200 m',
+      'Beste Gebiete: Pescocostanzo & Campo di Giove'
+    ],
+    fr:[
+      "En été, réservez l'agriturismo 3 mois à l'avance",
+      'Frais même en juillet — prévoyez toujours plusieurs couches',
+      'Signal téléphonique aléatoire au-dessus de 1 200 m',
+      'Meilleures zones : Pescocostanzo & Campo di Giove'
+    ]}
   }
 ];
 
 const activities = [
-  { icon:'ti-yoga',        title:'Mountain Yoga',    desc:'Sunrise sessions above 2,000m on the Gran Sasso plateau. Local instructors, small groups, unforgettable backdrop.' },
-  { icon:'ti-trees',       title:'Forest Bathing',   desc:"Certified shinrin-yoku walks in Abruzzo's ancient beech forests. Guided sessions in Majella and National Park." },
-  { icon:'ti-chef-hat',    title:'Farm to Table',    desc:"Agriturismo dinners entirely from the farm's own produce. The original slow food — unchanged for generations." },
-  { icon:'ti-stars',       title:'Stargazing',       desc:'Abruzzo has the darkest skies in central Italy. Guided night sky sessions at Campo Imperatore observatory.' }
+  { icon:'ti-yoga',
+    title:{en:'Mountain Yoga', it:'Yoga in Montagna', de:'Bergyoga', fr:'Yoga en Montagne'},
+    desc:{en:'Sunrise sessions above 2,000m on the Gran Sasso plateau. Local instructors, small groups, unforgettable backdrop.',
+      it:"Sessioni all'alba oltre i 2.000 m sull'altopiano del Gran Sasso. Istruttori locali, piccoli gruppi, scenario indimenticabile.",
+      de:'Sessions bei Sonnenaufgang über 2.000 m auf der Gran-Sasso-Hochebene. Lokale Lehrer, kleine Gruppen, unvergessliche Kulisse.',
+      fr:'Séances au lever du soleil au-dessus de 2 000 m sur le plateau du Gran Sasso. Instructeurs locaux, petits groupes, décor inoubliable.'} },
+  { icon:'ti-trees',
+    title:{en:'Forest Bathing', it:'Forest Bathing', de:'Waldbaden', fr:'Bain de Forêt'},
+    desc:{en:"Certified shinrin-yoku walks in Abruzzo's ancient beech forests. Guided sessions in Majella and National Park.",
+      it:"Camminate shinrin-yoku certificate nelle antiche faggete d'Abruzzo. Sessioni guidate nella Majella e nel Parco Nazionale.",
+      de:'Zertifizierte Shinrin-yoku-Spaziergänge in den uralten Buchenwäldern der Abruzzen. Geführte Sessions in der Majella und im Nationalpark.',
+      fr:'Marches shinrin-yoku certifiées dans les antiques hêtraies des Abruzzes. Séances guidées dans la Majella et le Parc National.'} },
+  { icon:'ti-chef-hat',
+    title:{en:'Farm to Table', it:'Dalla Fattoria alla Tavola', de:'Vom Hof auf den Tisch', fr:'De la Ferme à la Table'},
+    desc:{en:"Agriturismo dinners entirely from the farm's own produce. The original slow food — unchanged for generations.",
+      it:'Cene in agriturismo interamente con i prodotti della fattoria. Lo slow food originale — immutato da generazioni.',
+      de:'Agriturismo-Abendessen ausschließlich aus eigenen Hoferzeugnissen. Das ursprüngliche Slow Food — seit Generationen unverändert.',
+      fr:"Dîners en agriturismo entièrement issus de la production de la ferme. Le slow food d'origine — inchangé depuis des générations."} },
+  { icon:'ti-stars',
+    title:{en:'Stargazing', it:'Osservazione delle Stelle', de:'Sterne Beobachten', fr:'Observation des Étoiles'},
+    desc:{en:'Abruzzo has the darkest skies in central Italy. Guided night sky sessions at Campo Imperatore observatory.',
+      it:"L'Abruzzo ha i cieli più bui dell'Italia centrale. Sessioni guidate sotto il cielo notturno all'osservatorio di Campo Imperatore.",
+      de:'Die Abruzzen haben den dunkelsten Himmel Mittelitaliens. Geführte Nachthimmel-Sessions am Observatorium Campo Imperatore.',
+      fr:"Les Abruzzes ont les ciels les plus sombres du centre de l'Italie. Séances guidées sous le ciel nocturne à l'observatoire de Campo Imperatore."} }
 ];
 
 const tips = [
   {
     icon:'ti-calendar',
-    title:'Best Season',
-    desc:'May–September for outdoor thermal pools. Year-round for established spas in Caramanico and Popoli. Autumn (September–October) is the most peaceful and beautiful time.'
+    title:{en:'Best Season', it:'Stagione Migliore', de:'Beste Jahreszeit', fr:'Meilleure Saison'},
+    desc:{en:'May–September for outdoor thermal pools. Year-round for established spas in Caramanico and Popoli. Autumn (September–October) is the most peaceful and beautiful time.',
+      it:"Maggio–settembre per le piscine termali all'aperto. Tutto l'anno per gli stabilimenti di Caramanico e Popoli. L'autunno (settembre–ottobre) è il periodo più tranquillo e suggestivo.",
+      de:'Mai–September für die Thermalbecken im Freien. Ganzjährig für die etablierten Bäder in Caramanico und Popoli. Der Herbst (September–Oktober) ist die ruhigste und schönste Zeit.',
+      fr:"Mai–septembre pour les bassins thermaux en plein air. Toute l'année pour les établissements de Caramanico et Popoli. L'automne (septembre–octobre) est la période la plus paisible et la plus belle."}
   },
   {
     icon:'ti-car',
-    title:'Getting There',
-    desc:'A car is essential — thermal centres are in mountain valleys. Pescara Airport is the main gateway, 1–1.5 hours from most terme. No public transport reaches Raiano or Caramanico directly.'
+    title:{en:'Getting There', it:'Come Arrivare', de:'Anreise', fr:"Comment s'y Rendre"},
+    desc:{en:'A car is essential — thermal centres are in mountain valleys. Pescara Airport is the main gateway, 1–1.5 hours from most terme. No public transport reaches Raiano or Caramanico directly.',
+      it:"L'auto è indispensabile — i centri termali si trovano nelle valli di montagna. L'aeroporto di Pescara è il principale punto d'accesso, a 1–1,5 ore dalla maggior parte delle terme. Nessun mezzo pubblico raggiunge direttamente Raiano o Caramanico.",
+      de:'Ein Auto ist unerlässlich — die Thermalzentren liegen in Bergtälern. Der Flughafen Pescara ist das Haupttor, 1–1,5 Stunden von den meisten Thermen entfernt. Kein öffentlicher Verkehr erreicht Raiano oder Caramanico direkt.',
+      fr:"Une voiture est indispensable — les centres thermaux se trouvent dans les vallées de montagne. L'aéroport de Pescara est la principale porte d'entrée, à 1–1,5 heure de la plupart des thermes. Aucun transport public ne dessert directement Raiano ou Caramanico."}
   },
   {
     icon:'ti-route',
-    title:'Combine With',
-    desc:'Thermal + Majella hike: 2 nights Caramanico. Thermal + village drive: 1 night Raiano + Sulmona. Yoga retreat + trekking: 4 nights mountain agriturismo on Gran Sasso.'
+    title:{en:'Combine With', it:'Da Abbinare a', de:'Kombinieren mit', fr:'À Combiner avec'},
+    desc:{en:'Thermal + Majella hike: 2 nights Caramanico. Thermal + village drive: 1 night Raiano + Sulmona. Yoga retreat + trekking: 4 nights mountain agriturismo on Gran Sasso.',
+      it:'Terme + trekking sulla Majella: 2 notti a Caramanico. Terme + giro dei borghi: 1 notte a Raiano + Sulmona. Ritiro yoga + trekking: 4 notti in agriturismo di montagna sul Gran Sasso.',
+      de:'Therme + Majella-Wanderung: 2 Nächte Caramanico. Therme + Dörfertour: 1 Nacht Raiano + Sulmona. Yoga-Retreat + Trekking: 4 Nächte Berg-Agriturismo am Gran Sasso.',
+      fr:'Thermes + randonnée dans la Majella : 2 nuits à Caramanico. Thermes + tournée des villages : 1 nuit à Raiano + Sulmona. Retraite yoga + trekking : 4 nuits en agriturismo de montagne sur le Gran Sasso.'}
   }
 ];
 
@@ -334,24 +581,24 @@ const tips = [
 function renderTerme() {
   document.getElementById('terme-grid').innerHTML = terme.map(t => `
     <div class="terme-card" onclick="openModal('${t.id}')" role="button" tabindex="0">
-      <img src="${t.img}" alt="${t.name}" loading="lazy"
+      <img src="${t.img}" alt="${L(t.name)}" loading="lazy"
            style="width:100%;height:210px;object-fit:cover;transition:transform .4s;display:block">
       <div class="termb">
-        <div class="terme-type">${t.tag}</div>
-        <h3>${t.name}</h3>
-        <p>${t.desc.substring(0, 110)}…</p>
+        <div class="terme-type">${L(t.tag)}</div>
+        <h3>${L(t.name)}</h3>
+        <p>${L(t.desc).substring(0, 110)}…</p>
         <div class="terme-meta">
           <span class="terme-meta-item">
             <i class="ti ti-mountain" aria-hidden="true" style="font-size:11px"></i> ${t.alt}
           </span>
           <span class="terme-meta-item">
-            <i class="ti ti-droplet" aria-hidden="true" style="font-size:11px"></i> ${t.type}
+            <i class="ti ti-droplet" aria-hidden="true" style="font-size:11px"></i> ${L(t.type)}
           </span>
           <span class="terme-meta-item">
-            <i class="ti ti-calendar" aria-hidden="true" style="font-size:11px"></i> ${t.season}
+            <i class="ti ti-calendar" aria-hidden="true" style="font-size:11px"></i> ${L(t.season)}
           </span>
         </div>
-        <span class="terme-cta">Discover more →</span>
+        <span class="terme-cta">${T('wl_discover')}</span>
       </div>
     </div>`).join('');
 }
@@ -363,8 +610,8 @@ function renderActivities() {
       <div class="icon-circle on-dark lg" style="margin:0 auto .75rem">
         <i class="ti ${a.icon}" aria-hidden="true"></i>
       </div>
-      <h4>${a.title}</h4>
-      <p>${a.desc}</p>
+      <h4>${L(a.title)}</h4>
+      <p>${L(a.desc)}</p>
     </div>`).join('');
 }
 
@@ -374,43 +621,45 @@ function renderTips() {
     <div class="wt-card">
       <h4 style="display:flex;align-items:center;gap:.4rem">
         <i class="ti ${t.icon}" style="font-size:16px;color:var(--rose)" aria-hidden="true"></i>
-        ${t.title}
+        ${L(t.title)}
       </h4>
-      <p>${t.desc}</p>
+      <p>${L(t.desc)}</p>
     </div>`).join('');
 }
 
 /* ══ MODAL ══ */
+let openTid = null;
 function openModal(id) {
   const t = terme.find(x => x.id === id);
+  openTid = id;
 
   document.getElementById('m-img').src = t.img;
-  document.getElementById('m-img').alt = t.name;
-  document.getElementById('m-sub').textContent   = t.place + ' · ' + t.alt;
-  document.getElementById('m-title').textContent = t.name;
+  document.getElementById('m-img').alt = L(t.name);
+  document.getElementById('m-sub').textContent   = L(t.place) + ' · ' + t.alt;
+  document.getElementById('m-title').textContent = L(t.name);
 
   document.getElementById('m-badges').innerHTML =
     `<span class="tag tag-nature">
-       <i class="ti ti-spa" aria-hidden="true"></i> ${t.tag}
+       <i class="ti ti-spa" aria-hidden="true"></i> ${L(t.tag)}
      </span>`;
 
-  document.getElementById('m-desc').textContent = t.desc;
+  document.getElementById('m-desc').textContent = L(t.desc);
 
   document.getElementById('m-stats').innerHTML = [
-    { v: t.type,   l: 'Waters' },
-    { v: t.alt,    l: 'Altitude' },
-    { v: t.season, l: 'Season' },
-    { v: 'Abruzzo', l: 'Region' }
+    { v: L(t.type),   l: T('wl_st_waters') },
+    { v: t.alt,       l: T('wl_st_alt') },
+    { v: L(t.season), l: T('wl_st_season') },
+    { v: 'Abruzzo',   l: T('wl_st_region') }
   ].map(s => `<div class="modal-stat"><strong>${s.v}</strong><span>${s.l}</span></div>`).join('');
 
   document.getElementById('m-two').innerHTML = `
     <div class="modal-sec">
-      <h4>Highlights</h4>
-      <ul>${t.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
+      <h4>${T('wl_hl_title')}</h4>
+      <ul>${L(t.highlights).map(h => `<li>${h}</li>`).join('')}</ul>
     </div>
     <div class="modal-sec">
-      <h4>Practical Info</h4>
-      <ul>${t.practical.map(p => `<li>${p}</li>`).join('')}</ul>
+      <h4>${T('wl_pr_title')}</h4>
+      <ul>${L(t.practical).map(p => `<li>${p}</li>`).join('')}</ul>
     </div>`;
 
   document.getElementById('modal-backdrop').classList.add('open');
@@ -420,6 +669,7 @@ function openModal(id) {
 function closeModal() {
   document.getElementById('modal-backdrop').classList.remove('open');
   document.body.style.overflow = '';
+  openTid = null;
 }
 
 document.addEventListener('keydown', e => {
@@ -448,6 +698,14 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 renderTerme();
 renderActivities();
 renderTips();
+
+/* ══ RE-RENDER AL CAMBIO LINGUA ══ */
+document.addEventListener('aw:langchange', () => {
+  renderTerme();
+  renderActivities();
+  renderTips();
+  if (openTid) openModal(openTid);  // se la modale è aperta, aggiornala
+});
 </script>
 
 </body>

@@ -102,13 +102,13 @@
   <div class="hero-inner-veil"></div>
   <div class="hero-inner-content">
     <div class="hero-breadcrumb">
-      <a href="index.html">Home</a> › Food & Wine
+      <a href="index.html" data-i18n="n_home">Home</a> › <span data-i18n="fd_breadcrumb">Food &amp; Wine</span>
     </div>
-    <h1 class="hero-inner-h1">Food & <em>Wine</em></h1>
+    <h1 class="hero-inner-h1" data-i18n="fd_hero_h1">Food & <em>Wine</em></h1>
     <div class="hero-kpis">
-      <div class="hero-kpi"><strong>3</strong><span>DOC wines</span></div>
-      <div class="hero-kpi"><strong>2</strong><span>DOP products</span></div>
-      <div class="hero-kpi"><strong>12+</strong><span>festivals / year</span></div>
+      <div class="hero-kpi"><strong>3</strong><span data-i18n="fd_kpi_doc">DOC wines</span></div>
+      <div class="hero-kpi"><strong>2</strong><span data-i18n="fd_kpi_dop">DOP products</span></div>
+      <div class="hero-kpi"><strong>12+</strong><span data-i18n="fd_kpi_fest">festivals / year</span></div>
     </div>
   </div>
 </div>
@@ -116,22 +116,22 @@
 
 <!-- ════ FILTER BAR ════ -->
 <div class="filter-bar">
-  <span class="filter-label">Category</span>
-  <button class="pill pill-parchment on" onclick="fFilter('all', this)">All</button>
+  <span class="filter-label" data-i18n="fd_cat">Category</span>
+  <button class="pill pill-parchment on" onclick="fFilter('all', this)"><span data-i18n="fd_c_all">All</span></button>
   <button class="pill pill-parchment" onclick="fFilter('pasta', this)">
-    <i class="ti ti-ripple" aria-hidden="true"></i> Pasta
+    <i class="ti ti-ripple" aria-hidden="true"></i> <span data-i18n="fd_c_pasta">Pasta</span>
   </button>
   <button class="pill pill-parchment" onclick="fFilter('meat', this)">
-    <i class="ti ti-meat" aria-hidden="true"></i> Meat
+    <i class="ti ti-meat" aria-hidden="true"></i> <span data-i18n="fd_c_meat">Meat</span>
   </button>
   <button class="pill pill-parchment" onclick="fFilter('cheese', this)">
-    <i class="ti ti-cheese" aria-hidden="true"></i> Cheese & DOP
+    <i class="ti ti-cheese" aria-hidden="true"></i> <span data-i18n="fd_c_cheese">Cheese & DOP</span>
   </button>
   <button class="pill pill-parchment" onclick="fFilter('seafood', this)">
-    <i class="ti ti-fish" aria-hidden="true"></i> Seafood
+    <i class="ti ti-fish" aria-hidden="true"></i> <span data-i18n="fd_c_seafood">Seafood</span>
   </button>
   <button class="pill pill-parchment" onclick="fFilter('sweet', this)">
-    <i class="ti ti-candy" aria-hidden="true"></i> Sweets
+    <i class="ti ti-candy" aria-hidden="true"></i> <span data-i18n="fd_c_sweet">Sweets</span>
   </button>
   <span class="filter-count" id="f-count"></span>
 </div>
@@ -144,32 +144,32 @@
 
   <!-- ════ WINES SECTION ════ -->
   <div class="wine-section fade-in" style="margin-top:3rem">
-    <span class="t-eyebrow" style="color:#a8d5b5">The Wines</span>
+    <span class="t-eyebrow" style="color:#a8d5b5" data-i18n="fd_wines_eyebrow">The Wines</span>
     <h2 class="t-h2" style="color:var(--white);margin:.4rem 0">Montepulciano, Trebbiano & Cerasuolo</h2>
-    <p style="color:rgba(255,255,255,.52);font-size:.87rem;margin-bottom:1.8rem;font-weight:300">
+    <p style="color:rgba(255,255,255,.52);font-size:.87rem;margin-bottom:1.8rem;font-weight:300" data-i18n="fd_wines_intro">
       Three DOC wines that define Abruzzo's table — the Montepulciano reaches DOCG status in the Colline Teramane.
     </p>
     <div class="wine-grid">
       <div class="wine-card">
         <div style="font-size:1.5rem;margin-bottom:.6rem">🍷</div>
         <h4>Montepulciano d'Abruzzo DOC</h4>
-        <p>Full-bodied with dark cherry, leather and tobacco. Aged versions develop extraordinary complexity.</p>
-        <div class="wine-color-badge">Deep ruby red</div>
-        <div class="wine-pair">🍽️ Arrosticini, lamb, aged pecorino</div>
+        <p data-i18n="fd_w1_desc">Full-bodied with dark cherry, leather and tobacco. Aged versions develop extraordinary complexity.</p>
+        <div class="wine-color-badge" data-i18n="fd_w1_color">Deep ruby red</div>
+        <div class="wine-pair" data-i18n="fd_w1_pair">🍽️ Arrosticini, lamb, aged pecorino</div>
       </div>
       <div class="wine-card">
         <div style="font-size:1.5rem;margin-bottom:.6rem">🥂</div>
         <h4>Trebbiano d'Abruzzo DOC</h4>
-        <p>In the right hands this becomes one of Italy's most profound white wines — mineral and age-worthy.</p>
-        <div class="wine-color-badge">Straw yellow</div>
-        <div class="wine-pair">🍽️ Brodetto, grilled fish, fresh pecorino</div>
+        <p data-i18n="fd_w2_desc">In the right hands this becomes one of Italy's most profound white wines — mineral and age-worthy.</p>
+        <div class="wine-color-badge" data-i18n="fd_w2_color">Straw yellow</div>
+        <div class="wine-pair" data-i18n="fd_w2_pair">🍽️ Brodetto, grilled fish, fresh pecorino</div>
       </div>
       <div class="wine-card">
         <div style="font-size:1.5rem;margin-bottom:.6rem">🌹</div>
         <h4>Cerasuolo d'Abruzzo DOC</h4>
-        <p>Montepulciano made as a rosé — but with depth and structure most rosés don't approach.</p>
-        <div class="wine-color-badge">Vivid cherry rosé</div>
-        <div class="wine-pair">🍽️ Pasta chitarra, soft cheeses, antipasto</div>
+        <p data-i18n="fd_w3_desc">Montepulciano made as a rosé — but with depth and structure most rosés don't approach.</p>
+        <div class="wine-color-badge" data-i18n="fd_w3_color">Vivid cherry rosé</div>
+        <div class="wine-pair" data-i18n="fd_w3_pair">🍽️ Pasta chitarra, soft cheeses, antipasto</div>
       </div>
     </div>
   </div>
@@ -177,9 +177,9 @@
 
   <!-- ════ SAGRE SECTION ════ -->
   <div class="fade-in" style="margin-top:3rem">
-    <span class="t-eyebrow">Food Festivals</span>
-    <h2 class="t-h2" style="margin:.4rem 0 .6rem">Sagre & Food Events</h2>
-    <p class="t-body" style="margin-bottom:1.8rem;max-width:560px">
+    <span class="t-eyebrow" data-i18n="fd_sagre_eyebrow">Food Festivals</span>
+    <h2 class="t-h2" style="margin:.4rem 0 .6rem" data-i18n="fd_sagre_h2">Sagre & Food Events</h2>
+    <p class="t-body" style="margin-bottom:1.8rem;max-width:560px" data-i18n="fd_sagre_intro">
       Every month a village celebrates its local product with a sagra — free entry, generous portions, local wine.
     </p>
     <div class="sagre-grid" id="sagre-grid"></div>
@@ -250,135 +250,217 @@
 
 <!-- ════ JAVASCRIPT ════ -->
 <script>
+/* ══ I18N — chiavi statiche di pagina (prefisso fd_) ══ */
+Object.assign(T18.en, {
+  fd_breadcrumb:'Food & Wine', fd_hero_h1:'Food & <em>Wine</em>',
+  fd_kpi_doc:'DOC wines', fd_kpi_dop:'DOP products', fd_kpi_fest:'festivals / year',
+  fd_cat:'Category', fd_c_all:'All', fd_c_pasta:'Pasta', fd_c_meat:'Meat',
+  fd_c_cheese:'Cheese & DOP', fd_c_seafood:'Seafood', fd_c_sweet:'Sweets',
+  fd_wines_eyebrow:'The Wines',
+  fd_wines_intro:"Three DOC wines that define Abruzzo's table — the Montepulciano reaches DOCG status in the Colline Teramane.",
+  fd_w1_desc:'Full-bodied with dark cherry, leather and tobacco. Aged versions develop extraordinary complexity.',
+  fd_w1_color:'Deep ruby red', fd_w1_pair:'🍽️ Arrosticini, lamb, aged pecorino',
+  fd_w2_desc:"In the right hands this becomes one of Italy's most profound white wines — mineral and age-worthy.",
+  fd_w2_color:'Straw yellow', fd_w2_pair:'🍽️ Brodetto, grilled fish, fresh pecorino',
+  fd_w3_desc:"Montepulciano made as a rosé — but with depth and structure most rosés don't approach.",
+  fd_w3_color:'Vivid cherry rosé', fd_w3_pair:'🍽️ Pasta chitarra, soft cheeses, antipasto',
+  fd_sagre_eyebrow:'Food Festivals', fd_sagre_h2:'Sagre & Food Events',
+  fd_sagre_intro:'Every month a village celebrates its local product with a sagra — free entry, generous portions, local wine.',
+  fd_product:'product', fd_products:'products', fd_full:'Full story →',
+  fd_m_origin:'Origin', fd_m_season:'Season', fd_m_status:'Status', fd_m_pairs:'Pairs with',
+  fd_status_dop:'DOP', fd_status_trad:'Traditional', fd_dop_protected:'DOP Protected',
+  fd_m_where:'Where to find it', fd_m_tips:'Tips & pairings'
+});
+Object.assign(T18.it, {
+  fd_breadcrumb:'Cibo & Vino', fd_hero_h1:'Cibo & <em>Vino</em>',
+  fd_kpi_doc:'vini DOC', fd_kpi_dop:'prodotti DOP', fd_kpi_fest:'sagre / anno',
+  fd_cat:'Categoria', fd_c_all:'Tutti', fd_c_pasta:'Pasta', fd_c_meat:'Carne',
+  fd_c_cheese:'Formaggi & DOP', fd_c_seafood:'Pesce', fd_c_sweet:'Dolci',
+  fd_wines_eyebrow:'I vini',
+  fd_wines_intro:'Tre vini DOC che definiscono la tavola d\'Abruzzo — il Montepulciano raggiunge lo status DOCG nelle Colline Teramane.',
+  fd_w1_desc:'Corposo, con ciliegia scura, cuoio e tabacco. Le versioni invecchiate sviluppano una complessità straordinaria.',
+  fd_w1_color:'Rosso rubino intenso', fd_w1_pair:'🍽️ Arrosticini, agnello, pecorino stagionato',
+  fd_w2_desc:'Nelle mani giuste diventa uno dei bianchi più profondi d\'Italia — minerale e adatto all\'invecchiamento.',
+  fd_w2_color:'Giallo paglierino', fd_w2_pair:'🍽️ Brodetto, pesce alla griglia, pecorino fresco',
+  fd_w3_desc:'Montepulciano vinificato in rosato — ma con una profondità e una struttura che pochi rosati raggiungono.',
+  fd_w3_color:'Rosato ciliegia vivo', fd_w3_pair:'🍽️ Pasta alla chitarra, formaggi molli, antipasti',
+  fd_sagre_eyebrow:'Feste gastronomiche', fd_sagre_h2:'Sagre ed eventi gastronomici',
+  fd_sagre_intro:'Ogni mese un borgo celebra il suo prodotto tipico con una sagra — ingresso libero, porzioni generose, vino locale.',
+  fd_product:'prodotto', fd_products:'prodotti', fd_full:'La storia completa →',
+  fd_m_origin:'Origine', fd_m_season:'Stagione', fd_m_status:'Stato', fd_m_pairs:'Si abbina a',
+  fd_status_dop:'DOP', fd_status_trad:'Tradizionale', fd_dop_protected:'Tutela DOP',
+  fd_m_where:'Dove trovarlo', fd_m_tips:'Consigli e abbinamenti'
+});
+Object.assign(T18.de, {
+  fd_breadcrumb:'Essen & Wein', fd_hero_h1:'Essen & <em>Wein</em>',
+  fd_kpi_doc:'DOC-Weine', fd_kpi_dop:'DOP-Produkte', fd_kpi_fest:'Feste / Jahr',
+  fd_cat:'Kategorie', fd_c_all:'Alle', fd_c_pasta:'Pasta', fd_c_meat:'Fleisch',
+  fd_c_cheese:'Käse & DOP', fd_c_seafood:'Fisch', fd_c_sweet:'Süßes',
+  fd_wines_eyebrow:'Die Weine',
+  fd_wines_intro:'Drei DOC-Weine, die Abruzzens Tafel prägen — der Montepulciano erreicht in den Colline Teramane den DOCG-Status.',
+  fd_w1_desc:'Vollmundig mit dunkler Kirsche, Leder und Tabak. Gereifte Versionen entwickeln außergewöhnliche Komplexität.',
+  fd_w1_color:'Tiefes Rubinrot', fd_w1_pair:'🍽️ Arrosticini, Lamm, gereifter Pecorino',
+  fd_w2_desc:'In den richtigen Händen wird er zu einem der tiefgründigsten Weißweine Italiens — mineralisch und lagerfähig.',
+  fd_w2_color:'Strohgelb', fd_w2_pair:'🍽️ Brodetto, gegrillter Fisch, frischer Pecorino',
+  fd_w3_desc:'Montepulciano als Roséwein ausgebaut — aber mit einer Tiefe und Struktur, die die meisten Rosés nicht erreichen.',
+  fd_w3_color:'Lebhaftes Kirschrosé', fd_w3_pair:'🍽️ Pasta alla chitarra, Weichkäse, Antipasti',
+  fd_sagre_eyebrow:'Kulinarische Feste', fd_sagre_h2:'Sagre & kulinarische Events',
+  fd_sagre_intro:'Jeden Monat feiert ein Dorf sein lokales Produkt mit einer Sagra — freier Eintritt, großzügige Portionen, lokaler Wein.',
+  fd_product:'Produkt', fd_products:'Produkte', fd_full:'Ganze Geschichte →',
+  fd_m_origin:'Herkunft', fd_m_season:'Saison', fd_m_status:'Status', fd_m_pairs:'Passt zu',
+  fd_status_dop:'DOP', fd_status_trad:'Traditionell', fd_dop_protected:'DOP-geschützt',
+  fd_m_where:'Wo man es findet', fd_m_tips:'Tipps & Kombinationen'
+});
+Object.assign(T18.fr, {
+  fd_breadcrumb:'Gastronomie', fd_hero_h1:'Gastronomie & <em>Vins</em>',
+  fd_kpi_doc:'vins DOC', fd_kpi_dop:'produits DOP', fd_kpi_fest:'fêtes / an',
+  fd_cat:'Catégorie', fd_c_all:'Tous', fd_c_pasta:'Pâtes', fd_c_meat:'Viande',
+  fd_c_cheese:'Fromages & DOP', fd_c_seafood:'Poisson', fd_c_sweet:'Douceurs',
+  fd_wines_eyebrow:'Les vins',
+  fd_wines_intro:'Trois vins DOC qui définissent la table des Abruzzes — le Montepulciano atteint le statut DOCG dans les Colline Teramane.',
+  fd_w1_desc:'Corsé, avec cerise noire, cuir et tabac. Les versions vieillies développent une complexité extraordinaire.',
+  fd_w1_color:'Rouge rubis intense', fd_w1_pair:'🍽️ Arrosticini, agneau, pecorino affiné',
+  fd_w2_desc:'Entre de bonnes mains, il devient l\'un des blancs les plus profonds d\'Italie — minéral et apte au vieillissement.',
+  fd_w2_color:'Jaune paille', fd_w2_pair:'🍽️ Brodetto, poisson grillé, pecorino frais',
+  fd_w3_desc:'Montepulciano vinifié en rosé — mais avec une profondeur et une structure que peu de rosés atteignent.',
+  fd_w3_color:'Rosé cerise éclatant', fd_w3_pair:'🍽️ Pâtes alla chitarra, fromages doux, antipasti',
+  fd_sagre_eyebrow:'Fêtes gastronomiques', fd_sagre_h2:'Sagre & événements gastronomiques',
+  fd_sagre_intro:'Chaque mois, un village célèbre son produit local avec une sagra — entrée libre, portions généreuses, vin local.',
+  fd_product:'produit', fd_products:'produits', fd_full:"L'histoire complète →",
+  fd_m_origin:'Origine', fd_m_season:'Saison', fd_m_status:'Statut', fd_m_pairs:"S'accorde avec",
+  fd_status_dop:'DOP', fd_status_trad:'Traditionnel', fd_dop_protected:'Protégé DOP',
+  fd_m_where:'Où le trouver', fd_m_tips:'Conseils & accords'
+});
+
 /* ══ DATA ══ */
 const foods = [
   { id:'arr', name:"Arrosticini", cat:"meat",
     img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80",
-    catLabel:"Meat & Grill", dop:false,
-    desc:"Tiny sheep skewers grilled on the furnacella. Abruzzo's most iconic dish — eat with bread and Montepulciano.",
-    origin:"Pescara & Teramo", season:"Year round", pair:"Montepulciano d'Abruzzo",
-    detail:"Made with castrated sheep, cut into tiny cubes and hand-threaded onto narrow skewers. Never use sauce. The furnacella — a long charcoal grill — is the only correct tool. A true Abruzzese eats them standing up, in runs of 20 or more.",
-    where:["Local grillerie (arrosticinerie) roadside","Any sagra or summer festival","Buy raw from macellerie in Pescara and Teramo province","Never at tourist restaurants — ask locals"],
-    tips:["Always order at least 20 — they go fast","Eat immediately off the grill","Serve with crusty bread and Montepulciano","The thicker the skewer, the less authentic"] },
+    catLabel:{en:"Meat & Grill",it:"Carne alla brace",de:"Fleisch vom Grill",fr:"Viande grillée"}, dop:false,
+    desc:{en:"Tiny sheep skewers grilled on the furnacella. Abruzzo's most iconic dish — eat with bread and Montepulciano.",it:"Piccoli spiedini di pecora grigliati sulla furnacella. Il piatto più iconico d'Abruzzo — si mangiano con pane e Montepulciano.",de:"Kleine Schafspieße, gegrillt auf der Furnacella. Abruzzens kultigstes Gericht — mit Brot und Montepulciano genießen.",fr:"Petites brochettes de mouton grillées sur la furnacella. Le plat le plus emblématique des Abruzzes — à déguster avec du pain et du Montepulciano."},
+    origin:"Pescara & Teramo", season:{en:"Year round",it:"Tutto l'anno",de:"Ganzjährig",fr:"Toute l'année"}, pair:"Montepulciano d'Abruzzo",
+    detail:{en:"Made with castrated sheep, cut into tiny cubes and hand-threaded onto narrow skewers. Never use sauce. The furnacella — a long charcoal grill — is the only correct tool. A true Abruzzese eats them standing up, in runs of 20 or more.",it:"Si preparano con carne di castrato, tagliata a cubetti minuti e infilata a mano su spiedini sottili. Mai con salsa. La furnacella — una lunga griglia a carbone — è l'unico strumento corretto. Il vero abruzzese li mangia in piedi, a serie di 20 o più.",de:"Zubereitet aus Hammelfleisch, in winzige Würfel geschnitten und von Hand auf schmale Spieße gesteckt. Nie mit Soße. Die Furnacella — ein langer Holzkohlegrill — ist das einzig richtige Gerät. Ein echter Abruzzese isst sie im Stehen, in Serien von 20 oder mehr.",fr:"Préparés avec du mouton, coupé en petits cubes et enfilé à la main sur de fines brochettes. Jamais de sauce. La furnacella — un long gril à charbon — est le seul outil correct. Un vrai Abruzzais les mange debout, par séries de 20 ou plus."},
+    where:[{en:"Local grillerie (arrosticinerie) roadside",it:"Grillerie (arrosticinerie) locali lungo la strada",de:"Lokale Grillstuben (Arrosticinerie) am Straßenrand",fr:"Grillerie (arrosticinerie) locales au bord de la route"},{en:"Any sagra or summer festival",it:"Qualsiasi sagra o festa estiva",de:"Jede Sagra oder jedes Sommerfest",fr:"Toute sagra ou fête estivale"},{en:"Buy raw from macellerie in Pescara and Teramo province",it:"Comprali crudi nelle macellerie delle province di Pescara e Teramo",de:"Roh in den Metzgereien der Provinzen Pescara und Teramo kaufen",fr:"Achetez-les crus dans les boucheries des provinces de Pescara et Teramo"},{en:"Never at tourist restaurants — ask locals",it:"Mai nei ristoranti turistici — chiedi ai locali",de:"Nie in Touristenrestaurants — frag die Einheimischen",fr:"Jamais dans les restaurants touristiques — demandez aux locaux"}],
+    tips:[{en:"Always order at least 20 — they go fast",it:"Ordina sempre almeno 20 — finiscono in fretta",de:"Immer mindestens 20 bestellen — sie gehen schnell weg",fr:"Commandez toujours au moins 20 — ils partent vite"},{en:"Eat immediately off the grill",it:"Mangiali subito appena tolti dalla griglia",de:"Sofort vom Grill essen",fr:"Mangez-les dès la sortie du gril"},{en:"Serve with crusty bread and Montepulciano",it:"Serviti con pane croccante e Montepulciano",de:"Mit knusprigem Brot und Montepulciano servieren",fr:"Servez avec du pain croustillant et du Montepulciano"},{en:"The thicker the skewer, the less authentic",it:"Più lo spiedino è grosso, meno è autentico",de:"Je dicker der Spieß, desto weniger authentisch",fr:"Plus la brochette est épaisse, moins c'est authentique"}] },
 
   { id:'chit', name:"Pasta alla Chitarra", cat:"pasta",
     img:"https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80",
-    catLabel:"Pasta", dop:false,
-    desc:"Square-cut egg pasta pressed on a wooden 'guitar' frame — the shape that defines Abruzzese cuisine.",
-    origin:"L'Aquila & Chieti", season:"Year round", pair:"Montepulciano or Trebbiano",
-    detail:"Fresh pasta sheets are pressed through a wooden frame strung with steel wires like a guitar — giving the pasta its unique square cross-section. Classic sauces: lamb ragù, pallottine (tiny meatballs), or saffron butter. A Sunday family ritual unchanged for generations.",
-    where:["Traditional trattorias throughout Abruzzo","Agriturismo farms","Local alimentari sell dried versions","Buy a chitarra at craft shops in L'Aquila"],
-    tips:["Fresh chitarra is far superior to dried","Sauce: lamb ragù or pallottine (tiny meatballs)","Ask for it 'con sugo di agnello' in mountain towns","Never with seafood — inland tradition only"] },
+    catLabel:{en:"Pasta",it:"Pasta",de:"Pasta",fr:"Pâtes"}, dop:false,
+    desc:{en:"Square-cut egg pasta pressed on a wooden 'guitar' frame — the shape that defines Abruzzese cuisine.",it:"Pasta all'uovo a sezione quadrata pressata su un telaio di legno 'a chitarra' — la forma che definisce la cucina abruzzese.",de:"Eiernudeln mit quadratischem Querschnitt, auf einem hölzernen 'Gitarren'-Rahmen gepresst — die Form, die Abruzzens Küche prägt.",fr:"Pâtes aux œufs à section carrée pressées sur un cadre en bois 'à guitare' — la forme qui définit la cuisine des Abruzzes."},
+    origin:"L'Aquila & Chieti", season:{en:"Year round",it:"Tutto l'anno",de:"Ganzjährig",fr:"Toute l'année"}, pair:{en:"Montepulciano or Trebbiano",it:"Montepulciano o Trebbiano",de:"Montepulciano oder Trebbiano",fr:"Montepulciano ou Trebbiano"},
+    detail:{en:"Fresh pasta sheets are pressed through a wooden frame strung with steel wires like a guitar — giving the pasta its unique square cross-section. Classic sauces: lamb ragù, pallottine (tiny meatballs), or saffron butter. A Sunday family ritual unchanged for generations.",it:"Le sfoglie fresche vengono pressate attraverso un telaio di legno teso con fili d'acciaio come una chitarra — dando alla pasta la sua inconfondibile sezione quadrata. Sughi classici: ragù d'agnello, pallottine (polpettine) o burro allo zafferano. Un rito domenicale di famiglia immutato da generazioni.",de:"Frische Teigplatten werden durch einen mit Stahldrähten wie eine Gitarre bespannten Holzrahmen gepresst — das gibt der Pasta ihren einzigartigen quadratischen Querschnitt. Klassische Saucen: Lammragout, Pallottine (winzige Fleischbällchen) oder Safranbutter. Ein sonntägliches Familienritual, seit Generationen unverändert.",fr:"Les feuilles de pâte fraîche sont pressées à travers un cadre de bois tendu de fils d'acier comme une guitare — donnant à la pâte sa section carrée unique. Sauces classiques : ragù d'agneau, pallottine (petites boulettes) ou beurre au safran. Un rituel familial du dimanche inchangé depuis des générations."},
+    where:[{en:"Traditional trattorias throughout Abruzzo",it:"Trattorie tradizionali in tutto l'Abruzzo",de:"Traditionelle Trattorien in ganz Abruzzen",fr:"Trattorias traditionnelles dans toutes les Abruzzes"},{en:"Agriturismo farms",it:"Agriturismi",de:"Agriturismo-Höfe",fr:"Fermes agritouristiques"},{en:"Local alimentari sell dried versions",it:"Gli alimentari locali vendono le versioni secche",de:"Lokale Alimentari verkaufen getrocknete Versionen",fr:"Les épiceries locales vendent des versions sèches"},{en:"Buy a chitarra at craft shops in L'Aquila",it:"Compra una chitarra nelle botteghe artigiane dell'Aquila",de:"Kaufe eine Chitarra in Handwerksläden in L'Aquila",fr:"Achetez une chitarra dans les boutiques artisanales de L'Aquila"}],
+    tips:[{en:"Fresh chitarra is far superior to dried",it:"La chitarra fresca è di gran lunga superiore a quella secca",de:"Frische Chitarra ist der getrockneten weit überlegen",fr:"La chitarra fraîche est bien supérieure à la sèche"},{en:"Sauce: lamb ragù or pallottine (tiny meatballs)",it:"Sugo: ragù d'agnello o pallottine (polpettine)",de:"Sauce: Lammragout oder Pallottine (kleine Fleischbällchen)",fr:"Sauce : ragù d'agneau ou pallottine (petites boulettes)"},{en:"Ask for it 'con sugo di agnello' in mountain towns",it:"Chiedila 'con sugo di agnello' nei paesi di montagna",de:"In Bergdörfern 'con sugo di agnello' verlangen",fr:"Demandez-la 'con sugo di agnello' dans les villages de montagne"},{en:"Never with seafood — inland tradition only",it:"Mai con il pesce — tradizione solo dell'entroterra",de:"Nie mit Meeresfrüchten — reine Tradition des Binnenlands",fr:"Jamais avec des fruits de mer — tradition de l'intérieur uniquement"}] },
 
   { id:'zaff', name:"Zafferano dell'Aquila DOP", cat:"cheese",
     img:"https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=600&q=80",
-    catLabel:"DOP Ingredient", dop:true,
-    desc:"The world's finest saffron — grown near L'Aquila at 700m+ since the 14th century. DOP protected.",
-    origin:"Navelli plateau, L'Aquila", season:"Oct–Nov harvest", pair:"Pasta, risotto, lamb",
-    detail:"Crocus sativus has been grown in the Navelli area since at least 1300. Each flower gives just 3 stigmas, picked by hand at dawn in October. L'Aquila saffron commands the highest price in Italy — 3–4x the price of Spanish saffron. Buy only certified DOP from Navelli producers.",
-    where:["Navelli village market (October–November)","Certified producers in the Navelli plateau","Alimentari and delis in L'Aquila","Online from Consorzio Zafferano Aquilano"],
-    tips:["Dissolve in warm (not hot) water before using","A few threads is enough — use sparingly","DOP certification on the label is essential","Visit Navelli in October for the harvest festival"] },
+    catLabel:{en:"DOP Ingredient",it:"Ingrediente DOP",de:"DOP-Zutat",fr:"Ingrédient DOP"}, dop:true,
+    desc:{en:"The world's finest saffron — grown near L'Aquila at 700m+ since the 14th century. DOP protected.",it:"Lo zafferano più pregiato al mondo — coltivato vicino all'Aquila oltre i 700 m dal XIV secolo. Tutela DOP.",de:"Der feinste Safran der Welt — seit dem 14. Jahrhundert bei L'Aquila auf über 700 m angebaut. DOP-geschützt.",fr:"Le safran le plus fin du monde — cultivé près de L'Aquila au-dessus de 700 m depuis le XIVe siècle. Protégé DOP."},
+    origin:{en:"Navelli plateau, L'Aquila",it:"Altopiano di Navelli, L'Aquila",de:"Hochebene von Navelli, L'Aquila",fr:"Plateau de Navelli, L'Aquila"}, season:{en:"Oct–Nov harvest",it:"Raccolta ott–nov",de:"Ernte Okt–Nov",fr:"Récolte oct–nov"}, pair:{en:"Pasta, risotto, lamb",it:"Pasta, risotto, agnello",de:"Pasta, Risotto, Lamm",fr:"Pâtes, risotto, agneau"},
+    detail:{en:"Crocus sativus has been grown in the Navelli area since at least 1300. Each flower gives just 3 stigmas, picked by hand at dawn in October. L'Aquila saffron commands the highest price in Italy — 3–4x the price of Spanish saffron. Buy only certified DOP from Navelli producers.",it:"Il Crocus sativus si coltiva nell'area di Navelli almeno dal 1300. Ogni fiore dà solo 3 stimmi, raccolti a mano all'alba in ottobre. Lo zafferano aquilano ha il prezzo più alto d'Italia — 3–4 volte quello spagnolo. Compra solo DOP certificato dai produttori di Navelli.",de:"Crocus sativus wird im Gebiet von Navelli seit mindestens 1300 angebaut. Jede Blüte liefert nur 3 Narben, im Oktober bei Tagesanbruch von Hand gepflückt. Safran aus L'Aquila erzielt den höchsten Preis Italiens — das 3- bis 4-Fache des spanischen. Nur zertifizierten DOP von Navelli-Produzenten kaufen.",fr:"Le Crocus sativus est cultivé dans la région de Navelli depuis au moins 1300. Chaque fleur ne donne que 3 stigmates, cueillis à la main à l'aube en octobre. Le safran de L'Aquila atteint le prix le plus élevé d'Italie — 3 à 4 fois celui du safran espagnol. N'achetez que du DOP certifié des producteurs de Navelli."},
+    where:[{en:"Navelli village market (October–November)",it:"Mercato del borgo di Navelli (ottobre–novembre)",de:"Dorfmarkt von Navelli (Oktober–November)",fr:"Marché du village de Navelli (octobre–novembre)"},{en:"Certified producers in the Navelli plateau",it:"Produttori certificati dell'altopiano di Navelli",de:"Zertifizierte Produzenten auf der Hochebene von Navelli",fr:"Producteurs certifiés du plateau de Navelli"},{en:"Alimentari and delis in L'Aquila",it:"Alimentari e gastronomie all'Aquila",de:"Alimentari und Feinkostläden in L'Aquila",fr:"Épiceries et delis à L'Aquila"},{en:"Online from Consorzio Zafferano Aquilano",it:"Online dal Consorzio Zafferano Aquilano",de:"Online beim Consorzio Zafferano Aquilano",fr:"En ligne auprès du Consorzio Zafferano Aquilano"}],
+    tips:[{en:"Dissolve in warm (not hot) water before using",it:"Sciogli in acqua tiepida (non bollente) prima dell'uso",de:"Vor Gebrauch in warmem (nicht heißem) Wasser auflösen",fr:"Dissolvez dans de l'eau tiède (non chaude) avant usage"},{en:"A few threads is enough — use sparingly",it:"Bastano pochi stimmi — usalo con parsimonia",de:"Wenige Fäden genügen — sparsam verwenden",fr:"Quelques filaments suffisent — utilisez avec parcimonie"},{en:"DOP certification on the label is essential",it:"La certificazione DOP in etichetta è essenziale",de:"Die DOP-Zertifizierung auf dem Etikett ist unerlässlich",fr:"La certification DOP sur l'étiquette est essentielle"},{en:"Visit Navelli in October for the harvest festival",it:"Visita Navelli in ottobre per la sagra del raccolto",de:"Besuche Navelli im Oktober zum Erntefest",fr:"Visitez Navelli en octobre pour la fête de la récolte"}] },
 
   { id:'tart', name:"Tartufo Nero di Majella", cat:"cheese",
     img:"https://images.unsplash.com/photo-1529563021893-cc83c992d75d?w=600&q=80",
-    catLabel:"Truffle", dop:false,
-    desc:"Black truffle from the Majella forests — harvested October to January with Lagotto dogs.",
-    origin:"Majella National Park", season:"Oct–Jan", pair:"Pasta, eggs, cured meats",
-    detail:"The Majella's limestone soils produce exceptional black truffle (Tuber melanosporum). Markets in Rivisondoli and Campo di Giove are key trading points. Guided truffle hunts with Lagotto Romagnolo dogs are available in October and November — a genuinely memorable experience.",
-    where:["Rivisondoli market (Oct–Jan)","Campo di Giove village","Truffle hunt operators in Sulmona area","Specialty food shops in Pescara"],
-    tips:["Book a guided hunt in October for the full experience","Store in a sealed jar with rice or eggs","Shave directly onto hot pasta or scrambled eggs","Abruzzo truffle is underrated — better value than Umbria"] },
+    catLabel:{en:"Truffle",it:"Tartufo",de:"Trüffel",fr:"Truffe"}, dop:false,
+    desc:{en:"Black truffle from the Majella forests — harvested October to January with Lagotto dogs.",it:"Tartufo nero delle foreste della Majella — raccolto da ottobre a gennaio con i cani Lagotto.",de:"Schwarze Trüffel aus den Wäldern der Majella — von Oktober bis Januar mit Lagotto-Hunden gesucht.",fr:"Truffe noire des forêts de la Majella — récoltée d'octobre à janvier avec des chiens Lagotto."},
+    origin:{en:"Majella National Park",it:"Parco Nazionale della Majella",de:"Nationalpark Majella",fr:"Parc National de la Majella"}, season:{en:"Oct–Jan",it:"Ott–gen",de:"Okt–Jan",fr:"Oct–jan"}, pair:{en:"Pasta, eggs, cured meats",it:"Pasta, uova, salumi",de:"Pasta, Eier, Wurstwaren",fr:"Pâtes, œufs, charcuterie"},
+    detail:{en:"The Majella's limestone soils produce exceptional black truffle (Tuber melanosporum). Markets in Rivisondoli and Campo di Giove are key trading points. Guided truffle hunts with Lagotto Romagnolo dogs are available in October and November — a genuinely memorable experience.",it:"I suoli calcarei della Majella producono un tartufo nero eccezionale (Tuber melanosporum). I mercati di Rivisondoli e Campo di Giove sono punti di scambio chiave. In ottobre e novembre si organizzano cerche guidate con i cani Lagotto Romagnolo — un'esperienza davvero memorabile.",de:"Die Kalkböden der Majella bringen außergewöhnliche schwarze Trüffel hervor (Tuber melanosporum). Die Märkte in Rivisondoli und Campo di Giove sind wichtige Handelsplätze. Im Oktober und November werden geführte Trüffelsuchen mit Lagotto-Romagnolo-Hunden angeboten — ein wirklich unvergessliches Erlebnis.",fr:"Les sols calcaires de la Majella produisent une truffe noire exceptionnelle (Tuber melanosporum). Les marchés de Rivisondoli et Campo di Giove sont des points d'échange clés. En octobre et novembre, des chasses guidées avec des chiens Lagotto Romagnolo sont proposées — une expérience vraiment mémorable."},
+    where:[{en:"Rivisondoli market (Oct–Jan)",it:"Mercato di Rivisondoli (ott–gen)",de:"Markt von Rivisondoli (Okt–Jan)",fr:"Marché de Rivisondoli (oct–jan)"},{en:"Campo di Giove village",it:"Borgo di Campo di Giove",de:"Dorf Campo di Giove",fr:"Village de Campo di Giove"},{en:"Truffle hunt operators in Sulmona area",it:"Operatori di cerca del tartufo nella zona di Sulmona",de:"Trüffelsuch-Anbieter im Raum Sulmona",fr:"Organisateurs de chasse à la truffe dans la région de Sulmona"},{en:"Specialty food shops in Pescara",it:"Negozi gastronomici specializzati a Pescara",de:"Feinkostläden in Pescara",fr:"Épiceries fines à Pescara"}],
+    tips:[{en:"Book a guided hunt in October for the full experience",it:"Prenota una cerca guidata in ottobre per l'esperienza completa",de:"Für das volle Erlebnis im Oktober eine geführte Suche buchen",fr:"Réservez une chasse guidée en octobre pour l'expérience complète"},{en:"Store in a sealed jar with rice or eggs",it:"Conservalo in un barattolo chiuso con riso o uova",de:"In einem verschlossenen Glas mit Reis oder Eiern aufbewahren",fr:"Conservez dans un bocal hermétique avec du riz ou des œufs"},{en:"Shave directly onto hot pasta or scrambled eggs",it:"Grattugialo direttamente su pasta calda o uova strapazzate",de:"Direkt über heiße Pasta oder Rührei hobeln",fr:"Râpez directement sur des pâtes chaudes ou des œufs brouillés"},{en:"Abruzzo truffle is underrated — better value than Umbria",it:"Il tartufo d'Abruzzo è sottovalutato — miglior rapporto qualità-prezzo dell'Umbria",de:"Abruzzens Trüffel ist unterschätzt — besseres Preis-Leistungs-Verhältnis als Umbrien",fr:"La truffe des Abruzzes est sous-estimée — meilleur rapport qualité-prix que l'Ombrie"}] },
 
   { id:'pec', name:"Pecorino di Farindola", cat:"cheese",
     img:"https://images.unsplash.com/photo-1486297678162-eb2a19b0a832?w=600&q=80",
-    catLabel:"Cheese", dop:false,
-    desc:"Italy's rarest cheese — made exclusively by women using pig rennet, a 3,000-year-old technique unique in the world.",
-    origin:"Farindola, Gran Sasso foothills", season:"Spring–Summer peak", pair:"Honey, cured meats, Montepulciano",
-    detail:"Made only in the village of Farindola on the Gran Sasso eastern slopes, this pecorino is cured with pork rennet — the only cheese in Italy to use it — and aged up to 5 years. Only a handful of families still produce it. Buy directly from producers; it rarely appears in shops.",
-    where:["Farindola village — buy directly from producers","L'Aquila specialty food shops","Some agriturismo in the Gran Sasso area","Pescara covered market"],
-    tips:["Young versions (3–6 months) pair with honey","Aged versions (2–5 years) are intensely flavoured","Visit Farindola in summer to meet producers","Extremely rare outside Abruzzo — buy to take home"] },
+    catLabel:{en:"Cheese",it:"Formaggio",de:"Käse",fr:"Fromage"}, dop:false,
+    desc:{en:"Italy's rarest cheese — made exclusively by women using pig rennet, a 3,000-year-old technique unique in the world.",it:"Il formaggio più raro d'Italia — prodotto esclusivamente da donne con caglio di maiale, una tecnica di 3.000 anni unica al mondo.",de:"Italiens seltenster Käse — ausschließlich von Frauen mit Schweinelab hergestellt, eine 3.000 Jahre alte, weltweit einzigartige Technik.",fr:"Le fromage le plus rare d'Italie — fabriqué exclusivement par des femmes avec de la présure de porc, une technique vieille de 3 000 ans, unique au monde."},
+    origin:{en:"Farindola, Gran Sasso foothills",it:"Farindola, pendici del Gran Sasso",de:"Farindola, am Fuße des Gran Sasso",fr:"Farindola, contreforts du Gran Sasso"}, season:{en:"Spring–Summer peak",it:"Massimo in primavera–estate",de:"Höhepunkt Frühjahr–Sommer",fr:"Apogée printemps–été"}, pair:{en:"Honey, cured meats, Montepulciano",it:"Miele, salumi, Montepulciano",de:"Honig, Wurstwaren, Montepulciano",fr:"Miel, charcuterie, Montepulciano"},
+    detail:{en:"Made only in the village of Farindola on the Gran Sasso eastern slopes, this pecorino is cured with pork rennet — the only cheese in Italy to use it — and aged up to 5 years. Only a handful of families still produce it. Buy directly from producers; it rarely appears in shops.",it:"Prodotto solo nel borgo di Farindola sulle pendici orientali del Gran Sasso, questo pecorino è caseificato con caglio di maiale — l'unico formaggio in Italia a usarlo — e stagionato fino a 5 anni. Solo una manciata di famiglie lo produce ancora. Compralo direttamente dai produttori; nei negozi si trova di rado.",de:"Nur im Dorf Farindola an den Osthängen des Gran Sasso hergestellt, wird dieser Pecorino mit Schweinelab gelabt — als einziger Käse Italiens — und bis zu 5 Jahre gereift. Nur eine Handvoll Familien stellt ihn noch her. Kaufe ihn direkt bei den Produzenten; in Läden findet man ihn selten.",fr:"Fabriqué uniquement au village de Farindola sur les versants est du Gran Sasso, ce pecorino est caillé à la présure de porc — le seul fromage d'Italie à l'utiliser — et affiné jusqu'à 5 ans. Seule une poignée de familles le produit encore. Achetez-le directement chez les producteurs ; il apparaît rarement en boutique."},
+    where:[{en:"Farindola village — buy directly from producers",it:"Borgo di Farindola — compra direttamente dai produttori",de:"Dorf Farindola — direkt bei den Produzenten kaufen",fr:"Village de Farindola — achetez directement chez les producteurs"},{en:"L'Aquila specialty food shops",it:"Negozi gastronomici specializzati all'Aquila",de:"Feinkostläden in L'Aquila",fr:"Épiceries fines à L'Aquila"},{en:"Some agriturismo in the Gran Sasso area",it:"Alcuni agriturismi nella zona del Gran Sasso",de:"Einige Agriturismo im Gebiet des Gran Sasso",fr:"Quelques agritourismes dans la région du Gran Sasso"},{en:"Pescara covered market",it:"Mercato coperto di Pescara",de:"Markthalle von Pescara",fr:"Marché couvert de Pescara"}],
+    tips:[{en:"Young versions (3–6 months) pair with honey",it:"Le versioni giovani (3–6 mesi) si abbinano al miele",de:"Junge Versionen (3–6 Monate) passen zu Honig",fr:"Les versions jeunes (3–6 mois) s'accordent avec le miel"},{en:"Aged versions (2–5 years) are intensely flavoured",it:"Le versioni stagionate (2–5 anni) hanno un sapore intenso",de:"Gereifte Versionen (2–5 Jahre) sind intensiv im Geschmack",fr:"Les versions affinées (2–5 ans) ont une saveur intense"},{en:"Visit Farindola in summer to meet producers",it:"Visita Farindola in estate per incontrare i produttori",de:"Besuche Farindola im Sommer, um die Produzenten zu treffen",fr:"Visitez Farindola en été pour rencontrer les producteurs"},{en:"Extremely rare outside Abruzzo — buy to take home",it:"Rarissimo fuori dall'Abruzzo — comprane da portare a casa",de:"Außerhalb Abruzzens extrem selten — zum Mitnehmen kaufen",fr:"Extrêmement rare hors des Abruzzes — achetez-en à emporter"}] },
 
   { id:'agnello', name:"Agnello Cacio e Ova", cat:"meat",
     img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80",
-    catLabel:"Meat", dop:false,
-    desc:"Abruzzo's Easter dish — young lamb cooked with eggs, Pecorino and lemon. Ancient, simple and profoundly good.",
-    origin:"All provinces", season:"Spring (Easter)", pair:"Cerasuolo d'Abruzzo",
-    detail:"This ancient preparation uses young spring lamb simmered in broth, then finished with beaten eggs, Pecorino and lemon juice — a technique unchanged since Roman times. Found on every Abruzzese table at Easter. Ask a local if you can join their family celebration.",
-    where:["Traditional trattorias in April","Agriturismo during Easter week","Home cooking — ask your host","Some restaurants keep it year-round by request"],
-    tips:["Strictly seasonal — Easter to early May","The egg and cheese sauce must not scramble — low heat","Pairs with Cerasuolo rosé or young Montepulciano","Simple side: bitter greens sautéed with garlic"] },
+    catLabel:{en:"Meat",it:"Carne",de:"Fleisch",fr:"Viande"}, dop:false,
+    desc:{en:"Abruzzo's Easter dish — young lamb cooked with eggs, Pecorino and lemon. Ancient, simple and profoundly good.",it:"Il piatto pasquale d'Abruzzo — agnello giovane cotto con uova, pecorino e limone. Antico, semplice e profondamente buono.",de:"Abruzzens Osteressen — junges Lamm mit Eiern, Pecorino und Zitrone gegart. Uralt, einfach und zutiefst köstlich.",fr:"Le plat pascal des Abruzzes — agneau jeune cuit avec œufs, pecorino et citron. Ancien, simple et profondément bon."},
+    origin:{en:"All provinces",it:"Tutte le province",de:"Alle Provinzen",fr:"Toutes les provinces"}, season:{en:"Spring (Easter)",it:"Primavera (Pasqua)",de:"Frühling (Ostern)",fr:"Printemps (Pâques)"}, pair:"Cerasuolo d'Abruzzo",
+    detail:{en:"This ancient preparation uses young spring lamb simmered in broth, then finished with beaten eggs, Pecorino and lemon juice — a technique unchanged since Roman times. Found on every Abruzzese table at Easter. Ask a local if you can join their family celebration.",it:"Questa preparazione antica usa agnello primaverile cotto nel brodo, poi mantecato con uova sbattute, pecorino e succo di limone — una tecnica immutata dai tempi dei Romani. Su ogni tavola abruzzese a Pasqua. Chiedi a un locale se puoi unirti alla festa di famiglia.",de:"Diese uralte Zubereitung verwendet junges Frühlingslamm, in Brühe gegart und dann mit verquirlten Eiern, Pecorino und Zitronensaft vollendet — eine seit der Römerzeit unveränderte Technik. An Ostern auf jedem abruzzesischen Tisch. Frag einen Einheimischen, ob du am Familienfest teilnehmen darfst.",fr:"Cette préparation ancienne utilise de l'agneau de printemps mijoté au bouillon, puis lié avec des œufs battus, du pecorino et du jus de citron — une technique inchangée depuis l'époque romaine. Sur toutes les tables abruzzaises à Pâques. Demandez à un habitant si vous pouvez vous joindre à la fête de famille."},
+    where:[{en:"Traditional trattorias in April",it:"Trattorie tradizionali ad aprile",de:"Traditionelle Trattorien im April",fr:"Trattorias traditionnelles en avril"},{en:"Agriturismo during Easter week",it:"Agriturismi durante la settimana di Pasqua",de:"Agriturismo in der Osterwoche",fr:"Agritourismes pendant la semaine de Pâques"},{en:"Home cooking — ask your host",it:"Cucina casalinga — chiedi al tuo host",de:"Hausmannskost — frag deinen Gastgeber",fr:"Cuisine maison — demandez à votre hôte"},{en:"Some restaurants keep it year-round by request",it:"Alcuni ristoranti lo preparano tutto l'anno su richiesta",de:"Manche Restaurants bieten es auf Wunsch ganzjährig an",fr:"Certains restaurants le proposent toute l'année sur demande"}],
+    tips:[{en:"Strictly seasonal — Easter to early May",it:"Rigorosamente stagionale — da Pasqua a inizio maggio",de:"Streng saisonal — von Ostern bis Anfang Mai",fr:"Strictement saisonnier — de Pâques à début mai"},{en:"The egg and cheese sauce must not scramble — low heat",it:"La salsa di uova e formaggio non deve stracciarsi — fuoco basso",de:"Die Ei-Käse-Sauce darf nicht gerinnen — niedrige Hitze",fr:"La sauce œuf-fromage ne doit pas cailler — feu doux"},{en:"Pairs with Cerasuolo rosé or young Montepulciano",it:"Si abbina al Cerasuolo rosato o a un Montepulciano giovane",de:"Passt zu Cerasuolo-Rosé oder jungem Montepulciano",fr:"S'accorde avec le Cerasuolo rosé ou un Montepulciano jeune"},{en:"Simple side: bitter greens sautéed with garlic",it:"Contorno semplice: verdure amare saltate con aglio",de:"Einfache Beilage: Bittergemüse mit Knoblauch geschwenkt",fr:"Accompagnement simple : légumes amers sautés à l'ail"}] },
 
   { id:'brod', name:"Brodetto alla Vastese", cat:"seafood",
     img:"https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=600&q=80",
-    catLabel:"Seafood", dop:false,
-    desc:"Vasto's legendary fish stew — at least 13 types of Adriatic fish with tomato and saffron. A trabocco tradition.",
-    origin:"Vasto, southern Adriatic coast", season:"Year round", pair:"Trebbiano d'Abruzzo",
-    detail:"Each coastal town in Abruzzo has its brodetto, but Vasto's is the most famous — using only fish from the local trabocchi fishing platforms. A minimum of 13 fish species is the rule. No mixing of fish stock from other regions. Eat at a trabocco restaurant suspended over the sea.",
-    where:["Trabocco restaurants on the Costa dei Trabocchi","Ristorante Cappa in Vasto","Trabocco Pesce Palombo (book ahead)","Trabocco Il Pirata near Ortona"],
-    tips:["Book trabocco restaurants at least 2 weeks ahead in summer","Fish varies daily — trust the chef's selection","Eat at lunch — trabocchi close in the evening","Pair only with Trebbiano or Cerasuolo — never red wine"] },
+    catLabel:{en:"Seafood",it:"Pesce",de:"Fisch",fr:"Poisson"}, dop:false,
+    desc:{en:"Vasto's legendary fish stew — at least 13 types of Adriatic fish with tomato and saffron. A trabocco tradition.",it:"La leggendaria zuppa di pesce di Vasto — almeno 13 tipi di pesce adriatico con pomodoro e zafferano. Una tradizione dei trabocchi.",de:"Vastos legendärer Fischeintopf — mindestens 13 Sorten Adriafisch mit Tomate und Safran. Eine Trabocco-Tradition.",fr:"Le légendaire ragoût de poisson de Vasto — au moins 13 espèces de poissons de l'Adriatique avec tomate et safran. Une tradition des trabocchi."},
+    origin:{en:"Vasto, southern Adriatic coast",it:"Vasto, costa adriatica meridionale",de:"Vasto, südliche Adriaküste",fr:"Vasto, côte adriatique méridionale"}, season:{en:"Year round",it:"Tutto l'anno",de:"Ganzjährig",fr:"Toute l'année"}, pair:"Trebbiano d'Abruzzo",
+    detail:{en:"Each coastal town in Abruzzo has its brodetto, but Vasto's is the most famous — using only fish from the local trabocchi fishing platforms. A minimum of 13 fish species is the rule. No mixing of fish stock from other regions. Eat at a trabocco restaurant suspended over the sea.",it:"Ogni paese costiero d'Abruzzo ha il suo brodetto, ma quello di Vasto è il più famoso — usa solo pesce delle piattaforme da pesca dei trabocchi locali. La regola è un minimo di 13 specie. Nessuna miscela di brodo di pesce di altre regioni. Mangialo in un trabocco-ristorante sospeso sul mare.",de:"Jede Küstenstadt Abruzzens hat ihren Brodetto, aber der von Vasto ist der berühmteste — mit Fisch ausschließlich von den örtlichen Trabocchi-Fischplattformen. Mindestens 13 Fischarten sind Vorschrift. Kein Vermischen mit Fischfond aus anderen Regionen. Iss ihn in einem über dem Meer schwebenden Trabocco-Restaurant.",fr:"Chaque ville côtière des Abruzzes a son brodetto, mais celui de Vasto est le plus célèbre — uniquement avec du poisson des plateformes de pêche des trabocchi locaux. Un minimum de 13 espèces est la règle. Aucun mélange de fumet d'autres régions. Dégustez-le dans un restaurant-trabocco suspendu au-dessus de la mer."},
+    where:[{en:"Trabocco restaurants on the Costa dei Trabocchi",it:"Ristoranti nei trabocchi sulla Costa dei Trabocchi",de:"Trabocco-Restaurants an der Costa dei Trabocchi",fr:"Restaurants-trabocchi sur la Costa dei Trabocchi"},{en:"Ristorante Cappa in Vasto",it:"Ristorante Cappa a Vasto",de:"Ristorante Cappa in Vasto",fr:"Ristorante Cappa à Vasto"},{en:"Trabocco Pesce Palombo (book ahead)",it:"Trabocco Pesce Palombo (prenota in anticipo)",de:"Trabocco Pesce Palombo (vorab reservieren)",fr:"Trabocco Pesce Palombo (réservez à l'avance)"},{en:"Trabocco Il Pirata near Ortona",it:"Trabocco Il Pirata vicino a Ortona",de:"Trabocco Il Pirata nahe Ortona",fr:"Trabocco Il Pirata près d'Ortona"}],
+    tips:[{en:"Book trabocco restaurants at least 2 weeks ahead in summer",it:"In estate prenota i trabocchi con almeno 2 settimane di anticipo",de:"Trabocco-Restaurants im Sommer mindestens 2 Wochen vorher reservieren",fr:"Réservez les trabocchi au moins 2 semaines à l'avance en été"},{en:"Fish varies daily — trust the chef's selection",it:"Il pesce cambia ogni giorno — fidati della scelta dello chef",de:"Der Fisch wechselt täglich — vertraue der Auswahl des Kochs",fr:"Le poisson varie chaque jour — faites confiance au choix du chef"},{en:"Eat at lunch — trabocchi close in the evening",it:"Mangia a pranzo — i trabocchi chiudono la sera",de:"Mittags essen — die Trabocchi schließen abends",fr:"Déjeunez le midi — les trabocchi ferment le soir"},{en:"Pair only with Trebbiano or Cerasuolo — never red wine",it:"Abbina solo Trebbiano o Cerasuolo — mai vino rosso",de:"Nur mit Trebbiano oder Cerasuolo kombinieren — nie Rotwein",fr:"Accordez uniquement avec du Trebbiano ou du Cerasuolo — jamais de vin rouge"}] },
 
   { id:'parro', name:"Parrozzo", cat:"sweet",
     img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
-    catLabel:"Sweet", dop:false,
-    desc:"A chocolate-glazed almond cake invented in Pescara in 1920. D'Annunzio called it 'the triumph of Abruzzo's soul'.",
-    origin:"Pescara", season:"Year round", pair:"Cerasuolo d'Abruzzo or espresso",
-    detail:"Created in 1920 by Pescara confectioner Luigi D'Amico, inspired by the rough corn bread (pane rozzo) of the local peasants. Made with almonds, semolina and eggs, then glazed with dark chocolate. The poet Gabriele D'Annunzio wrote a poem about it — still printed on the packaging today.",
-    where:["Pasticceria D'Amico, Pescara (the original)","Any pasticceria in Pescara province","Airport and train station shops","Online direct from D'Amico"],
-    tips:["The original from D'Amico bakery in Pescara is the best","Keeps for 2 weeks — good to bring home","Pairs perfectly with after-dinner espresso","Also available in mini portions for gifts"] },
+    catLabel:{en:"Sweet",it:"Dolce",de:"Süßes",fr:"Douceur"}, dop:false,
+    desc:{en:"A chocolate-glazed almond cake invented in Pescara in 1920. D'Annunzio called it 'the triumph of Abruzzo's soul'.",it:"Una torta di mandorle glassata al cioccolato inventata a Pescara nel 1920. D'Annunzio la definì 'il trionfo dell'anima d'Abruzzo'.",de:"Ein mit Schokolade überzogener Mandelkuchen, 1920 in Pescara erfunden. D'Annunzio nannte ihn 'den Triumph der Seele Abruzzens'.",fr:"Un gâteau aux amandes glacé au chocolat inventé à Pescara en 1920. D'Annunzio l'a qualifié de 'triomphe de l'âme des Abruzzes'."},
+    origin:"Pescara", season:{en:"Year round",it:"Tutto l'anno",de:"Ganzjährig",fr:"Toute l'année"}, pair:{en:"Cerasuolo d'Abruzzo or espresso",it:"Cerasuolo d'Abruzzo o espresso",de:"Cerasuolo d'Abruzzo oder Espresso",fr:"Cerasuolo d'Abruzzo ou espresso"},
+    detail:{en:"Created in 1920 by Pescara confectioner Luigi D'Amico, inspired by the rough corn bread (pane rozzo) of the local peasants. Made with almonds, semolina and eggs, then glazed with dark chocolate. The poet Gabriele D'Annunzio wrote a poem about it — still printed on the packaging today.",it:"Creato nel 1920 dal pasticcere pescarese Luigi D'Amico, ispirato al pane rozzo di mais dei contadini locali. Fatto con mandorle, semola e uova, poi glassato con cioccolato fondente. Il poeta Gabriele D'Annunzio gli dedicò una poesia — ancora oggi stampata sulla confezione.",de:"1920 vom Pescareser Konditor Luigi D'Amico geschaffen, inspiriert vom groben Maisbrot (pane rozzo) der örtlichen Bauern. Aus Mandeln, Hartweizengrieß und Eiern, dann mit Zartbitterschokolade überzogen. Der Dichter Gabriele D'Annunzio widmete ihm ein Gedicht — bis heute auf der Verpackung gedruckt.",fr:"Créé en 1920 par le pâtissier pescarais Luigi D'Amico, inspiré du pain de maïs rustique (pane rozzo) des paysans locaux. À base d'amandes, de semoule et d'œufs, puis glacé au chocolat noir. Le poète Gabriele D'Annunzio lui a consacré un poème — encore imprimé sur l'emballage aujourd'hui."},
+    where:[{en:"Pasticceria D'Amico, Pescara (the original)",it:"Pasticceria D'Amico, Pescara (l'originale)",de:"Pasticceria D'Amico, Pescara (das Original)",fr:"Pasticceria D'Amico, Pescara (l'original)"},{en:"Any pasticceria in Pescara province",it:"Qualsiasi pasticceria della provincia di Pescara",de:"Jede Pasticceria in der Provinz Pescara",fr:"Toute pâtisserie de la province de Pescara"},{en:"Airport and train station shops",it:"Negozi in aeroporto e in stazione",de:"Geschäfte am Flughafen und Bahnhof",fr:"Boutiques de l'aéroport et de la gare"},{en:"Online direct from D'Amico",it:"Online direttamente da D'Amico",de:"Online direkt bei D'Amico",fr:"En ligne directement chez D'Amico"}],
+    tips:[{en:"The original from D'Amico bakery in Pescara is the best",it:"L'originale della pasticceria D'Amico di Pescara è il migliore",de:"Das Original der Bäckerei D'Amico in Pescara ist das beste",fr:"L'original de la pâtisserie D'Amico à Pescara est le meilleur"},{en:"Keeps for 2 weeks — good to bring home",it:"Si conserva 2 settimane — ottimo da portare a casa",de:"Hält 2 Wochen — ideal zum Mitnehmen",fr:"Se conserve 2 semaines — parfait à rapporter"},{en:"Pairs perfectly with after-dinner espresso",it:"Si abbina perfettamente all'espresso di fine pasto",de:"Passt perfekt zum Espresso nach dem Essen",fr:"S'accorde parfaitement avec un espresso d'après-dîner"},{en:"Also available in mini portions for gifts",it:"Disponibile anche in mini porzioni da regalo",de:"Auch in Mini-Portionen als Geschenk erhältlich",fr:"Aussi disponible en mini portions à offrir"}] },
 
   { id:'conf', name:"Confetti di Sulmona", cat:"sweet",
     img:"https://images.unsplash.com/photo-1582896911227-c966e6a2c1fc?w=600&q=80",
-    catLabel:"Sweet", dop:false,
-    desc:"Sulmona's world-famous sugared almonds — crafted since 1265 and exported to 50 countries. A wedding tradition.",
-    origin:"Sulmona", season:"Year round", pair:"Dessert wine or espresso",
-    detail:"The confetti industry in Sulmona has been documented since 1265. Today dozens of artisan factories produce them shaped into flowers, fruits and intricate sculptures using sugar wire — a craft art form. The sugar coating is always white; colours are artificial flowers wired around them.",
-    where:["Via dell'Aquila, Sulmona — entire street of confetti shops","Pelino confetti factory (oldest, since 1783)","Stacchio and Di Carlo — excellent alternatives","They ship worldwide from their websites"],
-    tips:["Visit Sulmona on a weekday — factories give tours","The almond must be whole and the coating smooth","Traditional colours: red (graduation), white (wedding), green (engagement)","Buy in bulk — they make perfect gifts"] },
+    catLabel:{en:"Sweet",it:"Dolce",de:"Süßes",fr:"Douceur"}, dop:false,
+    desc:{en:"Sulmona's world-famous sugared almonds — crafted since 1265 and exported to 50 countries. A wedding tradition.",it:"I confetti di Sulmona famosi in tutto il mondo — prodotti dal 1265 ed esportati in 50 paesi. Una tradizione nuziale.",de:"Sulmonas weltberühmte Zuckermandeln — seit 1265 hergestellt und in 50 Länder exportiert. Eine Hochzeitstradition.",fr:"Les dragées de Sulmona mondialement célèbres — fabriquées depuis 1265 et exportées dans 50 pays. Une tradition de mariage."},
+    origin:"Sulmona", season:{en:"Year round",it:"Tutto l'anno",de:"Ganzjährig",fr:"Toute l'année"}, pair:{en:"Dessert wine or espresso",it:"Vino da dessert o espresso",de:"Dessertwein oder Espresso",fr:"Vin de dessert ou espresso"},
+    detail:{en:"The confetti industry in Sulmona has been documented since 1265. Today dozens of artisan factories produce them shaped into flowers, fruits and intricate sculptures using sugar wire — a craft art form. The sugar coating is always white; colours are artificial flowers wired around them.",it:"L'industria dei confetti a Sulmona è documentata dal 1265. Oggi decine di fabbriche artigiane li modellano in fiori, frutti e sculture elaborate con fili zuccherati — una vera arte. La copertura di zucchero è sempre bianca; i colori sono fiori artificiali fissati attorno.",de:"Die Konfetti-Herstellung in Sulmona ist seit 1265 belegt. Heute formen Dutzende Handwerksbetriebe sie mit Zuckerdraht zu Blumen, Früchten und filigranen Skulpturen — eine Kunstform. Der Zuckerüberzug ist stets weiß; die Farben sind künstliche Blüten, die darumgewickelt werden.",fr:"L'industrie des dragées à Sulmona est documentée depuis 1265. Aujourd'hui, des dizaines d'ateliers artisanaux les façonnent en fleurs, fruits et sculptures complexes avec du fil de sucre — un véritable art. L'enrobage de sucre est toujours blanc ; les couleurs sont des fleurs artificielles fixées autour."},
+    where:[{en:"Via dell'Aquila, Sulmona — entire street of confetti shops",it:"Via dell'Aquila, Sulmona — un'intera via di negozi di confetti",de:"Via dell'Aquila, Sulmona — eine ganze Straße voller Konfetti-Läden",fr:"Via dell'Aquila, Sulmona — toute une rue de boutiques de dragées"},{en:"Pelino confetti factory (oldest, since 1783)",it:"Fabbrica di confetti Pelino (la più antica, dal 1783)",de:"Konfetti-Fabrik Pelino (die älteste, seit 1783)",fr:"Fabrique de dragées Pelino (la plus ancienne, depuis 1783)"},{en:"Stacchio and Di Carlo — excellent alternatives",it:"Stacchio e Di Carlo — ottime alternative",de:"Stacchio und Di Carlo — ausgezeichnete Alternativen",fr:"Stacchio et Di Carlo — excellentes alternatives"},{en:"They ship worldwide from their websites",it:"Spediscono in tutto il mondo dai loro siti",de:"Sie versenden weltweit über ihre Websites",fr:"Ils expédient dans le monde entier depuis leurs sites"}],
+    tips:[{en:"Visit Sulmona on a weekday — factories give tours",it:"Visita Sulmona in un giorno feriale — le fabbriche offrono visite guidate",de:"Besuche Sulmona an einem Werktag — die Fabriken bieten Führungen",fr:"Visitez Sulmona en semaine — les fabriques proposent des visites"},{en:"The almond must be whole and the coating smooth",it:"La mandorla dev'essere intera e la copertura liscia",de:"Die Mandel muss ganz und der Überzug glatt sein",fr:"L'amande doit être entière et l'enrobage lisse"},{en:"Traditional colours: red (graduation), white (wedding), green (engagement)",it:"Colori tradizionali: rosso (laurea), bianco (matrimonio), verde (fidanzamento)",de:"Traditionelle Farben: rot (Abschluss), weiß (Hochzeit), grün (Verlobung)",fr:"Couleurs traditionnelles : rouge (diplôme), blanc (mariage), vert (fiançailles)"},{en:"Buy in bulk — they make perfect gifts",it:"Comprane in quantità — sono regali perfetti",de:"In größeren Mengen kaufen — perfekte Geschenke",fr:"Achetez en quantité — ce sont des cadeaux parfaits"}] },
 
   { id:'oli', name:"Olio Extravergine DOP", cat:"cheese",
     img:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&q=80",
-    catLabel:"DOP Product", dop:true,
-    desc:"The Dritta olive variety gives Abruzzo a grassy, peppery DOP extra-virgin oil — one of Italy's finest.",
-    origin:"Pescara & Chieti hills", season:"Oct–Nov harvest", pair:"Bread, vegetables, fish",
-    detail:"The Dritta cultivar — native to the Pescara hills — gives the oil its characteristic green-gold colour and peppery finish. DOP Aprutino Pescarese is one of the most awarded Italian olive oils. Visit a frantoio (oil mill) in October or November during the harvest and taste directly from the press.",
-    where:["Frantoio Orsogna, Chieti province","Cooperativa Agricola di Pianella","Local frantoi open for harvest visits in November","Pescara and Chieti farmers markets"],
-    tips:["Visit during Frantoi Aperti (November) for free tastings","Look for DOP Aprutino Pescarese on the label","Strong peppery finish is a quality sign — not a defect","Store in a dark cool place — use within 18 months"] },
+    catLabel:{en:"DOP Product",it:"Prodotto DOP",de:"DOP-Produkt",fr:"Produit DOP"}, dop:true,
+    desc:{en:"The Dritta olive variety gives Abruzzo a grassy, peppery DOP extra-virgin oil — one of Italy's finest.",it:"La varietà di oliva Dritta regala all'Abruzzo un olio extravergine DOP erbaceo e piccante — tra i migliori d'Italia.",de:"Die Olivensorte Dritta schenkt Abruzzen ein grasiges, pfeffriges natives DOP-Olivenöl extra — eines der besten Italiens.",fr:"La variété d'olive Dritta offre aux Abruzzes une huile d'olive extra-vierge DOP herbacée et poivrée — parmi les meilleures d'Italie."},
+    origin:{en:"Pescara & Chieti hills",it:"Colline di Pescara e Chieti",de:"Hügel von Pescara und Chieti",fr:"Collines de Pescara et Chieti"}, season:{en:"Oct–Nov harvest",it:"Raccolta ott–nov",de:"Ernte Okt–Nov",fr:"Récolte oct–nov"}, pair:{en:"Bread, vegetables, fish",it:"Pane, verdure, pesce",de:"Brot, Gemüse, Fisch",fr:"Pain, légumes, poisson"},
+    detail:{en:"The Dritta cultivar — native to the Pescara hills — gives the oil its characteristic green-gold colour and peppery finish. DOP Aprutino Pescarese is one of the most awarded Italian olive oils. Visit a frantoio (oil mill) in October or November during the harvest and taste directly from the press.",it:"La cultivar Dritta — originaria delle colline pescaresi — dà all'olio il caratteristico colore verde-oro e il finale piccante. Il DOP Aprutino Pescarese è tra gli oli italiani più premiati. Visita un frantoio a ottobre o novembre durante la raccolta e assaggia direttamente dalla spremitura.",de:"Die Sorte Dritta — heimisch in den Hügeln von Pescara — verleiht dem Öl seine typische grüngoldene Farbe und den pfeffrigen Abgang. DOP Aprutino Pescarese zählt zu den meistausgezeichneten Olivenölen Italiens. Besuche im Oktober oder November während der Ernte einen Frantoio (Ölmühle) und probiere direkt aus der Presse.",fr:"Le cultivar Dritta — originaire des collines de Pescara — donne à l'huile sa couleur vert-or caractéristique et sa finale poivrée. La DOP Aprutino Pescarese est l'une des huiles d'olive italiennes les plus primées. Visitez un frantoio (moulin) en octobre ou novembre pendant la récolte et goûtez directement au pressoir."},
+    where:[{en:"Frantoio Orsogna, Chieti province",it:"Frantoio Orsogna, provincia di Chieti",de:"Frantoio Orsogna, Provinz Chieti",fr:"Frantoio Orsogna, province de Chieti"},{en:"Cooperativa Agricola di Pianella",it:"Cooperativa Agricola di Pianella",de:"Cooperativa Agricola di Pianella",fr:"Cooperativa Agricola di Pianella"},{en:"Local frantoi open for harvest visits in November",it:"Frantoi locali aperti per visite alla raccolta a novembre",de:"Lokale Frantoi zur Erntezeit im November geöffnet",fr:"Frantoi locaux ouverts pour les visites de récolte en novembre"},{en:"Pescara and Chieti farmers markets",it:"Mercati contadini di Pescara e Chieti",de:"Bauernmärkte von Pescara und Chieti",fr:"Marchés fermiers de Pescara et Chieti"}],
+    tips:[{en:"Visit during Frantoi Aperti (November) for free tastings",it:"Visita durante Frantoi Aperti (novembre) per degustazioni gratuite",de:"Während Frantoi Aperti (November) für kostenlose Verkostungen besuchen",fr:"Visitez pendant Frantoi Aperti (novembre) pour des dégustations gratuites"},{en:"Look for DOP Aprutino Pescarese on the label",it:"Cerca DOP Aprutino Pescarese in etichetta",de:"Achte auf dem Etikett auf DOP Aprutino Pescarese",fr:"Cherchez DOP Aprutino Pescarese sur l'étiquette"},{en:"Strong peppery finish is a quality sign — not a defect",it:"Il finale piccante intenso è segno di qualità — non un difetto",de:"Ein kräftig pfeffriger Abgang ist ein Qualitätszeichen — kein Fehler",fr:"Une finale poivrée intense est un signe de qualité — pas un défaut"},{en:"Store in a dark cool place — use within 18 months",it:"Conserva in luogo fresco e buio — usa entro 18 mesi",de:"Kühl und dunkel lagern — innerhalb von 18 Monaten verbrauchen",fr:"Conservez au frais et à l'abri de la lumière — à utiliser sous 18 mois"}] },
 
   { id:'ferr', name:"Ferrazzuoli con le Fave", cat:"pasta",
     img:"https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80",
-    catLabel:"Pasta", dop:false,
-    desc:"Ancient pasta tubes with dried fava beans — an unchanged Lent dish from the Chieti mountains.",
-    origin:"Chieti province inland", season:"Winter–Spring", pair:"Trebbiano d'Abruzzo",
-    detail:"One of the oldest Abruzzese pasta traditions — thick, rough tubes without egg, dressed only with dried fava beans, garlic, rosemary and DOP olive oil. Made for the feast of San Giuseppe in March and throughout Lent. Almost impossible to find outside the Chieti inland villages.",
-    where:["Traditional trattorias in Chieti province inland","Agriturismo in the Majella foothills","Sagra di San Giuseppe, Introdacqua (March 19)","Ask specifically — it's not always on the menu"],
-    tips:["Ask for it 'con le fave secche' — dried fava is essential","The pasta should be thick and rough — not smooth","Best eaten in February–March during Lent","Generously doused with DOP olive oil at the table"] },
+    catLabel:{en:"Pasta",it:"Pasta",de:"Pasta",fr:"Pâtes"}, dop:false,
+    desc:{en:"Ancient pasta tubes with dried fava beans — an unchanged Lent dish from the Chieti mountains.",it:"Antichi maccheroni con fave secche — un piatto quaresimale immutato delle montagne del Chietino.",de:"Uralte Nudelröhren mit getrockneten Favabohnen — ein unverändertes Fastengericht aus den Bergen von Chieti.",fr:"Antiques tubes de pâtes aux fèves séchées — un plat de Carême inchangé des montagnes de Chieti."},
+    origin:{en:"Chieti province inland",it:"Entroterra della provincia di Chieti",de:"Binnenland der Provinz Chieti",fr:"Arrière-pays de la province de Chieti"}, season:{en:"Winter–Spring",it:"Inverno–primavera",de:"Winter–Frühling",fr:"Hiver–printemps"}, pair:"Trebbiano d'Abruzzo",
+    detail:{en:"One of the oldest Abruzzese pasta traditions — thick, rough tubes without egg, dressed only with dried fava beans, garlic, rosemary and DOP olive oil. Made for the feast of San Giuseppe in March and throughout Lent. Almost impossible to find outside the Chieti inland villages.",it:"Una delle più antiche tradizioni di pasta abruzzese — maccheroni spessi e ruvidi senza uovo, conditi solo con fave secche, aglio, rosmarino e olio DOP. Preparati per la festa di San Giuseppe a marzo e per tutta la Quaresima. Quasi introvabili fuori dai borghi dell'entroterra chietino.",de:"Eine der ältesten Pasta-Traditionen Abruzzens — dicke, raue Röhren ohne Ei, nur mit getrockneten Favabohnen, Knoblauch, Rosmarin und DOP-Olivenöl angemacht. Zubereitet zum Fest des San Giuseppe im März und während der Fastenzeit. Außerhalb der Binnendörfer von Chieti kaum zu finden.",fr:"L'une des plus anciennes traditions de pâtes des Abruzzes — de gros tubes rugueux sans œuf, assaisonnés uniquement de fèves séchées, d'ail, de romarin et d'huile DOP. Préparés pour la fête de San Giuseppe en mars et pendant tout le Carême. Presque introuvables hors des villages de l'arrière-pays de Chieti."},
+    where:[{en:"Traditional trattorias in Chieti province inland",it:"Trattorie tradizionali nell'entroterra chietino",de:"Traditionelle Trattorien im Binnenland von Chieti",fr:"Trattorias traditionnelles dans l'arrière-pays de Chieti"},{en:"Agriturismo in the Majella foothills",it:"Agriturismi alle pendici della Majella",de:"Agriturismo am Fuße der Majella",fr:"Agritourismes au pied de la Majella"},{en:"Sagra di San Giuseppe, Introdacqua (March 19)",it:"Sagra di San Giuseppe, Introdacqua (19 marzo)",de:"Sagra di San Giuseppe, Introdacqua (19. März)",fr:"Sagra di San Giuseppe, Introdacqua (19 mars)"},{en:"Ask specifically — it's not always on the menu",it:"Chiedila espressamente — non è sempre nel menu",de:"Gezielt danach fragen — steht nicht immer auf der Karte",fr:"Demandez-la expressément — pas toujours à la carte"}],
+    tips:[{en:"Ask for it 'con le fave secche' — dried fava is essential",it:"Chiedila 'con le fave secche' — le fave secche sono essenziali",de:"'con le fave secche' verlangen — getrocknete Favabohnen sind entscheidend",fr:"Demandez-la 'con le fave secche' — les fèves séchées sont essentielles"},{en:"The pasta should be thick and rough — not smooth",it:"La pasta dev'essere spessa e ruvida — non liscia",de:"Die Pasta sollte dick und rau sein — nicht glatt",fr:"Les pâtes doivent être épaisses et rugueuses — pas lisses"},{en:"Best eaten in February–March during Lent",it:"Da gustare al meglio a febbraio–marzo durante la Quaresima",de:"Am besten im Februar–März während der Fastenzeit",fr:"À déguster idéalement en février–mars pendant le Carême"},{en:"Generously doused with DOP olive oil at the table",it:"Irrorati generosamente con olio DOP a tavola",de:"Am Tisch großzügig mit DOP-Olivenöl beträufeln",fr:"Arrosés généreusement d'huile DOP à table"}] },
 
   { id:'macc', name:"Maccheroni alla Molinara", cat:"pasta",
     img:"https://images.unsplash.com/photo-1551183053-bf91798d047e?w=600&q=80",
-    catLabel:"Pasta", dop:false,
-    desc:"Hand-rolled pasta tubes with slow-cooked pork ragù and local diavoletti peppers — mountain comfort food.",
-    origin:"Sulmona, Peligna valley", season:"Autumn–Winter", pair:"Montepulciano d'Abruzzo",
-    detail:"A hearty pasta from the Peligna valley interior — thick, chewy tubes rolled by hand without a machine, served with slow-cooked pork ragù enriched with diavoletti (small hot dried peppers native to Abruzzo). The pasta takes hours to make; it's a Sunday family dish.",
-    where:["Traditional trattorias around Sulmona","Agriturismo in the Peligna valley","Some restaurants in Pacentro","Only in autumn and winter — seasonal"],
-    tips:["The ragù should cook for at least 3 hours","Diavoletti peppers are the defining element — ask for them whole on the side","Best in November–February in a fireplace trattoria","Paired with a robust Montepulciano"] }
+    catLabel:{en:"Pasta",it:"Pasta",de:"Pasta",fr:"Pâtes"}, dop:false,
+    desc:{en:"Hand-rolled pasta tubes with slow-cooked pork ragù and local diavoletti peppers — mountain comfort food.",it:"Maccheroni arrotolati a mano con ragù di maiale a cottura lenta e diavoletti locali — comfort food di montagna.",de:"Handgerollte Nudelröhren mit langsam geschmortem Schweineragout und lokalen Diavoletti-Peperoni — Bergküche für die Seele.",fr:"Tubes de pâtes roulés à la main avec ragù de porc mijoté et petits piments diavoletti locaux — réconfort de montagne."},
+    origin:{en:"Sulmona, Peligna valley",it:"Sulmona, Valle Peligna",de:"Sulmona, Peligna-Tal",fr:"Sulmona, vallée Peligna"}, season:{en:"Autumn–Winter",it:"Autunno–inverno",de:"Herbst–Winter",fr:"Automne–hiver"}, pair:"Montepulciano d'Abruzzo",
+    detail:{en:"A hearty pasta from the Peligna valley interior — thick, chewy tubes rolled by hand without a machine, served with slow-cooked pork ragù enriched with diavoletti (small hot dried peppers native to Abruzzo). The pasta takes hours to make; it's a Sunday family dish.",it:"Una pasta sostanziosa dell'interno della Valle Peligna — maccheroni spessi e gommosi arrotolati a mano senza macchina, serviti con ragù di maiale a cottura lenta arricchito con diavoletti (piccoli peperoncini piccanti secchi tipici d'Abruzzo). La pasta richiede ore; è un piatto domenicale di famiglia.",de:"Eine herzhafte Pasta aus dem Inneren des Peligna-Tals — dicke, bissfeste Röhren, von Hand ohne Maschine gerollt, serviert mit langsam geschmortem Schweineragout, verfeinert mit Diavoletti (kleine scharfe getrocknete Peperoni aus Abruzzen). Die Pasta braucht Stunden; ein sonntägliches Familiengericht.",fr:"Une pâte copieuse de l'intérieur de la vallée Peligna — de gros tubes moelleux roulés à la main sans machine, servis avec un ragù de porc mijoté relevé de diavoletti (petits piments secs typiques des Abruzzes). La pâte demande des heures ; c'est un plat familial du dimanche."},
+    where:[{en:"Traditional trattorias around Sulmona",it:"Trattorie tradizionali intorno a Sulmona",de:"Traditionelle Trattorien rund um Sulmona",fr:"Trattorias traditionnelles autour de Sulmona"},{en:"Agriturismo in the Peligna valley",it:"Agriturismi nella Valle Peligna",de:"Agriturismo im Peligna-Tal",fr:"Agritourismes dans la vallée Peligna"},{en:"Some restaurants in Pacentro",it:"Alcuni ristoranti a Pacentro",de:"Einige Restaurants in Pacentro",fr:"Quelques restaurants à Pacentro"},{en:"Only in autumn and winter — seasonal",it:"Solo in autunno e inverno — stagionale",de:"Nur im Herbst und Winter — saisonal",fr:"Seulement en automne et en hiver — saisonnier"}],
+    tips:[{en:"The ragù should cook for at least 3 hours",it:"Il ragù deve cuocere almeno 3 ore",de:"Das Ragout sollte mindestens 3 Stunden köcheln",fr:"Le ragù doit cuire au moins 3 heures"},{en:"Diavoletti peppers are the defining element — ask for them whole on the side",it:"I diavoletti sono l'elemento distintivo — chiedili interi a parte",de:"Diavoletti-Peperoni sind das prägende Element — ganz und separat verlangen",fr:"Les diavoletti sont l'élément distinctif — demandez-les entiers à part"},{en:"Best in November–February in a fireplace trattoria",it:"Al meglio da novembre a febbraio in una trattoria col camino",de:"Am besten von November bis Februar in einer Trattoria mit Kamin",fr:"Idéal de novembre à février dans une trattoria avec cheminée"},{en:"Paired with a robust Montepulciano",it:"Da abbinare a un Montepulciano robusto",de:"Zu einem kräftigen Montepulciano",fr:"À accorder avec un Montepulciano robuste"}] }
 ];
 
 const sagre = [
-  { month:"January",  name:"Farchie di Fara Filiorum Petri", place:"Fara Filiorum Petri (CH)", desc:"Fire festival honouring Sant'Antonio — the most spectacular winter event in Abruzzo." },
-  { month:"March",    name:"Sagra di San Giuseppe",           place:"Introdacqua (AQ)",          desc:"Fava beans, zeppole and spring vegetables for the feast of Saint Joseph." },
-  { month:"April",    name:"Sagra dell'Agnello",              place:"Castel del Monte (AQ)",     desc:"Easter lamb in every form — the year's biggest food festival." },
-  { month:"May",      name:"Sagra degli Arrosticini",         place:"Pescara",                   desc:"The national arrosticini festival on the Adriatic coast." },
-  { month:"October",  name:"Sagra dello Zafferano",           place:"Navelli (AQ)",              desc:"Saffron harvest festival in the DOP production zone — tastings and demos." },
-  { month:"October",  name:"Festival del Tartufo Nero",       place:"Rivisondoli (AQ)",          desc:"Autumn truffle market with guided hunts and truffle menus." },
-  { month:"November", name:"Frantoi Aperti",                  place:"Pescara & Chieti hills",    desc:"Olive oil mills open during harvest — taste DOP oil from the press." },
-  { month:"November", name:"Sagra del Vino",                  place:"Lanciano (CH)",             desc:"Wine harvest festival celebrating Montepulciano d'Abruzzo DOC." }
+  { month:{en:"January",it:"Gennaio",de:"Januar",fr:"Janvier"},  name:"Farchie di Fara Filiorum Petri", place:"Fara Filiorum Petri (CH)", desc:{en:"Fire festival honouring Sant'Antonio — the most spectacular winter event in Abruzzo.",it:"Festa del fuoco in onore di Sant'Antonio — l'evento invernale più spettacolare d'Abruzzo.",de:"Feuerfest zu Ehren des Sant'Antonio — das spektakulärste Winterereignis Abruzzens.",fr:"Fête du feu en l'honneur de Sant'Antonio — l'événement hivernal le plus spectaculaire des Abruzzes."} },
+  { month:{en:"March",it:"Marzo",de:"März",fr:"Mars"},    name:"Sagra di San Giuseppe",           place:"Introdacqua (AQ)",          desc:{en:"Fava beans, zeppole and spring vegetables for the feast of Saint Joseph.",it:"Fave, zeppole e verdure di primavera per la festa di San Giuseppe.",de:"Favabohnen, Zeppole und Frühlingsgemüse zum Fest des heiligen Josef.",fr:"Fèves, zeppole et légumes de printemps pour la fête de la Saint-Joseph."} },
+  { month:{en:"April",it:"Aprile",de:"April",fr:"Avril"},    name:"Sagra dell'Agnello",              place:"Castel del Monte (AQ)",     desc:{en:"Easter lamb in every form — the year's biggest food festival.",it:"Agnello pasquale in ogni forma — la sagra gastronomica più grande dell'anno.",de:"Osterlamm in jeder Form — das größte Food-Festival des Jahres.",fr:"Agneau pascal sous toutes ses formes — la plus grande fête gastronomique de l'année."} },
+  { month:{en:"May",it:"Maggio",de:"Mai",fr:"Mai"},      name:"Sagra degli Arrosticini",         place:"Pescara",                   desc:{en:"The national arrosticini festival on the Adriatic coast.",it:"La sagra nazionale degli arrosticini sulla costa adriatica.",de:"Das nationale Arrosticini-Fest an der Adriaküste.",fr:"La fête nationale des arrosticini sur la côte adriatique."} },
+  { month:{en:"October",it:"Ottobre",de:"Oktober",fr:"Octobre"},  name:"Sagra dello Zafferano",           place:"Navelli (AQ)",              desc:{en:"Saffron harvest festival in the DOP production zone — tastings and demos.",it:"Sagra della raccolta dello zafferano nella zona di produzione DOP — degustazioni e dimostrazioni.",de:"Fest der Safranernte im DOP-Anbaugebiet — Verkostungen und Vorführungen.",fr:"Fête de la récolte du safran dans la zone de production DOP — dégustations et démonstrations."} },
+  { month:{en:"October",it:"Ottobre",de:"Oktober",fr:"Octobre"},  name:"Festival del Tartufo Nero",       place:"Rivisondoli (AQ)",          desc:{en:"Autumn truffle market with guided hunts and truffle menus.",it:"Mercato autunnale del tartufo con cerche guidate e menu al tartufo.",de:"Herbstlicher Trüffelmarkt mit geführten Suchen und Trüffelmenüs.",fr:"Marché d'automne de la truffe avec chasses guidées et menus à la truffe."} },
+  { month:{en:"November",it:"Novembre",de:"November",fr:"Novembre"}, name:"Frantoi Aperti",                  place:"Pescara & Chieti hills",    desc:{en:"Olive oil mills open during harvest — taste DOP oil from the press.",it:"Frantoi aperti durante la raccolta — assaggia l'olio DOP appena spremuto.",de:"Ölmühlen zur Erntezeit geöffnet — DOP-Öl frisch aus der Presse probieren.",fr:"Moulins à huile ouverts pendant la récolte — dégustez l'huile DOP au pressoir."} },
+  { month:{en:"November",it:"Novembre",de:"November",fr:"Novembre"}, name:"Sagra del Vino",                  place:"Lanciano (CH)",             desc:{en:"Wine harvest festival celebrating Montepulciano d'Abruzzo DOC.",it:"Sagra della vendemmia dedicata al Montepulciano d'Abruzzo DOC.",de:"Weinlesefest zu Ehren des Montepulciano d'Abruzzo DOC.",fr:"Fête des vendanges célébrant le Montepulciano d'Abruzzo DOC."} }
 ];
 
 /* ══ CAT CONFIG ══ */
 const catConfig = {
-  pasta:   { label:'Pasta',      tagClass:'tag-archeo', icon:'ti-ripple' },
-  meat:    { label:'Meat',       tagClass:'tag-red',    icon:'ti-meat' },
-  cheese:  { label:'Cheese·DOP', tagClass:'tag-amber',  icon:'ti-cheese' },
-  seafood: { label:'Seafood',    tagClass:'tag-nature', icon:'ti-fish' },
-  sweet:   { label:'Sweet',      tagClass:'tag-rose',   icon:'ti-candy' }
+  pasta:   { label:{en:'Pasta',it:'Pasta',de:'Pasta',fr:'Pâtes'},                    tagClass:'tag-archeo', icon:'ti-ripple' },
+  meat:    { label:{en:'Meat',it:'Carne',de:'Fleisch',fr:'Viande'},                  tagClass:'tag-red',    icon:'ti-meat' },
+  cheese:  { label:{en:'Cheese·DOP',it:'Formaggio·DOP',de:'Käse·DOP',fr:'Fromage·DOP'}, tagClass:'tag-amber',  icon:'ti-cheese' },
+  seafood: { label:{en:'Seafood',it:'Pesce',de:'Fisch',fr:'Poisson'},               tagClass:'tag-nature', icon:'ti-fish' },
+  sweet:   { label:{en:'Sweet',it:'Dolce',de:'Süßes',fr:'Douceur'},                  tagClass:'tag-rose',   icon:'ti-candy' }
 };
 
 /* ══ FILTER ══ */
@@ -398,7 +480,7 @@ function renderFoods() {
     : foods.filter(f => f.cat === activeCat);
 
   document.getElementById('f-count').textContent =
-    filtered.length + ' product' + (filtered.length !== 1 ? 's' : '');
+    filtered.length + ' ' + T(filtered.length !== 1 ? 'fd_products' : 'fd_product');
 
   document.getElementById('food-grid').innerHTML = filtered.map(f => {
     const tc = catConfig[f.cat] || { label: f.cat, tagClass:'tag-olive', icon:'ti-tools-kitchen-2' };
@@ -409,18 +491,18 @@ function renderFoods() {
         <div class="food-img-overlay"></div>
         <span style="position:absolute;bottom:.7rem;left:.7rem">
           <span class="tag ${tc.tagClass}">
-            <i class="ti ${tc.icon}" aria-hidden="true"></i> ${tc.label}
+            <i class="ti ${tc.icon}" aria-hidden="true"></i> ${L(tc.label)}
           </span>
         </span>
         ${f.dop ? '<span style="position:absolute;top:.7rem;right:.7rem"><span class="tag tag-dop">DOP</span></span>' : ''}
       </div>
       <div class="food-body">
         <div class="food-origin">
-          <i class="ti ti-map-pin" aria-hidden="true"></i>${f.origin}
+          <i class="ti ti-map-pin" aria-hidden="true"></i>${L(f.origin)}
         </div>
         <h3>${f.name}</h3>
-        <p>${f.desc}</p>
-        <div class="food-footer"><span>Full story →</span></div>
+        <p>${L(f.desc)}</p>
+        <div class="food-footer"><span>${T('fd_full')}</span></div>
       </div>
     </div>`;
   }).join('');
@@ -430,13 +512,13 @@ function renderFoods() {
 function renderSagre() {
   document.getElementById('sagre-grid').innerHTML = sagre.map(s => `
     <div class="sagra-card">
-      <div class="sagra-month">${s.month}</div>
+      <div class="sagra-month">${L(s.month)}</div>
       <h4>${s.name}</h4>
       <div class="sagra-place">
         <i class="ti ti-map-pin" style="font-size:11px;vertical-align:-1px" aria-hidden="true"></i>
         ${s.place}
       </div>
-      <p>${s.desc}</p>
+      <p>${L(s.desc)}</p>
     </div>`).join('');
 }
 
@@ -447,30 +529,30 @@ function openModal(id) {
 
   document.getElementById('m-img').src = f.img;
   document.getElementById('m-img').alt = f.name;
-  document.getElementById('m-sub').textContent   = f.catLabel + ' · ' + f.origin;
+  document.getElementById('m-sub').textContent   = L(f.catLabel) + ' · ' + L(f.origin);
   document.getElementById('m-title').textContent = f.name;
 
   document.getElementById('m-badges').innerHTML =
-    `<span class="tag ${tc.tagClass}"><i class="ti ${tc.icon}" aria-hidden="true"></i> ${tc.label}</span>
-     ${f.dop ? '<span class="tag tag-dop">DOP Protected</span>' : ''}`;
+    `<span class="tag ${tc.tagClass}"><i class="ti ${tc.icon}" aria-hidden="true"></i> ${L(tc.label)}</span>
+     ${f.dop ? '<span class="tag tag-dop">' + T('fd_dop_protected') + '</span>' : ''}`;
 
-  document.getElementById('m-desc').textContent = f.detail;
+  document.getElementById('m-desc').textContent = L(f.detail);
 
   document.getElementById('m-stats').innerHTML = [
-    { v: f.origin,  l:'Origin' },
-    { v: f.season,  l:'Season' },
-    { v: f.dop ? 'DOP' : 'Traditional', l:'Status' },
-    { v: f.pair.split(',')[0], l:'Pairs with' }
+    { v: L(f.origin),  l:T('fd_m_origin') },
+    { v: L(f.season),  l:T('fd_m_season') },
+    { v: f.dop ? T('fd_status_dop') : T('fd_status_trad'), l:T('fd_m_status') },
+    { v: L(f.pair).split(',')[0], l:T('fd_m_pairs') }
   ].map(s => `<div class="modal-stat"><strong>${s.v}</strong><span>${s.l}</span></div>`).join('');
 
   document.getElementById('m-two').innerHTML = `
     <div class="modal-sec">
-      <h4>Where to find it</h4>
-      <ul>${f.where.map(w => `<li>${w}</li>`).join('')}</ul>
+      <h4>${T('fd_m_where')}</h4>
+      <ul>${f.where.map(w => `<li>${L(w)}</li>`).join('')}</ul>
     </div>
     <div class="modal-sec">
-      <h4>Tips & pairings</h4>
-      <ul>${f.tips.map(t => `<li>${t}</li>`).join('')}</ul>
+      <h4>${T('fd_m_tips')}</h4>
+      <ul>${f.tips.map(t => `<li>${L(t)}</li>`).join('')}</ul>
     </div>`;
 
   document.getElementById('modal-backdrop').classList.add('open');
@@ -507,6 +589,9 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 /* ══ INIT ══ */
 renderFoods();
 renderSagre();
+
+/* ══ RE-RENDER AL CAMBIO LINGUA ══ */
+document.addEventListener('aw:langchange', () => { renderFoods(); renderSagre(); });
 </script>
 
 </body>

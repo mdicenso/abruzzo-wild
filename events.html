@@ -105,13 +105,13 @@
   <div class="hero-inner-veil"></div>
   <div class="hero-inner-content">
     <div class="hero-breadcrumb">
-      <a href="index.html">Home</a> › Events & Festivals
+      <a href="index.html" data-i18n="n_home">Home</a> › <span data-i18n="ev_bc">Events & Festivals</span>
     </div>
-    <h1 class="hero-inner-h1">Events & <em>Festivals</em></h1>
+    <h1 class="hero-inner-h1" data-i18n="ev_h1">Events & <em>Festivals</em></h1>
     <div class="hero-kpis">
-      <div class="hero-kpi"><strong>24+</strong><span>events / year</span></div>
-      <div class="hero-kpi"><strong>12</strong><span>months</span></div>
-      <div class="hero-kpi"><strong>6</strong><span>categories</span></div>
+      <div class="hero-kpi"><strong>24+</strong><span data-i18n="ev_kpi_events">events / year</span></div>
+      <div class="hero-kpi"><strong>12</strong><span data-i18n="ev_kpi_months">months</span></div>
+      <div class="hero-kpi"><strong>6</strong><span data-i18n="ev_kpi_cats">categories</span></div>
     </div>
   </div>
 </div>
@@ -123,25 +123,25 @@
 
 <!-- ════ FILTER BAR ════ -->
 <div class="filter-bar">
-  <span class="filter-label">Category</span>
-  <button class="pill pill-parchment on" onclick="catFilter('all', this)">All</button>
+  <span class="filter-label" data-i18n="ev_cat">Category</span>
+  <button class="pill pill-parchment on" onclick="catFilter('all', this)" data-i18n="ev_f_all">All</button>
   <button class="pill pill-parchment" onclick="catFilter('tradition', this)">
-    <i class="ti ti-flame" aria-hidden="true"></i> Tradition
+    <i class="ti ti-flame" aria-hidden="true"></i> <span data-i18n="ev_f_tradition">Tradition</span>
   </button>
   <button class="pill pill-parchment" onclick="catFilter('food', this)">
-    <i class="ti ti-tools-kitchen-2" aria-hidden="true"></i> Food
+    <i class="ti ti-tools-kitchen-2" aria-hidden="true"></i> <span data-i18n="ev_f_food">Food</span>
   </button>
   <button class="pill pill-parchment" onclick="catFilter('music', this)">
-    <i class="ti ti-music" aria-hidden="true"></i> Music
+    <i class="ti ti-music" aria-hidden="true"></i> <span data-i18n="ev_f_music">Music</span>
   </button>
   <button class="pill pill-parchment" onclick="catFilter('sport', this)">
-    <i class="ti ti-run" aria-hidden="true"></i> Sport
+    <i class="ti ti-run" aria-hidden="true"></i> <span data-i18n="ev_f_sport">Sport</span>
   </button>
   <button class="pill pill-parchment" onclick="catFilter('nature', this)">
-    <i class="ti ti-leaf" aria-hidden="true"></i> Nature
+    <i class="ti ti-leaf" aria-hidden="true"></i> <span data-i18n="ev_f_nature">Nature</span>
   </button>
   <button class="pill pill-parchment" onclick="catFilter('market', this)">
-    <i class="ti ti-building-store" aria-hidden="true"></i> Market
+    <i class="ti ti-building-store" aria-hidden="true"></i> <span data-i18n="ev_f_market">Market</span>
   </button>
   <span class="filter-count" id="ev-count"></span>
 </div>
@@ -160,19 +160,19 @@
       <!-- Featured events -->
       <div class="ev-featured fade-in" id="ev-featured">
         <div class="ev-featured-title">
-          <i class="ti ti-star" aria-hidden="true"></i>Not to be missed
+          <i class="ti ti-star" aria-hidden="true"></i><span data-i18n="ev_notmiss">Not to be missed</span>
         </div>
       </div>
 
       <!-- Practical info -->
       <div class="pbox fade-in">
         <div class="pbox-title">
-          <i class="ti ti-info-circle" aria-hidden="true"></i>Practical Info
+          <i class="ti ti-info-circle" aria-hidden="true"></i><span data-i18n="ev_pinfo">Practical Info</span>
         </div>
-        <div class="kv-row"><span>Most events</span><span>Aug – Oct</span></div>
-        <div class="kv-row"><span>Free entry</span><span>Most sagre</span></div>
-        <div class="kv-row"><span>Booking needed</span><span>Sport events only</span></div>
-        <div class="kv-row"><span>Language</span><span>Italian (mostly)</span></div>
+        <div class="kv-row"><span data-i18n="ev_kv1_k">Most events</span><span data-i18n="ev_kv1_v">Aug – Oct</span></div>
+        <div class="kv-row"><span data-i18n="ev_kv2_k">Free entry</span><span data-i18n="ev_kv2_v">Most sagre</span></div>
+        <div class="kv-row"><span data-i18n="ev_kv3_k">Booking needed</span><span data-i18n="ev_kv3_v">Sport events only</span></div>
+        <div class="kv-row"><span data-i18n="ev_kv4_k">Language</span><span data-i18n="ev_kv4_v">Italian (mostly)</span></div>
       </div>
 
     </div>
@@ -181,16 +181,16 @@
   <!-- Bottom info strip -->
   <div class="info-strip fade-in">
     <div class="info-strip-card">
-      <h4><i class="ti ti-sun" aria-hidden="true"></i>Best season</h4>
-      <p>Summer (June–September) is peak festival time. Winter has quieter but atmospheric events like the Farchie fire festival in January.</p>
+      <h4><i class="ti ti-sun" aria-hidden="true"></i><span data-i18n="ev_is1_t">Best season</span></h4>
+      <p data-i18n="ev_is1_p">Summer (June–September) is peak festival time. Winter has quieter but atmospheric events like the Farchie fire festival in January.</p>
     </div>
     <div class="info-strip-card">
-      <h4><i class="ti ti-coin-euro" aria-hidden="true"></i>Entry & costs</h4>
-      <p>Most sagre and traditional events are free. Music festivals and sport events may require advance booking. Budget €5–15 for food at sagre.</p>
+      <h4><i class="ti ti-coin-euro" aria-hidden="true"></i><span data-i18n="ev_is2_t">Entry & costs</span></h4>
+      <p data-i18n="ev_is2_p">Most sagre and traditional events are free. Music festivals and sport events may require advance booking. Budget €5–15 for food at sagre.</p>
     </div>
     <div class="info-strip-card">
-      <h4><i class="ti ti-car" aria-hidden="true"></i>Getting there</h4>
-      <p>A car is essential for village events. Many festivals are in small borghi with limited parking — arrive early or use shuttle buses where available.</p>
+      <h4><i class="ti ti-car" aria-hidden="true"></i><span data-i18n="ev_is3_t">Getting there</span></h4>
+      <p data-i18n="ev_is3_p">A car is essential for village events. Many festivals are in small borghi with limited parking — arrive early or use shuttle buses where available.</p>
     </div>
   </div>
 </div>
@@ -236,43 +236,113 @@
 
 <!-- ════ JAVASCRIPT ════ -->
 <script>
+/* ══ CHIAVI UI STATICA (fase A2) — Object.assign su T18 globale, NON tocca i18n.js ══ */
+Object.assign(T18.en, {
+  ev_bc:'Events & Festivals', ev_h1:'Events & <em>Festivals</em>',
+  ev_kpi_events:'events / year', ev_kpi_months:'months', ev_kpi_cats:'categories',
+  ev_cat:'Category', ev_f_all:'All', ev_f_tradition:'Tradition', ev_f_food:'Food',
+  ev_f_music:'Music', ev_f_sport:'Sport', ev_f_nature:'Nature', ev_f_market:'Market',
+  ev_notmiss:'Not to be missed', ev_pinfo:'Practical Info',
+  ev_kv1_k:'Most events', ev_kv1_v:'Aug – Oct', ev_kv2_k:'Free entry', ev_kv2_v:'Most sagre',
+  ev_kv3_k:'Booking needed', ev_kv3_v:'Sport events only', ev_kv4_k:'Language', ev_kv4_v:'Italian (mostly)',
+  ev_is1_t:'Best season', ev_is1_p:'Summer (June–September) is peak festival time. Winter has quieter but atmospheric events like the Farchie fire festival in January.',
+  ev_is2_t:'Entry & costs', ev_is2_p:'Most sagre and traditional events are free. Music festivals and sport events may require advance booking. Budget €5–15 for food at sagre.',
+  ev_is3_t:'Getting there', ev_is3_p:'A car is essential for village events. Many festivals are in small borghi with limited parking — arrive early or use shuttle buses where available.',
+  ev_count_sg:'event', ev_count_pl:'events',
+  ev_none:'No events found for this selection. Try a different month or category.',
+  ev_featnone:'Select a month to see featured events.', ev_featured:'Featured'
+});
+Object.assign(T18.it, {
+  ev_bc:'Eventi & Feste', ev_h1:'Eventi & <em>Feste</em>',
+  ev_kpi_events:'eventi / anno', ev_kpi_months:'mesi', ev_kpi_cats:'categorie',
+  ev_cat:'Categoria', ev_f_all:'Tutti', ev_f_tradition:'Tradizione', ev_f_food:'Cibo',
+  ev_f_music:'Musica', ev_f_sport:'Sport', ev_f_nature:'Natura', ev_f_market:'Mercato',
+  ev_notmiss:'Da non perdere', ev_pinfo:'Info pratiche',
+  ev_kv1_k:'Più eventi', ev_kv1_v:'Ago – Ott', ev_kv2_k:'Ingresso gratuito', ev_kv2_v:'Quasi tutte le sagre',
+  ev_kv3_k:'Prenotazione', ev_kv3_v:'Solo eventi sportivi', ev_kv4_k:'Lingua', ev_kv4_v:'Italiano (per lo più)',
+  ev_is1_t:'Periodo migliore', ev_is1_p:"L'estate (giugno–settembre) è il periodo clou delle feste. L'inverno offre eventi più tranquilli ma suggestivi, come la festa del fuoco delle Farchie a gennaio.",
+  ev_is2_t:'Ingresso e costi', ev_is2_p:'Quasi tutte le sagre e gli eventi tradizionali sono gratuiti. I festival musicali e gli eventi sportivi possono richiedere la prenotazione. Metti in conto €5–15 per il cibo alle sagre.',
+  ev_is3_t:'Come arrivare', ev_is3_p:"L'auto è indispensabile per gli eventi nei borghi. Molte feste si svolgono in piccoli paesi con parcheggi limitati — arriva presto o usa le navette dove disponibili.",
+  ev_count_sg:'evento', ev_count_pl:'eventi',
+  ev_none:'Nessun evento trovato per questa selezione. Prova un altro mese o categoria.',
+  ev_featnone:'Seleziona un mese per vedere gli eventi in evidenza.', ev_featured:'In evidenza'
+});
+Object.assign(T18.de, {
+  ev_bc:'Veranstaltungen & Feste', ev_h1:'Veranstaltungen & <em>Feste</em>',
+  ev_kpi_events:'Events / Jahr', ev_kpi_months:'Monate', ev_kpi_cats:'Kategorien',
+  ev_cat:'Kategorie', ev_f_all:'Alle', ev_f_tradition:'Tradition', ev_f_food:'Essen',
+  ev_f_music:'Musik', ev_f_sport:'Sport', ev_f_nature:'Natur', ev_f_market:'Markt',
+  ev_notmiss:'Nicht verpassen', ev_pinfo:'Praktische Infos',
+  ev_kv1_k:'Die meisten Events', ev_kv1_v:'Aug – Okt', ev_kv2_k:'Freier Eintritt', ev_kv2_v:'Die meisten Sagre',
+  ev_kv3_k:'Buchung nötig', ev_kv3_v:'Nur Sport-Events', ev_kv4_k:'Sprache', ev_kv4_v:'Meist Italienisch',
+  ev_is1_t:'Beste Zeit', ev_is1_p:'Der Sommer (Juni–September) ist Hauptsaison für Festivals. Der Winter bietet ruhigere, aber stimmungsvolle Events wie das Feuerfest der Farchie im Januar.',
+  ev_is2_t:'Eintritt & Kosten', ev_is2_p:'Die meisten Sagre und traditionellen Events sind kostenlos. Musikfestivals und Sport-Events erfordern eventuell eine Vorbuchung. Rechne mit 5–15 € für Essen auf den Sagre.',
+  ev_is3_t:'Anreise', ev_is3_p:'Für Dorf-Events ist ein Auto unerlässlich. Viele Feste finden in kleinen Dörfern mit wenig Parkplätzen statt — früh kommen oder Shuttlebusse nutzen, wo verfügbar.',
+  ev_count_sg:'Veranstaltung', ev_count_pl:'Veranstaltungen',
+  ev_none:'Keine Veranstaltungen für diese Auswahl gefunden. Versuchen Sie einen anderen Monat oder eine andere Kategorie.',
+  ev_featnone:'Wählen Sie einen Monat, um die hervorgehobenen Events zu sehen.', ev_featured:'Highlight'
+});
+Object.assign(T18.fr, {
+  ev_bc:'Événements & Fêtes', ev_h1:'Événements & <em>Fêtes</em>',
+  ev_kpi_events:'événements / an', ev_kpi_months:'mois', ev_kpi_cats:'catégories',
+  ev_cat:'Catégorie', ev_f_all:'Tous', ev_f_tradition:'Tradition', ev_f_food:'Cuisine',
+  ev_f_music:'Musique', ev_f_sport:'Sport', ev_f_nature:'Nature', ev_f_market:'Marché',
+  ev_notmiss:'À ne pas manquer', ev_pinfo:'Infos pratiques',
+  ev_kv1_k:'La plupart des événements', ev_kv1_v:'Aoû – Oct', ev_kv2_k:'Entrée libre', ev_kv2_v:'La plupart des sagre',
+  ev_kv3_k:'Réservation', ev_kv3_v:'Événements sportifs seulement', ev_kv4_k:'Langue', ev_kv4_v:'Italien (surtout)',
+  ev_is1_t:'Meilleure saison', ev_is1_p:"L'été (juin–septembre) est la haute saison des fêtes. L'hiver propose des événements plus calmes mais envoûtants, comme la fête du feu des Farchie en janvier.",
+  ev_is2_t:'Entrée & coûts', ev_is2_p:'La plupart des sagre et des événements traditionnels sont gratuits. Les festivals de musique et les événements sportifs peuvent nécessiter une réservation. Comptez 5–15 € pour manger aux sagre.',
+  ev_is3_t:"Comment s'y rendre", ev_is3_p:'Une voiture est indispensable pour les événements de village. De nombreuses fêtes se déroulent dans de petits bourgs au stationnement limité — arrivez tôt ou utilisez les navettes si disponibles.',
+  ev_count_sg:'événement', ev_count_pl:'événements',
+  ev_none:'Aucun événement trouvé pour cette sélection. Essayez un autre mois ou une autre catégorie.',
+  ev_featnone:'Sélectionnez un mois pour voir les événements à la une.', ev_featured:'À la une'
+});
+
 /* ══ DATA ══ */
 const events = [
-  { id:1,  name:"Farchie di Fara Filiorum Petri", month:1,  date:"16 Jan",       cat:"tradition", place:"Fara Filiorum Petri (CH)", desc:"Enormous burning torches paraded through the village in honour of Sant'Antonio Abate. One of Italy's most spectacular fire festivals.", featured:true },
-  { id:2,  name:"Sagra della Ventricina",          month:1,  date:"Late Jan",      cat:"food",      place:"Guilmi (CH)",              desc:"Winter festival celebrating Abruzzo's iconic spiced pork salume — producers, tastings and warm hospitality." },
-  { id:3,  name:"Carnevale di Lanciano",           month:2,  date:"Feb (variable)",cat:"tradition", place:"Lanciano (CH)",            desc:"One of Abruzzo's most colourful carnivals — street floats, costumes and traditional music in the historic centre." },
-  { id:4,  name:"Festival del Tartufo Invernale",  month:2,  date:"Mid Feb",       cat:"food",      place:"Rivisondoli (AQ)",         desc:"Winter truffle market in a beautiful mountain village — the rarest and most prized black truffle of the season." },
-  { id:5,  name:"Sagra di San Giuseppe",           month:3,  date:"19 Mar",        cat:"tradition", place:"Introdacqua (AQ)",         desc:"Fava beans, zeppole and local wines celebrating the feast of Saint Joseph — a village tradition since the 1600s." },
-  { id:6,  name:"Opening of Trekking Trails",      month:3,  date:"Late Mar",      cat:"nature",    place:"Gran Sasso & Maiella",     desc:"Marked trails officially reopen after winter closures — first guided hikes and CAI-organised routes of the season." },
-  { id:7,  name:"Sagra dell'Agnello",              month:4,  date:"Easter period", cat:"food",      place:"Castel del Monte (AQ)",    desc:"The year's biggest food festival celebrating Easter lamb in all its forms — roasted, baked, stewed and grilled.", featured:true },
-  { id:8,  name:"Pasqua in Abruzzo",               month:4,  date:"Easter Sunday", cat:"tradition", place:"Various villages",         desc:"Extraordinary Easter processions in mountain villages — most atmospheric in L'Aquila, Sulmona and Lanciano." },
-  { id:9,  name:"Transumanza Festival",            month:5,  date:"Early May",     cat:"tradition", place:"Pescasseroli–Candela",     desc:"Recreation of the ancient shepherd migration — thousands of sheep walk the old tratturi through mountain villages.", featured:true },
-  { id:10, name:"Sagra degli Arrosticini",         month:5,  date:"Mid May",       cat:"food",      place:"Pescara",                  desc:"The national arrosticini festival — hundreds of grills, live music and Montepulciano wine on the Adriatic coast." },
-  { id:11, name:"Giostra Cavalleresca di Sulmona", month:6,  date:"Last Sun Jun",  cat:"tradition", place:"Sulmona (AQ)",             desc:"Medieval jousting tournament in Sulmona's historic piazza — four neighbourhoods compete in full period costume.", featured:true },
-  { id:12, name:"L'Aquila Classica",               month:6,  date:"Throughout Jun",cat:"music",     place:"L'Aquila (AQ)",            desc:"International classical music festival in the historic churches and palaces of L'Aquila — free and ticketed concerts." },
-  { id:13, name:"Abruzzo Jazz Festival",           month:7,  date:"Throughout Jul",cat:"music",     place:"Pescara",                  desc:"Italy's longest-running jazz festival — outdoor concerts along the Adriatic coast with international headliners.", featured:true },
-  { id:14, name:"Sagra della Trota",               month:7,  date:"Late Jul",      cat:"food",      place:"Pescasseroli (AQ)",        desc:"Freshwater trout festival in the national park — fish caught from local rivers, grilled with mountain herbs." },
-  { id:15, name:"Corsa degli Zingari",             month:9,  date:"First Sun Sep", cat:"tradition", place:"Pacentro (AQ)",            desc:"A barefoot race by village men in medieval costume — a tradition since the 16th-century vow to Sant'Antonio.", featured:true },
-  { id:16, name:"Festival delle Sagre",            month:8,  date:"Mid Aug",       cat:"food",      place:"Various villages",         desc:"Ferragosto brings the peak of village food festivals — almost every borgo celebrates its local product in August." },
-  { id:17, name:"Ultra Trail Gran Sasso",          month:9,  date:"Mid Sep",       cat:"sport",     place:"L'Aquila – Gran Sasso",    desc:"Italy's most challenging mountain trail running event — 100km across Gran Sasso with 6,000m+ elevation gain." },
-  { id:18, name:"Sagra del Vino di Lanciano",      month:9,  date:"Late Sep",      cat:"food",      place:"Lanciano (CH)",            desc:"Harvest festival celebrating Montepulciano d'Abruzzo — winery visits, tastings, food and traditional music." },
-  { id:19, name:"Sagra dello Zafferano",           month:10, date:"Late Oct",      cat:"food",      place:"Navelli (AQ)",             desc:"Saffron harvest festival in the DOP production zone — demonstrations, tastings and local products.", featured:true },
-  { id:20, name:"Gran Sasso Trail",                month:10, date:"Early Oct",     cat:"sport",     place:"Gran Sasso massif",        desc:"Premier mountain trail running race — distances from 15km to 55km across the Apennine plateau." },
-  { id:21, name:"Festival del Tartufo Nero",       month:10, date:"Mid Oct",       cat:"food",      place:"Rivisondoli (AQ)",         desc:"Autumn truffle market — guided hunts with Lagotto dogs, tastings and truffle-based tasting menus." },
-  { id:22, name:"Frantoi Aperti",                  month:11, date:"Throughout Nov",cat:"nature",    place:"Pescara & Chieti hills",   desc:"Olive oil mills open to visitors during the harvest — taste fresh-pressed DOP oil directly from the stone.", featured:true },
-  { id:23, name:"Mercatino di San Martino",        month:11, date:"11 Nov",        cat:"market",    place:"Various towns",            desc:"Traditional November market — wine, oil, chestnuts and handmade local crafts in village squares." },
-  { id:24, name:"Presepe Vivente",                 month:12, date:"24–26 Dec",     cat:"tradition", place:"Pescosansonesco (PE)",     desc:"One of Italy's most atmospheric living nativity scenes — the entire medieval village transforms into Bethlehem.", featured:true }
+  { id:1,  name:"Farchie di Fara Filiorum Petri", month:1,  date:"16 Jan",       cat:"tradition", place:"Fara Filiorum Petri (CH)", desc:{en:"Enormous burning torches paraded through the village in honour of Sant'Antonio Abate. One of Italy's most spectacular fire festivals.",it:"Enormi torce ardenti sfilano per il paese in onore di Sant'Antonio Abate. Una delle feste del fuoco più spettacolari d'Italia.",de:"Riesige brennende Fackeln werden zu Ehren des heiligen Antonius Abbas durch das Dorf getragen. Eines der spektakulärsten Feuerfeste Italiens.",fr:"D'énormes torches enflammées défilent dans le village en l'honneur de saint Antoine Abbé. L'une des fêtes du feu les plus spectaculaires d'Italie."}, featured:true },
+  { id:2,  name:"Sagra della Ventricina",          month:1,  date:"Late Jan",      cat:"food",      place:"Guilmi (CH)",              desc:{en:"Winter festival celebrating Abruzzo's iconic spiced pork salume — producers, tastings and warm hospitality.",it:"Festa invernale dedicata all'iconico salume di maiale speziato dell'Abruzzo — produttori, degustazioni e calorosa ospitalità.",de:"Winterfest rund um die typische würzige Schweinesalami der Abruzzen — Produzenten, Verkostungen und herzliche Gastfreundschaft.",fr:"Fête hivernale célébrant l'emblématique saucisson de porc épicé des Abruzzes — producteurs, dégustations et accueil chaleureux."} },
+  { id:3,  name:"Carnevale di Lanciano",           month:2,  date:"Feb (variable)",cat:"tradition", place:"Lanciano (CH)",            desc:{en:"One of Abruzzo's most colourful carnivals — street floats, costumes and traditional music in the historic centre.",it:"Uno dei carnevali più colorati d'Abruzzo — carri, costumi e musica tradizionale nel centro storico.",de:"Einer der farbenprächtigsten Karnevale der Abruzzen — Umzugswagen, Kostüme und traditionelle Musik in der Altstadt.",fr:"L'un des carnavals les plus colorés des Abruzzes — chars, costumes et musique traditionnelle dans le centre historique."} },
+  { id:4,  name:"Festival del Tartufo Invernale",  month:2,  date:"Mid Feb",       cat:"food",      place:"Rivisondoli (AQ)",         desc:{en:"Winter truffle market in a beautiful mountain village — the rarest and most prized black truffle of the season.",it:"Mercato del tartufo invernale in un bel borgo di montagna — il tartufo nero più raro e pregiato della stagione.",de:"Wintertrüffelmarkt in einem schönen Bergdorf — der seltenste und edelste schwarze Trüffel der Saison.",fr:"Marché de la truffe d'hiver dans un beau village de montagne — la truffe noire la plus rare et la plus prisée de la saison."} },
+  { id:5,  name:"Sagra di San Giuseppe",           month:3,  date:"19 Mar",        cat:"tradition", place:"Introdacqua (AQ)",         desc:{en:"Fava beans, zeppole and local wines celebrating the feast of Saint Joseph — a village tradition since the 1600s.",it:"Fave, zeppole e vini locali per la festa di San Giuseppe — una tradizione del borgo dal Seicento.",de:"Ackerbohnen, Zeppole und lokale Weine zum Fest des heiligen Josef — eine Dorftradition seit dem 17. Jahrhundert.",fr:"Fèves, zeppole et vins locaux pour la fête de la Saint-Joseph — une tradition villageoise depuis le XVIIe siècle."} },
+  { id:6,  name:{en:"Opening of Trekking Trails",it:"Apertura dei sentieri escursionistici",de:"Eröffnung der Wanderwege",fr:"Ouverture des sentiers de randonnée"}, month:3, date:"Late Mar", cat:"nature", place:"Gran Sasso & Maiella", desc:{en:"Marked trails officially reopen after winter closures — first guided hikes and CAI-organised routes of the season.",it:"I sentieri segnalati riaprono ufficialmente dopo la chiusura invernale — prime escursioni guidate e itinerari CAI della stagione.",de:"Markierte Wege werden nach der Wintersperre offiziell wiedereröffnet — erste geführte Wanderungen und CAI-Touren der Saison.",fr:"Les sentiers balisés rouvrent officiellement après la fermeture hivernale — premières randonnées guidées et itinéraires du CAI de la saison."} },
+  { id:7,  name:"Sagra dell'Agnello",              month:4,  date:"Easter period", cat:"food",      place:"Castel del Monte (AQ)",    desc:{en:"The year's biggest food festival celebrating Easter lamb in all its forms — roasted, baked, stewed and grilled.",it:"La più grande sagra dell'anno dedicata all'agnello pasquale in tutte le sue forme — arrosto, al forno, in umido e alla griglia.",de:"Das größte Food-Festival des Jahres rund um das Osterlamm in allen Varianten — gebraten, gebacken, geschmort und gegrillt.",fr:"La plus grande fête gastronomique de l'année dédiée à l'agneau de Pâques sous toutes ses formes — rôti, au four, en ragoût et grillé."}, featured:true },
+  { id:8,  name:"Pasqua in Abruzzo",               month:4,  date:"Easter Sunday", cat:"tradition", place:"Various villages",         desc:{en:"Extraordinary Easter processions in mountain villages — most atmospheric in L'Aquila, Sulmona and Lanciano.",it:"Straordinarie processioni pasquali nei borghi di montagna — le più suggestive a L'Aquila, Sulmona e Lanciano.",de:"Außergewöhnliche Osterprozessionen in den Bergdörfern — am stimmungsvollsten in L'Aquila, Sulmona und Lanciano.",fr:"D'extraordinaires processions de Pâques dans les villages de montagne — les plus envoûtantes à L'Aquila, Sulmona et Lanciano."} },
+  { id:9,  name:"Transumanza Festival",            month:5,  date:"Early May",     cat:"tradition", place:"Pescasseroli–Candela",     desc:{en:"Recreation of the ancient shepherd migration — thousands of sheep walk the old tratturi through mountain villages.",it:"Rievocazione dell'antica migrazione dei pastori — migliaia di pecore percorrono gli antichi tratturi tra i borghi di montagna.",de:"Nachstellung der alten Hirtenwanderung — Tausende Schafe ziehen über die alten Tratturi durch die Bergdörfer.",fr:"Reconstitution de l'ancienne transhumance — des milliers de moutons empruntent les anciens tratturi à travers les villages de montagne."}, featured:true },
+  { id:10, name:"Sagra degli Arrosticini",         month:5,  date:"Mid May",       cat:"food",      place:"Pescara",                  desc:{en:"The national arrosticini festival — hundreds of grills, live music and Montepulciano wine on the Adriatic coast.",it:"La sagra nazionale degli arrosticini — centinaia di griglie, musica dal vivo e vino Montepulciano sulla costa adriatica.",de:"Das nationale Arrosticini-Festival — Hunderte Grills, Live-Musik und Montepulciano-Wein an der Adriaküste.",fr:"La fête nationale des arrosticini — des centaines de grils, de la musique live et du vin Montepulciano sur la côte adriatique."} },
+  { id:11, name:"Giostra Cavalleresca di Sulmona", month:6,  date:"Last Sun Jun",  cat:"tradition", place:"Sulmona (AQ)",             desc:{en:"Medieval jousting tournament in Sulmona's historic piazza — four neighbourhoods compete in full period costume.",it:"Torneo di giostra cavalleresca nella piazza storica di Sulmona — quattro borghi si sfidano in costume d'epoca.",de:"Mittelalterliches Ritterturnier auf Sulmonas historischer Piazza — vier Stadtviertel treten in historischen Kostümen gegeneinander an.",fr:"Tournoi de joute médiévale sur la place historique de Sulmona — quatre quartiers s'affrontent en costume d'époque."}, featured:true },
+  { id:12, name:"L'Aquila Classica",               month:6,  date:"Throughout Jun",cat:"music",     place:"L'Aquila (AQ)",            desc:{en:"International classical music festival in the historic churches and palaces of L'Aquila — free and ticketed concerts.",it:"Festival internazionale di musica classica nelle chiese e nei palazzi storici dell'Aquila — concerti gratuiti e a pagamento.",de:"Internationales Festival für klassische Musik in den historischen Kirchen und Palästen von L'Aquila — kostenlose und ticketpflichtige Konzerte.",fr:"Festival international de musique classique dans les églises et palais historiques de L'Aquila — concerts gratuits et payants."} },
+  { id:13, name:"Abruzzo Jazz Festival",           month:7,  date:"Throughout Jul",cat:"music",     place:"Pescara",                  desc:{en:"Italy's longest-running jazz festival — outdoor concerts along the Adriatic coast with international headliners.",it:"Il festival jazz più longevo d'Italia — concerti all'aperto lungo la costa adriatica con headliner internazionali.",de:"Italiens ältestes Jazzfestival — Open-Air-Konzerte entlang der Adriaküste mit internationalen Headlinern.",fr:"Le plus ancien festival de jazz d'Italie — concerts en plein air le long de la côte adriatique avec des têtes d'affiche internationales."}, featured:true },
+  { id:14, name:"Sagra della Trota",               month:7,  date:"Late Jul",      cat:"food",      place:"Pescasseroli (AQ)",        desc:{en:"Freshwater trout festival in the national park — fish caught from local rivers, grilled with mountain herbs.",it:"Sagra della trota di fiume nel parco nazionale — pesce pescato nei fiumi locali, grigliato con erbe di montagna.",de:"Fest der Süßwasserforelle im Nationalpark — Fisch aus den örtlichen Flüssen, gegrillt mit Bergkräutern.",fr:"Fête de la truite d'eau douce dans le parc national — poisson pêché dans les rivières locales, grillé aux herbes de montagne."} },
+  { id:15, name:"Corsa degli Zingari",             month:9,  date:"First Sun Sep", cat:"tradition", place:"Pacentro (AQ)",            desc:{en:"A barefoot race by village men in medieval costume — a tradition since the 16th-century vow to Sant'Antonio.",it:"Una corsa a piedi scalzi degli uomini del paese in costume medievale — una tradizione dal voto a Sant'Antonio del Cinquecento.",de:"Ein Barfußlauf der Dorfmänner in mittelalterlichen Kostümen — eine Tradition seit dem Gelübde an den heiligen Antonius im 16. Jahrhundert.",fr:"Une course pieds nus des hommes du village en costume médiéval — une tradition depuis le vœu à saint Antoine au XVIe siècle."}, featured:true },
+  { id:16, name:"Festival delle Sagre",            month:8,  date:"Mid Aug",       cat:"food",      place:"Various villages",         desc:{en:"Ferragosto brings the peak of village food festivals — almost every borgo celebrates its local product in August.",it:"Il Ferragosto porta il culmine delle sagre di paese — quasi ogni borgo celebra il suo prodotto locale in agosto.",de:"Ferragosto bringt den Höhepunkt der dörflichen Food-Feste — fast jedes Dorf feiert im August sein lokales Produkt.",fr:"Le Ferragosto marque l'apogée des fêtes gastronomiques villageoises — presque chaque bourg célèbre son produit local en août."} },
+  { id:17, name:"Ultra Trail Gran Sasso",          month:9,  date:"Mid Sep",       cat:"sport",     place:"L'Aquila – Gran Sasso",    desc:{en:"Italy's most challenging mountain trail running event — 100km across Gran Sasso with 6,000m+ elevation gain.",it:"La gara di trail running di montagna più impegnativa d'Italia — 100 km sul Gran Sasso con oltre 6.000 m di dislivello.",de:"Italiens anspruchsvollstes Berg-Trailrunning-Event — 100 km über den Gran Sasso mit über 6.000 m Höhenunterschied.",fr:"L'épreuve de trail de montagne la plus exigeante d'Italie — 100 km à travers le Gran Sasso avec plus de 6 000 m de dénivelé."} },
+  { id:18, name:"Sagra del Vino di Lanciano",      month:9,  date:"Late Sep",      cat:"food",      place:"Lanciano (CH)",            desc:{en:"Harvest festival celebrating Montepulciano d'Abruzzo — winery visits, tastings, food and traditional music.",it:"Festa della vendemmia dedicata al Montepulciano d'Abruzzo — visite in cantina, degustazioni, cibo e musica tradizionale.",de:"Erntefest rund um den Montepulciano d'Abruzzo — Weingutbesuche, Verkostungen, Essen und traditionelle Musik.",fr:"Fête des vendanges dédiée au Montepulciano d'Abruzzo — visites de caves, dégustations, cuisine et musique traditionnelle."} },
+  { id:19, name:"Sagra dello Zafferano",           month:10, date:"Late Oct",      cat:"food",      place:"Navelli (AQ)",             desc:{en:"Saffron harvest festival in the DOP production zone — demonstrations, tastings and local products.",it:"Sagra della raccolta dello zafferano nella zona di produzione DOP — dimostrazioni, degustazioni e prodotti locali.",de:"Fest der Safranernte im DOP-Anbaugebiet — Vorführungen, Verkostungen und lokale Produkte.",fr:"Fête de la récolte du safran dans la zone de production AOP — démonstrations, dégustations et produits locaux."}, featured:true },
+  { id:20, name:"Gran Sasso Trail",                month:10, date:"Early Oct",     cat:"sport",     place:"Gran Sasso massif",        desc:{en:"Premier mountain trail running race — distances from 15km to 55km across the Apennine plateau.",it:"Prestigiosa gara di trail running di montagna — distanze da 15 a 55 km sull'altopiano appenninico.",de:"Erstklassiges Berg-Trailrunning-Rennen — Distanzen von 15 bis 55 km über die Apennin-Hochebene.",fr:"Course de trail de montagne de premier plan — distances de 15 à 55 km sur le plateau des Apennins."} },
+  { id:21, name:"Festival del Tartufo Nero",       month:10, date:"Mid Oct",       cat:"food",      place:"Rivisondoli (AQ)",         desc:{en:"Autumn truffle market — guided hunts with Lagotto dogs, tastings and truffle-based tasting menus.",it:"Mercato autunnale del tartufo — cacce guidate con cani Lagotto, degustazioni e menu degustazione al tartufo.",de:"Herbstlicher Trüffelmarkt — geführte Suchen mit Lagotto-Hunden, Verkostungen und Trüffel-Menüs.",fr:"Marché de la truffe d'automne — chasses guidées avec des chiens Lagotto, dégustations et menus dégustation à la truffe."} },
+  { id:22, name:"Frantoi Aperti",                  month:11, date:"Throughout Nov",cat:"nature",    place:"Pescara & Chieti hills",   desc:{en:"Olive oil mills open to visitors during the harvest — taste fresh-pressed DOP oil directly from the stone.",it:"Frantoi aperti ai visitatori durante la raccolta — assaggia l'olio DOP appena spremuto direttamente dalla macina.",de:"Ölmühlen öffnen während der Ernte für Besucher — frisch gepresstes DOP-Öl direkt vom Stein verkosten.",fr:"Moulins à huile ouverts aux visiteurs pendant la récolte — dégustez l'huile AOP fraîchement pressée directement de la meule."}, featured:true },
+  { id:23, name:"Mercatino di San Martino",        month:11, date:"11 Nov",        cat:"market",    place:"Various towns",            desc:{en:"Traditional November market — wine, oil, chestnuts and handmade local crafts in village squares.",it:"Tradizionale mercatino di novembre — vino, olio, castagne e artigianato locale nelle piazze dei borghi.",de:"Traditioneller November-Markt — Wein, Öl, Kastanien und handgemachtes lokales Kunsthandwerk auf den Dorfplätzen.",fr:"Marché traditionnel de novembre — vin, huile, châtaignes et artisanat local fait main sur les places des villages."} },
+  { id:24, name:"Presepe Vivente",                 month:12, date:"24–26 Dec",     cat:"tradition", place:"Pescosansonesco (PE)",     desc:{en:"One of Italy's most atmospheric living nativity scenes — the entire medieval village transforms into Bethlehem.",it:"Uno dei presepi viventi più suggestivi d'Italia — l'intero borgo medievale si trasforma in Betlemme.",de:"Eine der stimmungsvollsten lebenden Krippen Italiens — das gesamte mittelalterliche Dorf verwandelt sich in Bethlehem.",fr:"L'une des crèches vivantes les plus envoûtantes d'Italie — tout le village médiéval se transforme en Bethléem."}, featured:true }
 ];
 
-const months = ['All','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const months = [
+  {en:'All',it:'Tutti',de:'Alle',fr:'Tous'},
+  {en:'Jan',it:'Gen',de:'Jan',fr:'Jan'}, {en:'Feb',it:'Feb',de:'Feb',fr:'Fév'},
+  {en:'Mar',it:'Mar',de:'Mär',fr:'Mar'}, {en:'Apr',it:'Apr',de:'Apr',fr:'Avr'},
+  {en:'May',it:'Mag',de:'Mai',fr:'Mai'}, {en:'Jun',it:'Giu',de:'Jun',fr:'Juin'},
+  {en:'Jul',it:'Lug',de:'Jul',fr:'Juil'}, {en:'Aug',it:'Ago',de:'Aug',fr:'Aoû'},
+  {en:'Sep',it:'Set',de:'Sep',fr:'Sep'}, {en:'Oct',it:'Ott',de:'Okt',fr:'Oct'},
+  {en:'Nov',it:'Nov',de:'Nov',fr:'Nov'}, {en:'Dec',it:'Dic',de:'Dez',fr:'Déc'}
+];
 
 const catConfig = {
-  tradition: { label:'Tradition', tagClass:'tag-castle',  icon:'ti-flame' },
-  food:      { label:'Food',      tagClass:'tag-green',   icon:'ti-tools-kitchen-2' },
-  music:     { label:'Music',     tagClass:'tag-museum',  icon:'ti-music' },
-  sport:     { label:'Sport',     tagClass:'tag-archeo',  icon:'ti-run' },
-  nature:    { label:'Nature',    tagClass:'tag-nature',  icon:'ti-leaf' },
-  market:    { label:'Market',    tagClass:'tag-rose',    icon:'ti-building-store' }
+  tradition: { label:{en:'Tradition',it:'Tradizione',de:'Tradition',fr:'Tradition'}, tagClass:'tag-castle',  icon:'ti-flame' },
+  food:      { label:{en:'Food',it:'Cibo',de:'Essen',fr:'Cuisine'},                  tagClass:'tag-green',   icon:'ti-tools-kitchen-2' },
+  music:     { label:{en:'Music',it:'Musica',de:'Musik',fr:'Musique'},               tagClass:'tag-museum',  icon:'ti-music' },
+  sport:     { label:{en:'Sport',it:'Sport',de:'Sport',fr:'Sport'},                  tagClass:'tag-archeo',  icon:'ti-run' },
+  nature:    { label:{en:'Nature',it:'Natura',de:'Natur',fr:'Nature'},               tagClass:'tag-nature',  icon:'ti-leaf' },
+  market:    { label:{en:'Market',it:'Mercato',de:'Markt',fr:'Marché'},              tagClass:'tag-rose',    icon:'ti-building-store' }
 };
 
 /* ══ STATE ══ */
@@ -282,10 +352,11 @@ let activeCat   = 'all';
 /* ══ MONTH STRIP ══ */
 function buildMonthStrip() {
   const strip = document.getElementById('month-strip');
+  strip.innerHTML = '';
   months.forEach((m, i) => {
     const btn = document.createElement('button');
-    btn.className = 'month-btn' + (i === 0 ? ' on' : '');
-    btn.textContent = m;
+    btn.className = 'month-btn' + (i === activeMonth ? ' on' : '');
+    btn.textContent = L(m);
     btn.onclick = () => {
       activeMonth = i;
       document.querySelectorAll('.month-btn').forEach(b => b.classList.remove('on'));
@@ -312,13 +383,13 @@ function renderEvents() {
   );
 
   document.getElementById('ev-count').textContent =
-    filtered.length + ' event' + (filtered.length !== 1 ? 's' : '');
+    filtered.length + ' ' + T(filtered.length !== 1 ? 'ev_count_pl' : 'ev_count_sg');
 
   if (filtered.length === 0) {
     document.getElementById('events-grid').innerHTML = `
       <div style="grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--muted)">
         <i class="ti ti-calendar-off" style="font-size:2.5rem;display:block;margin-bottom:.75rem;opacity:.4" aria-hidden="true"></i>
-        No events found for this selection. Try a different month or category.
+        ${T('ev_none')}
       </div>`;
     return;
   }
@@ -327,20 +398,20 @@ function renderEvents() {
     const tc = catConfig[e.cat] || { label: e.cat, tagClass:'tag-olive', icon:'ti-calendar-event' };
     return `
     <div class="ev-card${e.featured ? ' fade-in' : ''}">
-      <div class="ev-month">${months[e.month]}</div>
+      <div class="ev-month">${L(months[e.month])}</div>
       <div class="ev-date">
         <i class="ti ti-calendar" aria-hidden="true" style="font-size:12px;vertical-align:-1px"></i>
         ${e.date}
       </div>
-      <h3>${e.name}</h3>
+      <h3>${L(e.name)}</h3>
       <div class="ev-place">
         <i class="ti ti-map-pin" aria-hidden="true" style="font-size:13px"></i>${e.place}
       </div>
-      <p>${e.desc}</p>
+      <p>${L(e.desc)}</p>
       <span class="tag ${tc.tagClass}" style="margin-top:.5rem;display:inline-flex;align-items:center;gap:.25rem">
-        <i class="ti ${tc.icon}" aria-hidden="true"></i> ${tc.label}
+        <i class="ti ${tc.icon}" aria-hidden="true"></i> ${L(tc.label)}
       </span>
-      ${e.featured ? '<span class="tag tag-amber" style="margin-top:.5rem;margin-left:.3rem">⭐ Featured</span>' : ''}
+      ${e.featured ? `<span class="tag tag-amber" style="margin-top:.5rem;margin-left:.3rem">⭐ ${T('ev_featured')}</span>` : ''}
     </div>`;
   }).join('');
 
@@ -351,15 +422,15 @@ function renderEvents() {
   const featBox = document.getElementById('ev-featured');
   featBox.innerHTML = `
     <div class="ev-featured-title">
-      <i class="ti ti-star" aria-hidden="true"></i>Not to be missed
+      <i class="ti ti-star" aria-hidden="true"></i>${T('ev_notmiss')}
     </div>
     ${featured.length
       ? featured.slice(0, 5).map(e => `
         <div class="ef-item">
-          <h5>${e.name}</h5>
-          <p>${months[e.month]} · ${e.place}</p>
+          <h5>${L(e.name)}</h5>
+          <p>${L(months[e.month])} · ${e.place}</p>
         </div>`).join('')
-      : '<p style="color:rgba(255,255,255,.45);font-size:.8rem;font-weight:300">Select a month to see featured events.</p>'
+      : `<p style="color:rgba(255,255,255,.45);font-size:.8rem;font-weight:300">${T('ev_featnone')}</p>`
     }`;
 }
 
@@ -384,6 +455,12 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 /* ══ INIT ══ */
 buildMonthStrip();
 renderEvents();
+
+/* ══ RE-RENDER AL CAMBIO LINGUA ══ */
+document.addEventListener('aw:langchange', () => {
+  buildMonthStrip();
+  renderEvents();
+});
 </script>
 
 </body>
