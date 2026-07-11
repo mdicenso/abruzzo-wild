@@ -190,6 +190,7 @@
       <a href="events.html"      class="footer-link">Events</a>
       <a href="transport.html"   class="footer-link">Transport</a>
       <a href="plan.html"        class="footer-link">Plan Trip</a>
+      <a href="crediti.html" class="footer-link"><span data-i18n="f_credits">Photo credits</span></a>
     </nav>
   </div>
   <div class="footer-copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
@@ -206,14 +207,14 @@ const moods = [
     desc:"For those who crave raw nature, altitude and freedom. Peaks, national parks and wildlife that will stay with you forever.",
     img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
     trails:[
-      { name:"Corno Grande Summit", detail:"2,912m · Hard · 12 km",    href:"hiking.html", img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200&q=70" },
-      { name:"Monte Amaro",         detail:"2,793m · Hard · 18 km",    href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" },
-      { name:"Campo Imperatore",    detail:"Plateau · Moderate · 15km", href:"hiking.html", img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200&q=70" }
+      { name:"Corno Grande Summit", detail:"2,912m · Hard · 12 km",    href:"hiking.html", img:"img/corno-grande-gran-sasso.jpg" },
+      { name:"Monte Amaro",         detail:"2,793m · Hard · 18 km",    href:"hiking.html", img:"img/maiella-monte-amaro.jpg" },
+      { name:"Campo Imperatore",    detail:"Plateau · Moderate · 15km", href:"hiking.html", img:"img/campo-imperatore.jpg" }
     ],
     villages:[
-      { name:"Rocca Calascio",          detail:"1,512m · L'Aquila", href:"villages.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" },
-      { name:"Santo Stefano di Sessanio",detail:"1,251m · L'Aquila", href:"villages.html", img:"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=200&q=70" },
-      { name:"Civitella Alfedena",      detail:"National Park",      href:"villages.html", img:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=200&q=70" }
+      { name:"Rocca Calascio",          detail:"1,512m · L'Aquila", href:"villages.html", img:"img/rocca-calascio.jpg" },
+      { name:"Santo Stefano di Sessanio",detail:"1,251m · L'Aquila", href:"villages.html", img:"img/santo-stefano-di-sessanio.jpg" },
+      { name:"Civitella Alfedena",      detail:"National Park",      href:"villages.html", img:"img/civitella-alfedena.jpg" }
     ],
     foods:[
       { name:"Arrosticini",          detail:"Meat & Grill",  href:"food.html", img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=70" },
@@ -227,12 +228,12 @@ const moods = [
     desc:"Food is the soul of Abruzzo. From arrosticini to truffle, saffron to Montepulciano — every meal here is a story.",
     img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
     trails:[
-      { name:"Gole del Sagittario",  detail:"Easy · 7 km · Loop",    href:"hiking.html", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&q=70" },
-      { name:"Lago di Scanno",       detail:"Easy · 5 km · Loop",    href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" }
+      { name:"Gole del Sagittario",  detail:"Easy · 7 km · Loop",    href:"hiking.html", img:"img/gole-del-sagittario.jpg" },
+      { name:"Lago di Scanno",       detail:"Easy · 5 km · Loop",    href:"hiking.html", img:"img/lago-di-scanno.jpg" }
     ],
     villages:[
-      { name:"Pacentro",  detail:"720m · L'Aquila", href:"villages.html", img:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=200&q=70" },
-      { name:"Sulmona",   detail:"Confetti capital", href:"villages.html", img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=200&q=70" }
+      { name:"Pacentro",  detail:"720m · L'Aquila", href:"villages.html", img:"img/pacentro.jpg" },
+      { name:"Sulmona",   detail:"Confetti capital", href:"villages.html", img:"img/sulmona.jpg" }
     ],
     foods:[
       { name:"Arrosticini",              detail:"Meat & Grill",   href:"food.html", img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=70" },
@@ -247,14 +248,14 @@ const moods = [
     desc:"Medieval borghi, hermit caves, ancient castles. Abruzzo's history is written in stone and silence — almost no other tourists.",
     img:'https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=800&q=80',
     trails:[
-      { name:"Eremo di San Bartolomeo", detail:"Moderate · 6 km", href:"hiking.html", img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=200&q=70" },
-      { name:"Rocca Calascio Trail",    detail:"Easy · 3 km",     href:"hiking.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" }
+      { name:"Eremo di San Bartolomeo", detail:"Moderate · 6 km", href:"hiking.html", img:"img/eremo-san-bartolomeo.jpg" },
+      { name:"Rocca Calascio Trail",    detail:"Easy · 3 km",     href:"hiking.html", img:"img/rocca-calascio.jpg" }
     ],
     villages:[
-      { name:"Santo Stefano di Sessanio", detail:"1,251m · Borghi Belli", href:"villages.html", img:"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=200&q=70" },
-      { name:"Rocca Calascio",            detail:"1,512m · L'Aquila",      href:"villages.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" },
-      { name:"Pacentro",                  detail:"720m · Borghi Belli",    href:"villages.html", img:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=200&q=70" },
-      { name:"Carunchio",                 detail:"538m · Undiscovered",    href:"villages.html", img:"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=200&q=70" }
+      { name:"Santo Stefano di Sessanio", detail:"1,251m · Borghi Belli", href:"villages.html", img:"img/santo-stefano-di-sessanio.jpg" },
+      { name:"Rocca Calascio",            detail:"1,512m · L'Aquila",      href:"villages.html", img:"img/rocca-calascio.jpg" },
+      { name:"Pacentro",                  detail:"720m · Borghi Belli",    href:"villages.html", img:"img/pacentro.jpg" },
+      { name:"Carunchio",                 detail:"538m · Undiscovered",    href:"villages.html", img:"img/carunchio.jpg" }
     ],
     foods:[
       { name:"Confetti di Sulmona", detail:"Sweet · Since 1265", href:"food.html", img:"https://images.unsplash.com/photo-1582896911227-c966e6a2c1fc?w=200&q=70" },
@@ -268,13 +269,13 @@ const moods = [
     desc:"From the flat Adriatic cycleway to epic mountain climbs. Abruzzo is one of Italy's finest cycling and active touring regions.",
     img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
     trails:[
-      { name:"Campo Imperatore Loop", detail:"Moderate · 15 km",    href:"hiking.html", img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200&q=70" },
-      { name:"Blockhaus Ridge",       detail:"Easy · 4 km",         href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" },
-      { name:"Rocca Calascio Trail",  detail:"Easy · 3 km",         href:"hiking.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" }
+      { name:"Campo Imperatore Loop", detail:"Moderate · 15 km",    href:"hiking.html", img:"img/campo-imperatore.jpg" },
+      { name:"Blockhaus Ridge",       detail:"Easy · 4 km",         href:"hiking.html", img:"img/blockhaus.jpg" },
+      { name:"Rocca Calascio Trail",  detail:"Easy · 3 km",         href:"hiking.html", img:"img/rocca-calascio.jpg" }
     ],
     villages:[
-      { name:"Penne",            detail:"438m · Pescara",  href:"villages.html", img:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=200&q=70" },
-      { name:"Pennapiedimonte",  detail:"572m · Chieti",   href:"villages.html", img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=200&q=70" }
+      { name:"Penne",            detail:"438m · Pescara",  href:"villages.html", img:"img/penne.jpg" },
+      { name:"Pennapiedimonte",  detail:"572m · Chieti",   href:"villages.html", img:"img/pennapiedimonte.jpg" }
     ],
     foods:[
       { name:"Brodetto alla Vastese", detail:"Seafood · Vasto",   href:"food.html", img:"https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=200&q=70" },
@@ -288,14 +289,14 @@ const moods = [
     desc:"Thermal baths, agriturismo, starlit nights above 1,000m. Abruzzo is the antidote to everything too fast.",
     img:'https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=800&q=80',
     trails:[
-      { name:"Lago di Scanno",      detail:"Easy · 5 km · Loop", href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" },
-      { name:"Blockhaus Ridge",     detail:"Easy · 4 km",        href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" },
-      { name:"Gole del Sagittario", detail:"Easy · 7 km",        href:"hiking.html", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&q=70" }
+      { name:"Lago di Scanno",      detail:"Easy · 5 km · Loop", href:"hiking.html", img:"img/lago-di-scanno.jpg" },
+      { name:"Blockhaus Ridge",     detail:"Easy · 4 km",        href:"hiking.html", img:"img/blockhaus.jpg" },
+      { name:"Gole del Sagittario", detail:"Easy · 7 km",        href:"hiking.html", img:"img/gole-del-sagittario.jpg" }
     ],
     villages:[
-      { name:"Pennapiedimonte", detail:"572m · Chieti",   href:"villages.html", img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=200&q=70" },
-      { name:"Carunchio",       detail:"538m · Chieti",   href:"villages.html", img:"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=200&q=70" },
-      { name:"Pacentro",        detail:"720m · L'Aquila", href:"villages.html", img:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=200&q=70" }
+      { name:"Pennapiedimonte", detail:"572m · Chieti",   href:"villages.html", img:"img/pennapiedimonte.jpg" },
+      { name:"Carunchio",       detail:"538m · Chieti",   href:"villages.html", img:"img/carunchio.jpg" },
+      { name:"Pacentro",        detail:"720m · L'Aquila", href:"villages.html", img:"img/pacentro.jpg" }
     ],
     foods:[
       { name:"Zafferano DOP",        detail:"DOP · L'Aquila",    href:"food.html", img:"https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=200&q=70" },
@@ -309,15 +310,15 @@ const moods = [
     desc:"Easy trails for little legs, wildlife spotting, beach days and medieval legends. Everything for all ages.",
     img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
     trails:[
-      { name:"Valle Fondillo — Bears", detail:"Easy · 8 km · Loop",  href:"hiking.html", img:"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=200&q=70" },
-      { name:"Gole del Sagittario",    detail:"Easy · 7 km",         href:"hiking.html", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&q=70" },
-      { name:"Lago di Scanno",         detail:"Easy · 5 km",         href:"hiking.html", img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=200&q=70" },
-      { name:"Rocca Calascio Trail",   detail:"Easy · 3 km",         href:"hiking.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" }
+      { name:"Valle Fondillo — Bears", detail:"Easy · 8 km · Loop",  href:"hiking.html", img:"img/valle-fondillo.jpg" },
+      { name:"Gole del Sagittario",    detail:"Easy · 7 km",         href:"hiking.html", img:"img/gole-del-sagittario.jpg" },
+      { name:"Lago di Scanno",         detail:"Easy · 5 km",         href:"hiking.html", img:"img/lago-di-scanno.jpg" },
+      { name:"Rocca Calascio Trail",   detail:"Easy · 3 km",         href:"hiking.html", img:"img/rocca-calascio.jpg" }
     ],
     villages:[
-      { name:"Civitella Alfedena", detail:"Wolf Museum",      href:"villages.html", img:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=200&q=70" },
-      { name:"Pacentro",           detail:"Medieval legends", href:"villages.html", img:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=200&q=70" },
-      { name:"Rocca Calascio",     detail:"Castle for kids",  href:"villages.html", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=200&q=70" }
+      { name:"Civitella Alfedena", detail:"Wolf Museum",      href:"villages.html", img:"img/civitella-alfedena.jpg" },
+      { name:"Pacentro",           detail:"Medieval legends", href:"villages.html", img:"img/pacentro.jpg" },
+      { name:"Rocca Calascio",     detail:"Castle for kids",  href:"villages.html", img:"img/rocca-calascio.jpg" }
     ],
     foods:[
       { name:"Arrosticini",       detail:"Meat & Grill",       href:"food.html", img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=70" },

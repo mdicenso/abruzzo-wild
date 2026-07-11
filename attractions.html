@@ -196,6 +196,7 @@
       <a href="events.html"      class="footer-link"><span data-i18n="n_events">Events</span></a>
       <a href="transport.html"   class="footer-link"><span data-i18n="n_transport">Transport</span></a>
       <a href="plan.html"        class="footer-link"><span data-i18n="n_plan">Plan Trip</span></a>
+      <a href="crediti.html" class="footer-link"><span data-i18n="f_credits">Photo credits</span></a>
     </nav>
   </div>
   <div class="footer-copy" data-i18n="f_copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
@@ -270,7 +271,7 @@ const SL = {
 const attractions = [
   { id:'a1', type:'natural', name:'Lago di Scanno',
     place:"Scanno (AQ)",
-    img:'https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=700&q=80',
+    img:'img/lago-di-scanno.jpg',
     desc:{en:"A glacial lake shaped like a heart when seen from above — one of Italy's most photographed natural wonders, surrounded by beech forest.",
           it:"Un lago glaciale a forma di cuore visto dall'alto — una delle meraviglie naturali più fotografate d'Italia, circondata da una faggeta.",
           de:"Ein Gletschersee in Herzform aus der Vogelperspektive — eines der meistfotografierten Naturwunder Italiens, umgeben von Buchenwald.",
@@ -287,7 +288,7 @@ const attractions = [
 
   { id:'a2', type:'castle', name:'Rocca Calascio',
     place:"Castel del Monte (AQ)",
-    img:'https://images.unsplash.com/photo-1499678329028-101435549a4e?w=700&q=80',
+    img:'img/rocca-calascio.jpg',
     desc:{en:"The highest castle in the Apennines at 1,512m — visible for 50km in every direction. Filming location for Ladyhawke (1985) and The Name of the Rose.",
           it:"Il castello più alto dell'Appennino, a 1.512 m — visibile a 50 km in ogni direzione. Set di Ladyhawke (1985) e Il nome della rosa.",
           de:"Die höchste Burg des Apennins auf 1.512 m — 50 km weit in alle Richtungen sichtbar. Drehort für Ladyhawke (1985) und Der Name der Rose.",
@@ -304,7 +305,7 @@ const attractions = [
 
   { id:'a3', type:'natural', name:{en:'Majella UNESCO Geopark',it:'Geoparco UNESCO della Majella',de:'UNESCO-Geopark Majella',fr:'Géoparc UNESCO de la Majella'},
     place:"Majella massif (PE/CH/AQ)",
-    img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80',
+    img:'img/maiella-monte-amaro.jpg',
     desc:{en:"A UNESCO Global Geopark covering 74,000 hectares of limestone mountains, ancient hermit caves, dramatic gorges and wildflower plateaus.",
           it:"Un Geoparco Mondiale UNESCO che copre 74.000 ettari di montagne calcaree, antiche grotte eremitiche, gole spettacolari e altopiani fioriti.",
           de:"Ein UNESCO Global Geopark mit 74.000 Hektar Kalksteinbergen, alten Einsiedlerhöhlen, spektakulären Schluchten und blühenden Hochebenen.",
@@ -321,7 +322,7 @@ const attractions = [
 
   { id:'a4', type:'religious', name:'Basilica di Collemaggio',
     place:"L'Aquila (AQ)",
-    img:'https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=700&q=80',
+    img:'img/basilica-collemaggio.jpg',
     desc:{en:"A masterpiece of Romanesque-Gothic architecture built in 1288 by Pietro da Morrone — later Pope Celestine V. Contains his silver tomb.",
           it:"Un capolavoro dell'architettura romanico-gotica costruito nel 1288 da Pietro da Morrone — poi papa Celestino V. Custodisce la sua tomba d'argento.",
           de:"Ein Meisterwerk romanisch-gotischer Architektur, 1288 von Pietro da Morrone — dem späteren Papst Coelestin V. — erbaut. Beherbergt sein silbernes Grabmal.",
@@ -338,7 +339,7 @@ const attractions = [
 
   { id:'a5', type:'archaeological', name:'Teatro Romano di Chieti',
     place:"Chieti (CH)",
-    img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80',
+    img:'img/teatro-romano-chieti.jpg',
     desc:{en:"One of the best-preserved Roman theatres in central Italy — 1st century AD, seating 4,000. The adjacent museum holds the famous Warrior of Capestrano.",
           it:"Uno dei teatri romani meglio conservati dell'Italia centrale — I secolo d.C., 4.000 posti. Il museo adiacente custodisce il celebre Guerriero di Capestrano.",
           de:"Eines der am besten erhaltenen römischen Theater Mittelitaliens — 1. Jh. n. Chr., 4.000 Plätze. Das angrenzende Museum beherbergt den berühmten Krieger von Capestrano.",
@@ -355,7 +356,7 @@ const attractions = [
 
   { id:'a6', type:'museum', name:"Museo Nazionale d'Abruzzo",
     place:"L'Aquila (AQ)",
-    img:'https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=700&q=80',
+    img:'img/museo-nazionale-abruzzo.jpg',
     desc:{en:"Abruzzo's most important museum — housed in a 15th-century Spanish Fortress. The prehistoric mammoth skeleton is unmissable.",
           it:"Il museo più importante dell'Abruzzo — ospitato in un Forte Spagnolo del XV secolo. Lo scheletro preistorico di mammut è imperdibile.",
           de:"Das bedeutendste Museum der Abruzzen — untergebracht in einer spanischen Festung aus dem 15. Jahrhundert. Das prähistorische Mammutskelett ist ein Muss.",
@@ -372,7 +373,7 @@ const attractions = [
 
   { id:'a7', type:'panoramic', name:{en:'Campo Imperatore Plateau',it:'Altopiano di Campo Imperatore',de:'Hochebene Campo Imperatore',fr:'Plateau de Campo Imperatore'},
     place:"Gran Sasso massif (AQ)",
-    img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80',
+    img:'img/campo-imperatore.jpg',
     desc:{en:"The 'Little Tibet of Italy' — a vast high plateau at 2,130m stretching 30km beneath Gran Sasso peaks. Chamois herds, observatory and Mussolini's prison hotel.",
           it:"Il 'Piccolo Tibet d'Italia' — un vasto altopiano a 2.130 m che si estende per 30 km sotto le vette del Gran Sasso. Camosci, osservatorio e l'albergo-prigione di Mussolini.",
           de:"Das 'Kleine Tibet Italiens' — eine weite Hochebene auf 2.130 m, die sich 30 km unter den Gran-Sasso-Gipfeln erstreckt. Gämsen, Observatorium und Mussolinis Gefängnishotel.",
@@ -389,7 +390,7 @@ const attractions = [
 
   { id:'a8', type:'natural', name:'Costa dei Trabocchi',
     place:"Ortona to Vasto (CH)",
-    img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80',
+    img:'img/costa-dei-trabocchi.jpg',
     desc:{en:"42km of Adriatic coastline defined by the iconic trabocchi — ancient wooden fishing platforms on stilts over the sea. Many are now superb restaurants.",
           it:"42 km di costa adriatica caratterizzati dagli iconici trabocchi — antiche palafitte di legno da pesca sul mare. Molti oggi sono ottimi ristoranti.",
           de:"42 km Adriaküste, geprägt von den ikonischen Trabocchi — alten hölzernen Fischerplattformen auf Stelzen über dem Meer. Viele sind heute ausgezeichnete Restaurants.",
@@ -406,7 +407,7 @@ const attractions = [
 
   { id:'a9', type:'castle', name:'Castello Piccolomini',
     place:"Celano (AQ)",
-    img:'https://images.unsplash.com/photo-1499678329028-101435549a4e?w=700&q=80',
+    img:'img/castello-piccolomini.jpg',
     desc:{en:"One of the most impressive 15th-century castles in Abruzzo — four angular towers overlooking the ancient Fucino basin. Houses the Museum of Sacred Art.",
           it:"Uno dei castelli quattrocenteschi più imponenti d'Abruzzo — quattro torri angolari che dominano l'antica conca del Fucino. Ospita il Museo d'Arte Sacra.",
           de:"Eine der eindrucksvollsten Burgen der Abruzzen aus dem 15. Jahrhundert — vier Ecktürme über dem einstigen Fucino-Becken. Beherbergt das Museum für Sakrale Kunst.",
@@ -423,7 +424,7 @@ const attractions = [
 
   { id:'a10', type:'museum', name:{en:'Ceramics Museum — Castelli',it:'Museo delle Ceramiche — Castelli',de:'Keramikmuseum — Castelli',fr:'Musée de la Céramique — Castelli'},
     place:"Castelli (TE)",
-    img:'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=700&q=80',
+    img:'img/museo-ceramica-castelli.jpg',
     desc:{en:"Dedicated to 600 years of Abruzzo maiolica tradition. The crown jewel is the tiled ceiling of San Donato church, created by students in the 1700s.",
           it:"Dedicato a 600 anni di tradizione della maiolica abruzzese. Il gioiello è il soffitto maiolicato della chiesa di San Donato, realizzato dagli allievi nel Settecento.",
           de:"Gewidmet 600 Jahren abruzzesischer Majolika-Tradition. Das Prunkstück ist die gekachelte Decke der Kirche San Donato, im 18. Jahrhundert von Schülern geschaffen.",
@@ -440,7 +441,7 @@ const attractions = [
 
   { id:'a11', type:'religious', name:"Fontana delle 99 Cannelle",
     place:"L'Aquila (AQ)",
-    img:'https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=700&q=80',
+    img:'img/fontana-99-cannelle.jpg',
     desc:{en:"The civic symbol of L'Aquila — a 13th-century fountain with 99 water spouts, each bearing a different carved mask. The number 99 is sacred to the city's founding legend.",
           it:"Il simbolo civico dell'Aquila — una fontana del XIII secolo con 99 cannelle, ognuna con una maschera scolpita diversa. Il numero 99 è sacro alla leggenda di fondazione della città.",
           de:"Das Wahrzeichen von L'Aquila — ein Brunnen aus dem 13. Jahrhundert mit 99 Ausläufen, jeder mit einer anderen geschnitzten Maske. Die Zahl 99 ist der Gründungslegende der Stadt heilig.",
@@ -457,7 +458,7 @@ const attractions = [
 
   { id:'a12', type:'natural', name:'Gole del Sagittario',
     place:"Anversa degli Abruzzi (AQ)",
-    img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80',
+    img:'img/gole-del-sagittario.jpg',
     desc:{en:"A spectacular gorge carved by the turquoise Sagittario river — walls up to 400m high, peregrine falcons nesting on the cliffs, and a trail accessible to all.",
           it:"Una gola spettacolare scavata dal turchese fiume Sagittario — pareti alte fino a 400 m, falchi pellegrini che nidificano sulle rocce e un sentiero accessibile a tutti.",
           de:"Eine spektakuläre Schlucht, geformt vom türkisfarbenen Fluss Sagittario — bis zu 400 m hohe Wände, brütende Wanderfalken an den Felsen und ein für alle zugänglicher Weg.",

@@ -21,6 +21,7 @@ const T18 = {
     nl_ph:'Your email address', nl_btn:'Subscribe →',
     /* footer */
     f_copy:'© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path',
+    f_credits:'Photo credits',
     /* home */
     home_eyebrow:"Central Italy's Best-Kept Secret",
     home_h1:'Where Nature Meets <em>Authentic</em> Italy',
@@ -63,6 +64,7 @@ const T18 = {
     nl_sub:'Eventi, sentieri e luoghi nascosti — una volta al mese, niente spam.',
     nl_ph:'La tua email', nl_btn:'Iscriviti →',
     f_copy:'© 2026 Abruzzo Wild & Authentic — Fatto per chi ama uscire dai sentieri battuti',
+    f_credits:'Crediti foto',
     home_eyebrow:"Il Segreto Meglio Custodito d'Italia",
     home_h1:"Dove la Natura incontra l'<em>Italia Autentica</em>",
     home_sub:"Montagne, mare, borghi medievali, cucina selvaggia. L'Abruzzo rimane una delle destinazioni più incontaminate d'Europa.",
@@ -104,6 +106,7 @@ const T18 = {
     nl_sub:'Events, Wanderwege und Geheimtipps — einmal im Monat, kein Spam.',
     nl_ph:'Ihre E-Mail-Adresse', nl_btn:'Abonnieren →',
     f_copy:'© 2026 Abruzzo Wild & Authentic — Für Reisende abseits der ausgetretenen Pfade',
+    f_credits:'Bildnachweis',
     home_eyebrow:"Italiens bestgehütetes Geheimnis",
     home_h1:'Wo die Natur auf <em>authentisches</em> Italien trifft',
     home_sub:'Berge, Meer, mittelalterliche Dörfer, wilde Küche. Abruzzen bleibt eines der unberührtesten Reiseziele Europas.',
@@ -145,6 +148,7 @@ const T18 = {
     nl_sub:'Événements, sentiers et trésors cachés — une fois par mois, sans spam.',
     nl_ph:'Votre adresse e-mail', nl_btn:"S'abonner →",
     f_copy:'© 2026 Abruzzo Wild & Authentic — Pour les voyageurs qui sortent des sentiers battus',
+    f_credits:'Crédits photos',
     home_eyebrow:"Le Secret le Mieux Gardé d'Italie",
     home_h1:"Là où la Nature rencontre l'<em>Italie Authentique</em>",
     home_sub:"Montagnes, mer, villages médiévaux, cuisine sauvage. Les Abruzzes restent l'une des destinations les plus préservées d'Europe.",
