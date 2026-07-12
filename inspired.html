@@ -93,23 +93,23 @@
 <nav class="nav" id="main-nav">
   <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
   <ul class="nav-links">
-    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
-    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i>Quiz</a></li>
-    <li><a href="inspired.html"    class="nav-link active"><i class="ti ti-heart" aria-hidden="true"></i>Get Inspired</a></li>
-    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i>Hiking</a></li>
-    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>Food & Wine</a></li>
-    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i>Villages</a></li>
-    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i>Wellness</a></li>
-    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i>Attractions</a></li>
-    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i>Events</a></li>
-    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i>Transport</a></li>
-    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i>Plan Trip</a></li>
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i><span data-i18n="n_home">Home</span></a></li>
+    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i><span data-i18n="n_quiz">Quiz</span></a></li>
+    <li><a href="inspired.html"    class="nav-link active"><i class="ti ti-heart" aria-hidden="true"></i><span data-i18n="n_inspired">Get Inspired</span></a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i><span data-i18n="n_hiking">Hiking</span></a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i><span data-i18n="n_food">Food & Wine</span></a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i><span data-i18n="n_villages">Villages</span></a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i><span data-i18n="n_wellness">Wellness</span></a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i><span data-i18n="n_attractions">Attractions</span></a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i><span data-i18n="n_events">Events</span></a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i><span data-i18n="n_transport">Transport</span></a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i><span data-i18n="n_plan">Plan Trip</span></a></li>
   </ul>
   <div class="nav-lang">
-    <button class="lang-btn active">EN</button>
-    <button class="lang-btn">IT</button>
-    <button class="lang-btn">DE</button>
-    <button class="lang-btn">FR</button>
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('it')">IT</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
   </div>
 </nav>
 
@@ -122,10 +122,10 @@
   <div class="hero-inner-veil"></div>
   <div class="hero-inner-content">
     <div class="hero-breadcrumb">
-      <a href="index.html">Home</a> › Get Inspired
+      <a href="index.html" data-i18n="n_home">Home</a> › <span data-i18n="n_inspired">Get Inspired</span>
     </div>
-    <h1 class="hero-inner-h1">What kind of Abruzzo are <em>you</em> looking for?</h1>
-    <p class="hero-inner-sub">Choose your mood — we'll curate the perfect experience just for you.</p>
+    <h1 class="hero-inner-h1" data-i18n="ins_h1">What kind of Abruzzo are <em>you</em> looking for?</h1>
+    <p class="hero-inner-sub" data-i18n="ins_sub">Choose your mood — we'll curate the perfect experience just for you.</p>
   </div>
 </div>
 
@@ -135,8 +135,8 @@
 
   <!-- Mood grid -->
   <div class="section-header center fade-in">
-    <span class="t-eyebrow">Choose your mood</span>
-    <h2 class="t-h2">Find your Abruzzo</h2>
+    <span class="t-eyebrow" data-i18n="ins_eyebrow">Choose your mood</span>
+    <h2 class="t-h2" data-i18n="ins_h2">Find your Abruzzo</h2>
   </div>
 
   <div class="mood-grid fade-in" id="mood-grid"></div>
@@ -146,8 +146,8 @@
 
   <!-- Not to be missed -->
   <div class="section-header fade-in" style="margin-top:3.5rem">
-    <span class="t-eyebrow">Always Worth It</span>
-    <h2 class="t-h2">Not to Be Missed</h2>
+    <span class="t-eyebrow" data-i18n="promo_tag">Always Worth It</span>
+    <h2 class="t-h2" data-i18n="promo_title">Not to Be Missed</h2>
   </div>
 
   <div class="promo-strip fade-in">
@@ -155,24 +155,24 @@
       <div class="promo-bg" style="background-image:url('img/campo-imperatore.jpg')"></div>
       <div class="promo-veil"></div>
       <div class="promo-info">
-        <h4>Hiking & Trekking</h4>
-        <p>10 featured trails for every level</p>
+        <h4 data-i18n="ins_promo_hk">Hiking & Trekking</h4>
+        <p data-i18n="ip1">10 featured trails for every level</p>
       </div>
     </a>
     <a href="food.html" class="promo-card">
       <div class="promo-bg" style="background-image:url('img/arrosticini.jpg')"></div>
       <div class="promo-veil"></div>
       <div class="promo-info">
-        <h4>Food & Wine</h4>
-        <p>12 products, 3 DOC wines, 8 sagre</p>
+        <h4 data-i18n="n_food">Food & Wine</h4>
+        <p data-i18n="ip2">12 products, 3 DOC wines, 8 sagre</p>
       </div>
     </a>
     <a href="events.html" class="promo-card">
       <div class="promo-bg" style="background-image:url('img/sulmona.jpg')"></div>
       <div class="promo-veil"></div>
       <div class="promo-info">
-        <h4>Events & Festivals</h4>
-        <p>24 festivals across the year</p>
+        <h4 data-i18n="ins_promo_ev">Events & Festivals</h4>
+        <p data-i18n="ip3">24 festivals across the year</p>
       </div>
     </a>
   </div>
@@ -184,12 +184,12 @@
 <div class="nl-strip">
   <div class="nl-inner">
     <div class="nl-text">
-      <h4><i class="ti ti-mail" aria-hidden="true"></i> Abruzzo in your inbox</h4>
-      <p>Events, trails, recipes and hidden gems — once a month, no spam.</p>
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> <span data-i18n="nl_title">Abruzzo in your inbox</span></h4>
+      <p data-i18n="nl_sub">Events, trails and hidden gems — once a month, no spam.</p>
     </div>
     <div class="nl-form">
-      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address">
-      <button class="nl-btn" onclick="nlSubmit()">Subscribe →</button>
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address" data-i18n-placeholder="nl_ph">
+      <button class="nl-btn" onclick="nlSubmit()" data-i18n="nl_btn">Subscribe →</button>
     </div>
   </div>
 </div>
@@ -200,52 +200,94 @@
   <div class="footer-inner">
     <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
     <nav class="footer-links" aria-label="Footer navigation">
-      <a href="index.html"       class="footer-link">Home</a>
-      <a href="quiz.html"        class="footer-link">Quiz</a>
-      <a href="inspired.html"    class="footer-link">Get Inspired</a>
-      <a href="hiking.html"      class="footer-link">Hiking</a>
-      <a href="food.html"        class="footer-link">Food & Wine</a>
-      <a href="villages.html"    class="footer-link">Villages</a>
-      <a href="wellness.html"    class="footer-link">Wellness</a>
-      <a href="attractions.html" class="footer-link">Attractions</a>
-      <a href="events.html"      class="footer-link">Events</a>
-      <a href="transport.html"   class="footer-link">Transport</a>
-      <a href="plan.html"        class="footer-link">Plan Trip</a>
+      <a href="index.html"       class="footer-link" data-i18n="n_home">Home</a>
+      <a href="quiz.html"        class="footer-link" data-i18n="n_quiz">Quiz</a>
+      <a href="inspired.html"    class="footer-link" data-i18n="n_inspired">Get Inspired</a>
+      <a href="hiking.html"      class="footer-link" data-i18n="n_hiking">Hiking</a>
+      <a href="food.html"        class="footer-link" data-i18n="n_food">Food & Wine</a>
+      <a href="villages.html"    class="footer-link" data-i18n="n_villages">Villages</a>
+      <a href="wellness.html"    class="footer-link" data-i18n="n_wellness">Wellness</a>
+      <a href="attractions.html" class="footer-link" data-i18n="n_attractions">Attractions</a>
+      <a href="events.html"      class="footer-link" data-i18n="n_events">Events</a>
+      <a href="transport.html"   class="footer-link" data-i18n="n_transport">Transport</a>
+      <a href="plan.html"        class="footer-link" data-i18n="n_plan">Plan Trip</a>
       <a href="crediti.html" class="footer-link"><span data-i18n="f_credits">Photo credits</span></a>
     </nav>
   </div>
-  <div class="footer-copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+  <div class="footer-copy" data-i18n="f_copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
 </footer>
 
 
 <!-- ════ JAVASCRIPT ════ -->
+<script src="i18n.js"></script>
 <script src="data/inspired.js"></script>
 <script>
 /* ══ DATA ══ */
 const moods = window.AW.moods;
+
+/* ══ CHIAVI i18n DI PAGINA (aggiunte a T18 dello script condiviso, come le altre pagine) ══ */
+Object.assign(T18.en, {
+  ins_h1:'What kind of Abruzzo are <em>you</em> looking for?',
+  ins_sub:"Choose your mood — we'll curate the perfect experience just for you.",
+  ins_eyebrow:'Choose your mood', ins_h2:'Find your Abruzzo',
+  ins_pick:'Choose this mood →',
+  ins_col_trails:'Trails', ins_col_villages:'Villages', ins_col_food:'Must Try',
+  ins_promo_hk:'Hiking & Trekking', ins_promo_ev:'Events & Festivals',
+  ins_nl_thanks:"Thank you! You'll hear from us once a month 🌿"
+});
+Object.assign(T18.it, {
+  ins_h1:'Che Abruzzo stai <em>cercando</em>?',
+  ins_sub:'Scegli il tuo mood — cureremo per te l\'esperienza perfetta.',
+  ins_eyebrow:'Scegli il tuo mood', ins_h2:'Trova il tuo Abruzzo',
+  ins_pick:'Scegli questo mood →',
+  ins_col_trails:'Sentieri', ins_col_villages:'Borghi', ins_col_food:'Da provare',
+  ins_promo_hk:'Trekking & Escursioni', ins_promo_ev:'Eventi & Feste',
+  ins_nl_thanks:'Grazie! Ci sentiamo una volta al mese 🌿'
+});
+Object.assign(T18.de, {
+  ins_h1:'Welche Abruzzen <em>suchst</em> du?',
+  ins_sub:'Wähle deine Stimmung — wir stellen dir das perfekte Erlebnis zusammen.',
+  ins_eyebrow:'Wähle deine Stimmung', ins_h2:'Finde deine Abruzzen',
+  ins_pick:'Diese Stimmung wählen →',
+  ins_col_trails:'Wanderwege', ins_col_villages:'Dörfer', ins_col_food:'Probieren',
+  ins_promo_hk:'Wandern & Trekking', ins_promo_ev:'Veranstaltungen & Feste',
+  ins_nl_thanks:'Danke! Du hörst einmal im Monat von uns 🌿'
+});
+Object.assign(T18.fr, {
+  ins_h1:'Quelles Abruzzes <em>recherchez</em>-vous ?',
+  ins_sub:'Choisissez votre humeur — nous composerons l\'expérience idéale pour vous.',
+  ins_eyebrow:'Choisissez votre humeur', ins_h2:'Trouvez vos Abruzzes',
+  ins_pick:'Choisir cette humeur →',
+  ins_col_trails:'Sentiers', ins_col_villages:'Villages', ins_col_food:'À goûter',
+  ins_promo_hk:'Randonnée & Trekking', ins_promo_ev:'Événements & Fêtes',
+  ins_nl_thanks:'Merci ! Vous aurez de nos nouvelles une fois par mois 🌿'
+});
+
+let openMoodId = null;
 
 /* ══ RENDER MOOD GRID ══ */
 function renderMoodGrid() {
   document.getElementById('mood-grid').innerHTML = moods.map(m => `
     <div class="mood-card" id="mood-${m.id}" onclick="showMood('${m.id}')"
          role="button" tabindex="0"
-         aria-label="Choose mood: ${m.label}">
+         aria-label="${L(m.label)}">
       <div class="mood-img" style="background-image:url('${m.img}')"></div>
       <div class="mood-overlay"></div>
       <div class="mood-info">
         <div class="icon-circle sm on-dark" style="margin-bottom:.5rem">
           <i class="ti ${m.icon}" aria-hidden="true"></i>
         </div>
-        <h3>${m.label}</h3>
-        <p>${m.tagline}</p>
-        <span class="mood-pick">Choose this mood →</span>
+        <h3>${L(m.label)}</h3>
+        <p>${L(m.tagline)}</p>
+        <span class="mood-pick">${T('ins_pick')}</span>
       </div>
     </div>`).join('');
 }
 
 /* ══ SHOW MOOD RESULT ══ */
-function showMood(id) {
+function showMood(id, doScroll = true) {
   const m = moods.find(x => x.id === id);
+  openMoodId = id;
 
   /* highlight selected card */
   document.querySelectorAll('.mood-card').forEach(c => c.classList.remove('sel'));
@@ -255,19 +297,19 @@ function showMood(id) {
   const trailsHTML = m.trails.map(t => `
     <a href="${t.href}" class="mood-item" style="text-decoration:none">
       <img class="mood-item-img" src="${t.img}" alt="${t.name}" loading="lazy">
-      <div><h5>${t.name}</h5><p>${t.detail}</p></div>
+      <div><h5>${t.name}</h5><p>${L(t.detail)}</p></div>
     </a>`).join('');
 
   const villagesHTML = m.villages.map(v => `
     <a href="${v.href}" class="mood-item" style="text-decoration:none">
       <img class="mood-item-img" src="${v.img}" alt="${v.name}" loading="lazy">
-      <div><h5>${v.name}</h5><p>${v.detail}</p></div>
+      <div><h5>${v.name}</h5><p>${L(v.detail)}</p></div>
     </a>`).join('');
 
   const foodsHTML = m.foods.map(f => `
     <a href="${f.href}" class="mood-item" style="text-decoration:none">
       <img class="mood-item-img" src="${f.img}" alt="${f.name}" loading="lazy">
-      <div><h5>${f.name}</h5><p>${f.detail}</p></div>
+      <div><h5>${f.name}</h5><p>${L(f.detail)}</p></div>
     </a>`).join('');
 
   const result = document.getElementById('mood-result');
@@ -279,27 +321,27 @@ function showMood(id) {
         </div>
       </div>
       <div>
-        <h2>${m.label}</h2>
-        <p>${m.desc}</p>
+        <h2>${L(m.label)}</h2>
+        <p>${L(m.desc)}</p>
       </div>
     </div>
     <div class="mood-cols">
       <div>
-        <h4><i class="ti ti-mountain" aria-hidden="true" style="vertical-align:-2px;margin-right:.3rem"></i>Trails</h4>
+        <h4><i class="ti ti-mountain" aria-hidden="true" style="vertical-align:-2px;margin-right:.3rem"></i>${T('ins_col_trails')}</h4>
         ${trailsHTML}
       </div>
       <div>
-        <h4><i class="ti ti-building-castle" aria-hidden="true" style="vertical-align:-2px;margin-right:.3rem"></i>Villages</h4>
+        <h4><i class="ti ti-building-castle" aria-hidden="true" style="vertical-align:-2px;margin-right:.3rem"></i>${T('ins_col_villages')}</h4>
         ${villagesHTML}
       </div>
       <div>
-        <h4><i class="ti ti-tools-kitchen-2" aria-hidden="true" style="vertical-align:-2px;margin-right:.3rem"></i>Must Try</h4>
+        <h4><i class="ti ti-tools-kitchen-2" aria-hidden="true" style="vertical-align:-2px;margin-right:.3rem"></i>${T('ins_col_food')}</h4>
         ${foodsHTML}
       </div>
     </div>`;
 
   result.classList.add('show');
-  setTimeout(() => result.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
+  if (doScroll) setTimeout(() => result.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
 }
 
 /* ══ NEWSLETTER ══ */
@@ -307,7 +349,7 @@ function nlSubmit() {
   const input = document.getElementById('nlemail');
   if (input.value && input.value.includes('@')) {
     input.value = '';
-    alert("Thank you! You'll hear from us once a month 🌿");
+    alert(T('ins_nl_thanks'));
   } else {
     input.style.outline = '2px solid var(--rose)';
     setTimeout(() => input.style.outline = 'none', 2000);
@@ -325,6 +367,12 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && e.target.classList.contains('mood-card')) {
     e.target.click();
   }
+});
+
+/* ══ RI-RENDER AL CAMBIO LINGUA (evento da i18n.js) ══ */
+document.addEventListener('aw:langchange', () => {
+  renderMoodGrid();
+  if (openMoodId) showMood(openMoodId, false);
 });
 
 /* ══ INIT ══ */
