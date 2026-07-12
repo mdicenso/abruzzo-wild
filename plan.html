@@ -229,6 +229,7 @@
 </footer>
 
 <script src="i18n.js"></script>
+<script src="data/plan.js"></script>
 
 
 <!-- ════ JAVASCRIPT ════ -->
@@ -312,13 +313,7 @@ Object.assign(T18.fr, {
 });
 
 /* ══ DATA ══ */
-const travelerTypes = [
-  { id:'family',    icon:'ti-users',          label:{en:'Family',     it:'Famiglia',   de:'Familie',      fr:'Famille'},     sub:{en:'Kids & all ages',   it:'Bambini e tutte le età', de:'Kinder & jedes Alter',  fr:'Enfants & tous âges'} },
-  { id:'adventure', icon:'ti-mountain',       label:{en:'Adventure',  it:'Avventura',  de:'Abenteuer',    fr:'Aventure'},    sub:{en:'Hiking & outdoors', it:'Trekking e outdoor',     de:'Wandern & Outdoor',     fr:'Randonnée & plein air'} },
-  { id:'food',      icon:'ti-tools-kitchen-2',label:{en:'Food Lover', it:'Buongustaio',de:'Feinschmecker',fr:'Gourmand'},    sub:{en:'Gastronomy first',  it:'Prima la gastronomia',   de:'Genuss zuerst',         fr:'La gastronomie avant tout'} },
-  { id:'culture',   icon:'ti-building-castle',label:{en:'Culture',    it:'Cultura',    de:'Kultur',       fr:'Culture'},     sub:{en:'History & villages',it:'Storia e borghi',        de:'Geschichte & Dörfer',   fr:'Histoire & villages'} },
-  { id:'cyclist',   icon:'ti-bike',           label:{en:'Cyclist',    it:'Ciclista',   de:'Radfahrer',    fr:'Cycliste'},    sub:{en:'Two wheels',        it:'Due ruote',              de:'Zwei Räder',            fr:'Deux roues'} }
-];
+const travelerTypes = window.AW.travelerTypes;
 
 const durations = [
   { id:'weekend', label:{en:'Weekend',   it:'Weekend',   de:'Wochenende',  fr:'Week-end'},     sub:{en:'2–3 days',          it:'2–3 giorni',           de:'2–3 Tage',              fr:'2–3 jours'} },
@@ -494,12 +489,7 @@ const itins = {
   }
 };
 
-const accommodation = [
-  { icon:'ti-tractor',  name:"Agriturismo",     desc:{en:"Farm stays with home-cooked dinner. The most authentic experience in Abruzzo — wake up to mountains, eat from the farm's own land.", it:"Soggiorni in fattoria con cena casalinga. L'esperienza più autentica dell'Abruzzo — svegliarsi tra le montagne, mangiare i prodotti della fattoria.", de:"Bauernhofaufenthalte mit hausgemachtem Abendessen. Das authentischste Erlebnis der Abruzzen — mit Blick auf die Berge aufwachen, vom eigenen Land des Hofs essen.", fr:"Séjours à la ferme avec dîner maison. L'expérience la plus authentique des Abruzzes — se réveiller face aux montagnes, manger les produits de la ferme."}, price:"€50–80 / night incl. dinner" },
-  { icon:'ti-home',     name:"Albergo Diffuso",  desc:{en:"Rooms spread through a medieval village. Pioneered in Abruzzo at Santo Stefano di Sessanio — the most unique way to sleep in a borgo.", it:"Camere distribuite in un borgo medievale. Nato in Abruzzo a Santo Stefano di Sessanio — il modo più unico di dormire in un borgo.", de:"Zimmer verteilt über ein mittelalterliches Dorf. In den Abruzzen in Santo Stefano di Sessanio entstanden — die einzigartigste Art, in einem Borgo zu übernachten.", fr:"Chambres réparties dans un village médiéval. Né dans les Abruzzes à Santo Stefano di Sessanio — la façon la plus unique de dormir dans un borgo."}, price:"€80–150 / night" },
-  { icon:'ti-mountain', name:"Rifugio",           desc:{en:"Mountain huts for hikers — dinner, bed and breakfast included. The essential Abruzzo experience for anyone doing serious summit routes.", it:"Rifugi di montagna per escursionisti — cena, pernottamento e colazione inclusi. L'esperienza essenziale in Abruzzo per chi affronta vere salite in vetta.", de:"Berghütten für Wanderer — Abendessen, Übernachtung und Frühstück inbegriffen. Das unverzichtbare Abruzzen-Erlebnis für alle, die ernsthafte Gipfeltouren unternehmen.", fr:"Refuges de montagne pour randonneurs — dîner, nuitée et petit-déjeuner inclus. L'expérience essentielle des Abruzzes pour qui affronte de vraies ascensions."}, price:"€35–55 / night incl. breakfast" },
-  { icon:'ti-building', name:"B&B / Hotel",       desc:{en:"Modern comfort in Pescara, L'Aquila or Sulmona. Good base for day trips and the easiest option if you are travelling with a car.", it:"Comfort moderno a Pescara, L'Aquila o Sulmona. Buona base per le gite in giornata e l'opzione più comoda se viaggi in auto.", de:"Moderner Komfort in Pescara, L'Aquila oder Sulmona. Gute Basis für Tagesausflüge und die einfachste Option, wenn Sie mit dem Auto reisen.", fr:"Confort moderne à Pescara, L'Aquila ou Sulmona. Bonne base pour les excursions à la journée et l'option la plus simple si vous voyagez en voiture."}, price:"€60–120 / night" }
-];
+const accommodation = window.AW.accommodation;
 
 /* ══ STATE ══ */
 let selType = '';
