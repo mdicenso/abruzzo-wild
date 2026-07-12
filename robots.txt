@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mdicenso.github.io/abruzzo-wild/sitemap.xml
