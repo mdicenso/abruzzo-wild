@@ -282,3 +282,32 @@ window.AW.experiences = [
     ]
   }
 ];
+
+
+/* Coordinate dei luoghi delle tappe (lat,lng) per la mappa dell'Esperienza.
+   stopCoords(name) in experience.html risolve una tappa cercando la chiave come
+   sottostringa del nome (le tappe "cibo" senza luogo preciso non vengono mappate). */
+window.AW.placeCoords = {
+  "Rocca Calascio":   [42.3436, 13.7025],
+  "Campo Imperatore": [42.4419, 13.5590],
+  "Corno Grande":     [42.4692, 13.5645],
+  "Sagittario":       [41.9950, 13.8150],
+  "Scanno":           [41.9100, 13.8800],
+  "Raiano":           [42.1030, 13.7180],
+  "Fondillo":         [41.7820, 13.8780],
+  "Civitella":        [41.7625, 13.9430],
+  "Pacentro":         [42.0520, 13.9917],
+  "Sulmona":          [42.0480, 13.9280],
+  "Santo Stefano":    [42.3406, 13.6447],
+  "L'Aquila":         [42.3498, 13.3995],
+  "Trabocchi":        [42.2460, 14.4890],
+  "Vastese":          [42.1120, 14.7080],
+  "Chieti":           [42.3512, 14.1678],
+  "Castelli":         [42.4900, 13.7130],
+  "Zafferano":        [42.2360, 13.7290],
+  "Blockhaus":        [42.1930, 14.1170],
+  "Pennapiedimonte":  [42.1430, 14.1820],
+  "Caramanico":       [42.1580, 14.0030],
+  "Popoli":           [42.1730, 13.8330],
+  "Bartolomeo":       [42.1710, 14.0380]
+};

@@ -30,6 +30,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<!-- Alias Leaflet: i18n.js definisce un global L() che altrimenti oscura la L di Leaflet -->
+<script>window.LEAFLET = window.L;</script>
 <link rel="stylesheet" href="shared.css">
 
 <style>
@@ -151,6 +155,28 @@
 }
 .exp-refine p { font-size: .78rem; color: var(--ink-mid); margin-top: .7rem; font-weight: 300; }
 
+/* Map + route */
+.exp-map-wrap { margin: 0 0 2rem; }
+#exp-map {
+  width: 100%; height: 360px; border-radius: var(--radius-lg);
+  border: 1.5px solid var(--parchment); z-index: 0;
+}
+.exp-map-pin span {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  color: #fff; font-family: var(--sans); font-size: .8rem; font-weight: 600;
+  border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.35);
+}
+.exp-gmaps {
+  display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem;
+  padding: .65rem 1.3rem; border-radius: 999px;
+  background: var(--olive); color: #fff; text-decoration: none;
+  font-family: var(--sans); font-size: .85rem; font-weight: 500;
+  transition: background .2s, transform .2s;
+}
+.exp-gmaps:hover { background: var(--olive-mid); transform: translateY(-2px); }
+.exp-gmaps i { font-size: 17px; }
+
 @media(max-width:600px){
   .exp-stops { padding-left: 0; grid-template-columns: 1fr; }
   .exp-head-inner h2 { font-size: 1.4rem; }
@@ -226,6 +252,15 @@
   <!-- Result -->
   <div class="exp-result" id="exp-result"></div>
 
+  <!-- Map + real-navigation link -->
+  <div class="exp-map-wrap" id="exp-map-wrap" style="display:none">
+    <div id="exp-map"></div>
+    <a id="exp-gmaps" class="exp-gmaps" href="#" target="_blank" rel="noopener">
+      <i class="ti ti-brand-google-maps" aria-hidden="true"></i>
+      <span data-i18n="exp_gmaps">Open the route in Google Maps</span>
+    </a>
+  </div>
+
   <!-- Alternatives -->
   <div class="exp-alts fade-in" id="exp-alts"></div>
 
@@ -287,6 +322,7 @@
 <script>
 /* ══ DATA ══ */
 const experiences = window.AW.experiences;
+const placeCoords = window.AW.placeCoords;
 
 /* mood + durata + stagione (id, icona, etichette multilingua) */
 const MOODS = [
@@ -320,7 +356,8 @@ Object.assign(T18.en, {
   exp_result_tag:'Your Experience', exp_alt_title:'Other experiences for you',
   exp_match_loose:'Closest match to your choices — adjust the filters to explore more.',
   exp_refine:'Refine with AI', exp_refine_soon:'coming soon',
-  exp_refine_note:"Soon you'll fine-tune any experience with our AI travel designer."
+  exp_refine_note:"Soon you'll fine-tune any experience with our AI travel designer.",
+  exp_gmaps:'Open the route in Google Maps'
 });
 Object.assign(T18.it, {
   exp_h1:'Costruisci la tua <em>Esperienza</em>',
@@ -332,7 +369,8 @@ Object.assign(T18.it, {
   exp_result_tag:'La tua Esperienza', exp_alt_title:'Altre esperienze per te',
   exp_match_loose:'La proposta più vicina alle tue scelte — cambia i filtri per esplorare altro.',
   exp_refine:'Raffina con l\'AI', exp_refine_soon:'in arrivo',
-  exp_refine_note:'Presto potrai rifinire ogni esperienza con il nostro designer di viaggi AI.'
+  exp_refine_note:'Presto potrai rifinire ogni esperienza con il nostro designer di viaggi AI.',
+  exp_gmaps:'Apri il percorso in Google Maps'
 });
 Object.assign(T18.de, {
   exp_h1:'Gestalte dein <em>Erlebnis</em>',
@@ -344,7 +382,8 @@ Object.assign(T18.de, {
   exp_result_tag:'Dein Erlebnis', exp_alt_title:'Weitere Erlebnisse für dich',
   exp_match_loose:'Die beste Übereinstimmung mit deiner Auswahl — passe die Filter an, um mehr zu entdecken.',
   exp_refine:'Mit KI verfeinern', exp_refine_soon:'in Kürze',
-  exp_refine_note:'Bald kannst du jedes Erlebnis mit unserem KI-Reisedesigner feinabstimmen.'
+  exp_refine_note:'Bald kannst du jedes Erlebnis mit unserem KI-Reisedesigner feinabstimmen.',
+  exp_gmaps:'Route in Google Maps öffnen'
 });
 Object.assign(T18.fr, {
   exp_h1:'Composez votre <em>Expérience</em>',
@@ -356,7 +395,8 @@ Object.assign(T18.fr, {
   exp_result_tag:'Votre Expérience', exp_alt_title:'D\'autres expériences pour vous',
   exp_match_loose:'La proposition la plus proche de vos choix — ajustez les filtres pour explorer davantage.',
   exp_refine:'Affiner avec l\'IA', exp_refine_soon:'bientôt',
-  exp_refine_note:'Bientôt, affinez chaque expérience avec notre concepteur de voyages IA.'
+  exp_refine_note:'Bientôt, affinez chaque expérience avec notre concepteur de voyages IA.',
+  exp_gmaps:'Ouvrir l\'itinéraire dans Google Maps'
 });
 
 /* ══ STATO ══ */
@@ -473,11 +513,62 @@ function altsHTML(others) {
     </div>`;
 }
 
-/* mostra un'Esperienza come risultato principale + le alternative pertinenti ai filtri */
+/* ══ MAPPA DEL PERCORSO ══ */
+/* risolve le coordinate di una tappa cercando una chiave del dizionario come
+   sottostringa del nome (le tappe "cibo" senza luogo restano senza pin). */
+function stopCoords(name) {
+  for (const k in placeCoords) if (name.includes(k)) return placeCoords[k];
+  return null;
+}
+let expMap = null, expLayer = null;
+const DAY_COLORS = ['#3d4a2e','#b5705a','#5a6b3f','#cc8e7a','#7a8f58','#9c5a3c','#8a9a68'];
+
+function renderMap(e) {
+  const wrap = document.getElementById('exp-map-wrap');
+  if (typeof LEAFLET === 'undefined') { wrap.style.display = 'none'; return; }
+  /* tappe geografiche in ordine di viaggio */
+  const pts = []; let n = 0;
+  e.plan.forEach(d => d.items.forEach(it => {
+    const c = stopCoords(it.name);
+    if (c) pts.push({ n: ++n, day: d.day, name: it.name, coord: c });
+  }));
+  if (pts.length < 2) { wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+
+  if (!expMap) {
+    expMap = LEAFLET.map('exp-map', { scrollWheelZoom: false });
+    LEAFLET.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      { attribution: '© OpenStreetMap', maxZoom: 16 }).addTo(expMap);
+    expLayer = LEAFLET.layerGroup().addTo(expMap);
+  }
+  expLayer.clearLayers();
+
+  const latlngs = pts.map(p => p.coord);
+  LEAFLET.polyline(latlngs, { color: '#5a6b3f', weight: 2, opacity: .6, dashArray: '5,6' }).addTo(expLayer);
+  pts.forEach(p => {
+    const col = DAY_COLORS[(p.day - 1) % DAY_COLORS.length];
+    const icon = LEAFLET.divIcon({
+      className: 'exp-map-pin',
+      html: `<span style="background:${col}">${p.n}</span>`,
+      iconSize: [26, 26], iconAnchor: [13, 13]
+    });
+    LEAFLET.marker(p.coord, { icon }).addTo(expLayer)
+      .bindPopup(`<strong>${p.name}</strong><br>${T('exp_day_word')} ${p.day}`);
+  });
+  expMap.fitBounds(latlngs, { padding: [30, 30] });
+  setTimeout(() => expMap.invalidateSize(), 60);  /* la tile-grid va ricalcolata dopo lo show */
+
+  /* link a Google Maps: percorso attraverso tutte le tappe (indicazioni reali) */
+  document.getElementById('exp-gmaps').href =
+    'https://www.google.com/maps/dir/' + latlngs.map(c => c[0] + ',' + c[1]).join('/');
+}
+
+/* mostra un'Esperienza come risultato principale + mappa + alternative pertinenti */
 function showExperience(e, looseNote) {
   document.getElementById('exp-result').innerHTML =
     (looseNote ? `<p class="exp-match-note">${T('exp_match_loose')}</p>` : '') + experienceHTML(e);
   document.getElementById('exp-alts').innerHTML = altsHTML(currentAlts(e.id));
+  renderMap(e);
 }
 
 /* risultato guidato dai filtri (matcher) */
