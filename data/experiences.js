@@ -122,5 +122,163 @@ window.AW.experiences = [
           note:{en:"A last medieval sunset below the Majella before heading home.", it:"Un ultimo tramonto medievale ai piedi della Majella prima del rientro.", de:"Ein letzter mittelalterlicher Sonnenuntergang unterhalb der Majella vor der Heimreise.", fr:"Un dernier coucher de soleil médiéval au pied de la Majella avant le retour."} }
       ]}
     ]
+  },
+
+  {
+    id:'family-coast-park', moods:['family','slow'], days:4, months:[4,5,6,7,9],
+    hero:'img/costa-dei-trabocchi.jpg',
+    title:{en:'Family Abruzzo — Coast to Wild Park', it:'Abruzzo in famiglia — dalla costa al parco', de:'Abruzzen für Familien — von der Küste zum Wildpark', fr:'Abruzzo en famille — de la côte au parc sauvage'},
+    theme:{en:'Beaches, bears and legends for all ages', it:'Spiagge, orsi e leggende per tutte le età', de:'Strände, Bären und Legenden für jedes Alter', fr:'Plages, ours et légendes pour tous les âges'},
+    area:{en:'Trabocchi Coast & Abruzzo National Park', it:'Costa dei Trabocchi e Parco Nazionale d\'Abruzzo', de:'Trabocchi-Küste & Nationalpark Abruzzen', fr:'Côte des Trabocchi & Parc National des Abruzzes'},
+    intro:{en:"Four easy, wonder-filled days: gentle Adriatic beaches, a flat trail where Marsican bears roam, a live-wolf museum, a heart-shaped lake and a castle straight out of a fairy tale.",
+      it:"Quattro giorni facili e pieni di meraviglia: spiagge adriatiche tranquille, un sentiero pianeggiante dove vivono gli orsi marsicani, un museo con i lupi, un lago a forma di cuore e un castello da fiaba.",
+      de:"Vier leichte, staunenswerte Tage: sanfte Adriastrände, ein ebener Pfad im Reich der Marsikanischen Bären, ein Museum mit lebenden Wölfen, ein herzförmiger See und eine Burg wie aus dem Märchen.",
+      fr:"Quatre jours faciles et émerveillés : plages adriatiques douces, un sentier plat au pays des ours marsicans, un musée aux loups vivants, un lac en forme de cœur et un château de conte de fées."},
+    plan:[
+      { day:1, items:[
+        { slot:'morning', icon:'ti-beach', name:'Costa dei Trabocchi', href:'attractions.html', img:'img/costa-dei-trabocchi.jpg',
+          note:{en:"Easy beaches and the wooden stilt-fishing machines — a flat cycle path for families.", it:"Spiagge tranquille e le macchine da pesca su palafitta — una ciclabile pianeggiante per famiglie.", de:"Ruhige Strände und die hölzernen Stelzen-Fischmaschinen — ein ebener Radweg für Familien.", fr:"Plages faciles et machines de pêche sur pilotis — une piste cyclable plate pour les familles."} },
+        { slot:'evening', icon:'ti-tools-kitchen-2', name:'Arrosticini', href:'food.html', img:'img/arrosticini.jpg',
+          note:{en:"The kids' first arrosticini — tiny lamb skewers everyone loves.", it:"I primi arrosticini per i bimbi — spiedini di pecora che piacciono a tutti.", de:"Die ersten Arrosticini für die Kinder — kleine Lammspieße, die alle lieben.", fr:"Les premiers arrosticini pour les enfants — petites brochettes d'agneau que tout le monde adore."} }
+      ]},
+      { day:2, items:[
+        { slot:'morning', icon:'ti-paw', name:'Valle Fondillo', href:'hiking.html', img:'img/valle-fondillo.jpg',
+          note:{en:"A flat, stroller-friendly forest walk in bear country.", it:"Una passeggiata boschiva pianeggiante, adatta anche ai passeggini, in terra d'orsi.", de:"Ein ebener, kinderwagentauglicher Waldspaziergang im Bärenland.", fr:"Une balade forestière plate, accessible en poussette, au pays des ours."} },
+        { slot:'afternoon', icon:'ti-building-castle', name:'Civitella Alfedena', href:'villages.html', img:'img/civitella-alfedena.jpg',
+          note:{en:"Meet real wolves at the museum enclosure — a kids' highlight.", it:"Incontra lupi veri al recinto del museo — il momento clou per i bambini.", de:"Echte Wölfe im Museumsgehege — das Highlight für Kinder.", fr:"Rencontrez de vrais loups dans l'enclos du musée — le moment fort des enfants."} }
+      ]},
+      { day:3, items:[
+        { slot:'morning', icon:'ti-walk', name:'Lago di Scanno', href:'attractions.html', img:'img/lago-di-scanno.jpg',
+          note:{en:"The heart-shaped lake — an easy shoreline loop and summer boat rental.", it:"Il lago a forma di cuore — facile anello sulla riva e noleggio barche d'estate.", de:"Der herzförmige See — leichte Uferrunde und Bootsverleih im Sommer.", fr:"Le lac en forme de cœur — boucle facile sur la rive et location de barques en été."} },
+        { slot:'afternoon', icon:'ti-gift', name:'Sulmona', href:'food.html', img:'img/confetti-di-sulmona.jpg',
+          note:{en:"Colourful confetti (sugared almonds) — a sweet stop kids remember.", it:"I coloratissimi confetti — una tappa dolce che i bimbi ricordano.", de:"Bunte Confetti (Zuckermandeln) — ein süßer Stopp, den Kinder lieben.", fr:"Des dragées colorées — une halte sucrée dont les enfants se souviennent."} }
+      ]},
+      { day:4, items:[
+        { slot:'morning', icon:'ti-building-castle', name:'Rocca Calascio', href:'villages.html', img:'img/rocca-calascio.jpg',
+          note:{en:"A real hilltop castle to explore — the Ladyhawke fortress in the clouds.", it:"Un vero castello in cima al colle da esplorare — la fortezza di Ladyhawke tra le nuvole.", de:"Eine echte Gipfelburg zum Erkunden — die Ladyhawke-Festung in den Wolken.", fr:"Un vrai château perché à explorer — la forteresse de Ladyhawke dans les nuages."} },
+        { slot:'afternoon', icon:'ti-building-castle', name:'Pacentro', href:'villages.html', img:'img/pacentro.jpg',
+          note:{en:"Three castle towers and a medieval maze to run through before home.", it:"Tre torri del castello e un dedalo medievale in cui correre prima del rientro.", de:"Drei Burgtürme und ein mittelalterliches Labyrinth zum Toben vor der Heimreise.", fr:"Trois tours de château et un dédale médiéval où courir avant le retour."} }
+      ]}
+    ]
+  },
+
+  {
+    id:'roam-adriatic-bike', moods:['roam','taste'], days:3, months:[5,6,9,10],
+    hero:'img/blockhaus.jpg',
+    title:{en:'Two Wheels — Coast & Climbs', it:'Due ruote — costa e salite', de:'Zwei Räder — Küste & Anstiege', fr:'Deux roues — côte et ascensions'},
+    theme:{en:'From flat sea cycleway to a legendary mountain pass', it:'Dalla ciclabile sul mare a un valico di montagna leggendario', de:'Von der flachen Küstenradroute zu einem legendären Bergpass', fr:'De la véloroute côtière à un col de montagne légendaire'},
+    area:{en:'Trabocchi Coast & the Majella', it:'Costa dei Trabocchi e la Majella', de:'Trabocchi-Küste & die Majella', fr:'Côte des Trabocchi & la Majella'},
+    intro:{en:"Three days on the saddle: an easy flat cycleway along the Adriatic with trabocco seafood, then the Blockhaus — a climb straight out of the Giro d'Italia — rewarded with mountain oil and skewers.",
+      it:"Tre giorni in sella: la facile ciclabile pianeggiante sull'Adriatico con il pesce dei trabocchi, poi il Blockhaus — una salita da Giro d'Italia — premiata con olio di montagna e arrosticini.",
+      de:"Drei Tage im Sattel: die leichte, flache Radroute an der Adria mit Trabocco-Fisch, dann der Blockhaus — ein Anstieg wie beim Giro d'Italia — belohnt mit Bergöl und Spießen.",
+      fr:"Trois jours en selle : la véloroute plate et facile le long de l'Adriatique avec les fruits de mer des trabocchi, puis le Blockhaus — une ascension digne du Giro — récompensée d'huile de montagne et de brochettes."},
+    plan:[
+      { day:1, items:[
+        { slot:'morning', icon:'ti-bike', name:'Costa dei Trabocchi', href:'attractions.html', img:'img/costa-dei-trabocchi.jpg',
+          note:{en:"The 42km rail-trail cycleway hugging the sea, flat and car-free.", it:"I 42 km di ciclabile ricavata dalla ferrovia lungo il mare, piatta e senza auto.", de:"Die 42 km lange Bahntrassen-Radroute am Meer, flach und autofrei.", fr:"Les 42 km de voie verte le long de la mer, plate et sans voiture."} },
+        { slot:'lunch', icon:'ti-fish', name:'Brodetto alla Vastese', href:'food.html', img:'img/brodetto-alla-vastese.jpg',
+          note:{en:"Refuel with the classic Adriatic fish stew on a trabocco.", it:"Ricarica con la classica zuppa di pesce adriatica su un trabocco.", de:"Tanke auf mit dem klassischen adriatischen Fischeintopf auf einem Trabocco.", fr:"Refaites le plein avec la bouillabaisse adriatique classique sur un trabocco."} }
+      ]},
+      { day:2, items:[
+        { slot:'morning', icon:'ti-mountain', name:'Blockhaus', href:'hiking.html', img:'img/blockhaus.jpg',
+          note:{en:"The iconic Majella climb to 1,800m — a Giro d'Italia legend, or a panoramic ridge walk.", it:"La mitica salita della Majella a 1.800 m — leggenda del Giro d'Italia, o una camminata panoramica sulla cresta.", de:"Der ikonische Majella-Anstieg auf 1.800 m — eine Giro-d'Italia-Legende, oder eine Panorama-Gratwanderung.", fr:"L'ascension mythique de la Majella à 1 800 m — légende du Giro, ou une balade panoramique sur la crête."} },
+        { slot:'afternoon', icon:'ti-building-castle', name:'Pennapiedimonte', href:'villages.html', img:'img/pennapiedimonte.jpg',
+          note:{en:"A village clinging to a rock spur — total authenticity, almost no tourists.", it:"Un borgo aggrappato a uno sperone di roccia — autenticità totale, quasi nessun turista.", de:"Ein Dorf an einem Felssporn — völlige Authentizität, fast keine Touristen.", fr:"Un village accroché à un éperon rocheux — authenticité totale, presque aucun touriste."} }
+      ]},
+      { day:3, items:[
+        { slot:'morning', icon:'ti-bike', name:'Campo Imperatore', href:'hiking.html', img:'img/campo-imperatore.jpg',
+          note:{en:"A high plateau loop among wild horses — endless gravel and grass.", it:"Un anello d'altopiano tra cavalli bradi — ghiaia e prati a perdita d'occhio.", de:"Eine Hochebenen-Runde zwischen Wildpferden — endloser Schotter und Gras.", fr:"Une boucle de haut plateau parmi les chevaux sauvages — gravier et herbe à perte de vue."} },
+        { slot:'evening', icon:'ti-droplet', name:'Olio EVO DOP', href:'food.html', img:'img/olio-evo-dop.jpg',
+          note:{en:"End with DOP extra-virgin oil tasting and well-earned arrosticini.", it:"Chiudi con una degustazione di olio EVO DOP e meritati arrosticini.", de:"Zum Abschluss eine Verkostung von DOP-Olivenöl und verdiente Arrosticini.", fr:"Terminez par une dégustation d'huile d'olive DOP et des arrosticini bien mérités."} }
+      ]}
+    ]
+  },
+
+  {
+    id:'winter-thermal', moods:['slow','family'], days:3, months:[12,1,2],
+    hero:'img/terme-di-caramanico.jpg',
+    title:{en:'Winter Warmth — Thermal Abruzzo', it:'Tepore d\'inverno — Abruzzo termale', de:'Winterwärme — Thermal-Abruzzen', fr:'Chaleur d\'hiver — Abruzzo thermal'},
+    theme:{en:'Steaming springs, snowy peaks and cosy stone villages', it:'Sorgenti fumanti, vette innevate e borghi di pietra accoglienti', de:'Dampfende Quellen, verschneite Gipfel und gemütliche Steindörfer', fr:'Sources fumantes, sommets enneigés et villages de pierre chaleureux'},
+    area:{en:'Caramanico, Popoli & the Gran Sasso highlands', it:'Caramanico, Popoli e gli altopiani del Gran Sasso', de:'Caramanico, Popoli & das Gran-Sasso-Hochland', fr:'Caramanico, Popoli & les hauts plateaux du Gran Sasso'},
+    intro:{en:"Three slow winter days: soak in Roman-era thermal waters, watch snow settle on Campo Imperatore, warm up with mountain pasta and end among the confetti of Sulmona.",
+      it:"Tre giorni lenti d'inverno: immergiti nelle acque termali di epoca romana, guarda la neve posarsi su Campo Imperatore, scaldati con la pasta di montagna e chiudi tra i confetti di Sulmona.",
+      de:"Drei langsame Wintertage: bade in römischem Thermalwasser, sieh den Schnee auf Campo Imperatore fallen, wärme dich mit Bergpasta und lass den Tag zwischen den Confetti von Sulmona ausklingen.",
+      fr:"Trois jours d'hiver au ralenti : baignez-vous dans des eaux thermales d'époque romaine, regardez la neige tomber sur Campo Imperatore, réchauffez-vous avec des pâtes de montagne et terminez parmi les dragées de Sulmona."},
+    plan:[
+      { day:1, items:[
+        { slot:'afternoon', icon:'ti-spa', name:'Terme di Caramanico', href:'wellness.html', img:'img/terme-di-caramanico.jpg',
+          note:{en:"Sulphur springs on the edge of the Majella — steam against the winter cold.", it:"Sorgenti sulfuree ai margini della Majella — vapore contro il freddo invernale.", de:"Schwefelquellen am Rand der Majella — Dampf gegen die Winterkälte.", fr:"Sources sulfureuses en bordure de la Majella — vapeur contre le froid hivernal."} },
+        { slot:'evening', icon:'ti-tools-kitchen-2', name:'Pasta alla Chitarra', href:'food.html', img:'img/pasta-alla-chitarra.jpg',
+          note:{en:"A warming plate of hand-cut pasta with a rich ragù.", it:"Un piatto caldo di pasta tagliata a mano con un ragù ricco.", de:"Ein wärmender Teller handgeschnittener Pasta mit kräftigem Ragù.", fr:"Une assiette réconfortante de pâtes coupées main avec un ragù riche."} }
+      ]},
+      { day:2, items:[
+        { slot:'morning', icon:'ti-snowflake', name:'Campo Imperatore', href:'hiking.html', img:'img/campo-imperatore.jpg',
+          note:{en:"The snow-covered plateau — winter walks, snowshoes and vast silence.", it:"L'altopiano innevato — camminate invernali, ciaspole e un silenzio immenso.", de:"Die verschneite Hochebene — Winterwanderungen, Schneeschuhe und weite Stille.", fr:"Le plateau enneigé — balades hivernales, raquettes et un silence immense."} },
+        { slot:'afternoon', icon:'ti-building-castle', name:'Santo Stefano di Sessanio', href:'villages.html', img:'img/santo-stefano-di-sessanio.jpg',
+          note:{en:"A stone village at its cosiest in winter — lentil soup by the fire.", it:"Un borgo di pietra al suo massimo d'accoglienza in inverno — zuppa di lenticchie accanto al fuoco.", de:"Ein Steindorf, im Winter am gemütlichsten — Linsensuppe am Kamin.", fr:"Un village de pierre au plus chaleureux en hiver — soupe de lentilles près du feu."} }
+      ]},
+      { day:3, items:[
+        { slot:'morning', icon:'ti-spa', name:'Terme di Popoli', href:'wellness.html', img:'img/terme-di-popoli.jpg',
+          note:{en:"A final soak where three valleys meet before heading home.", it:"Un ultimo bagno dove si incontrano tre valli prima del rientro.", de:"Ein letztes Bad, wo drei Täler zusammentreffen, vor der Heimreise.", fr:"Un dernier bain là où se rejoignent trois vallées, avant le retour."} },
+        { slot:'afternoon', icon:'ti-gift', name:'Sulmona', href:'food.html', img:'img/confetti-di-sulmona.jpg',
+          note:{en:"Confetti workshops and a warm coffee in Ovid's old town.", it:"Le confetterie e un caffè caldo nel centro storico di Ovidio.", de:"Confetti-Manufakturen und ein heißer Kaffee in Ovids Altstadt.", fr:"Les confiseries et un café chaud dans la vieille ville d'Ovide."} }
+      ]}
+    ]
+  },
+
+  {
+    id:'wild-grand-tour', moods:['wild','roam','history'], days:7, months:[6,7,8,9],
+    hero:'img/corno-grande-gran-sasso.jpg',
+    title:{en:'The Grand Wild Tour — A Week Across Abruzzo', it:'Il Grand Tour selvaggio — una settimana in Abruzzo', de:'Die große Wildtour — eine Woche durch die Abruzzen', fr:'Le grand tour sauvage — une semaine à travers l\'Abruzzo'},
+    theme:{en:'Three massifs, three national parks, one epic week', it:'Tre massicci, tre parchi nazionali, una settimana epica', de:'Drei Massive, drei Nationalparks, eine epische Woche', fr:'Trois massifs, trois parcs nationaux, une semaine épique'},
+    area:{en:'Gran Sasso, Majella & Abruzzo National Park', it:'Gran Sasso, Majella e Parco Nazionale d\'Abruzzo', de:'Gran Sasso, Majella & Nationalpark Abruzzen', fr:'Gran Sasso, Majella & Parc National des Abruzzes'},
+    intro:{en:"Seven days for those who want it all: the roof of the Apennines, hermit cliffs, thermal recovery, ceramic and castle villages and a bear-and-wolf finale in the oldest national park.",
+      it:"Sette giorni per chi vuole tutto: il tetto dell'Appennino, eremi a strapiombo, recupero termale, borghi di ceramica e castelli e un finale tra orsi e lupi nel parco nazionale più antico.",
+      de:"Sieben Tage für alle, die alles wollen: das Dach des Apennins, Einsiedlerklippen, Thermenerholung, Keramik- und Burgdörfer und ein Finale mit Bären und Wölfen im ältesten Nationalpark.",
+      fr:"Sept jours pour ceux qui veulent tout : le toit des Apennins, des falaises d'ermites, une récupération thermale, des villages de céramique et de châteaux et un final entre ours et loups dans le plus ancien parc national."},
+    plan:[
+      { day:1, items:[
+        { slot:'morning', icon:'ti-mountain', name:'Campo Imperatore', href:'hiking.html', img:'img/campo-imperatore.jpg',
+          note:{en:"Acclimatise on the vast Gran Sasso plateau among wild horses.", it:"Acclimatati sull'immenso altopiano del Gran Sasso tra cavalli bradi.", de:"Akklimatisiere auf der weiten Gran-Sasso-Hochebene zwischen Wildpferden.", fr:"Acclimatez-vous sur le vaste plateau du Gran Sasso parmi les chevaux sauvages."} },
+        { slot:'evening', icon:'ti-building-castle', name:'Rocca Calascio', href:'villages.html', img:'img/rocca-calascio.jpg',
+          note:{en:"Sunset at the Apennines' highest castle.", it:"Tramonto al castello più alto dell'Appennino.", de:"Sonnenuntergang an der höchsten Burg des Apennins.", fr:"Coucher de soleil au château le plus haut des Apennins."} }
+      ]},
+      { day:2, items:[
+        { slot:'morning', icon:'ti-mountain', name:'Corno Grande', href:'hiking.html', img:'img/corno-grande-gran-sasso.jpg',
+          note:{en:"The big one: summit day to 2,912m, the roof of the Apennines.", it:"Il grande giorno: vetta a 2.912 m, il tetto dell'Appennino.", de:"Der große Tag: Gipfel auf 2.912 m, das Dach des Apennins.", fr:"Le grand jour : sommet à 2 912 m, le toit des Apennins."} },
+        { slot:'evening', icon:'ti-building-castle', name:"L'Aquila", href:'attractions.html', img:'img/basilica-collemaggio.jpg',
+          note:{en:"Recover in the reborn capital: Collemaggio basilica and saffron dishes.", it:"Recupero nel capoluogo rinato: basilica di Collemaggio e piatti allo zafferano.", de:"Erholung in der wiedergeborenen Hauptstadt: Basilika Collemaggio und Safrangerichte.", fr:"Récupération dans la capitale renaissante : basilique de Collemaggio et plats au safran."} }
+      ]},
+      { day:3, items:[
+        { slot:'morning', icon:'ti-building-castle', name:'Santo Stefano di Sessanio', href:'villages.html', img:'img/santo-stefano-di-sessanio.jpg',
+          note:{en:"A slow morning in the perfectly preserved stone village.", it:"Una mattina lenta nel borgo di pietra perfettamente conservato.", de:"Ein langsamer Morgen im perfekt erhaltenen Steindorf.", fr:"Une matinée tranquille dans le village de pierre parfaitement préservé."} },
+        { slot:'afternoon', icon:'ti-palette', name:'Castelli', href:'villages.html', img:'img/castelli.jpg',
+          note:{en:"The ceramics capital under the Gran Sasso — visit a working maiolica workshop.", it:"La capitale della ceramica sotto il Gran Sasso — visita una bottega di maiolica attiva.", de:"Die Keramikhauptstadt unter dem Gran Sasso — Besuch einer aktiven Majolika-Werkstatt.", fr:"La capitale de la céramique sous le Gran Sasso — visite d'un atelier de faïence en activité."} }
+      ]},
+      { day:4, items:[
+        { slot:'morning', icon:'ti-walk', name:'Eremo di San Bartolomeo', href:'hiking.html', img:'img/eremo-san-bartolomeo.jpg',
+          note:{en:"A cliff hermitage trail into the heart of the Majella.", it:"Il sentiero dell'eremo rupestre nel cuore della Majella.", de:"Ein Pfad zur Felseneremitage im Herzen der Majella.", fr:"Un sentier vers l'ermitage rupestre au cœur de la Majella."} },
+        { slot:'evening', icon:'ti-spa', name:'Terme di Caramanico', href:'wellness.html', img:'img/terme-di-caramanico.jpg',
+          note:{en:"Well-earned thermal recovery at the Majella's edge.", it:"Meritato recupero termale ai margini della Majella.", de:"Verdiente Thermenerholung am Rand der Majella.", fr:"Récupération thermale bien méritée en bordure de la Majella."} }
+      ]},
+      { day:5, items:[
+        { slot:'morning', icon:'ti-mountain', name:'Blockhaus', href:'hiking.html', img:'img/blockhaus.jpg',
+          note:{en:"The panoramic Majella ridge at 1,800m — a cycling and hiking legend.", it:"La cresta panoramica della Majella a 1.800 m — leggenda del ciclismo e del trekking.", de:"Der panoramische Majella-Grat auf 1.800 m — eine Rad- und Wanderlegende.", fr:"La crête panoramique de la Majella à 1 800 m — légende du vélo et de la randonnée."} },
+        { slot:'evening', icon:'ti-building-castle', name:'Pacentro', href:'villages.html', img:'img/pacentro.jpg',
+          note:{en:"Three castle towers and a medieval core below the Majella.", it:"Le tre torri del castello e un centro medievale ai piedi della Majella.", de:"Drei Burgtürme und ein mittelalterlicher Kern unterhalb der Majella.", fr:"Trois tours de château et un cœur médiéval au pied de la Majella."} }
+      ]},
+      { day:6, items:[
+        { slot:'morning', icon:'ti-paw', name:'Valle Fondillo', href:'hiking.html', img:'img/valle-fondillo.jpg',
+          note:{en:"Into the oldest national park — a beech-forest trail in bear country.", it:"Nel parco nazionale più antico — un sentiero nella faggeta in terra d'orsi.", de:"In den ältesten Nationalpark — ein Buchenwaldpfad im Bärenland.", fr:"Dans le plus ancien parc national — un sentier en hêtraie au pays des ours."} },
+        { slot:'afternoon', icon:'ti-building-castle', name:'Civitella Alfedena', href:'villages.html', img:'img/civitella-alfedena.jpg',
+          note:{en:"The Wolf Museum and Lake Barrea's panoramic shore.", it:"Il Museo del Lupo e la riva panoramica del Lago di Barrea.", de:"Das Wolfsmuseum und das Panoramaufer des Barrea-Sees.", fr:"Le Musée du Loup et la rive panoramique du lac de Barrea."} }
+      ]},
+      { day:7, items:[
+        { slot:'morning', icon:'ti-walk', name:'Gole del Sagittario', href:'hiking.html', img:'img/gole-del-sagittario.jpg',
+          note:{en:"A last gorge walk between towering limestone walls.", it:"Un'ultima passeggiata nella gola tra imponenti pareti calcaree.", de:"Eine letzte Schluchtwanderung zwischen hohen Kalkwänden.", fr:"Une dernière balade dans la gorge entre de hautes parois calcaires."} },
+        { slot:'afternoon', icon:'ti-walk', name:'Lago di Scanno', href:'attractions.html', img:'img/lago-di-scanno.jpg',
+          note:{en:"The heart-shaped lake — a fitting finale before the journey home.", it:"Il lago a forma di cuore — un finale perfetto prima del rientro.", de:"Der herzförmige See — ein passendes Finale vor der Heimreise.", fr:"Le lac en forme de cœur — un final parfait avant le retour."} }
+      ]}
+    ]
   }
 ];
