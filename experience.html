@@ -220,7 +220,7 @@
   .exp-theme, .exp-intro { color: var(--ink-mid); }
   .exp-badge { background: #eee !important; color: #333 !important; backdrop-filter: none; }
   .exp-map-print { display: block !important; margin: .4rem 0 1.4rem; page-break-inside: avoid; }
-  .exp-map-print svg { width: 100%; max-width: 520px; height: auto; border: 1px solid #ddd; border-radius: 8px; }
+  .exp-map-print svg, .exp-map-print img { width: 100%; max-width: 560px; height: auto; border: 1px solid #ddd; border-radius: 8px; }
   .exp-day { page-break-inside: avoid; }
   .exp-stop { border-color: #ccc; }
 }
@@ -412,6 +412,7 @@
 <!-- ════ JAVASCRIPT ════ -->
 <script src="i18n.js"></script>
 <script src="data/experiences.js"></script>
+<script src="data/config.js"></script>
 <script>
 /* ══ DATA ══ */
 const experiences = window.AW.experiences;
@@ -723,11 +724,38 @@ function renderMap(e) {
     'https://www.google.com/maps/dir/' + latlngs.map(c => c[0] + ',' + c[1]).join('/');
 }
 
-/* mappa VETTORIALE (SVG) per la stampa: punti numerati + linee per giorno, senza tile.
-   Proiezione equirettangolare corretta per la latitudine → proporzioni realistiche. */
+/* URL di una mappa STRADE statica (Geoapify): tappe numerate + percorso colorato per
+   giorno. Ritorna null se manca la chiave (window.AW.mapKey) → fallback allo schema SVG. */
+function staticMapUrl(e) {
+  const key = (window.AW && window.AW.mapKey) || '';
+  if (!key) return null;
+  const pts = [];
+  e.plan.forEach(d => d.items.forEach(it => { const c = stopCoords(it.name); if (c) pts.push({ day: d.day, coord: c }); }));
+  if (pts.length < 2) return null;
+  const lats = pts.map(p => p.coord[0]), lons = pts.map(p => p.coord[1]);
+  const padLat = (Math.max(...lats) - Math.min(...lats)) * 0.15 + 0.03;
+  const padLon = (Math.max(...lons) - Math.min(...lons)) * 0.15 + 0.03;
+  const area = `rect:${(Math.min(...lons)-padLon).toFixed(4)},${(Math.min(...lats)-padLat).toFixed(4)},${(Math.max(...lons)+padLon).toFixed(4)},${(Math.max(...lats)+padLat).toFixed(4)}`;
+  const enc = col => col.replace('#', '%23');
+  const byDay = {}, order = [];
+  pts.forEach(p => { if (!byDay[p.day]) { byDay[p.day] = []; order.push(p.day); } byDay[p.day].push(p.coord); });
+  let geom = '';
+  order.forEach(day => {
+    const dp = byDay[day];
+    if (dp.length >= 2) geom += '&geometry=polyline:' + dp.map(c => c[1] + ',' + c[0]).join(',') + ';linecolor:' + enc(DAY_COLORS[(day-1)%DAY_COLORS.length]) + ';linewidth:4';
+  });
+  let n = 0, markers = '';
+  pts.forEach(p => { n++; markers += '&marker=lonlat:' + p.coord[1] + ',' + p.coord[0] + ';color:' + enc(DAY_COLORS[(p.day-1)%DAY_COLORS.length]) + ';size:medium;text:' + n + ';textsize:small'; });
+  return 'https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=640&height=440&area=' + area + geom + markers + '&apiKey=' + key;
+}
+
+/* mappa per la stampa: se c'è la chiave → mappa STRADE reale (Geoapify), altrimenti
+   schema VETTORIALE (SVG) di riserva: punti numerati + linee per giorno, senza tile. */
 function renderPrintMap(e) {
   const el = document.getElementById('exp-map-print');
   if (!el) return;
+  const sm = staticMapUrl(e);
+  if (sm) { el.innerHTML = '<img src="' + sm + '" alt="' + L(e.title) + '" loading="eager">'; return; }
   const pts = []; let n = 0;
   e.plan.forEach(d => d.items.forEach(it => { const c = stopCoords(it.name); if (c) pts.push({ n: ++n, day: d.day, coord: c }); }));
   if (pts.length < 2) { el.innerHTML = ''; return; }
