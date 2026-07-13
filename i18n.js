@@ -14,7 +14,7 @@ const T18 = {
     /* nav + footer (etichette condivise) */
     n_home:'Home', n_quiz:'Quiz', n_hiking:'Hiking', n_food:'Food & Wine',
     n_villages:'Villages', n_wellness:'Wellness', n_attractions:'Attractions',
-    n_events:'Events', n_transport:'Transport', n_plan:'Plan Trip', n_inspired:'Get Inspired',
+    n_events:'Events', n_transport:'Transport', n_plan:'Plan Trip', n_inspired:'Get Inspired', n_experience:'Experience',
     /* newsletter (condivisa) */
     nl_title:'Abruzzo in your inbox',
     nl_sub:'Events, trails and hidden gems — once a month, no spam.',
@@ -59,7 +59,7 @@ const T18 = {
   it: {
     n_home:'Home', n_quiz:'Quiz', n_hiking:'Trekking', n_food:'Cibo & Vino',
     n_villages:'Borghi', n_wellness:'Benessere', n_attractions:'Attrazioni',
-    n_events:'Eventi', n_transport:'Trasporti', n_plan:'Pianifica', n_inspired:'Ispirazione',
+    n_events:'Eventi', n_transport:'Trasporti', n_plan:'Pianifica', n_inspired:'Ispirazione', n_experience:'Esperienza',
     nl_title:"L'Abruzzo nella tua casella",
     nl_sub:'Eventi, sentieri e luoghi nascosti — una volta al mese, niente spam.',
     nl_ph:'La tua email', nl_btn:'Iscriviti →',
@@ -101,7 +101,7 @@ const T18 = {
   de: {
     n_home:'Startseite', n_quiz:'Quiz', n_hiking:'Wandern', n_food:'Essen & Wein',
     n_villages:'Dörfer', n_wellness:'Wellness', n_attractions:'Sehenswürdigkeiten',
-    n_events:'Veranstaltungen', n_transport:'Anreise', n_plan:'Reise Planen', n_inspired:'Inspiration',
+    n_events:'Veranstaltungen', n_transport:'Anreise', n_plan:'Reise Planen', n_inspired:'Inspiration', n_experience:'Erlebnis',
     nl_title:'Abruzzen in Ihrem Posteingang',
     nl_sub:'Events, Wanderwege und Geheimtipps — einmal im Monat, kein Spam.',
     nl_ph:'Ihre E-Mail-Adresse', nl_btn:'Abonnieren →',
@@ -143,7 +143,7 @@ const T18 = {
   fr: {
     n_home:'Accueil', n_quiz:'Quiz', n_hiking:'Randonnée', n_food:'Gastronomie',
     n_villages:'Villages', n_wellness:'Bien-être', n_attractions:'Attractions',
-    n_events:'Événements', n_transport:'Transport', n_plan:'Planifier', n_inspired:'Inspiration',
+    n_events:'Événements', n_transport:'Transport', n_plan:'Planifier', n_inspired:'Inspiration', n_experience:'Expérience',
     nl_title:'Les Abruzzes dans votre boîte mail',
     nl_sub:'Événements, sentiers et trésors cachés — une fois par mois, sans spam.',
     nl_ph:'Votre adresse e-mail', nl_btn:"S'abonner →",

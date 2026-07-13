@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Build Your Experience — Abruzzo Wild & Authentic</title>
+<meta name="description" content="Tell us your mood, how long you have and when you're coming — we build your perfect Abruzzo experience, day by day.">
+<!-- Canonical & favicon -->
+<link rel="canonical" href="https://mdicenso.github.io/abruzzo-wild/experience.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Abruzzo Wild &amp; Authentic">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://mdicenso.github.io/abruzzo-wild/experience.html">
+<meta property="og:title" content="Build Your Experience — Abruzzo Wild &amp; Authentic">
+<meta property="og:description" content="Tell us your mood, how long you have and when you're coming — we build your perfect Abruzzo experience, day by day.">
+<meta property="og:image" content="https://mdicenso.github.io/abruzzo-wild/img/campo-imperatore.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Build Your Experience — Abruzzo Wild &amp; Authentic">
+<meta name="twitter:description" content="Tell us your mood, how long you have and when you're coming — we build your perfect Abruzzo experience.">
+<meta name="twitter:image" content="https://mdicenso.github.io/abruzzo-wild/img/campo-imperatore.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Experience-specific ── */
+.builder {
+  background: var(--white);
+  border: 1.5px solid var(--parchment);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem 1.8rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2.5rem;
+}
+.builder-row { margin-bottom: 1.3rem; }
+.builder-row:last-child { margin-bottom: 0; }
+.builder-label {
+  display: block; font-family: var(--sans); font-size: .72rem;
+  text-transform: uppercase; letter-spacing: .09em;
+  color: var(--muted); font-weight: 500; margin-bottom: .6rem;
+}
+.chip-set { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .5rem .9rem; border-radius: 999px;
+  border: 1.5px solid var(--parchment-dk); background: var(--cream);
+  font-family: var(--sans); font-size: .82rem; color: var(--ink-mid);
+  cursor: pointer; transition: all .2s;
+}
+.chip:hover { border-color: var(--olive-light); }
+.chip.on {
+  background: var(--olive); border-color: var(--olive);
+  color: #fff;
+}
+.chip.on i { color: #fff; }
+.chip i { font-size: 15px; color: var(--olive-mid); }
+
+/* Result */
+.exp-result { margin-top: 1rem; }
+.exp-head {
+  position: relative; border-radius: var(--radius-lg); overflow: hidden;
+  min-height: 240px; display: flex; align-items: flex-end;
+  padding: 1.6rem 1.8rem; color: #fff; margin-bottom: 1.8rem;
+}
+.exp-head-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.exp-head-veil { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,18,10,.86), rgba(15,18,10,.25) 70%); }
+.exp-head-inner { position: relative; z-index: 1; width: 100%; }
+.exp-head-inner h2 { font-family: var(--serif); font-size: 1.75rem; font-weight: 400; line-height: 1.1; margin-bottom: .35rem; }
+.exp-head-inner .exp-theme { font-family: var(--serif); font-style: italic; font-size: 1rem; opacity: .9; margin-bottom: .7rem; }
+.exp-badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .8rem; }
+.exp-badge {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .28rem .7rem; border-radius: 999px;
+  background: rgba(255,255,255,.16); backdrop-filter: blur(3px);
+  font-size: .72rem; font-family: var(--sans);
+}
+.exp-intro { font-size: .9rem; line-height: 1.6; font-weight: 300; opacity: .95; max-width: 60ch; }
+.exp-match-note {
+  font-size: .76rem; color: var(--muted); font-style: italic;
+  margin: -1rem 0 1.4rem; text-align: center;
+}
+
+/* Day timeline */
+.exp-day { margin-bottom: 1.8rem; }
+.exp-day-h {
+  display: flex; align-items: center; gap: .7rem; margin-bottom: .9rem;
+}
+.exp-day-num {
+  flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--olive-pale); color: var(--olive);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: .95rem;
+}
+.exp-day-h h4 { font-family: var(--serif); font-weight: 400; font-size: 1.1rem; color: var(--ink); }
+.exp-stops { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: .9rem; padding-left: 2.6rem; }
+.exp-stop {
+  display: flex; gap: .8rem; background: var(--white);
+  border: 1.5px solid var(--parchment); border-radius: var(--radius);
+  padding: .7rem; text-decoration: none; transition: all .25s; align-items: center;
+}
+.exp-stop:hover { border-color: var(--rose); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.exp-stop-img { flex: 0 0 auto; width: 64px; height: 64px; border-radius: var(--radius-sm); object-fit: cover; }
+.exp-stop-body { min-width: 0; }
+.exp-slot {
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .64rem; text-transform: uppercase; letter-spacing: .07em;
+  color: var(--rose); font-weight: 600; margin-bottom: .1rem;
+}
+.exp-stop-body h5 { font-family: var(--serif); font-weight: 400; font-size: .95rem; color: var(--ink); margin-bottom: .12rem; }
+.exp-stop-body p { font-size: .75rem; color: var(--muted); line-height: 1.45; font-weight: 300; }
+
+/* Alternatives */
+.exp-alts { margin-top: 2.5rem; }
+.exp-alt-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap: 1rem; margin-top: 1rem; }
+.exp-alt {
+  border: 1.5px solid var(--parchment); border-radius: var(--radius);
+  overflow: hidden; cursor: pointer; background: var(--white); transition: all .25s;
+}
+.exp-alt:hover { border-color: var(--olive-light); transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+.exp-alt-img { height: 110px; background-size: cover; background-position: center; }
+.exp-alt-body { padding: .8rem 1rem 1rem; }
+.exp-alt-body h5 { font-family: var(--serif); font-weight: 400; font-size: .98rem; color: var(--ink); margin-bottom: .2rem; }
+.exp-alt-body p { font-size: .73rem; color: var(--muted); font-weight: 300; }
+
+/* Refine (phase 2 teaser) */
+.exp-refine {
+  margin-top: 2.2rem; text-align: center;
+  border: 1.5px dashed var(--parchment-dk); border-radius: var(--radius-lg);
+  padding: 1.4rem; background: var(--olive-pale);
+}
+.exp-refine button {
+  font-family: var(--sans); font-size: .85rem; font-weight: 500;
+  padding: .6rem 1.3rem; border-radius: 999px; border: none;
+  background: var(--olive); color: #fff; opacity: .55; cursor: not-allowed;
+  display: inline-flex; align-items: center; gap: .45rem;
+}
+.exp-refine .soon {
+  display: inline-block; margin-left: .5rem; font-size: .66rem;
+  text-transform: uppercase; letter-spacing: .08em;
+  background: var(--rose); color: #fff; padding: .15rem .5rem; border-radius: 999px;
+}
+.exp-refine p { font-size: .78rem; color: var(--ink-mid); margin-top: .7rem; font-weight: 300; }
+
+@media(max-width:600px){
+  .exp-stops { padding-left: 0; grid-template-columns: 1fr; }
+  .exp-head-inner h2 { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i><span data-i18n="n_home">Home</span></a></li>
+    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i><span data-i18n="n_quiz">Quiz</span></a></li>
+    <li><a href="inspired.html"    class="nav-link"><i class="ti ti-heart" aria-hidden="true"></i><span data-i18n="n_inspired">Get Inspired</span></a></li>
+    <li><a href="experience.html"  class="nav-link active"><i class="ti ti-map-2" aria-hidden="true"></i><span data-i18n="n_experience">Experience</span></a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i><span data-i18n="n_hiking">Hiking</span></a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i><span data-i18n="n_food">Food & Wine</span></a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i><span data-i18n="n_villages">Villages</span></a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i><span data-i18n="n_wellness">Wellness</span></a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i><span data-i18n="n_attractions">Attractions</span></a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i><span data-i18n="n_events">Events</span></a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i><span data-i18n="n_transport">Transport</span></a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i><span data-i18n="n_plan">Plan Trip</span></a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('it')">IT</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  </div>
+</nav>
+
+
+<!-- ════ HERO ════ -->
+<div class="hero-inner" style="height:42vh">
+  <div class="hero-inner-img" style="background-image:url('img/campo-imperatore.jpg')"></div>
+  <div class="hero-inner-veil"></div>
+  <div class="hero-inner-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html" data-i18n="n_home">Home</a> › <span data-i18n="n_experience">Experience</span>
+    </div>
+    <h1 class="hero-inner-h1" data-i18n="exp_h1">Build your <em>Experience</em></h1>
+    <p class="hero-inner-sub" data-i18n="exp_sub">Tell us your mood, how long you have and when you're coming — we'll craft the journey.</p>
+  </div>
+</div>
+
+
+<!-- ════ CONTENT ════ -->
+<div class="wrap">
+
+  <div class="section-header center fade-in">
+    <span class="t-eyebrow" data-i18n="exp_eyebrow">Your journey, your way</span>
+    <h2 class="t-h2" data-i18n="exp_h2">Design your Abruzzo</h2>
+  </div>
+
+  <!-- Builder -->
+  <div class="builder fade-in">
+    <div class="builder-row">
+      <span class="builder-label" data-i18n="exp_mood_label">Your mood</span>
+      <div class="chip-set" id="mood-chips"></div>
+    </div>
+    <div class="builder-row">
+      <span class="builder-label" data-i18n="exp_dur_label">How long</span>
+      <div class="chip-set" id="dur-chips"></div>
+    </div>
+    <div class="builder-row">
+      <span class="builder-label" data-i18n="exp_season_label">When</span>
+      <div class="chip-set" id="season-chips"></div>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="exp-result" id="exp-result"></div>
+
+  <!-- Alternatives -->
+  <div class="exp-alts fade-in" id="exp-alts"></div>
+
+  <!-- Refine with AI (phase 2 teaser) -->
+  <div class="exp-refine fade-in">
+    <button disabled>
+      <i class="ti ti-sparkles" aria-hidden="true"></i>
+      <span data-i18n="exp_refine">Refine with AI</span>
+      <span class="soon" data-i18n="exp_refine_soon">coming soon</span>
+    </button>
+    <p data-i18n="exp_refine_note">Soon you'll be able to fine-tune any experience with our AI travel designer.</p>
+  </div>
+
+</div>
+
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> <span data-i18n="nl_title">Abruzzo in your inbox</span></h4>
+      <p data-i18n="nl_sub">Events, trails and hidden gems — once a month, no spam.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address" data-i18n-placeholder="nl_ph">
+      <button class="nl-btn" onclick="nlSubmit()" data-i18n="nl_btn">Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html"       class="footer-link" data-i18n="n_home">Home</a>
+      <a href="quiz.html"        class="footer-link" data-i18n="n_quiz">Quiz</a>
+      <a href="inspired.html"    class="footer-link" data-i18n="n_inspired">Get Inspired</a>
+      <a href="experience.html"  class="footer-link" data-i18n="n_experience">Experience</a>
+      <a href="hiking.html"      class="footer-link" data-i18n="n_hiking">Hiking</a>
+      <a href="food.html"        class="footer-link" data-i18n="n_food">Food & Wine</a>
+      <a href="villages.html"    class="footer-link" data-i18n="n_villages">Villages</a>
+      <a href="wellness.html"    class="footer-link" data-i18n="n_wellness">Wellness</a>
+      <a href="attractions.html" class="footer-link" data-i18n="n_attractions">Attractions</a>
+      <a href="events.html"      class="footer-link" data-i18n="n_events">Events</a>
+      <a href="transport.html"   class="footer-link" data-i18n="n_transport">Transport</a>
+      <a href="plan.html"        class="footer-link" data-i18n="n_plan">Plan Trip</a>
+      <a href="crediti.html" class="footer-link"><span data-i18n="f_credits">Photo credits</span></a>
+    </nav>
+  </div>
+  <div class="footer-copy" data-i18n="f_copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+</footer>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script src="i18n.js"></script>
+<script src="data/experiences.js"></script>
+<script>
+/* ══ DATA ══ */
+const experiences = window.AW.experiences;
+
+/* mood + durata + stagione (id, icona, etichette multilingua) */
+const MOODS = [
+  { id:'wild',    icon:'ti-mountain',          label:{en:'Wild & Free',it:'Selvaggio',de:'Wild',fr:'Sauvage'} },
+  { id:'taste',   icon:'ti-tools-kitchen-2',   label:{en:'Taste',it:'Gusto',de:'Genuss',fr:'Saveurs'} },
+  { id:'history', icon:'ti-building-castle',   label:{en:'History',it:'Storia',de:'Geschichte',fr:'Histoire'} },
+  { id:'roam',    icon:'ti-bike',              label:{en:'Roam',it:'In movimento',de:'Unterwegs',fr:'Nomade'} },
+  { id:'slow',    icon:'ti-leaf',              label:{en:'Slow',it:'Lento',de:'Langsam',fr:'Lenteur'} },
+  { id:'family',  icon:'ti-users',             label:{en:'Family',it:'Famiglia',de:'Familie',fr:'Famille'} }
+];
+const DURATIONS = [
+  { id:'weekend', days:2.5, label:{en:'Weekend',it:'Weekend',de:'Wochenende',fr:'Week-end'} },
+  { id:'short',   days:4.5, label:{en:'4–5 days',it:'4–5 giorni',de:'4–5 Tage',fr:'4–5 jours'} },
+  { id:'week',    days:7,   label:{en:'A week',it:'Una settimana',de:'Eine Woche',fr:'Une semaine'} }
+];
+const SEASONS = [
+  { id:'spring', months:[3,4,5],  label:{en:'Spring',it:'Primavera',de:'Frühling',fr:'Printemps'} },
+  { id:'summer', months:[6,7,8],  label:{en:'Summer',it:'Estate',de:'Sommer',fr:'Été'} },
+  { id:'autumn', months:[9,10,11],label:{en:'Autumn',it:'Autunno',de:'Herbst',fr:'Automne'} },
+  { id:'winter', months:[12,1,2], label:{en:'Winter',it:'Inverno',de:'Winter',fr:'Hiver'} }
+];
+
+/* ══ CHIAVI i18n DI PAGINA ══ */
+Object.assign(T18.en, {
+  exp_h1:'Build your <em>Experience</em>',
+  exp_sub:"Tell us your mood, how long you have and when you're coming — we'll craft the journey.",
+  exp_eyebrow:'Your journey, your way', exp_h2:'Design your Abruzzo',
+  exp_mood_label:'Your mood', exp_dur_label:'How long', exp_season_label:'When',
+  exp_any:'Any', exp_days_word:'days', exp_day_word:'Day',
+  exp_slot_morning:'Morning', exp_slot_lunch:'Lunch', exp_slot_afternoon:'Afternoon', exp_slot_evening:'Evening',
+  exp_result_tag:'Your Experience', exp_alt_title:'Other experiences for you',
+  exp_match_loose:'Closest match to your choices — adjust the filters to explore more.',
+  exp_refine:'Refine with AI', exp_refine_soon:'coming soon',
+  exp_refine_note:"Soon you'll fine-tune any experience with our AI travel designer."
+});
+Object.assign(T18.it, {
+  exp_h1:'Costruisci la tua <em>Esperienza</em>',
+  exp_sub:'Dicci il tuo mood, quanti giorni hai e quando vieni — costruiamo noi il viaggio.',
+  exp_eyebrow:'Il tuo viaggio, a modo tuo', exp_h2:'Disegna il tuo Abruzzo',
+  exp_mood_label:'Il tuo mood', exp_dur_label:'Quanto tempo', exp_season_label:'Quando',
+  exp_any:'Indifferente', exp_days_word:'giorni', exp_day_word:'Giorno',
+  exp_slot_morning:'Mattina', exp_slot_lunch:'Pranzo', exp_slot_afternoon:'Pomeriggio', exp_slot_evening:'Sera',
+  exp_result_tag:'La tua Esperienza', exp_alt_title:'Altre esperienze per te',
+  exp_match_loose:'La proposta più vicina alle tue scelte — cambia i filtri per esplorare altro.',
+  exp_refine:'Raffina con l\'AI', exp_refine_soon:'in arrivo',
+  exp_refine_note:'Presto potrai rifinire ogni esperienza con il nostro designer di viaggi AI.'
+});
+Object.assign(T18.de, {
+  exp_h1:'Gestalte dein <em>Erlebnis</em>',
+  exp_sub:'Sag uns deine Stimmung, wie viel Zeit du hast und wann du kommst — wir bauen die Reise.',
+  exp_eyebrow:'Deine Reise, dein Stil', exp_h2:'Gestalte deine Abruzzen',
+  exp_mood_label:'Deine Stimmung', exp_dur_label:'Wie lange', exp_season_label:'Wann',
+  exp_any:'Egal', exp_days_word:'Tage', exp_day_word:'Tag',
+  exp_slot_morning:'Vormittag', exp_slot_lunch:'Mittag', exp_slot_afternoon:'Nachmittag', exp_slot_evening:'Abend',
+  exp_result_tag:'Dein Erlebnis', exp_alt_title:'Weitere Erlebnisse für dich',
+  exp_match_loose:'Die beste Übereinstimmung mit deiner Auswahl — passe die Filter an, um mehr zu entdecken.',
+  exp_refine:'Mit KI verfeinern', exp_refine_soon:'in Kürze',
+  exp_refine_note:'Bald kannst du jedes Erlebnis mit unserem KI-Reisedesigner feinabstimmen.'
+});
+Object.assign(T18.fr, {
+  exp_h1:'Composez votre <em>Expérience</em>',
+  exp_sub:'Dites-nous votre humeur, votre durée et votre saison — nous concevons le voyage.',
+  exp_eyebrow:'Votre voyage, à votre façon', exp_h2:'Composez vos Abruzzes',
+  exp_mood_label:'Votre humeur', exp_dur_label:'Combien de temps', exp_season_label:'Quand',
+  exp_any:'Peu importe', exp_days_word:'jours', exp_day_word:'Jour',
+  exp_slot_morning:'Matin', exp_slot_lunch:'Déjeuner', exp_slot_afternoon:'Après-midi', exp_slot_evening:'Soir',
+  exp_result_tag:'Votre Expérience', exp_alt_title:'D\'autres expériences pour vous',
+  exp_match_loose:'La proposition la plus proche de vos choix — ajustez les filtres pour explorer davantage.',
+  exp_refine:'Affiner avec l\'IA', exp_refine_soon:'bientôt',
+  exp_refine_note:'Bientôt, affinez chaque expérience avec notre concepteur de voyages IA.'
+});
+
+/* ══ STATO ══ */
+let sel = { mood:null, dur:null, season:null };
+
+/* ══ RENDER CHIPS ══ */
+function chip(kind, id, icon, labelObj, on) {
+  return `<button class="chip${on?' on':''}" onclick="pick('${kind}','${id}')">`
+    + (icon?`<i class="ti ${icon}" aria-hidden="true"></i>`:'')
+    + `${L(labelObj)}</button>`;
+}
+function renderChips() {
+  const anyLabel = { en:T('exp_any'), it:T('exp_any'), de:T('exp_any'), fr:T('exp_any') };
+  document.getElementById('mood-chips').innerHTML =
+    chip('mood','', '', anyLabel, sel.mood===null)
+    + MOODS.map(m => chip('mood', m.id, m.icon, m.label, sel.mood===m.id)).join('');
+  document.getElementById('dur-chips').innerHTML =
+    chip('dur','', '', anyLabel, sel.dur===null)
+    + DURATIONS.map(d => chip('dur', d.id, '', d.label, sel.dur===d.id)).join('');
+  document.getElementById('season-chips').innerHTML =
+    chip('season','', '', anyLabel, sel.season===null)
+    + SEASONS.map(s => chip('season', s.id, '', s.label, sel.season===s.id)).join('');
+}
+
+function pick(kind, id) {
+  sel[kind] = id === '' ? null : id;
+  renderChips();
+  renderResult();
+}
+
+/* ══ MATCHER ══ */
+function scoreExp(e) {
+  let score = 0;
+  if (sel.mood)   score += e.moods.includes(sel.mood) ? 3 : 0;
+  if (sel.dur) {
+    const target = DURATIONS.find(d => d.id === sel.dur).days;
+    score += 3 - Math.min(3, Math.abs(e.days - target));
+  }
+  if (sel.season) {
+    const sm = SEASONS.find(s => s.id === sel.season).months;
+    score += e.months.some(m => sm.includes(m)) ? 2 : -1;
+  }
+  return score;
+}
+function ranked() {
+  return experiences
+    .map(e => ({ e, s: scoreExp(e) }))
+    .sort((a,b) => b.s - a.s);
+}
+
+/* ══ RENDER RISULTATO ══ */
+function moodLabel(id) { const m = MOODS.find(x => x.id === id); return m ? L(m.label) : id; }
+
+/* HTML dell'Esperienza (header + timeline giorni) — usato sia dal matcher sia dal clic su un'alternativa */
+function experienceHTML(e) {
+  const badges = [
+    `<span class="exp-badge"><i class="ti ti-calendar" aria-hidden="true"></i> ${e.days} ${T('exp_days_word')}</span>`,
+    ...e.moods.map(mid => `<span class="exp-badge"><i class="ti ti-mood-smile" aria-hidden="true"></i> ${moodLabel(mid)}</span>`)
+  ].join('');
+  const days = e.plan.map(d => `
+    <div class="exp-day">
+      <div class="exp-day-h">
+        <div class="exp-day-num">${d.day}</div>
+        <h4>${T('exp_day_word')} ${d.day}</h4>
+      </div>
+      <div class="exp-stops">
+        ${d.items.map(it => `
+          <a class="exp-stop" href="${it.href}">
+            <img class="exp-stop-img" src="${it.img}" alt="${it.name}" loading="lazy">
+            <div class="exp-stop-body">
+              <span class="exp-slot"><i class="ti ${it.icon}" aria-hidden="true"></i> ${T('exp_slot_'+it.slot)}</span>
+              <h5>${it.name}</h5>
+              <p>${L(it.note)}</p>
+            </div>
+          </a>`).join('')}
+      </div>
+    </div>`).join('');
+  return `
+    <div class="exp-head">
+      <div class="exp-head-bg" style="background-image:url('${e.hero}')"></div>
+      <div class="exp-head-veil"></div>
+      <div class="exp-head-inner">
+        <div class="exp-badges">${badges}</div>
+        <h2>${L(e.title)}</h2>
+        <div class="exp-theme">${L(e.theme)}</div>
+        <p class="exp-intro"><i class="ti ti-map-pin" aria-hidden="true"></i> ${L(e.area)} — ${L(e.intro)}</p>
+      </div>
+    </div>
+    ${days}`;
+}
+
+/* strip delle altre Esperienze (cliccabili) */
+function altsHTML(others) {
+  if (!others.length) return '';
+  return `
+    <div class="section-header"><span class="t-eyebrow">${T('exp_result_tag')}</span><h2 class="t-h2" style="font-size:1.3rem">${T('exp_alt_title')}</h2></div>
+    <div class="exp-alt-grid">
+      ${others.map(x => `
+        <div class="exp-alt" onclick="chooseExp('${x.id}')" role="button" tabindex="0">
+          <div class="exp-alt-img" style="background-image:url('${x.hero}')"></div>
+          <div class="exp-alt-body"><h5>${L(x.title)}</h5><p>${x.days} ${T('exp_days_word')} · ${L(x.theme)}</p></div>
+        </div>`).join('')}
+    </div>`;
+}
+
+/* mostra un'Esperienza come risultato principale + le altre come alternative */
+function showExperience(e, looseNote) {
+  const others = experiences.filter(x => x.id !== e.id);
+  document.getElementById('exp-result').innerHTML =
+    (looseNote ? `<p class="exp-match-note">${T('exp_match_loose')}</p>` : '') + experienceHTML(e);
+  document.getElementById('exp-alts').innerHTML = altsHTML(others);
+}
+
+/* risultato guidato dai filtri (matcher) */
+let forcedId = null;
+function renderResult() {
+  forcedId = null;
+  const list = ranked();
+  const anySelected = sel.mood || sel.dur || sel.season;
+  showExperience(list[0].e, anySelected && list[0].s <= 0);
+}
+
+/* clic su un'alternativa: la porta in cima come risultato (indipendente dai filtri) */
+function chooseExp(id) {
+  forcedId = id;
+  showExperience(experiences.find(x => x.id === id), false);
+  window.scrollTo({ top: document.querySelector('.exp-result').offsetTop - 80, behavior:'smooth' });
+}
+
+/* ══ NEWSLETTER ══ */
+function nlSubmit() {
+  const input = document.getElementById('nlemail');
+  if (input.value && input.value.includes('@')) { input.value = ''; alert('🌿'); }
+  else { input.style.outline = '2px solid var(--rose)'; setTimeout(() => input.style.outline = 'none', 2000); }
+}
+
+/* ══ FADE-IN ══ */
+const observer = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold:.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ══ RI-RENDER AL CAMBIO LINGUA ══ */
+document.addEventListener('aw:langchange', () => {
+  renderChips();
+  if (forcedId) showExperience(experiences.find(x => x.id === forcedId), false);
+  else renderResult();
+});
+
+/* ══ INIT ══ */
+renderChips();
+renderResult();
+</script>
+
+</body>
+</html>
