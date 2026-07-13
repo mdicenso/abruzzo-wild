@@ -206,16 +206,21 @@
 }
 .exp-toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-/* Stampa / PDF: solo l'itinerario, header leggibile su bianco */
+/* mappa vettoriale per la stampa: nascosta a schermo, mostrata solo in stampa */
+.exp-map-print { display: none; }
+
+/* Stampa / PDF: itinerario + mappa vettoriale, header leggibile su bianco */
 @media print {
   .nav, .builder, .section-header, .exp-actions, #exp-map-wrap, .exp-alts,
   .exp-refine, .nl-strip, .site-footer, .exp-toast, .hero-inner { display: none !important; }
-  body { background: #fff; }
+  body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .exp-head { min-height: auto; padding: 0 0 .6rem; color: var(--ink); page-break-inside: avoid; }
   .exp-head-bg, .exp-head-veil { display: none !important; }
   .exp-head-inner h2 { color: var(--ink); font-size: 1.5rem; }
   .exp-theme, .exp-intro { color: var(--ink-mid); }
   .exp-badge { background: #eee !important; color: #333 !important; backdrop-filter: none; }
+  .exp-map-print { display: block !important; margin: .4rem 0 1.4rem; page-break-inside: avoid; }
+  .exp-map-print svg { width: 100%; max-width: 520px; height: auto; border: 1px solid #ddd; border-radius: 8px; }
   .exp-day { page-break-inside: avoid; }
   .exp-stop { border-color: #ccc; }
 }
@@ -341,6 +346,9 @@
       <span data-i18n="exp_gmaps">Open the route in Google Maps</span>
     </a>
   </div>
+
+  <!-- Mappa vettoriale per la STAMPA (SVG, nessuna tile: stampa sempre) -->
+  <div id="exp-map-print" class="exp-map-print" aria-hidden="true"></div>
 
   <!-- Alternatives -->
   <div class="exp-alts fade-in" id="exp-alts"></div>
@@ -715,12 +723,50 @@ function renderMap(e) {
     'https://www.google.com/maps/dir/' + latlngs.map(c => c[0] + ',' + c[1]).join('/');
 }
 
+/* mappa VETTORIALE (SVG) per la stampa: punti numerati + linee per giorno, senza tile.
+   Proiezione equirettangolare corretta per la latitudine → proporzioni realistiche. */
+function renderPrintMap(e) {
+  const el = document.getElementById('exp-map-print');
+  if (!el) return;
+  const pts = []; let n = 0;
+  e.plan.forEach(d => d.items.forEach(it => { const c = stopCoords(it.name); if (c) pts.push({ n: ++n, day: d.day, coord: c }); }));
+  if (pts.length < 2) { el.innerHTML = ''; return; }
+  const latMid = pts.reduce((s, p) => s + p.coord[0], 0) / pts.length;
+  const k = Math.cos(latMid * Math.PI / 180);
+  const P = pts.map(p => ({ n: p.n, day: p.day, x: p.coord[1] * k, y: -p.coord[0] }));
+  const xs = P.map(p => p.x), ys = P.map(p => p.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+  const W = 640, H = 400, M = 34;
+  const sc = Math.min((W - 2 * M) / ((maxX - minX) || 1), (H - 2 * M) / ((maxY - minY) || 1));
+  const ox = (W - (maxX - minX) * sc) / 2, oy = (H - (maxY - minY) * sc) / 2;
+  const TX = p => (ox + (p.x - minX) * sc).toFixed(1);
+  const TY = p => (oy + (p.y - minY) * sc).toFixed(1);
+  const byDay = {}, order = [];
+  P.forEach(p => { if (!byDay[p.day]) { byDay[p.day] = []; order.push(p.day); } byDay[p.day].push(p); });
+  let s = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg"><rect width="${W}" height="${H}" rx="10" fill="#f2ede4"/>`;
+  for (let i = 1; i < order.length; i++) {
+    const a = byDay[order[i-1]].slice(-1)[0], b = byDay[order[i]][0];
+    s += `<line x1="${TX(a)}" y1="${TY(a)}" x2="${TX(b)}" y2="${TY(b)}" stroke="#b9b2a6" stroke-width="1.4" stroke-dasharray="3,6"/>`;
+  }
+  order.forEach(day => {
+    const dp = byDay[day], col = DAY_COLORS[(day - 1) % DAY_COLORS.length];
+    if (dp.length >= 2) s += `<polyline points="${dp.map(p => TX(p) + ',' + TY(p)).join(' ')}" fill="none" stroke="${col}" stroke-width="2.6"/>`;
+  });
+  P.forEach(p => {
+    const col = DAY_COLORS[(p.day - 1) % DAY_COLORS.length];
+    s += `<circle cx="${TX(p)}" cy="${TY(p)}" r="11" fill="${col}" stroke="#fff" stroke-width="2"/>`
+       + `<text x="${TX(p)}" y="${TY(p)}" fill="#fff" font-size="11" font-family="sans-serif" text-anchor="middle" dominant-baseline="central">${p.n}</text>`;
+  });
+  el.innerHTML = s + `</svg>`;
+}
+
 /* mostra un'Esperienza come risultato principale + mappa + alternative pertinenti */
 function showExperience(e, looseNote) {
   document.getElementById('exp-result').innerHTML =
     (looseNote ? `<p class="exp-match-note">${T('exp_match_loose')}</p>` : '') + experienceHTML(e);
   document.getElementById('exp-alts').innerHTML = altsHTML(currentAlts(e.id));
   renderMap(e);
+  renderPrintMap(e);
 }
 
 /* risultato guidato dai filtri (matcher) */
