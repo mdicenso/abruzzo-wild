@@ -298,9 +298,9 @@ const MOODS = [
   { id:'family',  icon:'ti-users',             label:{en:'Family',it:'Famiglia',de:'Familie',fr:'Famille'} }
 ];
 const DURATIONS = [
-  { id:'weekend', days:2.5, label:{en:'Weekend',it:'Weekend',de:'Wochenende',fr:'Week-end'} },
-  { id:'short',   days:4.5, label:{en:'4–5 days',it:'4–5 giorni',de:'4–5 Tage',fr:'4–5 jours'} },
-  { id:'week',    days:7,   label:{en:'A week',it:'Una settimana',de:'Eine Woche',fr:'Une semaine'} }
+  { id:'weekend', range:[2,3],  label:{en:'Weekend',it:'Weekend',de:'Wochenende',fr:'Week-end'} },
+  { id:'short',   range:[4,5],  label:{en:'4–5 days',it:'4–5 giorni',de:'4–5 Tage',fr:'4–5 jours'} },
+  { id:'week',    range:[6,99], label:{en:'A week',it:'Una settimana',de:'Eine Woche',fr:'Une semaine'} }
 ];
 const SEASONS = [
   { id:'spring', months:[3,4,5],  label:{en:'Spring',it:'Primavera',de:'Frühling',fr:'Printemps'} },
@@ -388,23 +388,34 @@ function pick(kind, id) {
 }
 
 /* ══ MATCHER ══ */
+/* la durata è una FASCIA (weekend 2-3, short 4-5, week 6+): un'esperienza "combacia"
+   se rientra nell'intervallo; fuori intervallo perde punti in modo graduale. */
+function durRange()   { return sel.dur ? DURATIONS.find(d => d.id === sel.dur).range : null; }
+function inMood(e)    { return !sel.mood || e.moods.includes(sel.mood); }
+function inDur(e)     { const r = durRange(); return !r || (e.days >= r[0] && e.days <= r[1]); }
+function inSeason(e)  { if (!sel.season) return true; const sm = SEASONS.find(s => s.id === sel.season).months; return e.months.some(m => sm.includes(m)); }
+function matchesFilters(e) { return inMood(e) && inDur(e) && inSeason(e); }
+
 function scoreExp(e) {
   let score = 0;
   if (sel.mood)   score += e.moods.includes(sel.mood) ? 3 : 0;
   if (sel.dur) {
-    const target = DURATIONS.find(d => d.id === sel.dur).days;
-    score += 3 - Math.min(3, Math.abs(e.days - target));
+    const r = durRange();
+    if (e.days >= r[0] && e.days <= r[1]) score += 3;
+    else { const dist = e.days < r[0] ? r[0] - e.days : e.days - r[1]; score += Math.max(0, 3 - dist); }
   }
-  if (sel.season) {
-    const sm = SEASONS.find(s => s.id === sel.season).months;
-    score += e.months.some(m => sm.includes(m)) ? 2 : -1;
-  }
+  if (sel.season) score += inSeason(e) ? 2 : -1;
   return score;
 }
 function ranked() {
   return experiences
     .map(e => ({ e, s: scoreExp(e) }))
     .sort((a,b) => b.s - a.s);
+}
+/* alternative = le ALTRE esperienze che rispettano i filtri attivi (se nessun filtro, tutte) */
+function currentAlts(mainId) {
+  const anyFilter = sel.mood || sel.dur || sel.season;
+  return experiences.filter(x => x.id !== mainId && (!anyFilter || matchesFilters(x)));
 }
 
 /* ══ RENDER RISULTATO ══ */
@@ -462,21 +473,21 @@ function altsHTML(others) {
     </div>`;
 }
 
-/* mostra un'Esperienza come risultato principale + le altre come alternative */
+/* mostra un'Esperienza come risultato principale + le alternative pertinenti ai filtri */
 function showExperience(e, looseNote) {
-  const others = experiences.filter(x => x.id !== e.id);
   document.getElementById('exp-result').innerHTML =
     (looseNote ? `<p class="exp-match-note">${T('exp_match_loose')}</p>` : '') + experienceHTML(e);
-  document.getElementById('exp-alts').innerHTML = altsHTML(others);
+  document.getElementById('exp-alts').innerHTML = altsHTML(currentAlts(e.id));
 }
 
 /* risultato guidato dai filtri (matcher) */
 let forcedId = null;
 function renderResult() {
   forcedId = null;
-  const list = ranked();
+  const best = ranked()[0].e;
   const anySelected = sel.mood || sel.dur || sel.season;
-  showExperience(list[0].e, anySelected && list[0].s <= 0);
+  // avviso "proposta più vicina" quando la migliore non rispetta pienamente i filtri
+  showExperience(best, anySelected && !matchesFilters(best));
 }
 
 /* clic su un'alternativa: la porta in cima come risultato (indipendente dai filtri) */
