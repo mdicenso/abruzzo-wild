@@ -106,6 +106,14 @@
   font-family: var(--serif); font-size: .95rem;
 }
 .exp-day-h h4 { font-family: var(--serif); font-weight: 400; font-size: 1.1rem; color: var(--ink); }
+.exp-drive {
+  margin-left: auto; display: inline-flex; align-items: center; gap: .35rem;
+  font-family: var(--sans); font-size: .72rem; font-weight: 500;
+  color: var(--olive-mid); background: var(--olive-pale);
+  padding: .25rem .6rem; border-radius: 999px; white-space: nowrap;
+}
+.exp-drive.heavy { color: #9c4a2f; background: #f0e0d8; }
+.exp-drive i { font-size: 13px; }
 .exp-stops { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: .9rem; padding-left: 2.6rem; }
 .exp-stop {
   display: flex; gap: .8rem; background: var(--white);
@@ -357,7 +365,8 @@ Object.assign(T18.en, {
   exp_match_loose:'Closest match to your choices — adjust the filters to explore more.',
   exp_refine:'Refine with AI', exp_refine_soon:'coming soon',
   exp_refine_note:"Soon you'll fine-tune any experience with our AI travel designer.",
-  exp_gmaps:'Open the route in Google Maps'
+  exp_gmaps:'Open the route in Google Maps',
+  exp_drive_est:'Estimated driving on this day (approx.)'
 });
 Object.assign(T18.it, {
   exp_h1:'Costruisci la tua <em>Esperienza</em>',
@@ -370,7 +379,8 @@ Object.assign(T18.it, {
   exp_match_loose:'La proposta più vicina alle tue scelte — cambia i filtri per esplorare altro.',
   exp_refine:'Raffina con l\'AI', exp_refine_soon:'in arrivo',
   exp_refine_note:'Presto potrai rifinire ogni esperienza con il nostro designer di viaggi AI.',
-  exp_gmaps:'Apri il percorso in Google Maps'
+  exp_gmaps:'Apri il percorso in Google Maps',
+  exp_drive_est:'Guida stimata in giornata (approssimativa)'
 });
 Object.assign(T18.de, {
   exp_h1:'Gestalte dein <em>Erlebnis</em>',
@@ -383,7 +393,8 @@ Object.assign(T18.de, {
   exp_match_loose:'Die beste Übereinstimmung mit deiner Auswahl — passe die Filter an, um mehr zu entdecken.',
   exp_refine:'Mit KI verfeinern', exp_refine_soon:'in Kürze',
   exp_refine_note:'Bald kannst du jedes Erlebnis mit unserem KI-Reisedesigner feinabstimmen.',
-  exp_gmaps:'Route in Google Maps öffnen'
+  exp_gmaps:'Route in Google Maps öffnen',
+  exp_drive_est:'Geschätzte Fahrzeit an diesem Tag (ca.)'
 });
 Object.assign(T18.fr, {
   exp_h1:'Composez votre <em>Expérience</em>',
@@ -396,7 +407,8 @@ Object.assign(T18.fr, {
   exp_match_loose:'La proposition la plus proche de vos choix — ajustez les filtres pour explorer davantage.',
   exp_refine:'Affiner avec l\'IA', exp_refine_soon:'bientôt',
   exp_refine_note:'Bientôt, affinez chaque expérience avec notre concepteur de voyages IA.',
-  exp_gmaps:'Ouvrir l\'itinéraire dans Google Maps'
+  exp_gmaps:'Ouvrir l\'itinéraire dans Google Maps',
+  exp_drive_est:'Conduite estimée dans la journée (approx.)'
 });
 
 /* ══ STATO ══ */
@@ -463,15 +475,23 @@ function moodLabel(id) { const m = MOODS.find(x => x.id === id); return m ? L(m.
 
 /* HTML dell'Esperienza (header + timeline giorni) — usato sia dal matcher sia dal clic su un'alternativa */
 function experienceHTML(e) {
+  const drive = computeDrive(e);
   const badges = [
     `<span class="exp-badge"><i class="ti ti-calendar" aria-hidden="true"></i> ${e.days} ${T('exp_days_word')}</span>`,
+    `<span class="exp-badge"><i class="ti ti-car" aria-hidden="true"></i> ≈ ${drive.totalKm} km</span>`,
     ...e.moods.map(mid => `<span class="exp-badge"><i class="ti ti-mood-smile" aria-hidden="true"></i> ${moodLabel(mid)}</span>`)
   ].join('');
-  const days = e.plan.map(d => `
+  const days = e.plan.map(d => {
+    const dd = drive.days[d.day];
+    const chip = dd && dd.km > 0
+      ? `<span class="exp-drive${dd.heavy ? ' heavy' : ''}" title="${T('exp_drive_est')}"><i class="ti ti-car" aria-hidden="true"></i> ≈ ${dd.km} km · ${fmtDrive(dd.min)}</span>`
+      : '';
+    return `
     <div class="exp-day">
       <div class="exp-day-h">
         <div class="exp-day-num">${d.day}</div>
         <h4>${T('exp_day_word')} ${d.day}</h4>
+        ${chip}
       </div>
       <div class="exp-stops">
         ${d.items.map(it => `
@@ -484,7 +504,8 @@ function experienceHTML(e) {
             </div>
           </a>`).join('')}
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
   return `
     <div class="exp-head">
       <div class="exp-head-bg" style="background-image:url('${e.hero}')"></div>
@@ -520,6 +541,40 @@ function stopCoords(name) {
   for (const k in placeCoords) if (name.includes(k)) return placeCoords[k];
   return null;
 }
+
+/* distanza in linea d'aria (km) tra due [lat,lng] */
+function haversine(a, b) {
+  const R = 6371, r = Math.PI / 180;
+  const dLat = (b[0]-a[0])*r, dLon = (b[1]-a[1])*r;
+  const s = Math.sin(dLat/2)**2 + Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(dLon/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(s));
+}
+function fmtDrive(min) { const h = Math.floor(min/60), m = min%60; return h ? `${h}h${m?String(m).padStart(2,'0'):''}` : `${min} min`; }
+
+/* stima di guida per giorno (km reali ≈ linea d'aria × fattore-strada; tempo a velocità media).
+   Il giorno include il trasferimento mattutino dall'alloggio precedente + gli spostamenti in giornata.
+   Le tappe "cibo" senza coordinate sono saltate (sei già sul posto). */
+const ROAD_FACTOR = 1.4, AVG_KMH = 55;
+function computeDrive(e) {
+  const byDay = {}, order = [];
+  e.plan.forEach(d => {
+    const arr = [];
+    d.items.forEach(it => { const c = stopCoords(it.name); if (c) arr.push(c); });
+    if (arr.length) { byDay[d.day] = arr; order.push(d.day); }
+  });
+  const days = {}; let totalKm = 0;
+  order.forEach((day, i) => {
+    let km = 0, arr = byDay[day];
+    if (i > 0) { const prev = byDay[order[i-1]]; km += haversine(prev[prev.length-1], arr[0]); }
+    for (let j = 1; j < arr.length; j++) km += haversine(arr[j-1], arr[j]);
+    km *= ROAD_FACTOR;
+    const min = Math.round(km / AVG_KMH * 60);
+    days[day] = { km: Math.round(km), min, heavy: km > 90 || min > 120 };
+    totalKm += km;
+  });
+  return { days, totalKm: Math.round(totalKm), totalMin: Math.round(totalKm / AVG_KMH * 60) };
+}
+
 let expMap = null, expLayer = null;
 const DAY_COLORS = ['#3d4a2e','#b5705a','#5a6b3f','#cc8e7a','#7a8f58','#9c5a3c','#8a9a68'];
 
@@ -544,7 +599,19 @@ function renderMap(e) {
   expLayer.clearLayers();
 
   const latlngs = pts.map(p => p.coord);
-  LEAFLET.polyline(latlngs, { color: '#5a6b3f', weight: 2, opacity: .6, dashArray: '5,6' }).addTo(expLayer);
+  /* rotta a GRAPPOLI: una linea piena per ogni giorno (nel suo colore) + trasferimento
+     notturno tra un giorno e il successivo tenue/puntinato → si legge "giorno per giorno". */
+  const byDay = {}, order = [];
+  pts.forEach(p => { if (!byDay[p.day]) { byDay[p.day] = []; order.push(p.day); } byDay[p.day].push(p.coord); });
+  order.forEach(day => {
+    const dpts = byDay[day];
+    if (dpts.length >= 2)
+      LEAFLET.polyline(dpts, { color: DAY_COLORS[(day-1) % DAY_COLORS.length], weight: 3.5, opacity: .85 }).addTo(expLayer);
+  });
+  for (let i = 1; i < order.length; i++) {
+    const a = byDay[order[i-1]], b = byDay[order[i]];
+    LEAFLET.polyline([a[a.length-1], b[0]], { color: '#9a958c', weight: 1.5, opacity: .5, dashArray: '3,8' }).addTo(expLayer);
+  }
   pts.forEach(p => {
     const col = DAY_COLORS[(p.day - 1) % DAY_COLORS.length];
     const icon = LEAFLET.divIcon({
