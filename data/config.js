@@ -13,4 +13,4 @@
    Se resta vuota, la stampa usa lo schema vettoriale (punti+linee) di riserva.
    ──────────────────────────────────────────────────────────────────────── */
 window.AW = window.AW || {};
-window.AW.mapKey = '';
+window.AW.mapKey = '1d4a9206adde4b8088cd09143242c5e6';
