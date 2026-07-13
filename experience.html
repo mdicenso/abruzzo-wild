@@ -185,6 +185,41 @@
 .exp-gmaps:hover { background: var(--olive-mid); transform: translateY(-2px); }
 .exp-gmaps i { font-size: 17px; }
 
+/* Actions: condividi / stampa */
+.exp-actions { display: flex; gap: .6rem; margin: -.8rem 0 1.6rem; flex-wrap: wrap; }
+.exp-act {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .5rem 1rem; border-radius: 999px; cursor: pointer;
+  border: 1.5px solid var(--parchment-dk); background: var(--white);
+  font-family: var(--sans); font-size: .8rem; font-weight: 500; color: var(--ink-mid);
+  transition: all .2s;
+}
+.exp-act:hover { border-color: var(--olive); color: var(--olive); transform: translateY(-1px); }
+.exp-act i { font-size: 15px; }
+
+/* Toast conferma condivisione */
+.exp-toast {
+  position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 20px);
+  background: var(--olive); color: #fff; padding: .7rem 1.3rem; border-radius: 999px;
+  font-family: var(--sans); font-size: .85rem; box-shadow: var(--shadow-md);
+  opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 2000;
+}
+.exp-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* Stampa / PDF: solo l'itinerario, header leggibile su bianco */
+@media print {
+  .nav, .builder, .section-header, .exp-actions, #exp-map-wrap, .exp-alts,
+  .exp-refine, .nl-strip, .site-footer, .exp-toast, .hero-inner { display: none !important; }
+  body { background: #fff; }
+  .exp-head { min-height: auto; padding: 0 0 .6rem; color: var(--ink); page-break-inside: avoid; }
+  .exp-head-bg, .exp-head-veil { display: none !important; }
+  .exp-head-inner h2 { color: var(--ink); font-size: 1.5rem; }
+  .exp-theme, .exp-intro { color: var(--ink-mid); }
+  .exp-badge { background: #eee !important; color: #333 !important; backdrop-filter: none; }
+  .exp-day { page-break-inside: avoid; }
+  .exp-stop { border-color: #ccc; }
+}
+
 @media(max-width:600px){
   .exp-stops { padding-left: 0; grid-template-columns: 1fr; }
   .exp-head-inner h2 { font-size: 1.4rem; }
@@ -323,6 +358,10 @@
 </div>
 
 
+<!-- Toast (feedback condivisione) -->
+<div id="exp-toast" class="exp-toast" role="status" aria-live="polite"></div>
+
+
 <!-- ════ NEWSLETTER ════ -->
 <div class="nl-strip">
   <div class="nl-inner">
@@ -404,7 +443,8 @@ Object.assign(T18.en, {
   exp_refine:'Refine with AI', exp_refine_soon:'coming soon',
   exp_refine_note:"Soon you'll fine-tune any experience with our AI travel designer.",
   exp_gmaps:'Open the route in Google Maps',
-  exp_drive_est:'Estimated driving on this day (approx.)'
+  exp_drive_est:'Estimated driving on this day (approx.)',
+  exp_share:'Share', exp_print:'Print / PDF', exp_share_done:'Link copied!'
 });
 Object.assign(T18.it, {
   exp_h1:'Costruisci la tua <em>Esperienza</em>',
@@ -418,7 +458,8 @@ Object.assign(T18.it, {
   exp_refine:'Raffina con l\'AI', exp_refine_soon:'in arrivo',
   exp_refine_note:'Presto potrai rifinire ogni esperienza con il nostro designer di viaggi AI.',
   exp_gmaps:'Apri il percorso in Google Maps',
-  exp_drive_est:'Guida stimata in giornata (approssimativa)'
+  exp_drive_est:'Guida stimata in giornata (approssimativa)',
+  exp_share:'Condividi', exp_print:'Stampa / PDF', exp_share_done:'Link copiato!'
 });
 Object.assign(T18.de, {
   exp_h1:'Gestalte dein <em>Erlebnis</em>',
@@ -432,7 +473,8 @@ Object.assign(T18.de, {
   exp_refine:'Mit KI verfeinern', exp_refine_soon:'in Kürze',
   exp_refine_note:'Bald kannst du jedes Erlebnis mit unserem KI-Reisedesigner feinabstimmen.',
   exp_gmaps:'Route in Google Maps öffnen',
-  exp_drive_est:'Geschätzte Fahrzeit an diesem Tag (ca.)'
+  exp_drive_est:'Geschätzte Fahrzeit an diesem Tag (ca.)',
+  exp_share:'Teilen', exp_print:'Drucken / PDF', exp_share_done:'Link kopiert!'
 });
 Object.assign(T18.fr, {
   exp_h1:'Composez votre <em>Expérience</em>',
@@ -446,7 +488,8 @@ Object.assign(T18.fr, {
   exp_refine:'Affiner avec l\'IA', exp_refine_soon:'bientôt',
   exp_refine_note:'Bientôt, affinez chaque expérience avec notre concepteur de voyages IA.',
   exp_gmaps:'Ouvrir l\'itinéraire dans Google Maps',
-  exp_drive_est:'Conduite estimée dans la journée (approx.)'
+  exp_drive_est:'Conduite estimée dans la journée (approx.)',
+  exp_share:'Partager', exp_print:'Imprimer / PDF', exp_share_done:'Lien copié !'
 });
 
 /* ══ STATO ══ */
@@ -554,6 +597,10 @@ function experienceHTML(e) {
         <div class="exp-theme">${L(e.theme)}</div>
         <p class="exp-intro"><i class="ti ti-map-pin" aria-hidden="true"></i> ${L(e.area)} — ${L(e.intro)}</p>
       </div>
+    </div>
+    <div class="exp-actions">
+      <button class="exp-act" onclick="shareExp('${e.id}')"><i class="ti ti-share" aria-hidden="true"></i> ${T('exp_share')}</button>
+      <button class="exp-act" onclick="window.print()"><i class="ti ti-printer" aria-hidden="true"></i> ${T('exp_print')}</button>
     </div>
     ${days}`;
 }
@@ -693,6 +740,23 @@ function chooseExp(id) {
   window.scrollTo({ top: document.querySelector('.exp-result').offsetTop - 80, behavior:'smooth' });
 }
 
+/* ══ CONDIVIDI: link diretto ?exp=<id> negli appunti ══ */
+function shareExp(id) {
+  const url = location.origin + location.pathname + '?exp=' + id;
+  const ok = () => toast(T('exp_share_done'));
+  if (navigator.clipboard && navigator.clipboard.writeText)
+    navigator.clipboard.writeText(url).then(ok, () => prompt(T('exp_share'), url));
+  else prompt(T('exp_share'), url);
+}
+let toastTimer = null;
+function toast(msg) {
+  const t = document.getElementById('exp-toast');
+  if (!t) return;
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
 /* ══ NEWSLETTER ══ */
 function nlSubmit() {
   const input = document.getElementById('nlemail');
@@ -713,7 +777,14 @@ document.addEventListener('aw:langchange', () => {
 
 /* ══ INIT ══ */
 renderChips();
-renderResult();
+/* deep-link: ?exp=<id> apre direttamente quell'Esperienza (link condivisibile) */
+const deepId = new URLSearchParams(location.search).get('exp');
+if (deepId && experiences.some(x => x.id === deepId)) {
+  forcedId = deepId;
+  showExperience(experiences.find(x => x.id === deepId), false);
+} else {
+  renderResult();
+}
 </script>
 
 </body>
