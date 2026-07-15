@@ -669,8 +669,68 @@ function computeDrive(e) {
   return { days, totalKm: Math.round(totalKm), totalMin: Math.round(totalKm / AVG_KMH * 60) };
 }
 
-let expMap = null, expLayer = null;
+let expMap = null, expLayer = null, mapToken = 0;
 const DAY_COLORS = ['#3d4a2e','#b5705a','#5a6b3f','#cc8e7a','#7a8f58','#9c5a3c','#8a9a68'];
+
+/* ══ ROTTA STRADALE REALE (Geoapify Routing) ══
+   Ricava la geometria reale delle strade tra le tappe di un giorno.
+   Serve la chiave (window.AW.mapKey) e fetch; in cache per firma di waypoint,
+   così un ri-render (o un cambio lingua) NON richiama di nuovo l'API.
+   Filosofia: la mappa disegna subito le linee dritte, poi — appena la rotta
+   arriva — le sostituisce con le strade. Senza chiave/offline restano dritte. */
+const routeCache = {};
+function routeKey(coords) { return coords.map(c => c[0].toFixed(4) + ',' + c[1].toFixed(4)).join('|'); }
+function fetchRoute(coords) {
+  const key = (window.AW && window.AW.mapKey) || '';
+  if (!key || typeof fetch !== 'function' || !coords || coords.length < 2) return Promise.resolve(null);
+  const sig = routeKey(coords);
+  if (routeCache[sig]) return routeCache[sig];
+  const wp = coords.map(c => c[0] + ',' + c[1]).join('|');
+  const url = 'https://api.geoapify.com/v1/routing?waypoints=' + encodeURIComponent(wp) + '&mode=drive&apiKey=' + key;
+  const p = fetch(url).then(r => r.ok ? r.json() : null).then(j => {
+    const f = j && j.features && j.features[0];
+    if (!f || !f.geometry) return null;
+    const g = f.geometry, legs = g.type === 'MultiLineString' ? g.coordinates : [g.coordinates];
+    const path = [];
+    legs.forEach(leg => leg.forEach(pt => path.push([pt[1], pt[0]])));  /* [lon,lat] → [lat,lng] */
+    return path.length >= 2 ? path : null;
+  }).catch(() => null);
+  routeCache[sig] = p;
+  return p;
+}
+/* raccoglie le rotte stradali di tutti i giorni → { day: [[lat,lng]…] } (null se nessuna) */
+function routeAllDays(e) {
+  const key = (window.AW && window.AW.mapKey) || '';
+  if (!key || typeof fetch !== 'function') return Promise.resolve(null);
+  const byDay = {}, order = [];
+  e.plan.forEach(d => { const arr = []; d.items.forEach(it => { const c = stopCoords(it.name); if (c) arr.push(c); });
+    if (arr.length >= 2) { byDay[d.day] = arr; order.push(d.day); } });
+  if (!order.length) return Promise.resolve(null);
+  return Promise.all(order.map(day => fetchRoute(byDay[day]).then(path => ({ day, path }))))
+    .then(rs => { const out = {}; let any = false; rs.forEach(r => { if (r.path) { out[r.day] = r.path; any = true; } }); return any ? out : null; });
+}
+
+/* Douglas–Peucker: riduce i punti della rotta mantenendo la forma (per l'URL statico,
+   che ha un limite di lunghezza). capPath alza la tolleranza finché sta sotto maxN. */
+function perpDist(p, a, b) {
+  const x = p[1], y = p[0], x1 = a[1], y1 = a[0], x2 = b[1], y2 = b[0];
+  const dx = x2 - x1, dy = y2 - y1, L2 = dx*dx + dy*dy;
+  if (!L2) return Math.hypot(x - x1, y - y1);
+  let t = ((x - x1)*dx + (y - y1)*dy) / L2; t = Math.max(0, Math.min(1, t));
+  return Math.hypot(x - (x1 + t*dx), y - (y1 + t*dy));
+}
+function simplifyPath(pts, tol) {
+  if (pts.length <= 2) return pts;
+  let maxD = 0, idx = 0; const a = pts[0], b = pts[pts.length - 1];
+  for (let i = 1; i < pts.length - 1; i++) { const d = perpDist(pts[i], a, b); if (d > maxD) { maxD = d; idx = i; } }
+  if (maxD > tol) return simplifyPath(pts.slice(0, idx + 1), tol).slice(0, -1).concat(simplifyPath(pts.slice(idx), tol));
+  return [a, b];
+}
+function capPath(pts, maxN) {
+  let tol = 0.0008, out = simplifyPath(pts, tol);
+  while (out.length > maxN && tol < 0.5) { tol *= 1.7; out = simplifyPath(pts, tol); }
+  return out;
+}
 
 function renderMap(e) {
   const wrap = document.getElementById('exp-map-wrap');
@@ -683,6 +743,7 @@ function renderMap(e) {
   }));
   if (pts.length < 2) { wrap.style.display = 'none'; return; }
   wrap.style.display = '';
+  const token = ++mapToken;   /* invalida gli upgrade-strada di render precedenti */
 
   if (!expMap) {
     expMap = LEAFLET.map('exp-map', { scrollWheelZoom: false });
@@ -699,8 +760,15 @@ function renderMap(e) {
   pts.forEach(p => { if (!byDay[p.day]) { byDay[p.day] = []; order.push(p.day); } byDay[p.day].push(p.coord); });
   order.forEach(day => {
     const dpts = byDay[day];
-    if (dpts.length >= 2)
-      LEAFLET.polyline(dpts, { color: DAY_COLORS[(day-1) % DAY_COLORS.length], weight: 3.5, opacity: .85 }).addTo(expLayer);
+    if (dpts.length < 2) return;
+    const col = DAY_COLORS[(day-1) % DAY_COLORS.length];
+    /* subito: linea dritta (istantanea) → poi la sostituisco con le strade reali */
+    const straight = LEAFLET.polyline(dpts, { color: col, weight: 3.5, opacity: .85 }).addTo(expLayer);
+    fetchRoute(dpts).then(path => {
+      if (!path || token !== mapToken) return;            /* rotta assente o render superato */
+      if (expLayer.removeLayer) expLayer.removeLayer(straight);
+      LEAFLET.polyline(path, { color: col, weight: 4, opacity: .9 }).addTo(expLayer);
+    });
   });
   for (let i = 1; i < order.length; i++) {
     const a = byDay[order[i-1]], b = byDay[order[i]];
@@ -725,8 +793,11 @@ function renderMap(e) {
 }
 
 /* URL di una mappa STRADE statica (Geoapify): tappe numerate + percorso colorato per
-   giorno. Ritorna null se manca la chiave (window.AW.mapKey) → fallback allo schema SVG. */
-function staticMapUrl(e) {
+   giorno. Ritorna null se manca la chiave (window.AW.mapKey) → fallback allo schema SVG.
+   `routed` (opzionale) = { day: [[lat,lng]…] } con la geometria stradale reale: se c'è,
+   il percorso del giorno segue le strade (semplificato per stare nella lunghezza URL);
+   altrimenti congiunge dritto le tappe. */
+function staticMapUrl(e, routed) {
   const key = (window.AW && window.AW.mapKey) || '';
   if (!key) return null;
   const pts = [];
@@ -741,8 +812,9 @@ function staticMapUrl(e) {
   pts.forEach(p => { if (!byDay[p.day]) { byDay[p.day] = []; order.push(p.day); } byDay[p.day].push(p.coord); });
   let geom = '';
   order.forEach(day => {
-    const dp = byDay[day];
-    if (dp.length >= 2) geom += '&geometry=polyline:' + dp.map(c => c[1] + ',' + c[0]).join(',') + ';linecolor:' + enc(DAY_COLORS[(day-1)%DAY_COLORS.length]) + ';linewidth:4';
+    let line = byDay[day];
+    if (routed && routed[day] && routed[day].length >= 2) line = capPath(routed[day], 40);  /* strade reali, semplificate */
+    if (line.length >= 2) geom += '&geometry=polyline:' + line.map(c => c[1] + ',' + c[0]).join(',') + ';linecolor:' + enc(DAY_COLORS[(day-1)%DAY_COLORS.length]) + ';linewidth:4';
   });
   let n = 0, markers = '';
   pts.forEach(p => { n++; markers += '&marker=lonlat:' + p.coord[1] + ',' + p.coord[0] + ';color:' + enc(DAY_COLORS[(p.day-1)%DAY_COLORS.length]) + ';size:medium;text:' + n + ';textsize:small'; });
@@ -755,7 +827,17 @@ function renderPrintMap(e) {
   const el = document.getElementById('exp-map-print');
   if (!el) return;
   const sm = staticMapUrl(e);
-  if (sm) { el.innerHTML = '<img src="' + sm + '" alt="' + L(e.title) + '" loading="eager">'; return; }
+  if (sm) {
+    el.innerHTML = '<img src="' + sm + '" alt="' + L(e.title) + '" loading="eager">';
+    el.dataset.exp = e.id;
+    /* upgrade async: sostituisce le linee dritte con le strade reali appena pronte */
+    routeAllDays(e).then(routed => {
+      if (!routed || el.dataset.exp !== e.id) return;     /* nessuna rotta o esperienza cambiata */
+      const url = staticMapUrl(e, routed), img = el.querySelector('img');
+      if (url && img) img.src = url;
+    });
+    return;
+  }
   const pts = []; let n = 0;
   e.plan.forEach(d => d.items.forEach(it => { const c = stopCoords(it.name); if (c) pts.push({ n: ++n, day: d.day, coord: c }); }));
   if (pts.length < 2) { el.innerHTML = ''; return; }

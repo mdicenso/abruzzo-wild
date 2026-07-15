@@ -107,6 +107,15 @@ Schema di un'Esperienza:
   plan:[ { day, items:[ {slot,icon,name,href,img,note:{en,it,de,fr}} ] } ] }
 ```
 
+**Mappa del percorso.** L'Esperienza mostra la rotta su mappa (Leaflet a schermo, immagine
+statica **Geoapify** in stampa), colorata per giorno con tappe numerate + link a Google Maps.
+Il tracciato segue le **strade reali** via **Geoapify Routing API**: la mappa disegna subito
+le linee dritte (istantaneo, resiliente) e — appena la rotta arriva — le sostituisce con le
+strade. Le rotte sono in cache per firma di waypoint (un ri-render o un cambio lingua non
+richiama l'API) e, per la stampa, semplificate (Douglas-Peucker) per stare nella lunghezza
+dell'URL. Senza `window.AW.mapKey` (in `data/config.js`) o offline, restano le linee dritte /
+lo schema SVG di riserva. La chiave è client (pubblica) e va **ristretta al dominio** su Geoapify.
+
 ---
 
 ## Aggiornare i contenuti
