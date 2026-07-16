@@ -1003,23 +1003,30 @@ async function loadPlaces(e) {
   const btn = document.getElementById('gp-cta');
   if (btn) btn.disabled = true;
   gpWrite(e.id, `<p class="gp-loading">⏳ ${T('gp_loading')}</p>`, false);
-  try {
-    /* base di ogni giorno = ultima tappa geografica del giorno */
-    const bases = [];
-    e.plan.forEach(d => { let last = null; d.items.forEach(it => { const c = stopCoords(it.name); if (c) last = c; }); if (last) bases.push({ day: d.day, coord: last }); });
-    let html = '';
-    for (const b of bases) {
-      const [eat, stay] = await Promise.all([placesNear(b.coord, 'eat'), placesNear(b.coord, 'stay')]);
-      html += `<div class="gp-day"><h4>${T('exp_day_word')} ${b.day}</h4>` +
-        `<div class="gp-sub">🍽️ ${T('gp_eat')}</div><div class="gp-row">${eat.length ? eat.map(placeCard).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div>` +
-        `<div class="gp-sub">🛏️ ${T('gp_stay')}</div><div class="gp-row">${stay.length ? stay.map(placeCard).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div></div>`;
-    }
-    placesCache[e.id] = html;   /* cache per non ri-chiamare l'API */
-    gpWrite(e.id, html, true);
-  } catch (err) {
-    gpWrite(e.id, `<p class="gp-err">${T('gp_err')}</p>`, false);
-    const b2 = document.getElementById('gp-cta'); if (b2) b2.disabled = false;
+  /* base di ogni giorno = ultima tappa geografica del giorno */
+  const bases = [];
+  e.plan.forEach(d => { let last = null; d.items.forEach(it => { const c = stopCoords(it.name); if (c) last = c; }); if (last) bases.push({ day: d.day, coord: last }); });
+  let html = '', firstErr = null, anyResult = false;
+  /* le due query (mangiare/dormire) sono INDIPENDENTI: se una fallisce, l'altra si vede */
+  for (const b of bases) {
+    const [eatR, stayR] = await Promise.allSettled([placesNear(b.coord, 'eat'), placesNear(b.coord, 'stay')]);
+    const eat = eatR.status === 'fulfilled' ? eatR.value : (firstErr = firstErr || eatR.reason, []);
+    const stay = stayR.status === 'fulfilled' ? stayR.value : (firstErr = firstErr || stayR.reason, []);
+    if (eat.length || stay.length) anyResult = true;
+    html += `<div class="gp-day"><h4>${T('exp_day_word')} ${b.day}</h4>` +
+      `<div class="gp-sub">🍽️ ${T('gp_eat')}</div><div class="gp-row">${eat.length ? eat.map(placeCard).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div>` +
+      `<div class="gp-sub">🛏️ ${T('gp_stay')}</div><div class="gp-row">${stay.length ? stay.map(placeCard).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div></div>`;
   }
+  /* niente risultati + un errore reale → mostra il MOTIVO (aiuta a diagnosticare la chiave/API) */
+  if (!anyResult && firstErr) {
+    console.error('[Places] errore:', firstErr);
+    const reason = (firstErr && (firstErr.message || firstErr.name)) || String(firstErr);
+    gpWrite(e.id, `<p class="gp-err">${T('gp_err')}<br><small>${reason}</small></p>`, false);
+    if (btn) btn.disabled = false;
+    return;
+  }
+  placesCache[e.id] = html;   /* cache per non ri-chiamare l'API */
+  gpWrite(e.id, html, true);
 }
 
 /* mostra un'Esperienza come risultato principale + mappa + alternative pertinenti */
