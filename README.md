@@ -131,6 +131,14 @@ e **de-duplicati** tra giorni vicini (stesso place-id/nome mostrato una volta so
 Caricamento libreria: `google.maps.places` diretto (`?libraries=places`), con fallback a
 `importLibrary` se presente — **non** usare solo `importLibrary` (assente col loader classico).
 
+**Aggiungi al percorso.** Ogni suggerimento ha un bottone **"➕ Aggiungi al percorso"**: il
+posto scelto si **aggancia all'itinerario**. Le aggiunte vengono FUSE nel piano dell'Esperienza
+(`withAdds(e)`, non muta la base) con **coordinate proprie**, così timeline, mappa (tappa
+numerata nel percorso), tempi di guida e stampa le raccolgono da sole (refactor `itemCoord(it)`
+= `it.coord` o dizionario). In timeline la tappa aggiunta ha badge "Aggiunto da te" + link Google
++ **Rimuovi**. Persistite per-Esperienza in **localStorage** (`aw_adds`); niente doppioni.
+Nota: le aggiunte sono **locali al browser**, non ancora nel link condivisibile (passo futuro).
+
 ---
 
 ## Aggiornare i contenuti

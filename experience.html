@@ -213,19 +213,42 @@
 .gp-sub { font-family: var(--sans); font-size: .8rem; font-weight: 600; color: var(--olive); margin: .7rem 0 .5rem; }
 .gp-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: .8rem; }
 .gp-card {
-  display: block; text-decoration: none; color: inherit; overflow: hidden;
+  display: flex; flex-direction: column; overflow: hidden;
   border: 1.5px solid var(--parchment); border-radius: var(--radius-md); background: var(--white);
   transition: transform .2s, box-shadow .2s;
 }
 .gp-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.gp-card-link { display: block; text-decoration: none; color: inherit; }
 .gp-img { height: 110px; background-size: cover; background-position: center; background-color: var(--parchment); }
 .gp-body { padding: .6rem .75rem .75rem; }
 .gp-nm { font-family: var(--sans); font-size: .88rem; font-weight: 600; color: var(--ink); line-height: 1.25; }
 .gp-meta { font-family: var(--sans); font-size: .78rem; color: var(--ink-soft); margin-top: .25rem; display: flex; align-items: center; gap: .35rem; }
 .gp-star { color: #c8892b; font-weight: 600; }
 .gp-open { display: inline-block; margin-top: .45rem; font-family: var(--sans); font-size: .74rem; color: var(--olive); }
+.gp-add {
+  display: flex; align-items: center; justify-content: center; gap: .35rem; cursor: pointer;
+  margin: 0 .6rem .6rem; padding: .45rem; border-radius: 8px; border: 1.5px solid var(--olive);
+  background: transparent; color: var(--olive); font-family: var(--sans); font-size: .78rem; font-weight: 600;
+  transition: background .2s, color .2s;
+}
+.gp-add:hover { background: var(--olive); color: #fff; }
+.gp-add i { font-size: 14px; }
 .gp-loading, .gp-err, .gp-none { font-family: var(--sans); font-size: .85rem; color: var(--ink-soft); padding: .6rem 0; }
 .gp-err { color: var(--terracotta, #b5705a); }
+
+/* tappa AGGIUNTA dall'utente nella timeline */
+.exp-stop-added { border: 1.5px dashed var(--olive); background: color-mix(in srgb, var(--olive) 5%, var(--white)); }
+.exp-stop-noimg { background: color-mix(in srgb, var(--olive) 12%, var(--parchment)); }
+.exp-slot-added { color: var(--olive); font-weight: 700; }
+.exp-added-acts { display: flex; align-items: center; gap: 1rem; margin-top: .5rem; flex-wrap: wrap; }
+.exp-added-acts a { font-family: var(--sans); font-size: .76rem; color: var(--olive); text-decoration: none; }
+.exp-remove {
+  display: inline-flex; align-items: center; gap: .3rem; cursor: pointer; padding: .3rem .7rem;
+  border: 1px solid var(--parchment-dk); border-radius: 999px; background: var(--white);
+  font-family: var(--sans); font-size: .74rem; color: var(--ink-soft); transition: all .2s;
+}
+.exp-remove:hover { border-color: var(--terracotta, #b5705a); color: var(--terracotta, #b5705a); }
+.exp-remove i { font-size: 13px; }
 
 /* Actions: condividi / stampa */
 .exp-actions { display: flex; gap: .6rem; margin: -.8rem 0 1.6rem; flex-wrap: wrap; }
@@ -503,7 +526,8 @@ Object.assign(T18.en, {
   gp_eat:'Where to eat', gp_stay:'Where to sleep', gp_open:'Open in Google Maps',
   gp_loading:'Finding places nearby…', gp_none:'No places found here.',
   gp_err:'Couldn\'t load suggestions right now — please try again.',
-  gp_note:'Live suggestions from Google — ranked by popularity, near each day\'s base.'
+  gp_note:'Live suggestions from Google — ranked by popularity, near each day\'s base.',
+  gp_add:'Add to trip', gp_added:'Added by you', gp_remove:'Remove'
 });
 Object.assign(T18.it, {
   exp_h1:'Costruisci la tua <em>Esperienza</em>',
@@ -523,7 +547,8 @@ Object.assign(T18.it, {
   gp_eat:'Dove mangiare', gp_stay:'Dove dormire', gp_open:'Apri in Google Maps',
   gp_loading:'Cerco i posti in zona…', gp_none:'Nessun posto trovato qui.',
   gp_err:'Non riesco a caricare i suggerimenti ora — riprova.',
-  gp_note:'Suggerimenti dal vivo da Google — ordinati per popolarità, vicino alla base di ogni giorno.'
+  gp_note:'Suggerimenti dal vivo da Google — ordinati per popolarità, vicino alla base di ogni giorno.',
+  gp_add:'Aggiungi al percorso', gp_added:'Aggiunto da te', gp_remove:'Rimuovi'
 });
 Object.assign(T18.de, {
   exp_h1:'Gestalte dein <em>Erlebnis</em>',
@@ -543,7 +568,8 @@ Object.assign(T18.de, {
   gp_eat:'Wo essen', gp_stay:'Wo übernachten', gp_open:'In Google Maps öffnen',
   gp_loading:'Suche Orte in der Nähe…', gp_none:'Keine Orte hier gefunden.',
   gp_err:'Vorschläge konnten nicht geladen werden — bitte erneut versuchen.',
-  gp_note:'Live-Vorschläge von Google — nach Beliebtheit, nahe der Basis jedes Tages.'
+  gp_note:'Live-Vorschläge von Google — nach Beliebtheit, nahe der Basis jedes Tages.',
+  gp_add:'Zur Reise hinzufügen', gp_added:'Von dir hinzugefügt', gp_remove:'Entfernen'
 });
 Object.assign(T18.fr, {
   exp_h1:'Composez votre <em>Expérience</em>',
@@ -563,7 +589,8 @@ Object.assign(T18.fr, {
   gp_eat:'Où manger', gp_stay:'Où dormir', gp_open:'Ouvrir dans Google Maps',
   gp_loading:'Recherche de lieux à proximité…', gp_none:'Aucun lieu trouvé ici.',
   gp_err:'Impossible de charger les suggestions — réessayez.',
-  gp_note:'Suggestions en direct de Google — par popularité, près de la base de chaque jour.'
+  gp_note:'Suggestions en direct de Google — par popularité, près de la base de chaque jour.',
+  gp_add:'Ajouter au trajet', gp_added:'Ajouté par vous', gp_remove:'Retirer'
 });
 
 /* ══ STATO ══ */
@@ -649,7 +676,7 @@ function experienceHTML(e) {
         ${chip}
       </div>
       <div class="exp-stops">
-        ${d.items.map(it => `
+        ${d.items.map(it => it.added ? addedStopHTML(it, e.id) : `
           <a class="exp-stop" href="${it.href}">
             <img class="exp-stop-img" src="${it.img}" alt="${it.name}" loading="lazy">
             <div class="exp-stop-body">
@@ -679,6 +706,24 @@ function experienceHTML(e) {
     ${days}`;
 }
 
+/* tappa AGGIUNTA dall'utente: badge "Aggiunto da te" + link Google + bottone Rimuovi */
+function addedStopHTML(it, expId) {
+  const img = it.img ? `<img class="exp-stop-img" src="${it.img}" alt="${it.name}" loading="lazy">` : '<div class="exp-stop-img exp-stop-noimg"></div>';
+  return `
+    <div class="exp-stop exp-stop-added">
+      ${img}
+      <div class="exp-stop-body">
+        <span class="exp-slot exp-slot-added"><i class="ti ${it.icon}" aria-hidden="true"></i> ${T('gp_added')}</span>
+        <h5>${it.name}</h5>
+        <p>${it.note || ''}</p>
+        <div class="exp-added-acts">
+          <a href="${it.href}" target="_blank" rel="noopener">${T('gp_open')} ›</a>
+          <button type="button" class="exp-remove" onclick="removeAdd('${expId}','${it.addId}')"><i class="ti ti-x" aria-hidden="true"></i> ${T('gp_remove')}</button>
+        </div>
+      </div>
+    </div>`;
+}
+
 /* strip delle altre Esperienze (cliccabili) */
 function altsHTML(others) {
   if (!others.length) return '';
@@ -700,6 +745,9 @@ function stopCoords(name) {
   for (const k in placeCoords) if (name.includes(k)) return placeCoords[k];
   return null;
 }
+/* coordinate di una tappa: se ha coord esplicite (es. tappa aggiunta dall'utente
+   via Google Places) usa quelle, altrimenti risolve per nome dal dizionario. */
+function itemCoord(it) { return it.coord || stopCoords(it.name); }
 
 /* distanza in linea d'aria (km) tra due [lat,lng] */
 function haversine(a, b) {
@@ -718,7 +766,7 @@ function computeDrive(e) {
   const byDay = {}, order = [];
   e.plan.forEach(d => {
     const arr = [];
-    d.items.forEach(it => { const c = stopCoords(it.name); if (c) arr.push(c); });
+    d.items.forEach(it => { const c = itemCoord(it); if (c) arr.push(c); });
     if (arr.length) { byDay[d.day] = arr; order.push(d.day); }
   });
   const days = {}; let totalKm = 0;
@@ -768,7 +816,7 @@ function routeAllDays(e) {
   const key = (window.AW && window.AW.mapKey) || '';
   if (!key || typeof fetch !== 'function') return Promise.resolve(null);
   const byDay = {}, order = [];
-  e.plan.forEach(d => { const arr = []; d.items.forEach(it => { const c = stopCoords(it.name); if (c) arr.push(c); });
+  e.plan.forEach(d => { const arr = []; d.items.forEach(it => { const c = itemCoord(it); if (c) arr.push(c); });
     if (arr.length >= 2) { byDay[d.day] = arr; order.push(d.day); } });
   if (!order.length) return Promise.resolve(null);
   return Promise.all(order.map(day => fetchRoute(byDay[day]).then(path => ({ day, path }))))
@@ -803,7 +851,7 @@ function renderMap(e) {
   /* tappe geografiche in ordine di viaggio */
   const pts = []; let n = 0;
   e.plan.forEach(d => d.items.forEach(it => {
-    const c = stopCoords(it.name);
+    const c = itemCoord(it);
     if (c) pts.push({ n: ++n, day: d.day, name: it.name, coord: c });
   }));
   if (pts.length < 2) { wrap.style.display = 'none'; return; }
@@ -867,7 +915,7 @@ function staticMapUrl(e, routed) {
   const key = (window.AW && window.AW.mapKey) || '';
   if (!key) return null;
   const pts = [];
-  e.plan.forEach(d => d.items.forEach(it => { const c = stopCoords(it.name); if (c) pts.push({ day: d.day, coord: c }); }));
+  e.plan.forEach(d => d.items.forEach(it => { const c = itemCoord(it); if (c) pts.push({ day: d.day, coord: c }); }));
   if (pts.length < 2) return null;
   const lats = pts.map(p => p.coord[0]), lons = pts.map(p => p.coord[1]);
   const padLat = (Math.max(...lats) - Math.min(...lats)) * 0.15 + 0.03;
@@ -905,7 +953,7 @@ function renderPrintMap(e) {
     return;
   }
   const pts = []; let n = 0;
-  e.plan.forEach(d => d.items.forEach(it => { const c = stopCoords(it.name); if (c) pts.push({ n: ++n, day: d.day, coord: c }); }));
+  e.plan.forEach(d => d.items.forEach(it => { const c = itemCoord(it); if (c) pts.push({ n: ++n, day: d.day, coord: c }); }));
   if (pts.length < 2) { el.innerHTML = ''; return; }
   const latMid = pts.reduce((s, p) => s + p.coord[0], 0) / pts.length;
   const k = Math.cos(latMid * Math.PI / 180);
@@ -988,15 +1036,73 @@ function placeLatLng(p) {
   const la = typeof l.lat === 'function' ? l.lat() : l.lat, ln = typeof l.lng === 'function' ? l.lng() : l.lng;
   return (la == null || ln == null) ? null : [la, ln];
 }
-function placeCard(p) {
-  let img = '';
-  try { if (p.photos && p.photos.length) img = `<div class="gp-img" style="background-image:url('${p.photos[0].getURI({ maxWidth: 360, maxHeight: 220 })}')"></div>`; } catch (e) {}
+function photoUri(p) { try { return (p.photos && p.photos.length) ? p.photos[0].getURI({ maxWidth: 360, maxHeight: 220 }) : ''; } catch (e) { return ''; } }
+
+/* ══ AGGIUNGI AL PERCORSO (#2) ══
+   Un posto scelto dai suggerimenti si aggancia all'itinerario: viene FUSO nel
+   piano (con coord proprie) così timeline + mappa + tempi lo raccolgono da soli.
+   Persistito per-Esperienza in localStorage (aw_adds). NB: le aggiunte sono
+   locali al browser, non ancora nel link condivisibile (passo futuro). */
+const ADDS_KEY = 'aw_adds';
+let userAdds = {};
+try { userAdds = JSON.parse(localStorage.getItem(ADDS_KEY) || '{}') || {}; } catch (e) { userAdds = {}; }
+function saveAdds() { try { localStorage.setItem(ADDS_KEY, JSON.stringify(userAdds)); } catch (e) {} }
+
+/* registro dei posti suggeriti: il bottone Aggiungi referenzia un id, non serializza l'oggetto Google */
+const placeReg = {}; let regSeq = 0;
+function registerPlace(p, kind) {
+  const id = 'r' + (++regSeq);
+  placeReg[id] = { kind, name: p.displayName || '', coord: placeLatLng(p), uri: placeUri(p),
+    img: photoUri(p), rating: p.rating || null, type: p.primaryTypeDisplayName || '' };
+  return id;
+}
+/* un'aggiunta → item di piano (con coord esplicite) */
+function addItem(a) {
+  return { added: true, addId: a.addId, kind: a.kind, name: a.name, href: a.uri, img: a.img,
+    note: a.note || '', coord: a.coord,
+    slot: a.kind === 'eat' ? 'lunch' : 'evening', icon: a.kind === 'eat' ? 'ti-tools-kitchen-2' : 'ti-bed' };
+}
+/* Esperienza "effettiva" = base + aggiunte utente fuse nel piano (NON muta la base) */
+function withAdds(e) {
+  const adds = userAdds[e.id] || [];
+  if (!adds.length) return e;
+  return { ...e, plan: e.plan.map(d => {
+    const extra = adds.filter(a => a.day === d.day).map(addItem);
+    return extra.length ? { ...d, items: [...d.items, ...extra] } : d;
+  }) };
+}
+function addToRoute(expId, day, regId) {
+  const rec = placeReg[regId]; if (!rec || !rec.coord) return;
+  const list = userAdds[expId] = userAdds[expId] || [];
+  if (list.some(a => a.day === day && a.name === rec.name)) { toast(T('gp_added')); return; }  /* niente doppioni */
+  list.push({ addId: 'a' + Date.now() + '_' + (++regSeq), day, kind: rec.kind, name: rec.name,
+    coord: rec.coord, uri: rec.uri, img: rec.img, rating: rec.rating,
+    note: rec.type + (rec.rating ? ' · ★ ' + rec.rating : '') });
+  saveAdds();
+  const e = experiences.find(x => x.id === expId); if (e) showExperience(e, false);
+  toast(T('gp_added'));
+}
+function removeAdd(expId, addId) {
+  userAdds[expId] = (userAdds[expId] || []).filter(a => a.addId !== addId);
+  saveAdds();
+  const e = experiences.find(x => x.id === expId); if (e) showExperience(e, false);
+}
+
+function placeCard(p, ctx) {
+  const img = photoUri(p);
+  const imgHtml = img ? `<div class="gp-img" style="background-image:url('${img}')"></div>` : '';
   const rating = p.rating ? `<span class="gp-star">★ ${p.rating}</span>${p.userRatingCount ? ` (${p.userRatingCount})` : ''}` : '';
   const type = p.primaryTypeDisplayName ? `<span>${p.primaryTypeDisplayName}</span>` : '';
-  return `<a class="gp-card" href="${placeUri(p)}" target="_blank" rel="noopener">${img}
-    <div class="gp-body"><div class="gp-nm">${p.displayName || ''}</div>
-    <div class="gp-meta">${rating}${rating && type ? ' · ' : ''}${type}</div>
-    <span class="gp-open">${T('gp_open')} ›</span></div></a>`;
+  let addBtn = '';
+  if (ctx && placeLatLng(p)) {   /* solo se ha coord: serve per agganciarlo a mappa/percorso */
+    const rid = registerPlace(p, ctx.kind);
+    addBtn = `<button type="button" class="gp-add" onclick="addToRoute('${ctx.expId}',${ctx.day},'${rid}')"><i class="ti ti-plus" aria-hidden="true"></i> ${T('gp_add')}</button>`;
+  }
+  return `<div class="gp-card">
+    <a class="gp-card-link" href="${placeUri(p)}" target="_blank" rel="noopener">${imgHtml}
+      <div class="gp-body"><div class="gp-nm">${p.displayName || ''}</div>
+      <div class="gp-meta">${rating}${rating && type ? ' · ' : ''}${type}</div>
+      <span class="gp-open">${T('gp_open')} ›</span></div></a>${addBtn}</div>`;
 }
 
 /* ── CURA QUALITÀ + DEDUP ──
@@ -1058,7 +1164,7 @@ async function loadPlaces(e) {
   gpWrite(e.id, `<p class="gp-loading">⏳ ${T('gp_loading')}</p>`, false);
   /* base di ogni giorno = ultima tappa geografica del giorno */
   const bases = [];
-  e.plan.forEach(d => { let last = null; d.items.forEach(it => { const c = stopCoords(it.name); if (c) last = c; }); if (last) bases.push({ day: d.day, coord: last }); });
+  e.plan.forEach(d => { let last = null; d.items.forEach(it => { const c = itemCoord(it); if (c) last = c; }); if (last) bases.push({ day: d.day, coord: last }); });
   let html = '', firstErr = null, anyResult = false;
   const seen = new Set(), markers = [];   /* dedup condiviso + pin per la mappa */
   /* le due query (mangiare/dormire) sono INDIPENDENTI: se una fallisce, l'altra si vede */
@@ -1072,8 +1178,8 @@ async function loadPlaces(e) {
       const c = placeLatLng(p); if (c) markers.push({ coord: c, kind, name: p.displayName, rating: p.rating, uri: placeUri(p) });
     }));
     html += `<div class="gp-day"><h4>${T('exp_day_word')} ${b.day}</h4>` +
-      `<div class="gp-sub">🍽️ ${T('gp_eat')}</div><div class="gp-row">${eat.length ? eat.map(placeCard).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div>` +
-      `<div class="gp-sub">🛏️ ${T('gp_stay')}</div><div class="gp-row">${stay.length ? stay.map(placeCard).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div></div>`;
+      `<div class="gp-sub">🍽️ ${T('gp_eat')}</div><div class="gp-row">${eat.length ? eat.map(p => placeCard(p, { expId: e.id, day: b.day, kind: 'eat' })).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div>` +
+      `<div class="gp-sub">🛏️ ${T('gp_stay')}</div><div class="gp-row">${stay.length ? stay.map(p => placeCard(p, { expId: e.id, day: b.day, kind: 'stay' })).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div></div>`;
   }
   /* niente risultati + un errore reale → mostra il MOTIVO (aiuta a diagnosticare la chiave/API) */
   if (!anyResult && firstErr) {
@@ -1090,11 +1196,12 @@ async function loadPlaces(e) {
 
 /* mostra un'Esperienza come risultato principale + mappa + alternative pertinenti */
 function showExperience(e, looseNote) {
+  const ef = withAdds(e);   /* base + aggiunte utente: timeline, mappa, tempi le raccolgono da sole */
   document.getElementById('exp-result').innerHTML =
-    (looseNote ? `<p class="exp-match-note">${T('exp_match_loose')}</p>` : '') + experienceHTML(e);
+    (looseNote ? `<p class="exp-match-note">${T('exp_match_loose')}</p>` : '') + experienceHTML(ef);
   document.getElementById('exp-alts').innerHTML = altsHTML(currentAlts(e.id));
-  renderMap(e);
-  renderPrintMap(e);
+  renderMap(ef);
+  renderPrintMap(ef);
   renderPlaces(e);
 }
 
