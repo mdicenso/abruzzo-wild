@@ -14,3 +14,11 @@
    ──────────────────────────────────────────────────────────────────────── */
 window.AW = window.AW || {};
 window.AW.mapKey = '1d4a9206adde4b8088cd09143242c5e6';
+
+/* CHIAVE GOOGLE MAPS PLATFORM (Places API New + Maps JavaScript API) per i
+   suggerimenti "dove mangiare / dormire" nell'Esperienza. Anche questa è una
+   chiave client (pubblica): va RISTRETTA al dominio nel pannello Google Cloud
+   (Limitazioni applicazioni → Siti web → https://mdicenso.github.io/*) e
+   limitata alle sole due API. Le query partono SOLO a richiesta (l'utente
+   clicca) per non consumare il tier gratuito. Se vuota → il blocco non appare. */
+window.AW.placesKey = 'AIzaSyC-GfAK-WakmTZq1jVPDAtH0q5x5D1veZw';

@@ -116,6 +116,16 @@ richiama l'API) e, per la stampa, semplificate (Douglas-Peucker) per stare nella
 dell'URL. Senza `window.AW.mapKey` (in `data/config.js`) o offline, restano le linee dritte /
 lo schema SVG di riserva. La chiave è client (pubblica) e va **ristretta al dominio** su Geoapify.
 
+**Dove mangiare & dormire (Google Places).** Ogni Esperienza mostra, **a richiesta** (un click,
+per non consumare il tier gratuito), i posti dove mangiare e dormire vicino alla **base di ogni
+giorno** (l'ultima tappa geografica), ordinati per popolarità, ognuno con foto, rating e link
+**"Apri in Google Maps"** (nessun booking/affiliazione). Usa la **Places API (New)** via Maps
+JavaScript API, caricata in modo pigro solo al primo click; risultati **in cache** per
+id-Esperienza. Chiave client `window.AW.placesKey` (in `data/config.js`), da **restringere al
+dominio** + alle sole due API (Places New + Maps JS) nel pannello Google Cloud, con billing
+attivo. Se la chiave è vuota, il blocco non appare. Robusto ai ri-render durante il caricamento
+async (scrive nel `gp-body` corrente solo se il blocco mostra ancora quella Esperienza).
+
 ---
 
 ## Aggiornare i contenuti

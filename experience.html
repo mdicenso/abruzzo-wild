@@ -185,6 +185,39 @@
 .exp-gmaps:hover { background: var(--olive-mid); transform: translateY(-2px); }
 .exp-gmaps i { font-size: 17px; }
 
+/* Dove mangiare/dormire (Google Places, a richiesta) */
+.exp-places { margin: 0 0 2.4rem; }
+.gp-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: .3rem; }
+.gp-head h3 { font-family: var(--serif); font-size: 1.2rem; color: var(--olive-dk); margin: 0; }
+.gp-cta {
+  display: inline-flex; align-items: center; gap: .5rem; cursor: pointer;
+  padding: .6rem 1.25rem; border-radius: 999px; border: none;
+  background: var(--olive); color: #fff; font-family: var(--sans); font-size: .85rem; font-weight: 500;
+  transition: background .2s, transform .2s;
+}
+.gp-cta:hover { background: var(--olive-mid); transform: translateY(-2px); }
+.gp-cta:disabled { opacity: .6; cursor: default; transform: none; }
+.gp-cta i { font-size: 16px; }
+.gp-note { font-family: var(--sans); font-size: .78rem; color: var(--ink-soft); margin: 0 0 1.1rem; }
+.gp-day { margin-bottom: 1.6rem; }
+.gp-day > h4 { font-family: var(--sans); font-size: .95rem; font-weight: 600; color: var(--ink); margin: 0 0 .5rem; }
+.gp-sub { font-family: var(--sans); font-size: .8rem; font-weight: 600; color: var(--olive); margin: .7rem 0 .5rem; }
+.gp-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: .8rem; }
+.gp-card {
+  display: block; text-decoration: none; color: inherit; overflow: hidden;
+  border: 1.5px solid var(--parchment); border-radius: var(--radius-md); background: var(--white);
+  transition: transform .2s, box-shadow .2s;
+}
+.gp-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.gp-img { height: 110px; background-size: cover; background-position: center; background-color: var(--parchment); }
+.gp-body { padding: .6rem .75rem .75rem; }
+.gp-nm { font-family: var(--sans); font-size: .88rem; font-weight: 600; color: var(--ink); line-height: 1.25; }
+.gp-meta { font-family: var(--sans); font-size: .78rem; color: var(--ink-soft); margin-top: .25rem; display: flex; align-items: center; gap: .35rem; }
+.gp-star { color: #c8892b; font-weight: 600; }
+.gp-open { display: inline-block; margin-top: .45rem; font-family: var(--sans); font-size: .74rem; color: var(--olive); }
+.gp-loading, .gp-err, .gp-none { font-family: var(--sans); font-size: .85rem; color: var(--ink-soft); padding: .6rem 0; }
+.gp-err { color: var(--terracotta, #b5705a); }
+
 /* Actions: condividi / stampa */
 .exp-actions { display: flex; gap: .6rem; margin: -.8rem 0 1.6rem; flex-wrap: wrap; }
 .exp-act {
@@ -212,7 +245,7 @@
 /* Stampa / PDF: itinerario + mappa vettoriale, header leggibile su bianco */
 @media print {
   .nav, .builder, .section-header, .exp-actions, #exp-map-wrap, .exp-alts,
-  .exp-refine, .nl-strip, .site-footer, .exp-toast, .hero-inner { display: none !important; }
+  .exp-refine, .nl-strip, .site-footer, .exp-toast, .hero-inner, #exp-places-wrap { display: none !important; }
   body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .exp-head { min-height: auto; padding: 0 0 .6rem; color: var(--ink); page-break-inside: avoid; }
   .exp-head-bg, .exp-head-veil { display: none !important; }
@@ -347,6 +380,9 @@
     </a>
   </div>
 
+  <!-- Dove mangiare/dormire (Google Places, a richiesta) — popolato da renderPlaces() -->
+  <div class="exp-places" id="exp-places-wrap" style="display:none"></div>
+
   <!-- Mappa vettoriale per la STAMPA (SVG, nessuna tile: stampa sempre) -->
   <div id="exp-map-print" class="exp-map-print" aria-hidden="true"></div>
 
@@ -453,7 +489,12 @@ Object.assign(T18.en, {
   exp_refine_note:"Soon you'll fine-tune any experience with our AI travel designer.",
   exp_gmaps:'Open the route in Google Maps',
   exp_drive_est:'Estimated driving on this day (approx.)',
-  exp_share:'Share', exp_print:'Print / PDF', exp_share_done:'Link copied!'
+  exp_share:'Share', exp_print:'Print / PDF', exp_share_done:'Link copied!',
+  gp_title:'Where to eat & sleep along the route', gp_cta:'Show suggestions',
+  gp_eat:'Where to eat', gp_stay:'Where to sleep', gp_open:'Open in Google Maps',
+  gp_loading:'Finding places nearby…', gp_none:'No places found here.',
+  gp_err:'Couldn\'t load suggestions right now — please try again.',
+  gp_note:'Live suggestions from Google — ranked by popularity, near each day\'s base.'
 });
 Object.assign(T18.it, {
   exp_h1:'Costruisci la tua <em>Esperienza</em>',
@@ -468,7 +509,12 @@ Object.assign(T18.it, {
   exp_refine_note:'Presto potrai rifinire ogni esperienza con il nostro designer di viaggi AI.',
   exp_gmaps:'Apri il percorso in Google Maps',
   exp_drive_est:'Guida stimata in giornata (approssimativa)',
-  exp_share:'Condividi', exp_print:'Stampa / PDF', exp_share_done:'Link copiato!'
+  exp_share:'Condividi', exp_print:'Stampa / PDF', exp_share_done:'Link copiato!',
+  gp_title:'Dove mangiare e dormire lungo il percorso', gp_cta:'Mostra i suggerimenti',
+  gp_eat:'Dove mangiare', gp_stay:'Dove dormire', gp_open:'Apri in Google Maps',
+  gp_loading:'Cerco i posti in zona…', gp_none:'Nessun posto trovato qui.',
+  gp_err:'Non riesco a caricare i suggerimenti ora — riprova.',
+  gp_note:'Suggerimenti dal vivo da Google — ordinati per popolarità, vicino alla base di ogni giorno.'
 });
 Object.assign(T18.de, {
   exp_h1:'Gestalte dein <em>Erlebnis</em>',
@@ -483,7 +529,12 @@ Object.assign(T18.de, {
   exp_refine_note:'Bald kannst du jedes Erlebnis mit unserem KI-Reisedesigner feinabstimmen.',
   exp_gmaps:'Route in Google Maps öffnen',
   exp_drive_est:'Geschätzte Fahrzeit an diesem Tag (ca.)',
-  exp_share:'Teilen', exp_print:'Drucken / PDF', exp_share_done:'Link kopiert!'
+  exp_share:'Teilen', exp_print:'Drucken / PDF', exp_share_done:'Link kopiert!',
+  gp_title:'Essen &amp; Übernachten entlang der Route', gp_cta:'Vorschläge anzeigen',
+  gp_eat:'Wo essen', gp_stay:'Wo übernachten', gp_open:'In Google Maps öffnen',
+  gp_loading:'Suche Orte in der Nähe…', gp_none:'Keine Orte hier gefunden.',
+  gp_err:'Vorschläge konnten nicht geladen werden — bitte erneut versuchen.',
+  gp_note:'Live-Vorschläge von Google — nach Beliebtheit, nahe der Basis jedes Tages.'
 });
 Object.assign(T18.fr, {
   exp_h1:'Composez votre <em>Expérience</em>',
@@ -498,7 +549,12 @@ Object.assign(T18.fr, {
   exp_refine_note:'Bientôt, affinez chaque expérience avec notre concepteur de voyages IA.',
   exp_gmaps:'Ouvrir l\'itinéraire dans Google Maps',
   exp_drive_est:'Conduite estimée dans la journée (approx.)',
-  exp_share:'Partager', exp_print:'Imprimer / PDF', exp_share_done:'Lien copié !'
+  exp_share:'Partager', exp_print:'Imprimer / PDF', exp_share_done:'Lien copié !',
+  gp_title:'Où manger et dormir le long de l\'itinéraire', gp_cta:'Voir les suggestions',
+  gp_eat:'Où manger', gp_stay:'Où dormir', gp_open:'Ouvrir dans Google Maps',
+  gp_loading:'Recherche de lieux à proximité…', gp_none:'Aucun lieu trouvé ici.',
+  gp_err:'Impossible de charger les suggestions — réessayez.',
+  gp_note:'Suggestions en direct de Google — par popularité, près de la base de chaque jour.'
 });
 
 /* ══ STATO ══ */
@@ -870,6 +926,102 @@ function renderPrintMap(e) {
   el.innerHTML = s + `</svg>`;
 }
 
+/* ══ DOVE MANGIARE / DORMIRE (Google Places, a richiesta) ══
+   Il blocco appare solo se c'è window.AW.placesKey. Le query partono al click
+   (niente consumo a ogni visita) e sono in cache per id-Esperienza. Carica lo
+   script Google Maps in modo pigro (solo al primo click). Per giorno cerca
+   ristoranti + alloggi vicino alla BASE del giorno (l'ultima tappa geografica,
+   dove verosimilmente si cena/pernotta). Nessun booking: link a Google Maps. */
+let gmapsPromise = null;
+function loadGoogleMaps() {
+  const key = (window.AW && window.AW.placesKey) || '';
+  if (!key) return Promise.reject(new Error('no key'));
+  if (gmapsPromise) return gmapsPromise;
+  gmapsPromise = new Promise((resolve, reject) => {
+    if (window.google && window.google.maps) return resolve(window.google);
+    const s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + key +
+      '&libraries=places&v=weekly&language=' + (typeof lang !== 'undefined' ? lang : 'en') + '&region=IT&loading=async';
+    s.async = true;
+    s.onload = () => resolve(window.google);
+    s.onerror = () => reject(new Error('load failed'));
+    document.head.appendChild(s);
+  });
+  return gmapsPromise;
+}
+/* ricerca "nearby" (New Places API) attorno a un punto [lat,lng] */
+async function placesNear(center, kind) {
+  const g = await loadGoogleMaps();
+  const { Place, SearchNearbyRankPreference } = await g.maps.importLibrary('places');
+  const { places } = await Place.searchNearby({
+    fields: ['displayName', 'location', 'rating', 'userRatingCount', 'photos', 'googleMapsURI', 'primaryTypeDisplayName'],
+    locationRestriction: { center: { lat: center[0], lng: center[1] }, radius: 6000 },
+    includedPrimaryTypes: kind === 'eat' ? ['restaurant'] : ['lodging'],
+    maxResultCount: kind === 'eat' ? 6 : 4,
+    rankPreference: SearchNearbyRankPreference.POPULARITY,
+    language: (typeof lang !== 'undefined' ? lang : 'en'), region: 'IT'
+  });
+  return places || [];
+}
+function placeCard(p) {
+  let img = '';
+  try { if (p.photos && p.photos.length) img = `<div class="gp-img" style="background-image:url('${p.photos[0].getURI({ maxWidth: 360, maxHeight: 220 })}')"></div>`; } catch (e) {}
+  const rating = p.rating ? `<span class="gp-star">★ ${p.rating}</span>${p.userRatingCount ? ` (${p.userRatingCount})` : ''}` : '';
+  const type = p.primaryTypeDisplayName ? `<span>${p.primaryTypeDisplayName}</span>` : '';
+  const uri = p.googleMapsURI || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.displayName || ''));
+  return `<a class="gp-card" href="${uri}" target="_blank" rel="noopener">${img}
+    <div class="gp-body"><div class="gp-nm">${p.displayName || ''}</div>
+    <div class="gp-meta">${rating}${rating && type ? ' · ' : ''}${type}</div>
+    <span class="gp-open">${T('gp_open')} ›</span></div></a>`;
+}
+const placesCache = {};
+let placesShownFor = null;   /* id dell'Esperienza il cui blocco è a schermo ora */
+/* prepara il blocco: header + bottone "Mostra suggerimenti" (a richiesta) */
+function renderPlaces(e) {
+  const wrap = document.getElementById('exp-places-wrap');
+  if (!wrap) return;
+  if (!(window.AW && window.AW.placesKey)) { wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+  placesShownFor = e.id;
+  wrap.innerHTML =
+    `<div class="gp-head"><h3>${T('gp_title')}</h3>` +
+    `<button type="button" class="gp-cta" id="gp-cta"><i class="ti ti-map-search" aria-hidden="true"></i>${T('gp_cta')}</button></div>` +
+    `<p class="gp-note">${T('gp_note')}</p><div id="gp-body"></div>`;
+  if (placesCache[e.id]) { document.getElementById('gp-body').innerHTML = placesCache[e.id]; hideCta(); return; }
+  document.getElementById('gp-cta').addEventListener('click', () => loadPlaces(e));
+}
+function hideCta() { const c = document.getElementById('gp-cta'); if (c) c.style.display = 'none'; }
+/* scrive nel gp-body CORRENTE, solo se il blocco mostra ancora questa Esperienza
+   (un ri-render durante il caricamento async può aver sostituito il nodo) */
+function gpWrite(id, htmlStr, hide) {
+  if (placesShownFor !== id) return;
+  const b = document.getElementById('gp-body');
+  if (b) b.innerHTML = htmlStr;
+  if (hide) hideCta();
+}
+async function loadPlaces(e) {
+  const btn = document.getElementById('gp-cta');
+  if (btn) btn.disabled = true;
+  gpWrite(e.id, `<p class="gp-loading">⏳ ${T('gp_loading')}</p>`, false);
+  try {
+    /* base di ogni giorno = ultima tappa geografica del giorno */
+    const bases = [];
+    e.plan.forEach(d => { let last = null; d.items.forEach(it => { const c = stopCoords(it.name); if (c) last = c; }); if (last) bases.push({ day: d.day, coord: last }); });
+    let html = '';
+    for (const b of bases) {
+      const [eat, stay] = await Promise.all([placesNear(b.coord, 'eat'), placesNear(b.coord, 'stay')]);
+      html += `<div class="gp-day"><h4>${T('exp_day_word')} ${b.day}</h4>` +
+        `<div class="gp-sub">🍽️ ${T('gp_eat')}</div><div class="gp-row">${eat.length ? eat.map(placeCard).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div>` +
+        `<div class="gp-sub">🛏️ ${T('gp_stay')}</div><div class="gp-row">${stay.length ? stay.map(placeCard).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div></div>`;
+    }
+    placesCache[e.id] = html;   /* cache per non ri-chiamare l'API */
+    gpWrite(e.id, html, true);
+  } catch (err) {
+    gpWrite(e.id, `<p class="gp-err">${T('gp_err')}</p>`, false);
+    const b2 = document.getElementById('gp-cta'); if (b2) b2.disabled = false;
+  }
+}
+
 /* mostra un'Esperienza come risultato principale + mappa + alternative pertinenti */
 function showExperience(e, looseNote) {
   document.getElementById('exp-result').innerHTML =
@@ -877,6 +1029,7 @@ function showExperience(e, looseNote) {
   document.getElementById('exp-alts').innerHTML = altsHTML(currentAlts(e.id));
   renderMap(e);
   renderPrintMap(e);
+  renderPlaces(e);
 }
 
 /* risultato guidato dai filtri (matcher) */
