@@ -941,18 +941,25 @@ function loadGoogleMaps() {
     if (window.google && window.google.maps) return resolve(window.google);
     const s = document.createElement('script');
     s.src = 'https://maps.googleapis.com/maps/api/js?key=' + key +
-      '&libraries=places&v=weekly&language=' + (typeof lang !== 'undefined' ? lang : 'en') + '&region=IT&loading=async';
+      '&libraries=places&v=weekly&language=' + (typeof lang !== 'undefined' ? lang : 'en') + '&region=IT';
     s.async = true;
     s.onload = () => resolve(window.google);
-    s.onerror = () => reject(new Error('load failed'));
+    s.onerror = () => reject(new Error('Impossibile caricare Google Maps (chiave o rete)'));
     document.head.appendChild(s);
   });
   return gmapsPromise;
 }
+/* libreria Places: col caricamento classico (libraries=places) sta già su
+   google.maps.places; importLibrary esiste solo col bootstrap loader → fallback */
+async function placesLib(g) {
+  if (g.maps.places && g.maps.places.Place) return g.maps.places;
+  if (typeof g.maps.importLibrary === 'function') { await g.maps.importLibrary('places'); return g.maps.places; }
+  throw new Error('Places (New) non disponibile: verifica che "Places API (New)" sia abilitata');
+}
 /* ricerca "nearby" (New Places API) attorno a un punto [lat,lng] */
 async function placesNear(center, kind) {
   const g = await loadGoogleMaps();
-  const { Place, SearchNearbyRankPreference } = await g.maps.importLibrary('places');
+  const { Place, SearchNearbyRankPreference } = await placesLib(g);
   const { places } = await Place.searchNearby({
     fields: ['displayName', 'location', 'rating', 'userRatingCount', 'photos', 'googleMapsURI', 'primaryTypeDisplayName'],
     locationRestriction: { center: { lat: center[0], lng: center[1] }, radius: 6000 },
