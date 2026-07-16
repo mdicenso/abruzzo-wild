@@ -271,23 +271,52 @@
 }
 .exp-toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-/* mappa vettoriale per la stampa: nascosta a schermo, mostrata solo in stampa */
-.exp-map-print { display: none; }
+/* documento di stampa (pagina-mappa + pagine-giorno): nascosto a schermo */
+.exp-map-print, .exp-print-days { display: none; }
 
-/* Stampa / PDF: itinerario + mappa vettoriale, header leggibile su bianco */
+/* contatti del posto aggiunto (schermo) */
+.exp-contact { display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin-top: .4rem; font-family: var(--sans); font-size: .78rem; }
+.exp-contact a { color: var(--olive); text-decoration: none; }
+.exp-contact a:hover { text-decoration: underline; }
+.exp-contact .exp-addr { color: var(--ink-soft); }
+.exp-contact i { font-size: 13px; vertical-align: -1px; }
+
+/* ══ STAMPA / PDF ══ documento dedicato: pagina-mappa centrata + un giorno per pagina;
+   i numeri delle tappe sulle pagine coincidono con i pin numerati sulla mappa. */
 @media print {
-  .nav, .builder, .section-header, .exp-actions, #exp-map-wrap, .exp-alts,
-  .exp-refine, .nl-strip, .site-footer, .exp-toast, .hero-inner, #exp-places-wrap { display: none !important; }
-  body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .exp-head { min-height: auto; padding: 0 0 .6rem; color: var(--ink); page-break-inside: avoid; }
-  .exp-head-bg, .exp-head-veil { display: none !important; }
-  .exp-head-inner h2 { color: var(--ink); font-size: 1.5rem; }
-  .exp-theme, .exp-intro { color: var(--ink-mid); }
-  .exp-badge { background: #eee !important; color: #333 !important; backdrop-filter: none; }
-  .exp-map-print { display: block !important; margin: .4rem 0 1.4rem; page-break-inside: avoid; }
-  .exp-map-print svg, .exp-map-print img { width: 100%; max-width: 560px; height: auto; border: 1px solid #ddd; border-radius: 8px; }
-  .exp-day { page-break-inside: avoid; }
-  .exp-stop { border-color: #ccc; }
+  .nav, .builder, .section-header, .exp-result, #exp-map-wrap, .exp-alts,
+  .exp-refine, .nl-strip, .site-footer, .exp-toast, .hero, .hero-inner, #exp-places-wrap { display: none !important; }
+  body { background: #fff; margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { margin: 14mm; }
+
+  /* PAGINA 1: mappa più larga possibile, centrata sul foglio */
+  .exp-map-print { display: flex !important; flex-direction: column; justify-content: center; align-items: center;
+    min-height: 250mm; text-align: center; page-break-after: always; }
+  .pd-cover { margin-bottom: 8mm; }
+  .pd-title { font-family: var(--serif); font-size: 22pt; color: var(--olive-dk); margin: 0 0 2mm; }
+  .pd-cover-meta { font-family: var(--sans); font-size: 11pt; color: var(--ink-mid); }
+  .pd-map { width: 100%; }
+  .pd-map img, .pd-map svg { width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px; }
+
+  /* PAGINE GIORNO: una per foglio */
+  .exp-print-days { display: block !important; }
+  .pd-day-page { page-break-after: always; }
+  .pd-day-page:last-child { page-break-after: auto; }
+  .pd-day-h { display: flex; align-items: baseline; gap: 4mm; flex-wrap: wrap;
+    border-bottom: 2px solid var(--olive); padding-bottom: 2mm; margin: 0 0 5mm;
+    font-family: var(--serif); font-size: 17pt; color: var(--olive-dk); }
+  .pd-drive { font-family: var(--sans); font-size: 10pt; color: var(--ink-mid); font-weight: normal; }
+  .pd-list { list-style: none; margin: 0; padding: 0; }
+  .pd-stop { display: flex; gap: 4mm; align-items: flex-start; padding: 3mm 0; border-bottom: 1px solid #eee; page-break-inside: avoid; }
+  .pd-num { flex: 0 0 auto; width: 7mm; height: 7mm; border-radius: 50%; color: #fff;
+    font-family: var(--sans); font-size: 10pt; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .pd-num-empty { background: transparent !important; color: #bbb; }
+  .pd-stop-b { flex: 1; }
+  .pd-slot { font-family: var(--sans); font-size: 8.5pt; text-transform: uppercase; letter-spacing: .04em; color: var(--olive); }
+  .pd-name { font-family: var(--sans); font-size: 12pt; font-weight: 600; color: var(--ink); margin-top: .3mm; }
+  .pd-stop-added .pd-name { color: var(--olive-dk); }
+  .pd-note { font-family: var(--sans); font-size: 10pt; color: var(--ink-mid); margin-top: .6mm; }
+  .pd-contact { font-family: var(--sans); font-size: 10pt; color: #222; margin-top: 1mm; font-weight: 500; }
 }
 
 @media(max-width:600px){
@@ -415,8 +444,9 @@
   <!-- Dove mangiare/dormire (Google Places, a richiesta) — popolato da renderPlaces() -->
   <div class="exp-places" id="exp-places-wrap" style="display:none"></div>
 
-  <!-- Mappa vettoriale per la STAMPA (SVG, nessuna tile: stampa sempre) -->
+  <!-- DOCUMENTO DI STAMPA / PDF (visibile solo in stampa): pagina mappa + un giorno per pagina -->
   <div id="exp-map-print" class="exp-map-print" aria-hidden="true"></div>
+  <div id="exp-print-days" class="exp-print-days" aria-hidden="true"></div>
 
   <!-- Alternatives -->
   <div class="exp-alts fade-in" id="exp-alts"></div>
@@ -709,13 +739,18 @@ function experienceHTML(e) {
 /* tappa AGGIUNTA dall'utente: badge "Aggiunto da te" + link Google + bottone Rimuovi */
 function addedStopHTML(it, expId) {
   const img = it.img ? `<img class="exp-stop-img" src="${it.img}" alt="${it.name}" loading="lazy">` : '<div class="exp-stop-img exp-stop-noimg"></div>';
+  const meta = [it.type, it.rating ? '★ ' + it.rating : ''].filter(Boolean).join(' · ');
+  const contact = [];
+  if (it.phone) contact.push(`<a href="tel:${it.phone.replace(/\s/g, '')}"><i class="ti ti-phone" aria-hidden="true"></i> ${it.phone}</a>`);
+  if (it.address) contact.push(`<span class="exp-addr"><i class="ti ti-map-pin" aria-hidden="true"></i> ${it.address}</span>`);
   return `
     <div class="exp-stop exp-stop-added">
       ${img}
       <div class="exp-stop-body">
         <span class="exp-slot exp-slot-added"><i class="ti ${it.icon}" aria-hidden="true"></i> ${T('gp_added')}</span>
         <h5>${it.name}</h5>
-        <p>${it.note || ''}</p>
+        ${meta ? `<p>${meta}</p>` : ''}
+        ${contact.length ? `<div class="exp-contact">${contact.join('')}</div>` : ''}
         <div class="exp-added-acts">
           <a href="${it.href}" target="_blank" rel="noopener">${T('gp_open')} ›</a>
           <button type="button" class="exp-remove" onclick="removeAdd('${expId}','${it.addId}')"><i class="ti ti-x" aria-hidden="true"></i> ${T('gp_remove')}</button>
@@ -932,7 +967,14 @@ function staticMapUrl(e, routed) {
   });
   let n = 0, markers = '';
   pts.forEach(p => { n++; markers += '&marker=lonlat:' + p.coord[1] + ',' + p.coord[0] + ';color:' + enc(DAY_COLORS[(p.day-1)%DAY_COLORS.length]) + ';size:medium;text:' + n + ';textsize:small'; });
-  return 'https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=640&height=440&area=' + area + geom + markers + '&apiKey=' + key;
+  /* immagine grande: in stampa la mappa deve essere la più larga possibile (CSS width:100%) */
+  return 'https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=1000&height=720&area=' + area + geom + markers + '&apiKey=' + key;
+}
+/* intestazione della pagina-mappa in stampa: titolo + area + durata + km totali */
+function printCover(e) {
+  const drive = computeDrive(e);
+  return `<div class="pd-cover"><h1 class="pd-title">${L(e.title)}</h1>` +
+    `<div class="pd-cover-meta">${L(e.area)} · ${e.days} ${T('exp_days_word')} · ≈ ${drive.totalKm} km</div></div>`;
 }
 
 /* mappa per la stampa: se c'è la chiave → mappa STRADE reale (Geoapify), altrimenti
@@ -942,7 +984,7 @@ function renderPrintMap(e) {
   if (!el) return;
   const sm = staticMapUrl(e);
   if (sm) {
-    el.innerHTML = '<img src="' + sm + '" alt="' + L(e.title) + '" loading="eager">';
+    el.innerHTML = printCover(e) + '<div class="pd-map"><img src="' + sm + '" alt="' + L(e.title) + '" loading="eager"></div>';
     el.dataset.exp = e.id;
     /* upgrade async: sostituisce le linee dritte con le strade reali appena pronte */
     routeAllDays(e).then(routed => {
@@ -967,7 +1009,7 @@ function renderPrintMap(e) {
   const TY = p => (oy + (p.y - minY) * sc).toFixed(1);
   const byDay = {}, order = [];
   P.forEach(p => { if (!byDay[p.day]) { byDay[p.day] = []; order.push(p.day); } byDay[p.day].push(p); });
-  let s = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg"><rect width="${W}" height="${H}" rx="10" fill="#f2ede4"/>`;
+  let s = printCover(e) + `<div class="pd-map"><svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg"><rect width="${W}" height="${H}" rx="10" fill="#f2ede4"/>`;
   for (let i = 1; i < order.length; i++) {
     const a = byDay[order[i-1]].slice(-1)[0], b = byDay[order[i]][0];
     s += `<line x1="${TX(a)}" y1="${TY(a)}" x2="${TX(b)}" y2="${TY(b)}" stroke="#b9b2a6" stroke-width="1.4" stroke-dasharray="3,6"/>`;
@@ -981,8 +1023,37 @@ function renderPrintMap(e) {
     s += `<circle cx="${TX(p)}" cy="${TY(p)}" r="11" fill="${col}" stroke="#fff" stroke-width="2"/>`
        + `<text x="${TX(p)}" y="${TY(p)}" fill="#fff" font-size="11" font-family="sans-serif" text-anchor="middle" dominant-baseline="central">${p.n}</text>`;
   });
-  el.innerHTML = s + `</svg>`;
+  el.innerHTML = s + `</svg></div>`;
 }
+
+/* DOCUMENTO GIORNI per la stampa: un <section> per giorno (una pagina ciascuno),
+   con le tappe numerate NELLO STESSO ordine/numero della mappa; sotto ogni giorno
+   i posti aggiunti dall'utente con telefono/rating/indirizzo. */
+function renderPrintDays(ef) {
+  const el = document.getElementById('exp-print-days'); if (!el) return;
+  const drive = computeDrive(ef);
+  let n = 0, html = '';
+  ef.plan.forEach(d => {
+    const dd = drive.days[d.day];
+    const chip = dd && dd.km > 0 ? `<span class="pd-drive"><i class="ti ti-car" aria-hidden="true"></i> ≈ ${dd.km} km · ${fmtDrive(dd.min)}</span>` : '';
+    let stops = '';
+    d.items.forEach(it => {
+      const c = itemCoord(it);
+      const num = c ? ++n : null;   /* stessa numerazione della mappa (solo tappe con coord) */
+      const numHtml = num != null ? `<span class="pd-num" style="background:${DAY_COLORS[(d.day-1)%DAY_COLORS.length]}">${num}</span>` : `<span class="pd-num pd-num-empty">·</span>`;
+      const slot = it.added ? T('gp_added') : T('exp_slot_' + it.slot);
+      const meta = it.added ? [it.type, it.rating ? '★ ' + it.rating : ''].filter(Boolean).join(' · ') : L(it.note);
+      const contact = it.added ? [it.phone ? '☎ ' + it.phone : '', it.address || ''].filter(Boolean).join('  ·  ') : '';
+      stops += `<li class="pd-stop${it.added ? ' pd-stop-added' : ''}">${numHtml}` +
+        `<div class="pd-stop-b"><div class="pd-slot">${slot}</div><div class="pd-name">${it.name}</div>` +
+        `${meta ? `<div class="pd-note">${meta}</div>` : ''}${contact ? `<div class="pd-contact">${contact}</div>` : ''}</div></li>`;
+    });
+    html += `<section class="pd-day-page"><h2 class="pd-day-h"><span class="pd-day-word">${T('exp_day_word')} ${d.day}</span>${chip}</h2><ol class="pd-list">${stops}</ol></section>`;
+  });
+  el.innerHTML = html;
+}
+/* orchestratore stampa: pagina-mappa + pagine-giorno (stessa Esperienza effettiva) */
+function renderPrint(ef) { renderPrintMap(ef); renderPrintDays(ef); }
 
 /* ══ DOVE MANGIARE / DORMIRE (Google Places, a richiesta) ══
    Il blocco appare solo se c'è window.AW.placesKey. Le query partono al click
@@ -1053,13 +1124,13 @@ const placeReg = {}; let regSeq = 0;
 function registerPlace(p, kind) {
   const id = 'r' + (++regSeq);
   placeReg[id] = { kind, name: p.displayName || '', coord: placeLatLng(p), uri: placeUri(p),
-    img: photoUri(p), rating: p.rating || null, type: p.primaryTypeDisplayName || '' };
+    img: photoUri(p), rating: p.rating || null, type: p.primaryTypeDisplayName || '', _place: p };
   return id;
 }
-/* un'aggiunta → item di piano (con coord esplicite) */
+/* un'aggiunta → item di piano (con coord esplicite + contatti per il PDF) */
 function addItem(a) {
   return { added: true, addId: a.addId, kind: a.kind, name: a.name, href: a.uri, img: a.img,
-    note: a.note || '', coord: a.coord,
+    rating: a.rating || null, type: a.type || '', phone: a.phone || '', address: a.address || '', coord: a.coord,
     slot: a.kind === 'eat' ? 'lunch' : 'evening', icon: a.kind === 'eat' ? 'ti-tools-kitchen-2' : 'ti-bed' };
 }
 /* Esperienza "effettiva" = base + aggiunte utente fuse nel piano (NON muta la base) */
@@ -1071,13 +1142,21 @@ function withAdds(e) {
     return extra.length ? { ...d, items: [...d.items, ...extra] } : d;
   }) };
 }
-function addToRoute(expId, day, regId) {
+async function addToRoute(expId, day, regId) {
   const rec = placeReg[regId]; if (!rec || !rec.coord) return;
   const list = userAdds[expId] = userAdds[expId] || [];
   if (list.some(a => a.day === day && a.name === rec.name)) { toast(T('gp_added')); return; }  /* niente doppioni */
+  /* recupera telefono + indirizzo SOLO per il posto aggiunto (per il PDF) → costo minimo */
+  let phone = '', address = '';
+  try {
+    if (rec._place && rec._place.fetchFields) {
+      await rec._place.fetchFields({ fields: ['nationalPhoneNumber', 'formattedAddress'] });
+      phone = rec._place.nationalPhoneNumber || '';
+      address = rec._place.formattedAddress || '';
+    }
+  } catch (e) {}
   list.push({ addId: 'a' + Date.now() + '_' + (++regSeq), day, kind: rec.kind, name: rec.name,
-    coord: rec.coord, uri: rec.uri, img: rec.img, rating: rec.rating,
-    note: rec.type + (rec.rating ? ' · ★ ' + rec.rating : '') });
+    coord: rec.coord, uri: rec.uri, img: rec.img, rating: rec.rating, type: rec.type, phone, address });
   saveAdds();
   const e = experiences.find(x => x.id === expId); if (e) showExperience(e, false);
   toast(T('gp_added'));
@@ -1201,7 +1280,7 @@ function showExperience(e, looseNote) {
     (looseNote ? `<p class="exp-match-note">${T('exp_match_loose')}</p>` : '') + experienceHTML(ef);
   document.getElementById('exp-alts').innerHTML = altsHTML(currentAlts(e.id));
   renderMap(ef);
-  renderPrintMap(ef);
+  renderPrint(ef);
   renderPlaces(e);
 }
 

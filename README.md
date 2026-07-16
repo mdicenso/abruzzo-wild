@@ -139,6 +139,15 @@ numerata nel percorso), tempi di guida e stampa le raccolgono da sole (refactor 
 + **Rimuovi**. Persistite per-Esperienza in **localStorage** (`aw_adds`); niente doppioni.
 Nota: le aggiunte sono **locali al browser**, non ancora nel link condivisibile (passo futuro).
 
+**PDF / Stampa.** «Stampa / PDF» genera un **documento dedicato** (non il mostra/nascondi dello
+schermo): **pagina 1** = titolo + mappa strade **larga e centrata** (Geoapify 1000×720 o SVG di
+riserva) con le tappe numerate; poi **un giorno per pagina** (`page-break`), con le tappe numerate
+**negli stessi numeri della mappa** e — sotto il rispettivo giorno — i **posti aggiunti** con
+**telefono, rating e indirizzo**. I contatti (telefono/indirizzo) si recuperano con
+`Place.fetchFields` **solo** per i posti aggiunti (costo minimo). Costruito da `renderPrint(ef)`
+= `renderPrintMap` (`#exp-map-print`) + `renderPrintDays` (`#exp-print-days`); la numerazione
+coincide perché entrambi iterano `ef.plan` nello stesso ordine contando le tappe con coordinate.
+
 ---
 
 ## Aggiornare i contenuti
