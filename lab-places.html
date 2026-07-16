@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Lab · Mangiare & Dormire (feed live) — Abruzzo Wild</title>
+<style>
+  :root { --ink:#2b2a26; --moss:#3d4a2e; --rose:#b5705a; --sand:#f2ede4; --line:#e2dbce; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:var(--ink); background:#faf7f1; }
+  header { background:var(--moss); color:#fff; padding:18px 20px; }
+  header h1 { margin:0 0 4px; font-size:1.15rem; }
+  header p { margin:0; opacity:.85; font-size:.85rem; }
+  .wrap { max-width:1100px; margin:0 auto; padding:18px 20px 60px; }
+  .presets { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0; }
+  .preset { border:1px solid var(--line); background:#fff; border-radius:20px; padding:8px 14px; cursor:pointer; font-size:.9rem; }
+  .preset.on { background:var(--moss); color:#fff; border-color:var(--moss); }
+  .stat { font-size:.85rem; color:#6a6459; margin:6px 0 18px; }
+  .stat b { color:var(--ink); }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media(max-width:720px){ .cols { grid-template-columns:1fr; } }
+  h2 { font-size:1rem; border-bottom:2px solid var(--line); padding-bottom:6px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin-bottom:10px; }
+  .card .nm { font-weight:600; }
+  .card .sub { font-size:.8rem; color:#6a6459; margin:2px 0 8px; }
+  .card .links { display:flex; flex-wrap:wrap; gap:8px; }
+  .card a { font-size:.82rem; text-decoration:none; border:1px solid var(--line); border-radius:8px; padding:4px 9px; color:var(--moss); }
+  .card a.gm { background:var(--rose); color:#fff; border-color:var(--rose); }
+  .miss { color:#b09; opacity:.5; }
+  .msg { padding:16px; background:#fff3ee; border:1px solid #f0cbbd; border-radius:10px; color:#8a3b23; }
+  .note { margin-top:26px; font-size:.85rem; color:#6a6459; background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .note b { color:var(--ink); }
+</style>
+</head>
+<body>
+<header>
+  <h1>🧪 Lab · Mangiare &amp; Dormire — feed live (OpenStreetMap)</h1>
+  <p>Pagina di prova, non indicizzata. Interroga OSM/Overpass dal vivo per capire la copertura reale. Nessuna chiave, nessun account.</p>
+</header>
+<div class="wrap">
+  <div class="presets" id="presets"></div>
+  <div class="stat" id="stat"></div>
+  <div id="out"></div>
+
+  <div class="note">
+    <b>Come leggerla.</b> Le icone 📞 / 🌐 dicono se il posto ha telefono/sito nel dato OSM: è il segnale di <b>quanto è completo</b>.
+    Il bottone <b>“Apri in Google Maps”</b> porta alla scheda Google (foto, orari, recensioni, indicazioni) — è già l’azionabilità
+    per il cliente, senza affiliazioni.<br><br>
+    <b>Cosa aggiungerebbe Google Places</b> (a pagamento, con chiave ristretta al dominio come Geoapify): più posti, <b>foto</b>,
+    <b>rating e n° recensioni</b>, orari di apertura. Si aggancerebbe con lo stesso identico schema di questa pagina.
+  </div>
+</div>
+<script>
+const AREAS = [
+  { id:'trabocchi', label:'Costa dei Trabocchi', bbox:[42.10,14.35,42.36,14.72] },
+  { id:'sagittario', label:'Scanno / Gole del Sagittario', bbox:[41.85,13.75,42.05,13.98] },
+  { id:'gransasso', label:'Gran Sasso / Campo Imperatore', bbox:[42.30,13.33,42.55,13.78] },
+  { id:'maiella', label:'Maiella / Caramanico', bbox:[42.05,13.98,42.22,14.20] },
+];
+const ENDPOINTS = [
+  'https://overpass-api.de/api/interpreter',
+  'https://overpass.kumi.systems/api/interpreter',
+  'https://overpass.private.coffee/api/interpreter',
+];
+const el = (id) => document.getElementById(id);
+
+function buildQuery(bbox) {
+  const b = bbox.join(',');
+  return `[out:json][timeout:30];(`
+    + `node["amenity"="restaurant"](${b});way["amenity"="restaurant"](${b});`
+    + `node["tourism"~"^(hotel|guest_house|bed_and_breakfast|apartment|chalet|agritourism|hostel)$"](${b});`
+    + `way["tourism"~"^(hotel|guest_house|bed_and_breakfast|apartment|chalet|agritourism|hostel)$"](${b});`
+    + `);out center tags 200;`;
+}
+
+async function overpass(bbox) {
+  const body = 'data=' + encodeURIComponent(buildQuery(bbox));
+  let lastErr = '';
+  for (const ep of ENDPOINTS) {
+    try {
+      const r = await fetch(ep, { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body });
+      if (!r.ok) { lastErr = 'HTTP ' + r.status + ' su ' + ep; continue; }
+      return await r.json();
+    } catch (e) { lastErr = e.message + ' (' + ep + ')'; }
+  }
+  throw new Error(lastErr || 'nessun endpoint raggiungibile');
+}
+
+function normalize(data, areaLabel) {
+  const eat = [], sleep = [];
+  (data.elements || []).forEach(e => {
+    const t = e.tags || {}; if (!t.name) return;
+    const rec = {
+      name: t.name, area: areaLabel,
+      sub: t.tourism || (t.amenity === 'restaurant' ? 'ristorante' : ''),
+      cuisine: t.cuisine || '', stars: t.stars || '',
+      phone: t.phone || t['contact:phone'] || '',
+      web: t.website || t['contact:website'] || '',
+      lat: e.lat || (e.center && e.center.lat), lon: e.lon || (e.center && e.center.lon),
+    };
+    (t.amenity === 'restaurant' ? eat : sleep).push(rec);
+  });
+  const score = x => (x.web?1:0) + (x.phone?1:0);
+  eat.sort((a,b)=>score(b)-score(a)); sleep.sort((a,b)=>score(b)-score(a));
+  return { eat, sleep };
+}
+
+function card(x) {
+  const gm = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(x.name + ' ' + x.area);
+  const links = [`<a class="gm" href="${gm}" target="_blank" rel="noopener">📍 Apri in Google Maps</a>`];
+  if (x.phone) links.push(`<a href="tel:${x.phone.replace(/\s/g,'')}">📞 ${x.phone}</a>`);
+  else links.push(`<span class="miss">📞 no tel.</span>`);
+  if (x.web) links.push(`<a href="${x.web}" target="_blank" rel="noopener">🌐 sito</a>`);
+  else links.push(`<span class="miss">🌐 no sito</span>`);
+  const sub = [x.sub, x.cuisine && '(' + x.cuisine + ')', x.stars && '★' + x.stars].filter(Boolean).join(' · ');
+  return `<div class="card"><div class="nm">${x.name}</div><div class="sub">${sub || '&nbsp;'}</div><div class="links">${links.join('')}</div></div>`;
+}
+
+function pct(arr, f) { return arr.length ? Math.round(100 * arr.filter(f).length / arr.length) : 0; }
+
+async function load(area) {
+  el('presets').querySelectorAll('.preset').forEach(p => p.classList.toggle('on', p.dataset.id === area.id));
+  el('stat').textContent = '';
+  el('out').innerHTML = '<div class="msg">⏳ Interrogo OpenStreetMap per «' + area.label + '»…</div>';
+  try {
+    const data = await overpass(area.bbox);
+    const { eat, sleep } = normalize(data, area.label);
+    el('stat').innerHTML = `<b>${eat.length}</b> ristoranti · <b>${sleep.length}</b> alloggi trovati.  `
+      + `Con telefono: ristoranti ${pct(eat,x=>x.phone)}% / alloggi ${pct(sleep,x=>x.phone)}%.  `
+      + `Con sito: ristoranti ${pct(eat,x=>x.web)}% / alloggi ${pct(sleep,x=>x.web)}%.`;
+    el('out').innerHTML = '<div class="cols">'
+      + '<div><h2>🍽️ Mangiare (' + eat.length + ')</h2>' + (eat.slice(0,25).map(card).join('') || '<p>Nessuno.</p>') + '</div>'
+      + '<div><h2>🛏️ Dormire (' + sleep.length + ')</h2>' + (sleep.slice(0,25).map(card).join('') || '<p>Nessuno.</p>') + '</div>'
+      + '</div>';
+  } catch (e) {
+    el('out').innerHTML = '<div class="msg">❌ Non sono riuscito a raggiungere OpenStreetMap: ' + e.message
+      + '<br><br>Se sei sulla rete aziendale (che filtra questi domini) prova da <b>telefono/rete diversa</b>: il feed è pubblico e funziona.</div>';
+  }
+}
+
+// bootstrap
+el('presets').innerHTML = AREAS.map(a => `<button class="preset" data-id="${a.id}">${a.label}</button>`).join('');
+AREAS.forEach(a => el('presets').querySelector(`[data-id="${a.id}"]`).addEventListener('click', () => load(a)));
+load(AREAS[0]);
+</script>
+</body>
+</html>
