@@ -125,6 +125,11 @@ id-Esperienza. Chiave client `window.AW.placesKey` (in `data/config.js`), da **r
 dominio** + alle sole due API (Places New + Maps JS) nel pannello Google Cloud, con billing
 attivo. Se la chiave è vuota, il blocco non appare. Robusto ai ri-render durante il caricamento
 async (scrive nel `gp-body` corrente solo se il blocco mostra ancora quella Esperienza).
+I suggerimenti compaiono **anche come pin sulla mappa** del percorso (layer separato 🍽️/🛏️,
+non toccato dal re-render della rotta), sono **curati** (rating ≥ 4.0, con fallback se svuota)
+e **de-duplicati** tra giorni vicini (stesso place-id/nome mostrato una volta sola).
+Caricamento libreria: `google.maps.places` diretto (`?libraries=places`), con fallback a
+`importLibrary` se presente — **non** usare solo `importLibrary` (assente col loader classico).
 
 ---
 

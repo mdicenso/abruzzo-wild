@@ -175,6 +175,15 @@
   color: #fff; font-family: var(--sans); font-size: .8rem; font-weight: 600;
   border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.35);
 }
+/* pin mangiare/dormire (Google Places) sulla mappa del percorso */
+.gp-map-pin span {
+  display: flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  background: #fff; border: 2px solid; box-shadow: 0 1px 4px rgba(0,0,0,.3); font-size: 12px;
+}
+.gp-map-pin span b { transform: rotate(45deg); }
+.gp-map-pin .gp-mp-eat { border-color: var(--terracotta, #b5705a); }
+.gp-map-pin .gp-mp-stay { border-color: var(--olive, #4a5a2b); }
 .exp-gmaps {
   display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem;
   padding: .65rem 1.3rem; border-radius: 999px;
@@ -808,6 +817,7 @@ function renderMap(e) {
     expLayer = LEAFLET.layerGroup().addTo(expMap);
   }
   expLayer.clearLayers();
+  if (placesLayer) placesLayer.clearLayers();   /* via i pin mangiare/dormire del percorso precedente */
 
   const latlngs = pts.map(p => p.coord);
   /* rotta a GRAPPOLI: una linea piena per ogni giorno (nel suo colore) + trasferimento
@@ -970,17 +980,53 @@ async function placesNear(center, kind) {
   });
   return places || [];
 }
+/* link alla scheda Google del posto (o ricerca per nome se manca l'URI) */
+function placeUri(p) { return p.googleMapsURI || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.displayName || '')); }
+/* coordinate [lat,lng] del posto (place.location è LatLng con metodi, o literal) */
+function placeLatLng(p) {
+  const l = p.location; if (!l) return null;
+  const la = typeof l.lat === 'function' ? l.lat() : l.lat, ln = typeof l.lng === 'function' ? l.lng() : l.lng;
+  return (la == null || ln == null) ? null : [la, ln];
+}
 function placeCard(p) {
   let img = '';
   try { if (p.photos && p.photos.length) img = `<div class="gp-img" style="background-image:url('${p.photos[0].getURI({ maxWidth: 360, maxHeight: 220 })}')"></div>`; } catch (e) {}
   const rating = p.rating ? `<span class="gp-star">★ ${p.rating}</span>${p.userRatingCount ? ` (${p.userRatingCount})` : ''}` : '';
   const type = p.primaryTypeDisplayName ? `<span>${p.primaryTypeDisplayName}</span>` : '';
-  const uri = p.googleMapsURI || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.displayName || ''));
-  return `<a class="gp-card" href="${uri}" target="_blank" rel="noopener">${img}
+  return `<a class="gp-card" href="${placeUri(p)}" target="_blank" rel="noopener">${img}
     <div class="gp-body"><div class="gp-nm">${p.displayName || ''}</div>
     <div class="gp-meta">${rating}${rating && type ? ' · ' : ''}${type}</div>
     <span class="gp-open">${T('gp_open')} ›</span></div></a>`;
 }
+
+/* ── CURA QUALITÀ + DEDUP ──
+   tiene i posti con rating ≥ soglia (se ne restano) e scarta i doppioni già
+   visti in giorni vicini (stesso place-id/nome). `seen` è condiviso sull'Esperienza. */
+const MIN_RATING = 4.0;
+function curate(list, seen) {
+  let good = list.filter(p => (p.rating || 0) >= MIN_RATING);
+  if (!good.length) good = list.slice();                 /* fallback: non svuotare del tutto */
+  return good.filter(p => { const id = p.id || p.displayName || ''; if (seen.has(id)) return false; seen.add(id); return true; });
+}
+
+/* ── PIN MANGIARE/DORMIRE SULLA MAPPA ── (layer separato: non lo tocca il re-render rotta) */
+let placesLayer = null;
+function placeMarkerIcon(kind) {
+  return LEAFLET.divIcon({ className: 'gp-map-pin',
+    html: `<span class="gp-mp-${kind}"><b>${kind === 'eat' ? '🍽️' : '🛏️'}</b></span>`,
+    iconSize: [24, 24], iconAnchor: [12, 22] });
+}
+function addPlaceMarkers(list) {
+  if (typeof LEAFLET === 'undefined' || !expMap) return;
+  if (!placesLayer) placesLayer = LEAFLET.layerGroup().addTo(expMap);
+  placesLayer.clearLayers();
+  list.forEach(p => {
+    if (!p.coord) return;
+    const m = LEAFLET.marker(p.coord, { icon: placeMarkerIcon(p.kind) }).addTo(placesLayer);
+    m.bindPopup(`<strong>${p.name}</strong>${p.rating ? `<br>★ ${p.rating}` : ''}<br><a href="${p.uri}" target="_blank" rel="noopener">${T('gp_open')}</a>`);
+  });
+}
+
 const placesCache = {};
 let placesShownFor = null;   /* id dell'Esperienza il cui blocco è a schermo ora */
 /* prepara il blocco: header + bottone "Mostra suggerimenti" (a richiesta) */
@@ -994,7 +1040,7 @@ function renderPlaces(e) {
     `<div class="gp-head"><h3>${T('gp_title')}</h3>` +
     `<button type="button" class="gp-cta" id="gp-cta"><i class="ti ti-map-search" aria-hidden="true"></i>${T('gp_cta')}</button></div>` +
     `<p class="gp-note">${T('gp_note')}</p><div id="gp-body"></div>`;
-  if (placesCache[e.id]) { document.getElementById('gp-body').innerHTML = placesCache[e.id]; hideCta(); return; }
+  if (placesCache[e.id]) { document.getElementById('gp-body').innerHTML = placesCache[e.id].html; hideCta(); addPlaceMarkers(placesCache[e.id].markers); return; }
   document.getElementById('gp-cta').addEventListener('click', () => loadPlaces(e));
 }
 function hideCta() { const c = document.getElementById('gp-cta'); if (c) c.style.display = 'none'; }
@@ -1014,12 +1060,17 @@ async function loadPlaces(e) {
   const bases = [];
   e.plan.forEach(d => { let last = null; d.items.forEach(it => { const c = stopCoords(it.name); if (c) last = c; }); if (last) bases.push({ day: d.day, coord: last }); });
   let html = '', firstErr = null, anyResult = false;
+  const seen = new Set(), markers = [];   /* dedup condiviso + pin per la mappa */
   /* le due query (mangiare/dormire) sono INDIPENDENTI: se una fallisce, l'altra si vede */
   for (const b of bases) {
     const [eatR, stayR] = await Promise.allSettled([placesNear(b.coord, 'eat'), placesNear(b.coord, 'stay')]);
-    const eat = eatR.status === 'fulfilled' ? eatR.value : (firstErr = firstErr || eatR.reason, []);
-    const stay = stayR.status === 'fulfilled' ? stayR.value : (firstErr = firstErr || stayR.reason, []);
+    const eatRaw = eatR.status === 'fulfilled' ? eatR.value : (firstErr = firstErr || eatR.reason, []);
+    const stayRaw = stayR.status === 'fulfilled' ? stayR.value : (firstErr = firstErr || stayR.reason, []);
+    const eat = curate(eatRaw, seen), stay = curate(stayRaw, seen);   /* rating minimo + no doppioni */
     if (eat.length || stay.length) anyResult = true;
+    [['eat', eat], ['stay', stay]].forEach(([kind, arr]) => arr.forEach(p => {
+      const c = placeLatLng(p); if (c) markers.push({ coord: c, kind, name: p.displayName, rating: p.rating, uri: placeUri(p) });
+    }));
     html += `<div class="gp-day"><h4>${T('exp_day_word')} ${b.day}</h4>` +
       `<div class="gp-sub">🍽️ ${T('gp_eat')}</div><div class="gp-row">${eat.length ? eat.map(placeCard).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div>` +
       `<div class="gp-sub">🛏️ ${T('gp_stay')}</div><div class="gp-row">${stay.length ? stay.map(placeCard).join('') : `<p class="gp-none">${T('gp_none')}</p>`}</div></div>`;
@@ -1032,8 +1083,9 @@ async function loadPlaces(e) {
     if (btn) btn.disabled = false;
     return;
   }
-  placesCache[e.id] = html;   /* cache per non ri-chiamare l'API */
+  placesCache[e.id] = { html, markers };   /* cache (html + pin) per non ri-chiamare l'API */
   gpWrite(e.id, html, true);
+  addPlaceMarkers(markers);                /* posti anche sulla mappa del percorso */
 }
 
 /* mostra un'Esperienza come risultato principale + mappa + alternative pertinenti */
