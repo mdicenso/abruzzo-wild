@@ -306,17 +306,21 @@
     border-bottom: 2px solid var(--olive); padding-bottom: 2mm; margin: 0 0 5mm;
     font-family: var(--serif); font-size: 17pt; color: var(--olive-dk); }
   .pd-drive { font-family: var(--sans); font-size: 10pt; color: var(--ink-mid); font-weight: normal; }
-  .pd-list { list-style: none; margin: 0; padding: 0; }
-  .pd-stop { display: flex; gap: 4mm; align-items: flex-start; padding: 3mm 0; border-bottom: 1px solid #eee; page-break-inside: avoid; }
-  .pd-num { flex: 0 0 auto; width: 7mm; height: 7mm; border-radius: 50%; color: #fff;
+  /* card/box: numero + foto + testo (attività e posti mangiare/dormire) */
+  .pd-cards { display: flex; flex-direction: column; gap: 4mm; }
+  .pd-card { display: flex; align-items: stretch; gap: 3mm; border: 1px solid #d8d3c6; border-radius: 3mm;
+    padding: 3mm; page-break-inside: avoid; }
+  .pd-card-added { border: 1.4px solid var(--olive); background: #f5f8ef; }
+  .pd-num { flex: 0 0 auto; width: 7mm; height: 7mm; border-radius: 50%; color: #fff; align-self: center;
     font-family: var(--sans); font-size: 10pt; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-  .pd-num-empty { background: transparent !important; color: #bbb; }
-  .pd-stop-b { flex: 1; }
+  .pd-card-img { flex: 0 0 auto; width: 32mm; height: 24mm; object-fit: cover; border-radius: 2mm; background: #eee; }
+  .pd-card-noimg { background: #eef0e8; }
+  .pd-card-b { flex: 1; display: flex; flex-direction: column; justify-content: center; }
   .pd-slot { font-family: var(--sans); font-size: 8.5pt; text-transform: uppercase; letter-spacing: .04em; color: var(--olive); }
-  .pd-name { font-family: var(--sans); font-size: 12pt; font-weight: 600; color: var(--ink); margin-top: .3mm; }
-  .pd-stop-added .pd-name { color: var(--olive-dk); }
-  .pd-note { font-family: var(--sans); font-size: 10pt; color: var(--ink-mid); margin-top: .6mm; }
-  .pd-contact { font-family: var(--sans); font-size: 10pt; color: #222; margin-top: 1mm; font-weight: 500; }
+  .pd-name { font-family: var(--sans); font-size: 12.5pt; font-weight: 700; color: var(--ink); margin: .6mm 0; }
+  .pd-card-added .pd-name { color: var(--olive-dk); }
+  .pd-note { font-family: var(--sans); font-size: 9.5pt; color: var(--ink-mid); }
+  .pd-contact { font-family: var(--sans); font-size: 10pt; color: #222; margin-top: 1mm; font-weight: 600; }
 }
 
 @media(max-width:600px){
@@ -1026,9 +1030,9 @@ function renderPrintMap(e) {
   el.innerHTML = s + `</svg></div>`;
 }
 
-/* DOCUMENTO GIORNI per la stampa: un <section> per giorno (una pagina ciascuno),
-   con le tappe numerate NELLO STESSO ordine/numero della mappa; sotto ogni giorno
-   i posti aggiunti dall'utente con telefono/rating/indirizzo. */
+/* DOCUMENTO GIORNI per la stampa: un <section> per giorno (una pagina ciascuno).
+   Ogni giorno mostra le ATTIVITÀ da fare + i posti aggiunti dove mangiare/dormire,
+   come CARD con foto; le tappe sono numerate NELLO STESSO numero della mappa. */
 function renderPrintDays(ef) {
   const el = document.getElementById('exp-print-days'); if (!el) return;
   const drive = computeDrive(ef);
@@ -1036,19 +1040,21 @@ function renderPrintDays(ef) {
   ef.plan.forEach(d => {
     const dd = drive.days[d.day];
     const chip = dd && dd.km > 0 ? `<span class="pd-drive"><i class="ti ti-car" aria-hidden="true"></i> ≈ ${dd.km} km · ${fmtDrive(dd.min)}</span>` : '';
-    let stops = '';
+    let cards = '';
     d.items.forEach(it => {
       const c = itemCoord(it);
       const num = c ? ++n : null;   /* stessa numerazione della mappa (solo tappe con coord) */
-      const numHtml = num != null ? `<span class="pd-num" style="background:${DAY_COLORS[(d.day-1)%DAY_COLORS.length]}">${num}</span>` : `<span class="pd-num pd-num-empty">·</span>`;
+      const numHtml = num != null ? `<span class="pd-num" style="background:${DAY_COLORS[(d.day-1)%DAY_COLORS.length]}">${num}</span>` : '';
+      const img = it.img ? `<img class="pd-card-img" src="${it.img}" alt="">` : '<div class="pd-card-img pd-card-noimg"></div>';
       const slot = it.added ? T('gp_added') : T('exp_slot_' + it.slot);
-      const meta = it.added ? [it.type, it.rating ? '★ ' + it.rating : ''].filter(Boolean).join(' · ') : L(it.note);
+      const desc = it.added ? [it.type, it.rating ? '★ ' + it.rating : ''].filter(Boolean).join(' · ') : L(it.note);
       const contact = it.added ? [it.phone ? '☎ ' + it.phone : '', it.address || ''].filter(Boolean).join('  ·  ') : '';
-      stops += `<li class="pd-stop${it.added ? ' pd-stop-added' : ''}">${numHtml}` +
-        `<div class="pd-stop-b"><div class="pd-slot">${slot}</div><div class="pd-name">${it.name}</div>` +
-        `${meta ? `<div class="pd-note">${meta}</div>` : ''}${contact ? `<div class="pd-contact">${contact}</div>` : ''}</div></li>`;
+      cards += `<div class="pd-card${it.added ? ' pd-card-added' : ''}">${numHtml}${img}` +
+        `<div class="pd-card-b"><div class="pd-slot"><i class="ti ${it.icon}" aria-hidden="true"></i> ${slot}</div>` +
+        `<div class="pd-name">${it.name}</div>${desc ? `<div class="pd-note">${desc}</div>` : ''}` +
+        `${contact ? `<div class="pd-contact">${contact}</div>` : ''}</div></div>`;
     });
-    html += `<section class="pd-day-page"><h2 class="pd-day-h"><span class="pd-day-word">${T('exp_day_word')} ${d.day}</span>${chip}</h2><ol class="pd-list">${stops}</ol></section>`;
+    html += `<section class="pd-day-page"><h2 class="pd-day-h"><span class="pd-day-word">${T('exp_day_word')} ${d.day}</span>${chip}</h2><div class="pd-cards">${cards}</div></section>`;
   });
   el.innerHTML = html;
 }
