@@ -16,7 +16,7 @@ window.AW.moods = [
       it:"Per chi ha sete di natura pura, quota e libertà. Vette, parchi nazionali e fauna selvatica che ti resteranno dentro per sempre.",
       de:"Für alle, die sich nach unberührter Natur, Höhe und Freiheit sehnen. Gipfel, Nationalparks und Wildtiere, die für immer in Erinnerung bleiben.",
       fr:"Pour ceux qui ont soif de nature brute, d'altitude et de liberté. Sommets, parcs nationaux et faune sauvage qui vous marqueront à jamais."},
-    img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
+    img:'img/corno-grande-gran-sasso.jpg',
     trails:[
       { name:"Corno Grande Summit", detail:{en:"2,912m · Hard · 12 km",it:"2.912 m · Difficile · 12 km",de:"2.912 m · Schwer · 12 km",fr:"2 912 m · Difficile · 12 km"}, href:"hiking.html", img:"img/corno-grande-gran-sasso.jpg" },
       { name:"Monte Amaro",         detail:{en:"2,793m · Hard · 18 km",it:"2.793 m · Difficile · 18 km",de:"2.793 m · Schwer · 18 km",fr:"2 793 m · Difficile · 18 km"}, href:"hiking.html", img:"img/maiella-monte-amaro.jpg" },
@@ -41,7 +41,7 @@ window.AW.moods = [
       it:"Il cibo è l'anima dell'Abruzzo. Dagli arrosticini al tartufo, dallo zafferano al Montepulciano — qui ogni pasto è una storia.",
       de:"Essen ist die Seele der Abruzzen. Von Arrosticini bis Trüffel, von Safran bis Montepulciano — jede Mahlzeit erzählt eine Geschichte.",
       fr:"La cuisine est l'âme de l'Abruzzo. Des arrosticini à la truffe, du safran au Montepulciano — ici, chaque repas est une histoire."},
-    img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+    img:'img/arrosticini.jpg',
     trails:[
       { name:"Gole del Sagittario",  detail:{en:"Easy · 7 km · Loop",it:"Facile · 7 km · Anello",de:"Leicht · 7 km · Rundweg",fr:"Facile · 7 km · Boucle"}, href:"hiking.html", img:"img/gole-del-sagittario.jpg" },
       { name:"Lago di Scanno",       detail:{en:"Easy · 5 km · Loop",it:"Facile · 5 km · Anello",de:"Leicht · 5 km · Rundweg",fr:"Facile · 5 km · Boucle"}, href:"hiking.html", img:"img/lago-di-scanno.jpg" }
@@ -65,7 +65,7 @@ window.AW.moods = [
       it:"Borghi medievali, eremi rupestri, castelli antichi. La storia dell'Abruzzo è scritta nella pietra e nel silenzio — quasi nessun altro turista.",
       de:"Mittelalterliche Dörfer, Einsiedlerhöhlen, alte Burgen. Die Geschichte der Abruzzen steht in Stein und Stille geschrieben — fast keine anderen Touristen.",
       fr:"Bourgs médiévaux, grottes d'ermites, châteaux anciens. L'histoire de l'Abruzzo est écrite dans la pierre et le silence — presque aucun autre touriste."},
-    img:'https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=800&q=80',
+    img:'img/rocca-calascio.jpg',
     trails:[
       { name:"Eremo di San Bartolomeo", detail:{en:"Moderate · 6 km",it:"Medio · 6 km",de:"Mittel · 6 km",fr:"Modéré · 6 km"}, href:"hiking.html", img:"img/eremo-san-bartolomeo.jpg" },
       { name:"Rocca Calascio Trail",    detail:{en:"Easy · 3 km",it:"Facile · 3 km",de:"Leicht · 3 km",fr:"Facile · 3 km"},     href:"hiking.html", img:"img/rocca-calascio.jpg" }
@@ -90,7 +90,7 @@ window.AW.moods = [
       it:"Dalla ciclabile adriatica pianeggiante alle salite epiche in montagna. L'Abruzzo è una delle migliori regioni italiane per il ciclismo e il turismo attivo.",
       de:"Von der flachen Adria-Radroute bis zu epischen Bergauffahrten. Die Abruzzen sind eine der besten Rad- und Aktivregionen Italiens.",
       fr:"De la véloroute adriatique plate aux ascensions de montagne épiques. L'Abruzzo est l'une des meilleures régions d'Italie pour le vélo et le tourisme actif."},
-    img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+    img:'img/costa-dei-trabocchi.jpg',
     trails:[
       { name:"Campo Imperatore Loop", detail:{en:"Moderate · 15 km",it:"Medio · 15 km",de:"Mittel · 15 km",fr:"Modéré · 15 km"}, href:"hiking.html", img:"img/campo-imperatore.jpg" },
       { name:"Blockhaus Ridge",       detail:{en:"Easy · 4 km",it:"Facile · 4 km",de:"Leicht · 4 km",fr:"Facile · 4 km"},         href:"hiking.html", img:"img/blockhaus.jpg" },
@@ -114,7 +114,7 @@ window.AW.moods = [
       it:"Terme, agriturismi, notti stellate oltre i 1.000 m. L'Abruzzo è l'antidoto a tutto ciò che va troppo veloce.",
       de:"Thermalbäder, Agriturismo, Sternennächte über 1.000 m. Die Abruzzen sind das Gegenmittel gegen alles, was zu schnell ist.",
       fr:"Thermes, agritourisme, nuits étoilées au-dessus de 1 000 m. L'Abruzzo est l'antidote à tout ce qui va trop vite."},
-    img:'https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=800&q=80',
+    img:'img/terme-di-caramanico.jpg',
     trails:[
       { name:"Lago di Scanno",      detail:{en:"Easy · 5 km · Loop",it:"Facile · 5 km · Anello",de:"Leicht · 5 km · Rundweg",fr:"Facile · 5 km · Boucle"}, href:"hiking.html", img:"img/lago-di-scanno.jpg" },
       { name:"Blockhaus Ridge",     detail:{en:"Easy · 4 km",it:"Facile · 4 km",de:"Leicht · 4 km",fr:"Facile · 4 km"},        href:"hiking.html", img:"img/blockhaus.jpg" },
@@ -139,7 +139,7 @@ window.AW.moods = [
       it:"Sentieri facili per gambe piccole, avvistamento di animali, giornate al mare e leggende medievali. Tutto per ogni età.",
       de:"Leichte Wege für kleine Beine, Tierbeobachtung, Strandtage und mittelalterliche Legenden. Alles für jedes Alter.",
       fr:"Sentiers faciles pour petites jambes, observation de la faune, journées à la plage et légendes médiévales. Tout pour tous les âges."},
-    img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+    img:'img/lago-di-scanno.jpg',
     trails:[
       { name:"Valle Fondillo — Bears", detail:{en:"Easy · 8 km · Loop",it:"Facile · 8 km · Anello",de:"Leicht · 8 km · Rundweg",fr:"Facile · 8 km · Boucle"},  href:"hiking.html", img:"img/valle-fondillo.jpg" },
       { name:"Gole del Sagittario",    detail:{en:"Easy · 7 km",it:"Facile · 7 km",de:"Leicht · 7 km",fr:"Facile · 7 km"},         href:"hiking.html", img:"img/gole-del-sagittario.jpg" },

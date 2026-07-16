@@ -18,7 +18,7 @@ window.AW.questions = [
   {
     text: {en:"Ancient history or living nature?", it:"Storia antica o natura viva?", de:"Alte Geschichte oder lebendige Natur?", fr:"Histoire ancienne ou nature vivante ?"},
     a: { icon:"🏰", label:{en:"Medieval Castles", it:"Castelli medievali", de:"Mittelalterliche Burgen", fr:"Châteaux médiévaux"},     desc:{en:"Rocca Calascio, Santo Stefano", it:"Rocca Calascio, Santo Stefano", de:"Rocca Calascio, Santo Stefano", fr:"Rocca Calascio, Santo Stefano"},       img:"img/rocca-calascio.jpg", scores:{culture:2,adventure:1} },
-    b: { icon:"🌲", label:{en:"Wild Forests & Peaks", it:"Foreste e vette selvagge", de:"Wilde Wälder & Gipfel", fr:"Forêts et sommets sauvages"}, desc:{en:"Beech forests, gorges, glacial lakes", it:"Faggete, gole, laghi glaciali", de:"Buchenwälder, Schluchten, Gletscherseen", fr:"Hêtraies, gorges, lacs glaciaires"}, img:"https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=1400&q=80", scores:{nature:2,adventure:1} }
+    b: { icon:"🌲", label:{en:"Wild Forests & Peaks", it:"Foreste e vette selvagge", de:"Wilde Wälder & Gipfel", fr:"Forêts et sommets sauvages"}, desc:{en:"Beech forests, gorges, glacial lakes", it:"Faggete, gole, laghi glaciali", de:"Buchenwälder, Schluchten, Gletscherseen", fr:"Hêtraies, gorges, lacs glaciaires"}, img:"img/monte-marsicano.jpg", scores:{nature:2,adventure:1} }
   },
   {
     text: {en:"Local cuisine or outdoor sport?", it:"Cucina locale o sport all'aria aperta?", de:"Lokale Küche oder Outdoor-Sport?", fr:"Cuisine locale ou sport en plein air ?"},
@@ -27,7 +27,7 @@ window.AW.questions = [
   },
   {
     text: {en:"Discover alone or with family?", it:"Scopri da solo o in famiglia?", de:"Allein oder mit der Familie entdecken?", fr:"Découvrir seul ou en famille ?"},
-    a: { icon:"🎒", label:{en:"Solo Explorer", it:"Esploratore solitario", de:"Solo-Entdecker", fr:"Explorateur solo"},         desc:{en:"My own pace, my own path", it:"Il mio ritmo, la mia strada", de:"Mein Tempo, mein Weg", fr:"Mon rythme, mon chemin"},            img:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1400&q=80", scores:{adventure:2,culture:1} },
-    b: { icon:"👨‍👩‍👧", label:{en:"Family Adventure", it:"Avventura in famiglia", de:"Familienabenteuer", fr:"Aventure en famille"},     desc:{en:"Shared memories that last forever", it:"Ricordi condivisi che durano per sempre", de:"Gemeinsame Erinnerungen für immer", fr:"Des souvenirs partagés pour toujours"},  img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80", scores:{family:2,wellness:1} }
+    a: { icon:"🎒", label:{en:"Solo Explorer", it:"Esploratore solitario", de:"Solo-Entdecker", fr:"Explorateur solo"},         desc:{en:"My own pace, my own path", it:"Il mio ritmo, la mia strada", de:"Mein Tempo, mein Weg", fr:"Mon rythme, mon chemin"},            img:"img/campo-imperatore.jpg", scores:{adventure:2,culture:1} },
+    b: { icon:"👨‍👩‍👧", label:{en:"Family Adventure", it:"Avventura in famiglia", de:"Familienabenteuer", fr:"Aventure en famille"},     desc:{en:"Shared memories that last forever", it:"Ricordi condivisi che durano per sempre", de:"Gemeinsame Erinnerungen für immer", fr:"Des souvenirs partagés pour toujours"},  img:"img/lago-di-scanno.jpg", scores:{family:2,wellness:1} }
   }
 ];
