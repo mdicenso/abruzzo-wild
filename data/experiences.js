@@ -280,6 +280,108 @@ window.AW.experiences = [
           note:{en:"The heart-shaped lake — a fitting finale before the journey home.", it:"Il lago a forma di cuore — un finale perfetto prima del rientro.", de:"Der herzförmige See — ein passendes Finale vor der Heimreise.", fr:"Le lac en forme de cœur — un final parfait avant le retour."} }
       ]}
     ]
+  },
+
+  {
+    id:'borghi-castles', moods:['history','slow'], days:2, months:[4,5,6,9,10],
+    hero:'img/santo-stefano-di-sessanio.jpg',
+    title:{en:'Stone & Silence: Castles of the High Plains', it:"Pietra e silenzio: i castelli dell'altopiano", de:'Stein & Stille: Burgen der Hochebene', fr:'Pierre et silence : les châteaux du haut plateau'},
+    theme:{en:"Medieval borghi and the Apennines' highest castle", it:"Borghi medievali e il castello più alto dell'Appennino", de:'Mittelalterliche Dörfer und die höchste Burg des Apennins', fr:'Bourgs médiévaux et le château le plus haut des Apennins'},
+    area:{en:"Gran Sasso high plain & L'Aquila", it:"Altopiano del Gran Sasso e L'Aquila", de:"Gran-Sasso-Hochebene & L'Aquila", fr:"Haut plateau du Gran Sasso & L'Aquila"},
+    intro:{en:"A slow weekend among honey-stone villages, a castle in the sky and the rebuilt heart of L'Aquila — history with almost no crowds.",
+      it:"Un weekend lento tra borghi di pietra dorata, un castello nel cielo e il cuore rinato di L'Aquila — storia quasi senza folla.",
+      de:"Ein ruhiges Wochenende zwischen honigfarbenen Steindörfern, einer Burg im Himmel und dem wiederaufgebauten Herzen von L'Aquila — Geschichte fast ohne Menschenmassen.",
+      fr:"Un week-end tranquille entre villages de pierre dorée, un château dans le ciel et le cœur reconstruit de L'Aquila — l'histoire presque sans foule."},
+    plan:[
+      { day:1, items:[
+        { slot:'morning', icon:'ti-building-castle', name:'Santo Stefano di Sessanio', href:'villages.html', img:'img/santo-stefano-di-sessanio.jpg',
+          note:{en:"Wander the Medici-era hamlet reborn as a scattered 'albergo diffuso', all one honey-coloured stone.", it:"Passeggia nel borgo di epoca medicea, rinato come albergo diffuso, tutto in un'unica pietra color miele.", de:"Schlendere durch den Medici-Weiler, als 'Albergo Diffuso' wiederbelebt, ganz aus honigfarbenem Stein.", fr:"Flânez dans le hameau d'époque Médicis, restauré en 'albergo diffuso', tout en pierre couleur miel."} },
+        { slot:'afternoon', icon:'ti-building-castle', name:'Rocca Calascio', href:'villages.html', img:'img/rocca-calascio.jpg',
+          note:{en:"Climb to the highest castle in the Apennines (1,460m), the set of many a medieval film.", it:"Sali al castello più alto dell'Appennino (1.460 m), set di tanti film medievali.", de:"Steige zur höchsten Burg des Apennins (1.460 m) hinauf, Kulisse vieler Mittelalterfilme.", fr:"Montez au château le plus haut des Apennins (1 460 m), décor de nombreux films médiévaux."} },
+        { slot:'evening', icon:'ti-building-monument', name:"L'Aquila — Basilica di Collemaggio", href:'attractions.html', img:'img/basilica-collemaggio.jpg',
+          note:{en:"The pink-and-white Romanesque basilica and a city painstakingly rebuilt after 2009.", it:"La basilica romanica bianca e rosa e una città ricostruita con cura dopo il 2009.", de:"Die rosa-weiße romanische Basilika und eine nach 2009 sorgfältig wiederaufgebaute Stadt.", fr:"La basilique romane rose et blanche et une ville patiemment reconstruite après 2009."} }
+      ]},
+      { day:2, items:[
+        { slot:'morning', icon:'ti-sunset-2', name:'Campo Imperatore', href:'attractions.html', img:'img/campo-imperatore.jpg',
+          note:{en:"Sunrise on the vast plateau nicknamed 'Little Tibet', grazed by half-wild horses.", it:"Alba sull'immenso altopiano soprannominato 'Piccolo Tibet', pascolato da cavalli semibradi.", de:"Sonnenaufgang auf der weiten Hochebene 'Klein-Tibet', auf der halbwilde Pferde weiden.", fr:"Lever de soleil sur le vaste plateau surnommé « petit Tibet », brouté par des chevaux semi-sauvages."} },
+        { slot:'lunch', icon:'ti-tools-kitchen-2', name:'Pasta alla Chitarra', href:'food.html', img:'img/pasta-alla-chitarra.jpg',
+          note:{en:"Hand-cut 'guitar' pasta with lamb ragù at a mountain trattoria.", it:"Pasta alla chitarra fatta a mano con ragù d'agnello in una trattoria di montagna.", de:"Handgeschnittene 'Gitarren'-Pasta mit Lammragù in einer Bergtrattoria.", fr:"Pâtes 'à la guitare' coupées main, ragù d'agneau, dans une trattoria de montagne."} },
+        { slot:'afternoon', icon:'ti-building-castle', name:'Castelli', href:'villages.html', img:'img/castelli.jpg',
+          note:{en:"The ceramics village under Gran Sasso's north wall — majolica workshops since the 1500s.", it:"Il borgo della ceramica sotto la parete nord del Gran Sasso — botteghe di maiolica dal Cinquecento.", de:"Das Keramikdorf unter der Nordwand des Gran Sasso — Majolika-Werkstätten seit dem 16. Jh.", fr:"Le village de la céramique sous la face nord du Gran Sasso — ateliers de majolique depuis le XVIe siècle."} }
+      ]}
+    ]
+  },
+
+  {
+    id:'flavours-weekend', moods:['taste','slow'], days:2, months:[4,5,9,10,11],
+    hero:'img/arrosticini.jpg',
+    title:{en:'A Weekend of Flavours: Sulmona & the Grill', it:'Un weekend di sapori: Sulmona e la brace', de:'Ein Wochenende der Aromen: Sulmona & Grill', fr:'Un week-end de saveurs : Sulmona & le grill'},
+    theme:{en:'Confetti, saffron, arrosticini and mountain wine', it:'Confetti, zafferano, arrosticini e vino di montagna', de:'Confetti, Safran, Arrosticini und Bergwein', fr:'Dragées, safran, arrosticini et vin de montagne'},
+    area:{en:'Peligna Valley & Navelli plain', it:'Valle Peligna e piana di Navelli', de:'Peligna-Tal & Ebene von Navelli', fr:'Vallée Peligna & plaine de Navelli'},
+    intro:{en:"Two greedy days through Abruzzo's larder: Ovid's town of sugared almonds, shepherd skewers off the brace, the world's finest saffron and a thermal finish.",
+      it:"Due giorni golosi nella dispensa d'Abruzzo: la città dei confetti di Ovidio, gli arrosticini alla brace, lo zafferano più pregiato al mondo e un finale termale.",
+      de:"Zwei genussvolle Tage durch die Speisekammer der Abruzzen: Ovids Stadt der Zuckermandeln, Hirtenspieße vom Grill, feinster Safran und ein thermales Finale.",
+      fr:"Deux jours gourmands dans le garde-manger des Abruzzes : la ville des dragées d'Ovide, les brochettes de berger au grill, le safran le plus fin du monde et une fin thermale."},
+    plan:[
+      { day:1, items:[
+        { slot:'morning', icon:'ti-building-castle', name:'Sulmona', href:'villages.html', img:'img/sulmona.jpg',
+          note:{en:"Ovid's elegant arcaded town and its historic confetti (sugared-almond) workshops.", it:"L'elegante città porticata di Ovidio e le sue storiche fabbriche di confetti.", de:"Ovids elegante Arkadenstadt und ihre historischen Confetti-Manufakturen.", fr:"L'élégante ville à arcades d'Ovide et ses fabriques historiques de dragées."} },
+        { slot:'lunch', icon:'ti-tools-kitchen-2', name:'Pasta alla Chitarra', href:'food.html', img:'img/pasta-alla-chitarra.jpg',
+          note:{en:"Guitar-string pasta with a rich lamb and sweet-pepper ragù.", it:"Pasta alla chitarra con un ricco ragù d'agnello e peperone.", de:"Gitarrensaiten-Pasta mit kräftigem Lamm-Paprika-Ragù.", fr:"Pâtes 'à la guitare' avec un riche ragù d'agneau et poivron."} },
+        { slot:'afternoon', icon:'ti-building-castle', name:'Pacentro', href:'villages.html', img:'img/pacentro.jpg',
+          note:{en:"Three Caldora towers over an intact medieval maze below the Majella.", it:"Le tre torri Caldora su un intatto dedalo medievale ai piedi della Majella.", de:"Drei Caldora-Türme über einem intakten mittelalterlichen Labyrinth unterhalb der Majella.", fr:"Trois tours Caldora sur un dédale médiéval intact au pied de la Majella."} },
+        { slot:'evening', icon:'ti-tools-kitchen-2', name:'Arrosticini', href:'food.html', img:'img/arrosticini.jpg',
+          note:{en:"The ritual: castrato skewers turned over embers, bread, pecorino, Montepulciano.", it:"Il rito: arrosticini di castrato girati sulla brace, pane, pecorino, Montepulciano.", de:"Das Ritual: Hammelspieße über Glut gewendet, Brot, Pecorino, Montepulciano.", fr:"Le rituel : brochettes de mouton tournées sur la braise, pain, pecorino, Montepulciano."} }
+      ]},
+      { day:2, items:[
+        { slot:'morning', icon:'ti-leaf', name:'Zafferano DOP · Navelli', href:'food.html', img:'img/zafferano-aquila-dop.jpg',
+          note:{en:"The Navelli plain, home of L'Aquila DOP saffron — the world's most prized spice.", it:"La piana di Navelli, patria dello zafferano DOP dell'Aquila — la spezia più pregiata al mondo.", de:"Die Ebene von Navelli, Heimat des DOP-Safrans aus L'Aquila — das wertvollste Gewürz der Welt.", fr:"La plaine de Navelli, berceau du safran DOP de L'Aquila — l'épice la plus prisée du monde."} },
+        { slot:'lunch', icon:'ti-tools-kitchen-2', name:'Olio Extravergine DOP', href:'food.html', img:'img/olio-evo-dop.jpg',
+          note:{en:"Taste new-harvest DOP olive oil straight from the mill.", it:"Degusta l'olio EVO DOP di nuova raccolta direttamente dal frantoio.", de:"Verkoste DOP-Olivenöl der neuen Ernte direkt aus der Mühle.", fr:"Dégustez l'huile d'olive DOP de nouvelle récolte directement du moulin."} },
+        { slot:'afternoon', icon:'ti-spa', name:'Terme di Popoli', href:'wellness.html', img:'img/terme-di-popoli.jpg',
+          note:{en:"Wind down in the sulphur springs where three valleys meet.", it:"Rilassati nelle sorgenti sulfuree dove s'incontrano tre valli.", de:"Entspanne in den Schwefelquellen, wo drei Täler zusammentreffen.", fr:"Détendez-vous dans les sources sulfureuses au carrefour de trois vallées."} }
+      ]}
+    ]
+  },
+
+  {
+    id:'wild-majella', moods:['wild','slow'], days:4, months:[6,7,8,9],
+    hero:'img/maiella-monte-amaro.jpg',
+    title:{en:'Wild Majella: the Mother Mountain', it:'Majella selvaggia: la Montagna Madre', de:'Wilde Majella: der Mutterberg', fr:'Majella sauvage : la Montagne Mère'},
+    theme:{en:'Hermitages, canyons and a 2,793m summit', it:'Eremi, canyon e una vetta di 2.793 m', de:'Einsiedeleien, Canyons und ein 2.793-m-Gipfel', fr:'Ermitages, canyons et un sommet de 2 793 m'},
+    area:{en:'Majella National Park & Caramanico', it:'Parco Nazionale della Majella e Caramanico', de:'Nationalpark Majella & Caramanico', fr:'Parc National de la Majella & Caramanico'},
+    intro:{en:"Four days on Abruzzo's sacred massif: wolf-haunted canyons, cliff hermitages, a big summit day and thermal recovery in a spa village — base camp Caramanico.",
+      it:"Quattro giorni sul massiccio sacro d'Abruzzo: canyon abitati dai lupi, eremi rupestri, una grande giornata di vetta e recupero termale in un borgo-spa — campo base Caramanico.",
+      de:"Vier Tage auf dem heiligen Massiv der Abruzzen: von Wölfen bewohnte Canyons, Felseneremitagen, ein großer Gipfeltag und thermale Erholung im Kurort — Basislager Caramanico.",
+      fr:"Quatre jours sur le massif sacré des Abruzzes : canyons hantés par les loups, ermitages rupestres, une grande journée de sommet et récupération thermale dans un village thermal — camp de base Caramanico."},
+    plan:[
+      { day:1, items:[
+        { slot:'afternoon', icon:'ti-spa', name:'Terme di Caramanico', href:'wellness.html', img:'img/terme-di-caramanico.jpg',
+          note:{en:"Settle into the spa village and its healing sulphur waters.", it:"Sistemati nel borgo termale e nelle sue acque sulfuree curative.", de:"Komm im Kurort und seinem heilenden Schwefelwasser an.", fr:"Installez-vous dans le village thermal et ses eaux sulfureuses curatives."} },
+        { slot:'evening', icon:'ti-walk', name:"Valle dell'Orfento · Caramanico", href:'hiking.html', img:'img/maiella-monte-amaro.jpg',
+          note:{en:"A deep green canyon of waterfalls and old mills — one of the park's wildest short walks.", it:"Un canyon verde profondo di cascate e vecchi mulini — tra le camminate brevi più selvagge del parco.", de:"Ein tiefgrüner Canyon mit Wasserfällen und alten Mühlen — eine der wildesten kurzen Wanderungen des Parks.", fr:"Un canyon vert profond de cascades et vieux moulins — l'une des plus sauvages courtes balades du parc."} }
+      ]},
+      { day:2, items:[
+        { slot:'morning', icon:'ti-mountain', name:'Blockhaus', href:'hiking.html', img:'img/blockhaus.jpg',
+          note:{en:"Drive the panoramic road to the Blockhaus ridge for wide Adriatic-to-Apennine views.", it:"Sali la strada panoramica fino alla cresta del Blockhaus per ampie vedute dall'Adriatico all'Appennino.", de:"Fahre die Panoramastraße zum Blockhaus-Grat für weite Blicke von der Adria bis zum Apennin.", fr:"Empruntez la route panoramique jusqu'à la crête du Blockhaus pour de larges vues de l'Adriatique aux Apennins."} },
+        { slot:'afternoon', icon:'ti-building-castle', name:'Pennapiedimonte', href:'villages.html', img:'img/pennapiedimonte.jpg',
+          note:{en:"A stone village clinging to a gorge, gateway to Majella shepherd trails.", it:"Un borgo di pietra aggrappato a una gola, porta dei sentieri pastorali della Majella.", de:"Ein Steindorf an einer Schlucht, Tor zu den Hirtenpfaden der Majella.", fr:"Un village de pierre accroché à une gorge, porte des sentiers pastoraux de la Majella."} }
+      ]},
+      { day:3, items:[
+        { slot:'morning', icon:'ti-walk', name:'Eremo di San Bartolomeo', href:'hiking.html', img:'img/eremo-san-bartolomeo.jpg',
+          note:{en:"Descend to the cliff hermitage of San Bartolomeo in Legio, hidden under a rock overhang.", it:"Scendi all'eremo rupestre di San Bartolomeo in Legio, nascosto sotto uno sperone di roccia.", de:"Steige zur Felseneremitage San Bartolomeo in Legio hinab, verborgen unter einem Felsvorsprung.", fr:"Descendez à l'ermitage rupestre de San Bartolomeo in Legio, caché sous un surplomb rocheux."} },
+        { slot:'afternoon', icon:'ti-building-castle', name:'Pacentro', href:'villages.html', img:'img/pacentro.jpg',
+          note:{en:"Recover in a medieval village of towers, fountains and cobbled climbs.", it:"Recupera in un borgo medievale di torri, fontane e salite acciottolate.", de:"Erhole dich in einem mittelalterlichen Dorf aus Türmen, Brunnen und Kopfsteinpflaster.", fr:"Récupérez dans un village médiéval de tours, fontaines et montées pavées."} },
+        { slot:'evening', icon:'ti-tools-kitchen-2', name:'Arrosticini', href:'food.html', img:'img/arrosticini.jpg',
+          note:{en:"Fuel for tomorrow's summit: skewers, bread and a robust red.", it:"Carburante per la vetta di domani: arrosticini, pane e un rosso corposo.", de:"Treibstoff für den Gipfel morgen: Spieße, Brot und ein kräftiger Roter.", fr:"Du carburant pour le sommet de demain : brochettes, pain et un rouge corsé."} }
+      ]},
+      { day:4, items:[
+        { slot:'morning', icon:'ti-mountain', name:'Blockhaus → Monte Amaro', href:'hiking.html', img:'img/maiella-monte-amaro.jpg',
+          note:{en:"The big day: a long, exposed ridge toward Monte Amaro (2,793m) — for fit hikers only.", it:"La grande giornata: una lunga cresta esposta verso il Monte Amaro (2.793 m) — solo per escursionisti allenati.", de:"Der große Tag: ein langer, ausgesetzter Grat zum Monte Amaro (2.793 m) — nur für fitte Wanderer.", fr:"Le grand jour : une longue crête exposée vers le Monte Amaro (2 793 m) — réservé aux randonneurs entraînés."} },
+        { slot:'afternoon', icon:'ti-spa', name:'Terme di Caramanico', href:'wellness.html', img:'img/terme-di-caramanico.jpg',
+          note:{en:"Sink tired legs into the thermal pools back at base.", it:"Immergi le gambe stanche nelle piscine termali, di ritorno al campo base.", de:"Tauche müde Beine in die Thermalbecken zurück im Basislager.", fr:"Plongez les jambes fatiguées dans les bassins thermaux, de retour au camp de base."} }
+      ]}
+    ]
   }
 ];
 
