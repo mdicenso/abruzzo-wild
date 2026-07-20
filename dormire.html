@@ -36,7 +36,7 @@
 /* ── Dove dormire (strutture ricettive) ── */
 .str-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.3rem; }
 .str-card {
-  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  background: var(--white); border-radius: var(--radius); overflow: hidden; cursor: pointer;
   border: 1.5px solid transparent; display: flex; flex-direction: column;
   transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
@@ -59,14 +59,19 @@
 .str-loc i { font-size: 12px; }
 .str-body p { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: .8rem; font-weight: 300; }
 .str-tags { display: flex; gap: .35rem; flex-wrap: wrap; margin-bottom: .9rem; }
-.str-footer { margin-top: auto; padding-top: .85rem; border-top: 1px solid var(--parchment); }
+.str-footer { margin-top: auto; padding-top: .85rem; border-top: 1px solid var(--parchment);
+  display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
 .str-book {
   display: inline-flex; align-items: center; gap: .4rem; text-decoration: none;
   background: var(--olive); color: #fff; font-family: var(--sans); font-size: .8rem; font-weight: 500;
   padding: .5rem 1.1rem; border-radius: 999px; transition: background .2s, transform .2s;
 }
 .str-book:hover { background: var(--olive-mid); transform: translateY(-1px); }
-.str-nolink { font-size: .78rem; color: var(--muted); }
+.str-details { font-size: .78rem; color: var(--rose); font-weight: 500; white-space: nowrap; }
+/* galleria foto extra nel modal */
+.str-gallery { display: flex; gap: .5rem; flex-wrap: wrap; margin: .2rem 0 1rem; }
+.str-gthumb { width: 84px; height: 62px; border-radius: 8px; background-size: cover; background-position: center; background-color: var(--parchment); }
+#m-book { margin-top: .6rem; }
 .str-curated { font-size: .82rem; color: var(--muted); margin: 0 0 1.3rem; display: flex; align-items: center; gap: .45rem; }
 .str-curated i { color: var(--olive-mid); }
 .str-empty { text-align: center; color: var(--muted); padding: 3rem 1rem; font-size: .95rem; }
@@ -147,6 +152,27 @@
   <div class="str-grid" id="str-grid"></div>
 </div>
 
+<!-- ════ MODAL DETTAGLIO STRUTTURA (solo campi pubblici) ════ -->
+<div class="modal-backdrop" id="modal-backdrop" onclick="if(event.target.id==='modal-backdrop')closeModal()">
+  <div class="modal">
+    <div class="modal-hero">
+      <img id="m-img" src="" alt="">
+      <div class="modal-hero-veil"></div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-info">
+        <small id="m-sub"></small>
+        <h2 id="m-title"></h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-badges" id="m-badges"></div>
+      <p id="m-desc"></p>
+      <div class="str-gallery" id="m-gallery"></div>
+      <div id="m-book"></div>
+    </div>
+  </div>
+</div>
+
 <!-- ════ NEWSLETTER ════ -->
 <div class="nl-strip">
   <div class="nl-inner">
@@ -193,7 +219,7 @@ Object.assign(T18.en, {
   dr_bc:'Where to Stay', dr_h1:'Where to <em>Stay</em>',
   dr_intro:'Hand-picked places to sleep across wild Abruzzo — from scattered-hotel borghi to mountain agriturismo.',
   dr_all:'All', dr_place:'place', dr_places:'places',
-  dr_book:'Book', dr_ask:'Contact for info', dr_curated:'Selected partner accommodations',
+  dr_book:'Book', dr_ask:'Contact for info', dr_details:'Details', dr_curated:'Selected partner accommodations',
   dr_empty:'No accommodations published yet — check back soon.',
   dr_t_albergo_diffuso:'Scattered hotel', dr_t_hotel:'Hotel', dr_t_bb:'B&B', dr_t_bed_and_breakfast:'B&B',
   dr_t_agriturismo:'Farm stay', dr_t_rifugio:'Mountain refuge', dr_t_casa_vacanze:'Holiday home', dr_t_ostello:'Hostel'
@@ -202,7 +228,7 @@ Object.assign(T18.it, {
   dr_bc:'Dove Dormire', dr_h1:'Dove <em>Dormire</em>',
   dr_intro:"Luoghi scelti dove dormire nell'Abruzzo selvaggio — dai borghi-albergo diffuso agli agriturismi di montagna.",
   dr_all:'Tutti', dr_place:'struttura', dr_places:'strutture',
-  dr_book:'Prenota', dr_ask:'Contatta per info', dr_curated:'Strutture partner selezionate',
+  dr_book:'Prenota', dr_ask:'Contatta per info', dr_details:'Dettagli', dr_curated:'Strutture partner selezionate',
   dr_empty:'Nessuna struttura ancora pubblicata — torna presto.',
   dr_t_albergo_diffuso:'Albergo diffuso', dr_t_hotel:'Hotel', dr_t_bb:'B&B', dr_t_bed_and_breakfast:'B&B',
   dr_t_agriturismo:'Agriturismo', dr_t_rifugio:'Rifugio', dr_t_casa_vacanze:'Casa vacanze', dr_t_ostello:'Ostello'
@@ -211,7 +237,7 @@ Object.assign(T18.de, {
   dr_bc:'Übernachten', dr_h1:'<em>Übernachten</em>',
   dr_intro:'Handverlesene Unterkünfte in den wilden Abruzzen — vom Albergo diffuso im Dorf bis zum Bergagriturismo.',
   dr_all:'Alle', dr_place:'Unterkunft', dr_places:'Unterkünfte',
-  dr_book:'Buchen', dr_ask:'Für Infos kontaktieren', dr_curated:'Ausgewählte Partnerunterkünfte',
+  dr_book:'Buchen', dr_ask:'Für Infos kontaktieren', dr_details:'Details', dr_curated:'Ausgewählte Partnerunterkünfte',
   dr_empty:'Noch keine Unterkünfte veröffentlicht — bald wieder vorbeischauen.',
   dr_t_albergo_diffuso:'Albergo diffuso', dr_t_hotel:'Hotel', dr_t_bb:'B&B', dr_t_bed_and_breakfast:'B&B',
   dr_t_agriturismo:'Agriturismo', dr_t_rifugio:'Berghütte', dr_t_casa_vacanze:'Ferienhaus', dr_t_ostello:'Hostel'
@@ -220,7 +246,7 @@ Object.assign(T18.fr, {
   dr_bc:'Où Loger', dr_h1:'Où <em>Loger</em>',
   dr_intro:"Des adresses triées sur le volet dans les Abruzzes sauvages — du village-albergo diffuso à l'agritourisme de montagne.",
   dr_all:'Tous', dr_place:'hébergement', dr_places:'hébergements',
-  dr_book:'Réserver', dr_ask:'Contacter pour infos', dr_curated:'Hébergements partenaires sélectionnés',
+  dr_book:'Réserver', dr_ask:'Contacter pour infos', dr_details:'Détails', dr_curated:'Hébergements partenaires sélectionnés',
   dr_empty:"Aucun hébergement publié pour l'instant — revenez bientôt.",
   dr_t_albergo_diffuso:'Albergo diffuso', dr_t_hotel:'Hôtel', dr_t_bb:'B&B', dr_t_bed_and_breakfast:'B&B',
   dr_t_agriturismo:'Agritourisme', dr_t_rifugio:'Refuge', dr_t_casa_vacanze:'Maison de vacances', dr_t_ostello:'Auberge'
@@ -274,10 +300,10 @@ function renderStrutture() {
     const desc = L(s.descrizione_breve) || '';
     const tags = (s.tags || []).map(t => `<span class="tag">${capit(t)}</span>`).join('');
     const book = s.link_booking_esterno
-      ? `<a class="str-book" href="${s.link_booking_esterno}" target="_blank" rel="noopener"><i class="ti ti-external-link" aria-hidden="true"></i> ${T('dr_book')} →</a>`
-      : `<span class="str-nolink">${T('dr_ask')}</span>`;
+      ? `<a class="str-book" href="${s.link_booking_esterno}" target="_blank" rel="noopener" onclick="event.stopPropagation()"><i class="ti ti-external-link" aria-hidden="true"></i> ${T('dr_book')} →</a>`
+      : '<span></span>';
     return `
-      <div class="str-card">
+      <div class="str-card" onclick="openModal('${s.id}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openModal('${s.id}')">
         <div class="str-img-wrap">
           <div class="str-img${imgClass}" ${imgStyle}></div>
           <div class="str-img-overlay"></div>
@@ -288,11 +314,41 @@ function renderStrutture() {
           ${loc ? `<div class="str-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> ${loc}</div>` : ''}
           ${desc ? `<p>${desc}</p>` : ''}
           ${tags ? `<div class="str-tags">${tags}</div>` : ''}
-          <div class="str-footer">${book}</div>
+          <div class="str-footer">${book}<span class="str-details">${T('dr_details')} →</span></div>
         </div>
       </div>`;
   }).join('');
 }
+
+/* ══ MODAL DETTAGLIO ══ (solo campi pubblici presenti) */
+let openSid = null;
+function openModal(id) {
+  const s = strutture.find(x => x.id === id); if (!s) return;
+  openSid = id;
+  const foto = s.foto_url || [];
+  const img = document.getElementById('m-img');
+  if (foto[0]) { img.src = foto[0]; img.alt = s.nome || ''; img.style.display = ''; document.querySelector('.modal-hero').classList.remove('str-img-empty'); }
+  else { img.style.display = 'none'; document.querySelector('.modal-hero').classList.add('str-img-empty'); }
+  document.getElementById('m-sub').textContent = [s.comune, s.zona_geografica].filter(Boolean).join(' · ');
+  document.getElementById('m-title').textContent = s.nome || '';
+  document.getElementById('m-badges').innerHTML =
+    `<span class="tag" style="background:rgba(61,74,46,.12);color:var(--olive-mid)"><i class="ti ti-bed" aria-hidden="true"></i> ${tipoLabel(s.tipo_ricettivo)}</span>` +
+    (s.tags || []).map(t => `<span class="tag">${capit(t)}</span>`).join('');
+  const desc = L(s.descrizione_estesa) || L(s.descrizione_breve) || '';   /* estesa se c'è, altrimenti breve */
+  const pd = document.getElementById('m-desc');
+  pd.textContent = desc; pd.style.display = desc ? '' : 'none';
+  document.getElementById('m-gallery').innerHTML = foto.length > 1
+    ? foto.map(f => `<div class="str-gthumb" style="background-image:url('${f}')"></div>`).join('') : '';
+  document.getElementById('m-book').innerHTML = s.link_booking_esterno
+    ? `<a class="str-book" href="${s.link_booking_esterno}" target="_blank" rel="noopener"><i class="ti ti-external-link" aria-hidden="true"></i> ${T('dr_book')} →</a>` : '';
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  document.body.style.overflow = ''; openSid = null;
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 /* ══ NEWSLETTER ══ */
 function nlSubmit() {
@@ -306,7 +362,7 @@ renderFilter();
 renderStrutture();
 
 /* ══ RE-RENDER AL CAMBIO LINGUA ══ */
-document.addEventListener('aw:langchange', () => { renderFilter(); renderStrutture(); });
+document.addEventListener('aw:langchange', () => { renderFilter(); renderStrutture(); if (openSid) openModal(openSid); });
 </script>
 
 </body>
