@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Where to Stay — Abruzzo Wild & Authentic</title>
+<meta name="description" content="Hand-picked places to sleep across wild Abruzzo — scattered-hotel borghi, mountain agriturismo and authentic B&Bs, curated by Abruzzo Wild.">
+<!-- Canonical & favicon -->
+<link rel="canonical" href="https://mdicenso.github.io/abruzzo-wild/dormire.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Abruzzo Wild &amp; Authentic">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://mdicenso.github.io/abruzzo-wild/dormire.html">
+<meta property="og:title" content="Where to Stay — Abruzzo Wild &amp; Authentic">
+<meta property="og:description" content="Hand-picked places to sleep across wild Abruzzo — scattered-hotel borghi, mountain agriturismo and authentic B&Bs.">
+<meta property="og:image" content="https://mdicenso.github.io/abruzzo-wild/img/santo-stefano-di-sessanio.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Where to Stay — Abruzzo Wild &amp; Authentic">
+<meta name="twitter:description" content="Hand-picked places to sleep across wild Abruzzo — curated by Abruzzo Wild.">
+<meta name="twitter:image" content="https://mdicenso.github.io/abruzzo-wild/img/santo-stefano-di-sessanio.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css">
+<link rel="stylesheet" href="shared.css">
+
+<style>
+/* ── Dove dormire (strutture ricettive) ── */
+.str-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.3rem; }
+.str-card {
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  border: 1.5px solid transparent; display: flex; flex-direction: column;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.str-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--rose); }
+.str-card.hidden { display: none; }
+.str-img-wrap { overflow: hidden; position: relative; }
+.str-img { width: 100%; height: 185px; background-size: cover; background-position: center; transition: transform .5s; background-color: var(--parchment); }
+.str-card:hover .str-img { transform: scale(1.06); }
+.str-img-empty { background: linear-gradient(135deg, var(--olive-mid), var(--rose)); }
+.str-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,18,10,.5), transparent 55%); }
+.str-type {
+  position: absolute; top: .7rem; left: .7rem; display: inline-flex; align-items: center; gap: .3rem;
+  background: rgba(61,74,46,.88); color: #fff; font-size: .7rem; font-weight: 500;
+  padding: .25rem .6rem; border-radius: 999px;
+}
+.str-type i { font-size: 11px; }
+.str-body { padding: 1.05rem 1.25rem 1.3rem; display: flex; flex-direction: column; flex: 1; }
+.str-body h3 { font-family: var(--serif); font-size: 1.12rem; font-weight: 400; color: var(--ink); margin-bottom: .3rem; }
+.str-loc { font-size: .76rem; color: var(--rose); font-weight: 500; margin-bottom: .55rem; display: flex; align-items: center; gap: .3rem; }
+.str-loc i { font-size: 12px; }
+.str-body p { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: .8rem; font-weight: 300; }
+.str-tags { display: flex; gap: .35rem; flex-wrap: wrap; margin-bottom: .9rem; }
+.str-footer { margin-top: auto; padding-top: .85rem; border-top: 1px solid var(--parchment); }
+.str-book {
+  display: inline-flex; align-items: center; gap: .4rem; text-decoration: none;
+  background: var(--olive); color: #fff; font-family: var(--sans); font-size: .8rem; font-weight: 500;
+  padding: .5rem 1.1rem; border-radius: 999px; transition: background .2s, transform .2s;
+}
+.str-book:hover { background: var(--olive-mid); transform: translateY(-1px); }
+.str-nolink { font-size: .78rem; color: var(--muted); }
+.str-curated { font-size: .82rem; color: var(--muted); margin: 0 0 1.3rem; display: flex; align-items: center; gap: .45rem; }
+.str-curated i { color: var(--olive-mid); }
+.str-empty { text-align: center; color: var(--muted); padding: 3rem 1rem; font-size: .95rem; }
+@media(max-width:600px){ .str-grid { grid-template-columns: 1fr; } }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mdicenso.github.io/abruzzo-wild/" },
+        { "@type": "ListItem", "position": 2, "name": "Where to Stay", "item": "https://mdicenso.github.io/abruzzo-wild/dormire.html" }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "url": "https://mdicenso.github.io/abruzzo-wild/dormire.html",
+      "name": "Where to Stay — Abruzzo Wild & Authentic",
+      "description": "Hand-picked places to sleep across wild Abruzzo — curated by Abruzzo Wild.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://mdicenso.github.io/abruzzo-wild/#website" },
+      "about": { "@id": "https://mdicenso.github.io/abruzzo-wild/#destination" },
+      "primaryImageOfPage": "https://mdicenso.github.io/abruzzo-wild/img/santo-stefano-di-sessanio.jpg"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">Abruzzo <span>Wild</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="nav-link"><i class="ti ti-home" aria-hidden="true"></i><span data-i18n="n_home">Home</span></a></li>
+    <li><a href="quiz.html"        class="nav-link quiz"><i class="ti ti-sparkles" aria-hidden="true"></i><span data-i18n="n_quiz">Quiz</span></a></li>
+    <li><a href="inspired.html"    class="nav-link"><i class="ti ti-heart" aria-hidden="true"></i><span data-i18n="n_inspired">Get Inspired</span></a></li>
+    <li><a href="experience.html"  class="nav-link"><i class="ti ti-map-2" aria-hidden="true"></i><span data-i18n="n_experience">Experience</span></a></li>
+    <li><a href="hiking.html"      class="nav-link"><i class="ti ti-mountain" aria-hidden="true"></i><span data-i18n="n_hiking">Hiking</span></a></li>
+    <li><a href="food.html"        class="nav-link"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i><span data-i18n="n_food">Food & Wine</span></a></li>
+    <li><a href="villages.html"    class="nav-link"><i class="ti ti-building-castle" aria-hidden="true"></i><span data-i18n="n_villages">Villages</span></a></li>
+    <li><a href="wellness.html"    class="nav-link"><i class="ti ti-spa" aria-hidden="true"></i><span data-i18n="n_wellness">Wellness</span></a></li>
+    <li><a href="attractions.html" class="nav-link"><i class="ti ti-map-pin" aria-hidden="true"></i><span data-i18n="n_attractions">Attractions</span></a></li>
+    <li><a href="events.html"      class="nav-link"><i class="ti ti-calendar-event" aria-hidden="true"></i><span data-i18n="n_events">Events</span></a></li>
+    <li><a href="transport.html"   class="nav-link"><i class="ti ti-bus" aria-hidden="true"></i><span data-i18n="n_transport">Transport</span></a></li>
+    <li><a href="dormire.html"     class="nav-link active"><i class="ti ti-bed" aria-hidden="true"></i><span data-i18n="n_stay">Where to Stay</span></a></li>
+    <li><a href="plan.html"        class="nav-link cta"><i class="ti ti-route" aria-hidden="true"></i><span data-i18n="n_plan">Plan Trip</span></a></li>
+  </ul>
+  <div class="nav-lang">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('it')">IT</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  </div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<div class="hero-inner" style="height:44vh">
+  <div class="hero-inner-img" style="background-image:url('img/santo-stefano-di-sessanio.jpg')"></div>
+  <div class="hero-inner-veil"></div>
+  <div class="hero-inner-content">
+    <div class="hero-breadcrumb">
+      <a href="index.html" data-i18n="n_home">Home</a> › <span data-i18n="dr_bc">Where to Stay</span>
+    </div>
+    <h1 class="hero-inner-h1" data-i18n="dr_h1">Where to <em>Stay</em></h1>
+    <p class="hero-inner-sub" data-i18n="dr_intro" style="max-width:640px">Hand-picked places to sleep across wild Abruzzo — from scattered-hotel borghi to mountain agriturismo.</p>
+  </div>
+</div>
+
+<!-- ════ FILTER BAR ════ -->
+<div class="filter-bar" id="str-filter"></div>
+
+<!-- ════ CONTENT ════ -->
+<div class="wrap">
+  <p class="str-curated"><i class="ti ti-rosette-discount-check" aria-hidden="true"></i> <span data-i18n="dr_curated">Selected partner accommodations</span></p>
+  <div class="str-grid" id="str-grid"></div>
+</div>
+
+<!-- ════ NEWSLETTER ════ -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h4><i class="ti ti-mail" aria-hidden="true"></i> <span data-i18n="nl_title">Abruzzo in your inbox</span></h4>
+      <p data-i18n="nl_sub">Events, trails, recipes and hidden gems — once a month, no spam.</p>
+    </div>
+    <div class="nl-form">
+      <input class="nl-input" type="email" id="nlemail" placeholder="Your email address" data-i18n-placeholder="nl_ph">
+      <button class="nl-btn" onclick="nlSubmit()" data-i18n="nl_btn">Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ FOOTER ════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Abruzzo <span>Wild</span> & Authentic</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html"       class="footer-link"><span data-i18n="n_home">Home</span></a>
+      <a href="quiz.html"        class="footer-link"><span data-i18n="n_quiz">Quiz</span></a>
+      <a href="hiking.html"      class="footer-link"><span data-i18n="n_hiking">Hiking</span></a>
+      <a href="food.html"        class="footer-link"><span data-i18n="n_food">Food & Wine</span></a>
+      <a href="villages.html"    class="footer-link"><span data-i18n="n_villages">Villages</span></a>
+      <a href="wellness.html"    class="footer-link"><span data-i18n="n_wellness">Wellness</span></a>
+      <a href="dormire.html"     class="footer-link"><span data-i18n="n_stay">Where to Stay</span></a>
+      <a href="attractions.html" class="footer-link"><span data-i18n="n_attractions">Attractions</span></a>
+      <a href="events.html"      class="footer-link"><span data-i18n="n_events">Events</span></a>
+      <a href="transport.html"   class="footer-link"><span data-i18n="n_transport">Transport</span></a>
+      <a href="plan.html"        class="footer-link"><span data-i18n="n_plan">Plan Trip</span></a>
+      <a href="crediti.html"     class="footer-link"><span data-i18n="f_credits">Photo credits</span></a>
+    </nav>
+  </div>
+  <div class="footer-copy" data-i18n="f_copy">© 2026 Abruzzo Wild & Authentic — Made for travellers who go off the beaten path</div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="data/strutture.js"></script>
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ══ UI STATICA (chiavi di pagina) ══ */
+Object.assign(T18.en, {
+  dr_bc:'Where to Stay', dr_h1:'Where to <em>Stay</em>',
+  dr_intro:'Hand-picked places to sleep across wild Abruzzo — from scattered-hotel borghi to mountain agriturismo.',
+  dr_all:'All', dr_place:'place', dr_places:'places',
+  dr_book:'Book', dr_ask:'Contact for info', dr_curated:'Selected partner accommodations',
+  dr_empty:'No accommodations published yet — check back soon.',
+  dr_t_albergo_diffuso:'Scattered hotel', dr_t_hotel:'Hotel', dr_t_bb:'B&B', dr_t_bed_and_breakfast:'B&B',
+  dr_t_agriturismo:'Farm stay', dr_t_rifugio:'Mountain refuge', dr_t_casa_vacanze:'Holiday home', dr_t_ostello:'Hostel'
+});
+Object.assign(T18.it, {
+  dr_bc:'Dove Dormire', dr_h1:'Dove <em>Dormire</em>',
+  dr_intro:"Luoghi scelti dove dormire nell'Abruzzo selvaggio — dai borghi-albergo diffuso agli agriturismi di montagna.",
+  dr_all:'Tutti', dr_place:'struttura', dr_places:'strutture',
+  dr_book:'Prenota', dr_ask:'Contatta per info', dr_curated:'Strutture partner selezionate',
+  dr_empty:'Nessuna struttura ancora pubblicata — torna presto.',
+  dr_t_albergo_diffuso:'Albergo diffuso', dr_t_hotel:'Hotel', dr_t_bb:'B&B', dr_t_bed_and_breakfast:'B&B',
+  dr_t_agriturismo:'Agriturismo', dr_t_rifugio:'Rifugio', dr_t_casa_vacanze:'Casa vacanze', dr_t_ostello:'Ostello'
+});
+Object.assign(T18.de, {
+  dr_bc:'Übernachten', dr_h1:'<em>Übernachten</em>',
+  dr_intro:'Handverlesene Unterkünfte in den wilden Abruzzen — vom Albergo diffuso im Dorf bis zum Bergagriturismo.',
+  dr_all:'Alle', dr_place:'Unterkunft', dr_places:'Unterkünfte',
+  dr_book:'Buchen', dr_ask:'Für Infos kontaktieren', dr_curated:'Ausgewählte Partnerunterkünfte',
+  dr_empty:'Noch keine Unterkünfte veröffentlicht — bald wieder vorbeischauen.',
+  dr_t_albergo_diffuso:'Albergo diffuso', dr_t_hotel:'Hotel', dr_t_bb:'B&B', dr_t_bed_and_breakfast:'B&B',
+  dr_t_agriturismo:'Agriturismo', dr_t_rifugio:'Berghütte', dr_t_casa_vacanze:'Ferienhaus', dr_t_ostello:'Hostel'
+});
+Object.assign(T18.fr, {
+  dr_bc:'Où Loger', dr_h1:'Où <em>Loger</em>',
+  dr_intro:"Des adresses triées sur le volet dans les Abruzzes sauvages — du village-albergo diffuso à l'agritourisme de montagne.",
+  dr_all:'Tous', dr_place:'hébergement', dr_places:'hébergements',
+  dr_book:'Réserver', dr_ask:'Contacter pour infos', dr_curated:'Hébergements partenaires sélectionnés',
+  dr_empty:"Aucun hébergement publié pour l'instant — revenez bientôt.",
+  dr_t_albergo_diffuso:'Albergo diffuso', dr_t_hotel:'Hôtel', dr_t_bb:'B&B', dr_t_bed_and_breakfast:'B&B',
+  dr_t_agriturismo:'Agritourisme', dr_t_rifugio:'Refuge', dr_t_casa_vacanze:'Maison de vacances', dr_t_ostello:'Auberge'
+});
+
+/* ══ DATA ══ (data/strutture.js — GENERATO dalla CDP, contratto strutture.v1) */
+const strutture = (window.AW && window.AW.strutture) || [];
+
+/* etichetta tipo ricettivo tradotta (fallback: valore grezzo prettificato) */
+function tipoLabel(t) {
+  if (!t) return '';
+  const k = 'dr_t_' + t;
+  const v = T(k);
+  return v !== k ? v : t.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+function capit(s) { return (s || '').charAt(0).toUpperCase() + (s || '').slice(1); }
+
+/* ══ FILTRO per tag (generato dai dati) ══ */
+let activeTag = 'all';
+function renderFilter() {
+  const tags = [...new Set(strutture.flatMap(s => s.tags || []))].sort();
+  const bar = document.getElementById('str-filter');
+  if (!tags.length) { bar.style.display = 'none'; return; }
+  bar.style.display = '';
+  bar.innerHTML =
+    `<button class="pill pill-parchment ${activeTag === 'all' ? 'on' : ''}" onclick="strFilter('all', this)" data-i18n="dr_all">${T('dr_all')}</button>` +
+    tags.map(t => `<button class="pill pill-parchment ${activeTag === t ? 'on' : ''}" onclick="strFilter('${t}', this)"><i class="ti ti-tag" aria-hidden="true"></i> ${capit(t)}</button>`).join('') +
+    `<span class="filter-count" id="str-count"></span>`;
+}
+function strFilter(tag, btn) {
+  activeTag = tag;
+  document.querySelectorAll('#str-filter .pill').forEach(b => b.classList.remove('on'));
+  if (btn) btn.classList.add('on');
+  renderStrutture();
+}
+
+/* ══ RENDER ══ */
+function renderStrutture() {
+  const list = activeTag === 'all' ? strutture : strutture.filter(s => (s.tags || []).includes(activeTag));
+  const cnt = document.getElementById('str-count');
+  if (cnt) cnt.textContent = list.length + ' ' + T(list.length !== 1 ? 'dr_places' : 'dr_place');
+
+  const grid = document.getElementById('str-grid');
+  if (!list.length) { grid.innerHTML = `<p class="str-empty">${T('dr_empty')}</p>`; return; }
+
+  grid.innerHTML = list.map(s => {
+    const foto = (s.foto_url && s.foto_url[0]) || '';
+    const imgStyle = foto ? `style="background-image:url('${foto}')"` : '';
+    const imgClass = foto ? '' : ' str-img-empty';
+    const loc = [s.comune, s.zona_geografica].filter(Boolean).join(' · ');
+    const desc = L(s.descrizione_breve) || '';
+    const tags = (s.tags || []).map(t => `<span class="tag">${capit(t)}</span>`).join('');
+    const book = s.link_booking_esterno
+      ? `<a class="str-book" href="${s.link_booking_esterno}" target="_blank" rel="noopener"><i class="ti ti-external-link" aria-hidden="true"></i> ${T('dr_book')} →</a>`
+      : `<span class="str-nolink">${T('dr_ask')}</span>`;
+    return `
+      <div class="str-card">
+        <div class="str-img-wrap">
+          <div class="str-img${imgClass}" ${imgStyle}></div>
+          <div class="str-img-overlay"></div>
+          <span class="str-type"><i class="ti ti-bed" aria-hidden="true"></i> ${tipoLabel(s.tipo_ricettivo)}</span>
+        </div>
+        <div class="str-body">
+          <h3>${s.nome || ''}</h3>
+          ${loc ? `<div class="str-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> ${loc}</div>` : ''}
+          ${desc ? `<p>${desc}</p>` : ''}
+          ${tags ? `<div class="str-tags">${tags}</div>` : ''}
+          <div class="str-footer">${book}</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+/* ══ NEWSLETTER ══ */
+function nlSubmit() {
+  const input = document.getElementById('nlemail');
+  if (input.value && input.value.includes('@')) { input.value = ''; alert("Thank you! You'll hear from us once a month 🌿"); }
+  else { input.style.outline = '2px solid var(--rose)'; setTimeout(() => input.style.outline = 'none', 2000); }
+}
+
+/* ══ INIT ══ */
+renderFilter();
+renderStrutture();
+
+/* ══ RE-RENDER AL CAMBIO LINGUA ══ */
+document.addEventListener('aw:langchange', () => { renderFilter(); renderStrutture(); });
+</script>
+
+</body>
+</html>

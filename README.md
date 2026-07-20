@@ -40,7 +40,15 @@ img/                foto locali (Wikimedia Commons, licenze CC — vedi crediti.
 ### Le pagine
 `index` (home) · `quiz` · `inspired` (Get Inspired) · `experience` (Experience Builder) ·
 `hiking` · `food` · `villages` · `wellness` · `attractions` · `events` · `transport` ·
-`plan` · `crediti` (attribuzione foto).
+`dormire` (Where to Stay — strutture ricettive) · `plan` · `crediti` (attribuzione foto).
+
+**`dormire.html` (Dove dormire).** Vetrina pubblica delle strutture ricettive **partner**
+(`pubblicato=true`), consumata da `data/strutture.js` (`window.AW.strutture`): card con foto,
+tipo, comune/zona, descrizione, tag, e link **Prenota** se presente; filtro per tag generato
+dai dati; i18n 4 lingue con fallback (`L()`). `data/strutture.js` NON è editoriale: è
+**generato automaticamente dalla Customer DATAi Platform (CDP)** — il CRM operatori esporta lo
+snapshot (contratto `strutture.v1`, solo campi pubblici) e lo committa nel repo. Stesso pattern
+del ponte ICH → dati: un motore a monte scrive un `data/*.js`, il sito statico lo mostra.
 
 ---
 
