@@ -222,6 +222,9 @@
 .gp-img { height: 110px; background-size: cover; background-position: center; background-color: var(--parchment); }
 .gp-body { padding: .6rem .75rem .75rem; }
 .gp-nm { font-family: var(--sans); font-size: .88rem; font-weight: 600; color: var(--ink); line-height: 1.25; }
+/* Partner CDP: card evidenziata + badge */
+.gp-card--partner { border: 1.5px solid var(--olive, #3d4a2e); box-shadow: 0 2px 12px rgba(61,74,46,.18); }
+.gp-partner { display: inline-block; background: var(--olive, #3d4a2e); color: #fff; font-size: .6rem; font-weight: 700; padding: .1rem .42rem; border-radius: 999px; margin-right: .35rem; vertical-align: middle; letter-spacing: .03em; text-transform: uppercase; }
 .gp-meta { font-family: var(--sans); font-size: .78rem; color: var(--ink-soft); margin-top: .25rem; display: flex; align-items: center; gap: .35rem; }
 .gp-star { color: #c8892b; font-weight: 600; }
 .gp-open { display: inline-block; margin-top: .45rem; font-family: var(--sans); font-size: .74rem; color: var(--olive); }
@@ -517,10 +520,17 @@
 <script src="i18n.js"></script>
 <script src="data/experiences.js"></script>
 <script src="data/config.js"></script>
+<script src="data/strutture.js"></script>
 <script>
 /* ══ DATA ══ */
 const experiences = window.AW.experiences;
 const placeCoords = window.AW.placeCoords;
+
+/* Partner CDP (strutture pubblicate dal CRM): mappa place_id → partner.
+   Serve a riconoscere nei risultati Google gli alloggi che sono partner ("Partner ★"). */
+const AW_PARTNERS = (window.AW && window.AW.strutture) || [];
+const partnerByPlace = {};
+AW_PARTNERS.forEach(s => { if (s.google_place_id) partnerByPlace[s.google_place_id] = s; });
 
 /* mood + durata + stagione (id, icona, etichette multilingua) */
 const MOODS = [
@@ -560,6 +570,7 @@ Object.assign(T18.en, {
   exp_share:'Share', exp_print:'Print / PDF', exp_share_done:'Link copied!',
   gp_title:'Where to eat & sleep along the route', gp_cta:'Show suggestions',
   gp_eat:'Where to eat', gp_stay:'Where to sleep', gp_open:'Open in Google Maps',
+  gp_partner:'Partner', gp_partner_open:'Book direct ›',
   gp_loading:'Finding places nearby…', gp_none:'No places found here.',
   gp_err:'Couldn\'t load suggestions right now — please try again.',
   gp_note:'Live suggestions from Google — ranked by popularity, near each day\'s base.',
@@ -581,6 +592,7 @@ Object.assign(T18.it, {
   exp_share:'Condividi', exp_print:'Stampa / PDF', exp_share_done:'Link copiato!',
   gp_title:'Dove mangiare e dormire lungo il percorso', gp_cta:'Mostra i suggerimenti',
   gp_eat:'Dove mangiare', gp_stay:'Dove dormire', gp_open:'Apri in Google Maps',
+  gp_partner:'Partner', gp_partner_open:'Prenota diretto ›',
   gp_loading:'Cerco i posti in zona…', gp_none:'Nessun posto trovato qui.',
   gp_err:'Non riesco a caricare i suggerimenti ora — riprova.',
   gp_note:'Suggerimenti dal vivo da Google — ordinati per popolarità, vicino alla base di ogni giorno.',
@@ -602,6 +614,7 @@ Object.assign(T18.de, {
   exp_share:'Teilen', exp_print:'Drucken / PDF', exp_share_done:'Link kopiert!',
   gp_title:'Essen &amp; Übernachten entlang der Route', gp_cta:'Vorschläge anzeigen',
   gp_eat:'Wo essen', gp_stay:'Wo übernachten', gp_open:'In Google Maps öffnen',
+  gp_partner:'Partner', gp_partner_open:'Direkt buchen ›',
   gp_loading:'Suche Orte in der Nähe…', gp_none:'Keine Orte hier gefunden.',
   gp_err:'Vorschläge konnten nicht geladen werden — bitte erneut versuchen.',
   gp_note:'Live-Vorschläge von Google — nach Beliebtheit, nahe der Basis jedes Tages.',
@@ -623,6 +636,7 @@ Object.assign(T18.fr, {
   exp_share:'Partager', exp_print:'Imprimer / PDF', exp_share_done:'Lien copié !',
   gp_title:'Où manger et dormir le long de l\'itinéraire', gp_cta:'Voir les suggestions',
   gp_eat:'Où manger', gp_stay:'Où dormir', gp_open:'Ouvrir dans Google Maps',
+  gp_partner:'Partenaire', gp_partner_open:'Réserver en direct ›',
   gp_loading:'Recherche de lieux à proximité…', gp_none:'Aucun lieu trouvé ici.',
   gp_err:'Impossible de charger les suggestions — réessayez.',
   gp_note:'Suggestions en direct de Google — par popularité, près de la base de chaque jour.',
@@ -1185,11 +1199,17 @@ function placeCard(p, ctx) {
     const rid = registerPlace(p, ctx.kind);
     addBtn = `<button type="button" class="gp-add" onclick="addToRoute('${ctx.expId}',${ctx.day},'${rid}')"><i class="ti ti-plus" aria-hidden="true"></i> ${T('gp_add')}</button>`;
   }
-  return `<div class="gp-card">
-    <a class="gp-card-link" href="${placeUri(p)}" target="_blank" rel="noopener">${imgHtml}
-      <div class="gp-body"><div class="gp-nm">${p.displayName || ''}</div>
+  /* Partner CDP? (solo per "dormire", match sul place_id) → badge + link diretto */
+  const partner = (ctx && ctx.kind === 'stay') ? partnerByPlace[p.id] : null;
+  const cardCls = partner ? 'gp-card gp-card--partner' : 'gp-card';
+  const pBadge = partner ? `<span class="gp-partner">★ ${T('gp_partner')}</span>` : '';
+  const href = (partner && partner.link_booking_esterno) ? partner.link_booking_esterno : placeUri(p);
+  const openTxt = partner ? T('gp_partner_open') : (T('gp_open') + ' ›');
+  return `<div class="${cardCls}">
+    <a class="gp-card-link" href="${href}" target="_blank" rel="noopener">${imgHtml}
+      <div class="gp-body"><div class="gp-nm">${pBadge}${p.displayName || ''}</div>
       <div class="gp-meta">${rating}${rating && type ? ' · ' : ''}${type}</div>
-      <span class="gp-open">${T('gp_open')} ›</span></div></a>${addBtn}</div>`;
+      <span class="gp-open">${openTxt}</span></div></a>${addBtn}</div>`;
 }
 
 /* ── CURA QUALITÀ + DEDUP ──
@@ -1260,6 +1280,7 @@ async function loadPlaces(e) {
     const eatRaw = eatR.status === 'fulfilled' ? eatR.value : (firstErr = firstErr || eatR.reason, []);
     const stayRaw = stayR.status === 'fulfilled' ? stayR.value : (firstErr = firstErr || stayR.reason, []);
     const eat = curate(eatRaw, seen), stay = curate(stayRaw, seen);   /* rating minimo + no doppioni */
+    stay.sort((a, b) => (partnerByPlace[b.id] ? 1 : 0) - (partnerByPlace[a.id] ? 1 : 0));   /* partner in cima */
     if (eat.length || stay.length) anyResult = true;
     [['eat', eat], ['stay', stay]].forEach(([kind, arr]) => arr.forEach(p => {
       const c = placeLatLng(p); if (c) markers.push({ coord: c, kind, name: p.displayName, rating: p.rating, uri: placeUri(p) });
