@@ -30,6 +30,7 @@ window.AW.strutture = [
     "link_booking_esterno": "https://www.sextantio.it/santostefano/abruzzo/",
     "foto_url": [
       "img/santo-stefano-di-sessanio.jpg"
-    ]
+    ],
+    "google_place_id": "ChIJp3-QYqQsMBMRLJTE5A2FzjE"
   }
 ];
