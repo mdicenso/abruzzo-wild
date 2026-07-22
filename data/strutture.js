@@ -25,7 +25,8 @@ window.AW.strutture = [
     "tags": [
       "borghi",
       "wellness",
-      "food"
+      "food",
+      "storia"
     ],
     "link_booking_esterno": "https://www.sextantio.it/santostefano/abruzzo/",
     "foto_url": [
